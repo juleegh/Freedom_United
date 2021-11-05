@@ -309,6 +309,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1006105887}
   - component: {fileID: 1006105886}
+  - component: {fileID: 1006105889}
+  - component: {fileID: 1006105888}
   - component: {fileID: 1006105885}
   m_Layer: 0
   m_Name: Grid
@@ -326,20 +328,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1006105884}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c94bf80eae77e1941b464631f8ce2275, type: 3}
+  m_Script: {fileID: 11500000, guid: 04015df2b47eb8446b07bbcb491141aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 4
-  height: 4
-  availablePositions:
+  initialPositions:
   - {x: 0, y: 0}
   - {x: 1, y: 0}
   - {x: 2, y: 0}
-  - {x: 3, y: 0}
-  - {x: 1, y: 1}
-  - {x: 3, y: 1}
-  - {x: 0, y: 2}
-  - {x: 2, y: 2}
 --- !u!114 &1006105886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -353,6 +348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cellPrefab: {fileID: 4035768825132470801, guid: 562659b2a9aa26c41aad5f8417b5dc44, type: 3}
+  characterPrefab: {fileID: 4435514643140344550, guid: 38df670c02d891948ad918669b99f544, type: 3}
   cellDistance: 1
   cellsContainer: {fileID: 1006105887}
 --- !u!4 &1006105887
@@ -369,3 +365,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1006105888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006105884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c94bf80eae77e1941b464631f8ce2275, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  width: 4
+  height: 4
+  initialAvailablePositions:
+  - {x: 0, y: 0}
+  - {x: 1, y: 0}
+  - {x: 2, y: 0}
+  - {x: 3, y: 0}
+  - {x: 1, y: 1}
+  - {x: 2, y: 2}
+--- !u!114 &1006105889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006105884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1b9cff8026bcbe43a9093fe056c3bb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
