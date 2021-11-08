@@ -335,6 +335,8 @@ MonoBehaviour:
   - {x: 0, y: 0}
   - {x: 1, y: 0}
   - {x: 2, y: 0}
+  bossInitialPosition: {x: 1, y: 3}
+  bossConfig: {fileID: 11400000, guid: c9763828f496f5a4bbc19fbe89be80b9, type: 2}
 --- !u!114 &1006105886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -349,6 +351,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cellPrefab: {fileID: 4035768825132470801, guid: 562659b2a9aa26c41aad5f8417b5dc44, type: 3}
   characterPrefab: {fileID: 4435514643140344550, guid: 38df670c02d891948ad918669b99f544, type: 3}
+  bossPrefab: {fileID: 5324281785901654630, guid: fc02bfc99086b9c4d965e09b81717de3, type: 3}
   cellDistance: 1
   cellsContainer: {fileID: 1006105887}
 --- !u!4 &1006105887

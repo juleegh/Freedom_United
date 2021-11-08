@@ -9,11 +9,13 @@ public class BattleGridUI : MonoBehaviour
 
     [SerializeField] private GameObject cellPrefab;
     [SerializeField] private GameObject characterPrefab;
+    [SerializeField] private GameObject bossPrefab;
     [SerializeField] private float cellDistance;
     [SerializeField] private Transform cellsContainer;
 
     Dictionary<Vector2Int, GridCellUI> grid;
     Dictionary<CharacterID, CharacterVisuals> characters;
+    BossVisuals bossVisuals;
 
     void Start()
     {
@@ -45,8 +47,13 @@ public class BattleGridUI : MonoBehaviour
         {
             CharacterVisuals characterVisuals = Instantiate(characterPrefab).GetComponent<CharacterVisuals>();
             characterVisuals.transform.SetParent(cellsContainer);
-            characterVisuals.transform.position = new Vector3(character.Value.CurrentPosition.x, 0.1f, character.Value.CurrentPosition.y);
+            characterVisuals.transform.position = BattleGridUtils.TranslatedPosition(character.Value.CurrentPosition, 0.1f);
             characterVisuals.Paint(character.Key);
         }
+
+        bossVisuals = Instantiate(bossPrefab).GetComponent<BossVisuals>();
+        bossVisuals.transform.SetParent(cellsContainer);
+        bossVisuals.transform.position = BattleGridUtils.TranslatedPosition(BattleManager.Instance.CharacterManagement.Boss.Position, 0.1f);
+        bossVisuals.Paint(BattleManager.Instance.CharacterManagement.Boss);
     }
 }

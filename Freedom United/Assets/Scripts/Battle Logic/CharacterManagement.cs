@@ -5,8 +5,12 @@ using UnityEngine;
 public class CharacterManagement : MonoBehaviour
 {
     [SerializeField] private List<Vector2Int> initialPositions;
+    [SerializeField] private Vector2Int bossInitialPosition;
+    [SerializeField] private BossConfig bossConfig;
     private Dictionary<CharacterID, Character> characters;
     public Dictionary<CharacterID, Character> Characters { get { return characters; } }
+    private Boss boss;
+    public Boss Boss { get { return boss; } }
 
     void Awake()
     {
@@ -23,6 +27,8 @@ public class CharacterManagement : MonoBehaviour
         SetCharacterInPosition(CharacterID.Daphne, initialPositions[0]);
         SetCharacterInPosition(CharacterID.Simon, initialPositions[1]);
         SetCharacterInPosition(CharacterID.Anthony, initialPositions[2]);
+
+        boss = new Boss(bossInitialPosition, bossConfig);
     }
 
     public void SetCharacterInPosition(CharacterID characterID, Vector2Int newPosition)
