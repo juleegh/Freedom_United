@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class CharacterSelection : MonoBehaviour
+public class CharacterSelectionUI : MonoBehaviour
 {
     [SerializeField] private int charactersOnScreen;
     [SerializeField] private Transform charactersContainer;
@@ -51,7 +51,7 @@ public class CharacterSelection : MonoBehaviour
         nextIndicator.SetActive(topCharacter + charactersOnScreen <= characters.Count - 1);
     }
 
-    public void RefreshCharacterView(int selectedCharacter)
+    public void RefreshSelectedCharacter(int selectedCharacter)
     {
         for (int i = 0; i < charactersOnScreen; i++)
         {

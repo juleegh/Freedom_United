@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CellSelection : MonoBehaviour
+public class CellSelectionUI : MonoBehaviour
 {
     [SerializeField] private GameObject selectionPreview;
 

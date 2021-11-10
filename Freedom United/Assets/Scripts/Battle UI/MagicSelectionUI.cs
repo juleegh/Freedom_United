@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MagicSelection : MonoBehaviour
+public class MagicSelectionUI : MonoBehaviour
 {
     [SerializeField] private int spellsOnScreen;
     [SerializeField] private Transform spellsContainer;
@@ -19,10 +19,13 @@ public class MagicSelection : MonoBehaviour
     private void LoadUI()
     {
         spellPreviews = new MagicActionOption[spellsOnScreen];
+        List<MagicSpell> spells = new List<MagicSpell>();
+
         for (int i = 0; i < spellsOnScreen; i++)
         {
             spellPreviews[i] = Instantiate(spellPreviewPrefab).GetComponent<MagicActionOption>();
             spellPreviews[i].transform.SetParent(spellsContainer);
+            spellPreviews[i].gameObject.SetActive(false);
         }
         RefreshView(0, 0);
     }
@@ -31,17 +34,19 @@ public class MagicSelection : MonoBehaviour
     {
         int previewIndex = 0;
 
-        List<MagicSpell> spells = new List<MagicSpell>();
+        List<MagicSpell> spells = BattleManager.Instance.MagicManagement.Spells;
         // TODO: Connect this eventually to actual magic
 
         for (int i = topSpell; i < topSpell + spellsOnScreen; i++)
         {
             if (i >= spells.Count)
             {
+                spellPreviews[previewIndex].gameObject.SetActive(false);
                 previewIndex++;
                 continue;
             }
 
+            spellPreviews[previewIndex].gameObject.SetActive(true);
             spellPreviews[previewIndex].Config(spells[i].spellName);
             previewIndex++;
         }
@@ -50,7 +55,7 @@ public class MagicSelection : MonoBehaviour
         DownIndicator.SetActive(topSpell + spellsOnScreen <= spells.Count - 1);
     }
 
-    public void RefreshTempoView(int selectedTempo)
+    public void RefreshSelectionView(int selectedTempo)
     {
         for (int i = 0; i < spellsOnScreen; i++)
         {

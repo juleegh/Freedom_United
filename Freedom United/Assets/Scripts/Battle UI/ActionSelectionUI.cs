@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActionSelection : MonoBehaviour
+public class ActionSelectionUI : MonoBehaviour
 {
     [SerializeField] private ActionSelectionOption[] actionPreviews;
     [SerializeField] private GameObject sectionContainer;
@@ -26,7 +26,7 @@ public class ActionSelection : MonoBehaviour
         sectionContainer.SetActive(visible);
     }
 
-    public void RefreshSelectionView(int selectedCharacter)
+    public void RefreshSelectedAction(int selectedCharacter)
     {
         for (int i = 0; i < actionPreviews.Length; i++)
         {
