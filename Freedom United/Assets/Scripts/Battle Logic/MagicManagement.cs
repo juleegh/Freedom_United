@@ -10,5 +10,8 @@ public class MagicManagement : MonoBehaviour
     void Awake()
     {
         spells = new List<MagicSpell>();
+        spells.Add(new MagicSpell("Fire"));
+        spells.Add(new MagicSpell("Fira"));
+        spells.Add(new MagicSpell("Firaga"));
     }
 }

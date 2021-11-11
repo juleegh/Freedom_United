@@ -1,10 +1,10 @@
 public class ActionSelection : NavigationSelection
 {
-    protected override int MaxElements { get { return 3; } }
+    protected override int MaxElements { get { return 4; } }
 
     public override void Next()
     {
-        if (currentIndex == MaxElements)
+        if (currentIndex == MaxElements - 1)
             return;
 
         currentIndex++;
@@ -15,5 +15,17 @@ public class ActionSelection : NavigationSelection
     {
         if (currentIndex == 0)
             return;
+
+        currentIndex--;
+        BattleUIManager.Instance.ActionSelectionUI.RefreshSelectedAction(currentIndex);
     }
+
+    public void Toggle(bool visible)
+    {
+        BattleUIManager.Instance.ActionSelectionUI.ToggleVisible(visible);
+        if (visible)
+            currentIndex = 0;
+    }
+
+    public bool MagicSelected { get { return currentIndex == MaxElements - 1; } }
 }

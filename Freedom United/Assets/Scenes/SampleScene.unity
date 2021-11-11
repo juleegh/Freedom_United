@@ -1227,6 +1227,7 @@ MonoBehaviour:
   spellPreviewPrefab: {fileID: 9149139453372857019, guid: d0b6393044a278f4da2b861939af915a, type: 3}
   UpIndicator: {fileID: 2040986267}
   DownIndicator: {fileID: 243896338}
+  sectionContainer: {fileID: 168622891}
 --- !u!222 &650527623
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2044,12 +2045,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1006105887}
-  - component: {fileID: 1006105886}
   - component: {fileID: 1006105889}
   - component: {fileID: 1006105888}
   - component: {fileID: 1006105885}
+  - component: {fileID: 1006105890}
+  - component: {fileID: 1006105886}
   m_Layer: 0
-  m_Name: Grid
+  m_Name: Battle Management
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2082,14 +2084,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1006105884}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f4e616bbf3af2c48a7fecc5d00496ac, type: 3}
+  m_Script: {fileID: 11500000, guid: e1ac0b92d7590624aab1d3dbac31a77c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cellPrefab: {fileID: 4035768825132470801, guid: 562659b2a9aa26c41aad5f8417b5dc44, type: 3}
-  characterPrefab: {fileID: 4435514643140344550, guid: 38df670c02d891948ad918669b99f544, type: 3}
-  bossPrefab: {fileID: 5324281785901654630, guid: fc02bfc99086b9c4d965e09b81717de3, type: 3}
-  cellDistance: 1
-  cellsContainer: {fileID: 1006105887}
 --- !u!4 &1006105887
 Transform:
   m_ObjectHideFlags: 0
@@ -2135,6 +2132,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b1b9cff8026bcbe43a9093fe056c3bb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1006105890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006105884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3c330edd0e17614e87ff62ed8ee3c0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1019913003
@@ -2386,6 +2395,99 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1156341991
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1156341993}
+  - component: {fileID: 1156341992}
+  - component: {fileID: 1156341994}
+  - component: {fileID: 1156341995}
+  - component: {fileID: 1156341996}
+  m_Layer: 0
+  m_Name: UI Management
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1156341992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1156341991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f129296db9f4af14a936c7a118e1623b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterSelectionUI: {fileID: 750341654}
+  actionSelectionUI: {fileID: 666792383}
+  actionPileUI: {fileID: 772605602}
+  magicSelectionUI: {fileID: 650527622}
+  cellSelectionUI: {fileID: 892633692}
+--- !u!4 &1156341993
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1156341991}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1156341994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1156341991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f4e616bbf3af2c48a7fecc5d00496ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cellPrefab: {fileID: 4035768825132470801, guid: 562659b2a9aa26c41aad5f8417b5dc44, type: 3}
+  characterPrefab: {fileID: 4435514643140344550, guid: 38df670c02d891948ad918669b99f544, type: 3}
+  bossPrefab: {fileID: 5324281785901654630, guid: fc02bfc99086b9c4d965e09b81717de3, type: 3}
+  cellDistance: 1
+  cellsContainer: {fileID: 1006105887}
+--- !u!114 &1156341995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1156341991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dbe57ff51c73d441b0d0e37c463b66b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1156341996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1156341991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f2fd51d7da64924bb5fd190211062e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  battleUINavigation: {fileID: 1156341995}
 --- !u!1 &1297238714
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,7 +9,9 @@ public class MagicSelectionUI : MonoBehaviour
     [SerializeField] private GameObject spellPreviewPrefab;
     [SerializeField] private GameObject UpIndicator;
     [SerializeField] private GameObject DownIndicator;
+    [SerializeField] private GameObject sectionContainer;
     private MagicActionOption[] spellPreviews;
+    public int SpellsOnScreen { get { return spellsOnScreen; } }
 
     void Start()
     {
@@ -53,13 +55,21 @@ public class MagicSelectionUI : MonoBehaviour
 
         UpIndicator.SetActive(topSpell > 0);
         DownIndicator.SetActive(topSpell + spellsOnScreen <= spells.Count - 1);
+        RefreshSelectionView(selectedSpell);
     }
 
-    public void RefreshSelectionView(int selectedTempo)
+    public void RefreshSelectionView(int selectedMagic)
     {
         for (int i = 0; i < spellsOnScreen; i++)
         {
-            spellPreviews[i].ToggleSelected(i == selectedTempo);
+            spellPreviews[i].ToggleSelected(i == selectedMagic);
         }
+    }
+
+    public void Toggle(bool visible)
+    {
+        sectionContainer.SetActive(visible);
+        if (visible)
+            RefreshSelectionView(0);
     }
 }

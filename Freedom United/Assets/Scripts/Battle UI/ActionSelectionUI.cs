@@ -24,6 +24,8 @@ public class ActionSelectionUI : MonoBehaviour
     public void ToggleVisible(bool visible)
     {
         sectionContainer.SetActive(visible);
+        if (visible)
+            RefreshSelectedAction(0);
     }
 
     public void RefreshSelectedAction(int selectedCharacter)

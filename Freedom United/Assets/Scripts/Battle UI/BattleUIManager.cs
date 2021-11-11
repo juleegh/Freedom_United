@@ -19,6 +19,9 @@ public class BattleUIManager : MonoBehaviour
     [SerializeField] private MagicSelectionUI magicSelectionUI;
     public MagicSelectionUI MagicSelectionUI { get { return magicSelectionUI; } }
 
+    [SerializeField] private CellSelectionUI cellSelectionUI;
+    public CellSelectionUI CellSelectionUI { get { return cellSelectionUI; } }
+
     private void Awake()
     {
         instance = this;

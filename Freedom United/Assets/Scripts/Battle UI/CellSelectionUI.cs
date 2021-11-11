@@ -10,4 +10,9 @@ public class CellSelectionUI : MonoBehaviour
     {
         selectionPreview.transform.position = BattleGridUtils.TranslatedPosition(x, y, 0.2f);
     }
+
+    public void Toggle(bool visible)
+    {
+        selectionPreview.SetActive(visible);
+    }
 }

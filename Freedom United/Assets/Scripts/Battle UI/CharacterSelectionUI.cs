@@ -11,6 +11,7 @@ public class CharacterSelectionUI : MonoBehaviour
     [SerializeField] private GameObject previousIndicator;
     [SerializeField] private GameObject nextIndicator;
     private CharacterSelectionOption[] characterPreviews;
+    public int CharactersOnScreen { get { return charactersOnScreen; } }
 
     void Start()
     {
@@ -22,10 +23,11 @@ public class CharacterSelectionUI : MonoBehaviour
         characterPreviews = new CharacterSelectionOption[charactersOnScreen];
         List<CharacterID> characters = BattleManager.Instance.CharacterManagement.Characters.Keys.ToList();
 
-        for (int i = 0; i < charactersOnScreen && i < characters.Count; i++)
+        for (int i = 0; i < charactersOnScreen; i++)
         {
             characterPreviews[i] = Instantiate(characterPreviewPrefab).GetComponent<CharacterSelectionOption>();
             characterPreviews[i].transform.SetParent(charactersContainer);
+            characterPreviews[i].gameObject.SetActive(i < characters.Count);
         }
         RefreshView(0, 0);
     }
@@ -49,6 +51,7 @@ public class CharacterSelectionUI : MonoBehaviour
 
         previousIndicator.SetActive(topCharacter > 0);
         nextIndicator.SetActive(topCharacter + charactersOnScreen <= characters.Count - 1);
+        RefreshSelectedCharacter(selectedCharacter);
     }
 
     public void RefreshSelectedCharacter(int selectedCharacter)

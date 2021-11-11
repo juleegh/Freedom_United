@@ -10,6 +10,7 @@ public class ActionPileUI : MonoBehaviour
     [SerializeField] private GameObject UpIndicator;
     [SerializeField] private GameObject DownIndicator;
     private ScheduledActionPreview[] actionsPreviews;
+    public int ActionsOnScreen { get { return actionsOnScreen; } }
 
     void Start()
     {
