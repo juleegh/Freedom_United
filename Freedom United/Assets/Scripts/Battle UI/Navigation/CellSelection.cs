@@ -56,4 +56,6 @@ public class CellSelection
     {
         BattleUIManager.Instance.CellSelectionUI.Toggle(visible);
     }
+
+    public Vector2Int SelectedPosition { get { return new Vector2Int(currentColumn, currentRow); } }
 }

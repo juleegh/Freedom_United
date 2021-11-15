@@ -1,4 +1,5 @@
 using System.Linq;
+using UnityEngine;
 
 public class CharacterSelection : NavigationSelection
 {
@@ -8,7 +9,10 @@ public class CharacterSelection : NavigationSelection
 
     public override void Next()
     {
-        if (currentIndex < ElementsOnScreen - 1)
+        if (currentIndex + topElement == MaxElements - 1)
+            return;
+
+        if (currentIndex < ElementsOnScreen - 1 && currentIndex < MaxElements - 1)
         {
             currentIndex++;
             BattleUIManager.Instance.CharacterSelectionUI.RefreshView(topElement, currentIndex);
@@ -22,6 +26,9 @@ public class CharacterSelection : NavigationSelection
 
     public override void Previous()
     {
+        if (currentIndex + topElement == 0)
+            return;
+
         if (currentIndex > 0)
         {
             currentIndex--;
@@ -34,5 +41,11 @@ public class CharacterSelection : NavigationSelection
         }
     }
 
-    public Character SelectedCharacter { get { return BattleManager.Instance.CharacterManagement.Characters.Values.ToList()[currentIndex]; } }
+    public void Refresh()
+    {
+        BattleUIManager.Instance.CharacterSelectionUI.RefreshView(topElement, currentIndex);
+    }
+
+    public Character SelectedCharacter { get { return BattleManager.Instance.CharacterManagement.Characters.Values.ToList()[currentIndex + topElement]; } }
+    public CharacterID CharacterID { get { return BattleManager.Instance.CharacterManagement.Characters.Keys.ToList()[currentIndex + topElement]; } }
 }

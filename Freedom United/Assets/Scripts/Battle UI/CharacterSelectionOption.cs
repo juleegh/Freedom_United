@@ -8,6 +8,7 @@ public class CharacterSelectionOption : MonoBehaviour
     [SerializeField] private Image characterPreview;
     [SerializeField] private Image background;
     [SerializeField] private CharacterAssets assets;
+    [SerializeField] private GameObject blocked;
 
     [SerializeField] private Color regularColor;
     [SerializeField] private Color selectedColor;
@@ -18,6 +19,12 @@ public class CharacterSelectionOption : MonoBehaviour
     {
         currentCharacter = character;
         characterPreview.sprite = assets.Bodies[character];
+        blocked.SetActive(false);
+    }
+
+    public void AvailableForAction(bool available)
+    {
+        blocked.SetActive(!available);
     }
 
     public void OnSelectionTriggered()

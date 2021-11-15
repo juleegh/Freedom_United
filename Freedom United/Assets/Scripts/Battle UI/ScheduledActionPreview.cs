@@ -17,7 +17,7 @@ public class ScheduledActionPreview : MonoBehaviour
 
     public void ConfigVisuals(ScheduledAction scheduledAction)
     {
-        actionName.text = scheduledAction.ActionType.ToString();
+        actionName.text = scheduledAction.actionType.ToString();
         if (BattleGridUtils.IsACharacter(scheduledAction.ActionOwner))
             actorIcon.sprite = characterAssets.Bodies[BattleGridUtils.GetCharacterID(scheduledAction.ActionOwner)];
         else

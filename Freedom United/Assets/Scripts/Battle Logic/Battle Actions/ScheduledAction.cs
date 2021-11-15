@@ -4,19 +4,14 @@ using UnityEngine;
 
 public class ScheduledAction
 {
-    protected BattleActionType actionType;
-    protected int speed;
-    protected Vector2Int position;
+    public BattleActionType actionType;
+    public int speed;
+    public Vector2Int position;
 
-    public int Speed { get { return speed; } }
     public virtual string ActionOwner { get { return "Empty"; } }
-    public BattleActionType ActionType { get { return actionType; } }
-    public Vector2Int Position { get { return position; } }
 
-    public ScheduledAction(BattleActionType battleAction, Vector2Int pos, int actionSpeed)
+    public ScheduledAction()
     {
-        actionType = battleAction;
-        position = pos;
-        speed = actionSpeed;
+
     }
 }

@@ -11,6 +11,8 @@ public class BattleUINavigation : MonoBehaviour
     private ActionSelection ActionSelection = new ActionSelection();
     private CellSelection CellSelection = new CellSelection();
 
+    private AllyAction currentAction;
+
     void Start()
     {
         ResetActionSelection();
@@ -62,11 +64,16 @@ public class BattleUINavigation : MonoBehaviour
             currentLevel = BattleSelectionLevel.Character;
         else if (currentLevel == BattleSelectionLevel.Character)
         {
+            if (!BattleManager.Instance.ActionPile.CharactersAvailable.Contains(CharacterSelection.CharacterID))
+                return;
+
+            currentAction.actionOwner = CharacterSelection.CharacterID;
             currentLevel = BattleSelectionLevel.Action;
             ActionSelection.Toggle(true);
         }
         else if (currentLevel == BattleSelectionLevel.Action)
         {
+            currentAction.actionType = ActionSelection.ActionSelected;
             if (ActionSelection.MagicSelected)
             {
                 currentLevel = BattleSelectionLevel.Magic;
@@ -86,7 +93,11 @@ public class BattleUINavigation : MonoBehaviour
             CellSelection.Toggle(true);
         }
         else if (currentLevel == BattleSelectionLevel.Cell)
+        {
+            currentAction.position = CellSelection.SelectedPosition;
+            CreateAllyAction();
             ResetActionSelection();
+        }
     }
 
     public void Backwards()
@@ -111,11 +122,18 @@ public class BattleUINavigation : MonoBehaviour
         }
     }
 
+    private void CreateAllyAction()
+    {
+        BattleManager.Instance.ActionPile.AddActionToPile(currentAction);
+    }
+
     private void ResetActionSelection()
     {
+        currentAction = new AllyAction();
         currentLevel = BattleSelectionLevel.Character;
         CellSelection.Toggle(false);
         ActionSelection.Toggle(false);
         MagicSelection.Toggle(false);
+        CharacterSelection.Refresh();
     }
 }

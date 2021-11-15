@@ -6,7 +6,7 @@ public class MagicSelection : NavigationSelection
 
     public override void Next()
     {
-        if (currentIndex < ElementsOnScreen - 1)
+        if (currentIndex < ElementsOnScreen - 1 && currentIndex < MaxElements - 1)
         {
             currentIndex++;
             BattleUIManager.Instance.MagicSelectionUI.RefreshView(topElement, currentIndex);

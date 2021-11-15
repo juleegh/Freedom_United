@@ -26,5 +26,7 @@ public class BattleManager : MonoBehaviour
         characterManagement = GetComponent<CharacterManagement>();
         actionPile = GetComponent<ActionPile>();
         magicManagement = GetComponent<MagicManagement>();
+
+        actionPile.Initialize();
     }
 }
