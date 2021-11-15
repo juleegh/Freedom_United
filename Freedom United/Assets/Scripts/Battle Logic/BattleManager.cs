@@ -32,4 +32,16 @@ public class BattleManager : MonoBehaviour
 
         actionPile.Initialize();
     }
+
+    public void CalculateAttackRange(CharacterID characterID)
+    {
+        Character character = characterManagement.Characters[characterID];
+        battleGrid.CalculateRange(partyStats.Stats[characterID].AttackRange, character.CurrentPosition);
+    }
+
+    public void CalculateDefenseRange(CharacterID characterID)
+    {
+        Character character = characterManagement.Characters[characterID];
+        battleGrid.CalculateRange(AttackRange.Short, character.CurrentPosition);
+    }
 }

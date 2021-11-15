@@ -51,4 +51,19 @@ public static class BattleGridUtils
             return BossPartType.RobotArm;
         }
     }
+
+    public static int GetRangeConversion(AttackRange attackRange)
+    {
+        switch (attackRange)
+        {
+            case AttackRange.Short:
+                return 1;
+            case AttackRange.Medium:
+                return 2;
+            case AttackRange.Long:
+                return 3;
+        }
+
+        return 0;
+    }
 }

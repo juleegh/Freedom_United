@@ -17,6 +17,12 @@ public class BattleGridUI : MonoBehaviour
     Dictionary<CharacterID, CharacterVisuals> characters;
     BossVisuals bossVisuals;
 
+
+    void Awake()
+    {
+        instance = this;
+    }
+
     void Start()
     {
         InitializeGrid();
@@ -55,5 +61,13 @@ public class BattleGridUI : MonoBehaviour
         bossVisuals.transform.SetParent(cellsContainer);
         bossVisuals.transform.position = BattleGridUtils.TranslatedPosition(BattleManager.Instance.CharacterManagement.Boss.Position, 0.1f);
         bossVisuals.Paint(BattleManager.Instance.CharacterManagement.Boss);
+    }
+
+    public void ToggleRange(bool visible)
+    {
+        foreach (KeyValuePair<Vector2Int, GridCellUI> cell in grid)
+        {
+            cell.Value.PaintAsRange(visible && BattleManager.Instance.BattleGrid.PositionsInRange.Contains(cell.Key));
+        }
     }
 }

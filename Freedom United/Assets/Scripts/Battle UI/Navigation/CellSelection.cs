@@ -21,6 +21,10 @@ public class CellSelection
         if (currentRow == 0)
             return;
 
+        Vector2Int tentative = new Vector2Int(currentColumn, currentRow - 1);
+        if (!BattleManager.Instance.BattleGrid.PositionsInRange.Contains(tentative))
+            return;
+
         currentRow--;
         BattleUIManager.Instance.CellSelectionUI.UpdateSelection(currentColumn, currentRow);
     }
@@ -28,6 +32,10 @@ public class CellSelection
     public void Up()
     {
         if (currentRow == MaxRow - 1)
+            return;
+
+        Vector2Int tentative = new Vector2Int(currentColumn, currentRow + 1);
+        if (!BattleManager.Instance.BattleGrid.PositionsInRange.Contains(tentative))
             return;
 
         currentRow++;
@@ -39,6 +47,10 @@ public class CellSelection
         if (currentColumn == 0)
             return;
 
+        Vector2Int tentative = new Vector2Int(currentColumn - 1, currentRow);
+        if (!BattleManager.Instance.BattleGrid.PositionsInRange.Contains(tentative))
+            return;
+
         currentColumn--;
         BattleUIManager.Instance.CellSelectionUI.UpdateSelection(currentColumn, currentRow);
     }
@@ -46,6 +58,10 @@ public class CellSelection
     public void Right()
     {
         if (currentColumn == MaxColumn - 1)
+            return;
+
+        Vector2Int tentative = new Vector2Int(currentColumn + 1, currentRow);
+        if (!BattleManager.Instance.BattleGrid.PositionsInRange.Contains(tentative))
             return;
 
         currentColumn++;

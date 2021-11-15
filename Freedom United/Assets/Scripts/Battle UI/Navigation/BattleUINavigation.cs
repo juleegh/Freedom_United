@@ -74,17 +74,27 @@ public class BattleUINavigation : MonoBehaviour
         else if (currentLevel == BattleSelectionLevel.Action)
         {
             currentAction.actionType = ActionSelection.ActionSelected;
-            if (ActionSelection.MagicSelected)
+            if (ActionSelection.ActionSelected == BattleActionType.Magic)
             {
                 currentLevel = BattleSelectionLevel.Magic;
                 MagicSelection.Toggle(true);
             }
             else
             {
+                if (ActionSelection.ActionSelected == BattleActionType.Attack)
+                {
+                    BattleManager.Instance.CalculateAttackRange(CharacterSelection.CharacterID);
+                    BattleGridUI.Instance.ToggleRange(true);
+                }
+                else if (ActionSelection.ActionSelected == BattleActionType.Defend)
+                {
+                    BattleManager.Instance.CalculateDefenseRange(CharacterSelection.CharacterID);
+                    BattleGridUI.Instance.ToggleRange(true);
+                }
                 currentLevel = BattleSelectionLevel.Cell;
                 Vector2Int position = CharacterSelection.SelectedCharacter.CurrentPosition;
                 CellSelection.Toggle(true);
-                CellSelection.Initialize(position);
+                CellSelection.Initialize(BattleManager.Instance.BattleGrid.PositionsInRange[0]);
             }
         }
         else if (currentLevel == BattleSelectionLevel.Magic)
@@ -116,6 +126,7 @@ public class BattleUINavigation : MonoBehaviour
         }
         else if (currentLevel == BattleSelectionLevel.Cell)
         {
+            BattleGridUI.Instance.ToggleRange(false);
             currentLevel = BattleSelectionLevel.Action;
             MagicSelection.Toggle(false);
             CellSelection.Toggle(false);
@@ -125,6 +136,7 @@ public class BattleUINavigation : MonoBehaviour
     private void CreateAllyAction()
     {
         BattleManager.Instance.ActionPile.AddActionToPile(currentAction);
+        BattleGridUI.Instance.ToggleRange(false);
     }
 
     private void ResetActionSelection()

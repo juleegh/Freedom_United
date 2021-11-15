@@ -27,6 +27,5 @@ public class ActionSelection : NavigationSelection
             currentIndex = 0;
     }
 
-    public bool MagicSelected { get { return currentIndex == MaxElements - 1; } }
     public BattleActionType ActionSelected { get { return BattleActionsUtils.GetByIndex(currentIndex); } }
 }
