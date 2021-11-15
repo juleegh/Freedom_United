@@ -91,6 +91,12 @@ public class BattleUINavigation : MonoBehaviour
                     BattleManager.Instance.CalculateDefenseRange(CharacterSelection.CharacterID);
                     BattleGridUI.Instance.ToggleRange(true);
                 }
+                else if (ActionSelection.ActionSelected == BattleActionType.Move)
+                {
+                    BattleManager.Instance.CalculateMoveRange(CharacterSelection.CharacterID);
+                    BattleGridUI.Instance.ToggleRange(true);
+                }
+
                 currentLevel = BattleSelectionLevel.Cell;
                 Vector2Int position = CharacterSelection.SelectedCharacter.CurrentPosition;
                 CellSelection.Toggle(true);

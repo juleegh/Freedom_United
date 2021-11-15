@@ -28,7 +28,7 @@ public class CharacterManagement : MonoBehaviour
         SetCharacterInPosition(CharacterID.Simon, initialPositions[1]);
         SetCharacterInPosition(CharacterID.Anthony, initialPositions[2]);
 
-        boss = new Boss(bossInitialPosition, bossConfig);
+        boss = new Boss(bossConfig);
     }
 
     public void SetCharacterInPosition(CharacterID characterID, Vector2Int newPosition)

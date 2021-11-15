@@ -59,7 +59,7 @@ public class BattleGridUI : MonoBehaviour
 
         bossVisuals = Instantiate(bossPrefab).GetComponent<BossVisuals>();
         bossVisuals.transform.SetParent(cellsContainer);
-        bossVisuals.transform.position = BattleGridUtils.TranslatedPosition(BattleManager.Instance.CharacterManagement.Boss.Position, 0.1f);
+        bossVisuals.transform.position = BattleGridUtils.TranslatedPosition(Vector2Int.zero, 0.1f);
         bossVisuals.Paint(BattleManager.Instance.CharacterManagement.Boss);
     }
 

@@ -63,4 +63,19 @@ public class BattleGrid : MonoBehaviour
                 positionsInRange.Add(origin + Vector2Int.down * i);
         }
     }
+
+    public void CalculateRange(Vector2Int origin)
+    {
+        positionsInRange.Clear();
+        foreach (KeyValuePair<Vector2Int, GridCell> cell in grid)
+        {
+            if (cell.Value.CellType != CellType.Available)
+                continue;
+
+            if (BattleManager.Instance.CharacterManagement.Boss.OccupiesPosition(cell.Key.x, cell.Key.y))
+                continue;
+
+            positionsInRange.Add(cell.Key);
+        }
+    }
 }

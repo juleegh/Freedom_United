@@ -44,4 +44,10 @@ public class BattleManager : MonoBehaviour
         Character character = characterManagement.Characters[characterID];
         battleGrid.CalculateRange(AttackRange.Short, character.CurrentPosition);
     }
+
+    public void CalculateMoveRange(CharacterID characterID)
+    {
+        Character character = characterManagement.Characters[characterID];
+        battleGrid.CalculateRange(character.CurrentPosition);
+    }
 }
