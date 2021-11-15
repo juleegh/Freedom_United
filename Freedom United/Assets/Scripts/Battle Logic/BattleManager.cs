@@ -19,6 +19,9 @@ public class BattleManager : MonoBehaviour
     private MagicManagement magicManagement;
     public MagicManagement MagicManagement { get { return magicManagement; } }
 
+    [SerializeField] private PartyStats partyStats;
+    public PartyStats PartyStats { get { return partyStats; } }
+
     private void Awake()
     {
         instance = this;
