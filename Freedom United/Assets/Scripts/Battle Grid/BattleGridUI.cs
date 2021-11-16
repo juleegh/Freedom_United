@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BattleGridUI : MonoBehaviour
+public class BattleGridUI : MonoBehaviour, NotificationsListener
 {
     private static BattleGridUI instance;
     public static BattleGridUI Instance { get { return instance; } }
@@ -18,14 +18,10 @@ public class BattleGridUI : MonoBehaviour
     BossVisuals bossVisuals;
 
 
-    void Awake()
+    public void ConfigureComponent()
     {
         instance = this;
-    }
-
-    void Start()
-    {
-        InitializeGrid();
+        GameNotificationsManager.Instance.AddActionToEvent(GameNotification.BattleLoaded, InitializeGrid);
     }
 
     private void InitializeGrid()

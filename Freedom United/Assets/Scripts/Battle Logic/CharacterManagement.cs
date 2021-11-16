@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterManagement : MonoBehaviour
+public class CharacterManagement : MonoBehaviour, NotificationsListener
 {
     [SerializeField] private List<Vector2Int> initialPositions;
     [SerializeField] private Vector2Int bossInitialPosition;
@@ -12,7 +12,7 @@ public class CharacterManagement : MonoBehaviour
     private Boss boss;
     public Boss Boss { get { return boss; } }
 
-    void Awake()
+    public void ConfigureComponent()
     {
         InitializeCharacters();
     }

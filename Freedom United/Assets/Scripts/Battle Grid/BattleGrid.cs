@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BattleGrid : MonoBehaviour
+public class BattleGrid : MonoBehaviour, NotificationsListener
 {
     [SerializeField] private int width;
     [SerializeField] private int height;
@@ -16,10 +16,9 @@ public class BattleGrid : MonoBehaviour
     private List<Vector2Int> positionsInRange;
     public List<Vector2Int> PositionsInRange { get { return positionsInRange; } }
 
-    void Awake()
+    public void ConfigureComponent()
     {
-        InitializeGrid();
-        positionsInRange = new List<Vector2Int>();
+        GameNotificationsManager.Instance.AddActionToEvent(GameNotification.DependenciesLoaded, InitializeGrid);
     }
 
     private void InitializeGrid()
@@ -57,7 +56,7 @@ public class BattleGrid : MonoBehaviour
                 positionsInRange.Add(origin + Vector2Int.right * i);
             if (origin.y + i < Height)
                 positionsInRange.Add(origin + Vector2Int.up * i);
-            if (origin.y - i >= 0)
+            if (origin.x - i >= 0)
                 positionsInRange.Add(origin + Vector2Int.left * i);
             if (origin.y - i >= 0)
                 positionsInRange.Add(origin + Vector2Int.down * i);

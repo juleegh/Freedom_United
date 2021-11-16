@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class ActionPile : MonoBehaviour
+public class ActionPile : MonoBehaviour, NotificationsListener
 {
     public List<ScheduledAction> actionsForTurn;
     public List<ScheduledAction> ActionsForTurn { get { return actionsForTurn; } }
@@ -11,13 +11,15 @@ public class ActionPile : MonoBehaviour
     private List<CharacterID> charactersAvailable;
     public List<CharacterID> CharactersAvailable { get { return charactersAvailable; } }
 
-    void Awake()
+    public void ConfigureComponent()
     {
         actionsForTurn = new List<ScheduledAction>();
         charactersAvailable = new List<CharacterID>();
+
+        GameNotificationsManager.Instance.AddActionToEvent(GameNotification.BattleLoaded, Initialize);
     }
 
-    public void Initialize()
+    private void Initialize()
     {
         foreach (CharacterID character in BattleManager.Instance.CharacterManagement.Characters.Keys.ToList())
             charactersAvailable.Add(character);

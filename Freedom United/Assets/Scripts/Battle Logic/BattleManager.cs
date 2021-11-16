@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BattleManager : MonoBehaviour
+public class BattleManager : MonoBehaviour, NotificationsListener
 {
     private static BattleManager instance;
     public static BattleManager Instance { get { return instance; } }
@@ -22,15 +22,19 @@ public class BattleManager : MonoBehaviour
     [SerializeField] private PartyStats partyStats;
     public PartyStats PartyStats { get { return partyStats; } }
 
-    private void Awake()
+    public void ConfigureComponent()
     {
         instance = this;
+        GameNotificationsManager.Instance.AddActionToEvent(GameNotification.DependenciesLoaded, Initialize);
+    }
+
+    private void Initialize()
+    {
         battleGrid = GetComponent<BattleGrid>();
         characterManagement = GetComponent<CharacterManagement>();
         actionPile = GetComponent<ActionPile>();
         magicManagement = GetComponent<MagicManagement>();
-
-        actionPile.Initialize();
+        GameNotificationsManager.Instance.Notify(GameNotification.BattleLoaded);
     }
 
     public void CalculateAttackRange(CharacterID characterID)
