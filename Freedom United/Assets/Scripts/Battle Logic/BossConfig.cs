@@ -21,6 +21,9 @@ public class BossPartConfig
     [SerializeField] private Vector2Int position;
     [SerializeField] private Vector2Int dimensions;
 
+    [SerializeField] private List<Vector2Int> attackPositions;
+    [SerializeField] private BossDefenseType bossDefenseType;
+
     public Vector2Int Position { get { return position; } }
     public Vector2Int Dimensions { get { return dimensions; } }
 }
