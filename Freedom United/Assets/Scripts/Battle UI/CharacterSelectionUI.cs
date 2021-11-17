@@ -12,6 +12,7 @@ public class CharacterSelectionUI : MonoBehaviour, NotificationsListener
     [SerializeField] private GameObject nextIndicator;
     private CharacterSelectionOption[] characterPreviews;
     public int CharactersOnScreen { get { return charactersOnScreen; } }
+    private bool focus { get { return BattleUINavigation.Instance.CurrentLevel == BattleSelectionLevel.Character; } }
 
     public void ConfigureComponent()
     {
@@ -59,7 +60,7 @@ public class CharacterSelectionUI : MonoBehaviour, NotificationsListener
     {
         for (int i = 0; i < charactersOnScreen; i++)
         {
-            characterPreviews[i].ToggleSelected(i == selectedCharacter);
+            characterPreviews[i].ToggleSelected(i == selectedCharacter && focus);
         }
     }
 }

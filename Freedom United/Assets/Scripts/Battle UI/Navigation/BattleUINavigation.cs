@@ -4,17 +4,23 @@ using UnityEngine;
 
 public class BattleUINavigation : MonoBehaviour, NotificationsListener
 {
-    private BattleSelectionLevel currentLevel;
+    private static BattleUINavigation instance;
+    public static BattleUINavigation Instance { get { return instance; } }
+
     private CharacterSelection CharacterSelection = new CharacterSelection();
     private MagicSelection MagicSelection = new MagicSelection();
     private ActionPileSelection ActionPileSelection = new ActionPileSelection();
     private ActionSelection ActionSelection = new ActionSelection();
     private CellSelection CellSelection = new CellSelection();
 
+    private BattleSelectionLevel currentLevel;
+    public BattleSelectionLevel CurrentLevel { get { return currentLevel; } }
+
     private AllyAction currentAction;
 
     public void ConfigureComponent()
     {
+        instance = this;
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.BattleLoaded, ResetActionSelection);
     }
 
@@ -60,9 +66,7 @@ public class BattleUINavigation : MonoBehaviour, NotificationsListener
 
     public void Forward()
     {
-        if (currentLevel == BattleSelectionLevel.ActionPile)
-            currentLevel = BattleSelectionLevel.Character;
-        else if (currentLevel == BattleSelectionLevel.Character)
+        if (currentLevel == BattleSelectionLevel.Character)
         {
             if (!BattleManager.Instance.ActionPile.CharactersAvailable.Contains(CharacterSelection.CharacterID))
                 return;
@@ -118,8 +122,18 @@ public class BattleUINavigation : MonoBehaviour, NotificationsListener
 
     public void Backwards()
     {
-        if (currentLevel == BattleSelectionLevel.Character)
+        if (currentLevel == BattleSelectionLevel.ActionPile)
+        {
+            currentLevel = BattleSelectionLevel.Character;
+            ActionPileSelection.Refresh();
+            CharacterSelection.Refresh();
+        }
+        else if (currentLevel == BattleSelectionLevel.Character)
+        {
             currentLevel = BattleSelectionLevel.ActionPile;
+            ActionPileSelection.Refresh();
+            CharacterSelection.Refresh();
+        }
         else if (currentLevel == BattleSelectionLevel.Action)
         {
             currentLevel = BattleSelectionLevel.Character;

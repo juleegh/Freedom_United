@@ -11,6 +11,7 @@ public class ActionPileUI : MonoBehaviour
     [SerializeField] private GameObject DownIndicator;
     private ScheduledActionPreview[] actionsPreviews;
     public int ActionsOnScreen { get { return actionsOnScreen; } }
+    private bool focus { get { return BattleUINavigation.Instance.CurrentLevel == BattleSelectionLevel.ActionPile; } }
 
     void Start()
     {
@@ -52,6 +53,7 @@ public class ActionPileUI : MonoBehaviour
 
         UpIndicator.SetActive(topAction > 0);
         DownIndicator.SetActive(topAction + actionsOnScreen <= scheduledActions.Count - 1);
+        RefreshSelectedPreview(topAction + selectedAction);
     }
 
     public void CleanView()
@@ -62,11 +64,11 @@ public class ActionPileUI : MonoBehaviour
         }
     }
 
-    public void RefreshSelectedPreview(int selectedTempo)
+    public void RefreshSelectedPreview(int selectedAction)
     {
         for (int i = 0; i < actionsOnScreen; i++)
         {
-            actionsPreviews[i].ToggleSelected(i == selectedTempo);
+            actionsPreviews[i].ToggleSelected(i == selectedAction && focus);
         }
     }
 }
