@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MagicSelectionUI : MonoBehaviour
+public class MagicSelectionUI : MonoBehaviour, NotificationsListener
 {
     [SerializeField] private int spellsOnScreen;
     [SerializeField] private Transform spellsContainer;
@@ -13,9 +13,9 @@ public class MagicSelectionUI : MonoBehaviour
     private MagicActionOption[] spellPreviews;
     public int SpellsOnScreen { get { return spellsOnScreen; } }
 
-    void Start()
+    public void ConfigureComponent()
     {
-        LoadUI();
+        GameNotificationsManager.Instance.AddActionToEvent(GameNotification.BattleLoaded, LoadUI);
     }
 
     private void LoadUI()
@@ -37,7 +37,6 @@ public class MagicSelectionUI : MonoBehaviour
         int previewIndex = 0;
 
         List<MagicSpell> spells = BattleManager.Instance.MagicManagement.Spells;
-        // TODO: Connect this eventually to actual magic
 
         for (int i = topSpell; i < topSpell + spellsOnScreen; i++)
         {

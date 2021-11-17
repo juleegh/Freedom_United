@@ -2,15 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActionSelectionUI : MonoBehaviour
+public class ActionSelectionUI : MonoBehaviour, NotificationsListener
 {
     [SerializeField] private ActionSelectionOption[] actionPreviews;
     [SerializeField] private GameObject sectionContainer;
 
-    void Start()
+    public void ConfigureComponent()
     {
-        Initialize();
-        //ToggleVisible(false);
+        GameNotificationsManager.Instance.AddActionToEvent(GameNotification.BattleLoaded, Initialize);
     }
 
     private void Initialize()
@@ -19,6 +18,7 @@ public class ActionSelectionUI : MonoBehaviour
         {
             actionPreviews[i].Config(BattleActionsUtils.GetActionsList()[i]);
         }
+        ToggleVisible(false);
     }
 
     public void ToggleVisible(bool visible)

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BattleUIManager : MonoBehaviour
+public class BattleUIManager : MonoBehaviour, NotificationsListener
 {
     private static BattleUIManager instance;
     public static BattleUIManager Instance { get { return instance; } }
@@ -22,7 +22,7 @@ public class BattleUIManager : MonoBehaviour
     [SerializeField] private CellSelectionUI cellSelectionUI;
     public CellSelectionUI CellSelectionUI { get { return cellSelectionUI; } }
 
-    private void Awake()
+    public void ConfigureComponent()
     {
         instance = this;
     }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class CharacterSelectionUI : MonoBehaviour
+public class CharacterSelectionUI : MonoBehaviour, NotificationsListener
 {
     [SerializeField] private int charactersOnScreen;
     [SerializeField] private Transform charactersContainer;
@@ -13,9 +13,9 @@ public class CharacterSelectionUI : MonoBehaviour
     private CharacterSelectionOption[] characterPreviews;
     public int CharactersOnScreen { get { return charactersOnScreen; } }
 
-    void Start()
+    public void ConfigureComponent()
     {
-        LoadUI();
+        GameNotificationsManager.Instance.AddActionToEvent(GameNotification.BattleLoaded, LoadUI);
     }
 
     private void LoadUI()

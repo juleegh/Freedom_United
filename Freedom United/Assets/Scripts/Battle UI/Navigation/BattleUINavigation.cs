@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BattleUINavigation : MonoBehaviour
+public class BattleUINavigation : MonoBehaviour, NotificationsListener
 {
     private BattleSelectionLevel currentLevel;
     private CharacterSelection CharacterSelection = new CharacterSelection();
@@ -13,9 +13,9 @@ public class BattleUINavigation : MonoBehaviour
 
     private AllyAction currentAction;
 
-    void Start()
+    public void ConfigureComponent()
     {
-        ResetActionSelection();
+        GameNotificationsManager.Instance.AddActionToEvent(GameNotification.BattleLoaded, ResetActionSelection);
     }
 
     public void Down()
