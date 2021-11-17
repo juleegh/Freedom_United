@@ -40,19 +40,26 @@ MonoBehaviour:
     _values:
     - position: {x: 3, y: 2}
       dimensions: {x: 1, y: 2}
-      attackPositions:
-      - {x: 3, y: 1}
-      - {x: 2, y: 1}
-      - {x: 2, y: 2}
+      areasOfEffect:
+      - positions:
+        - {x: 0, y: 0}
+        - {x: 1, y: 0}
+        - {x: 2, y: 0}
+        - {x: 3, y: 0}
+      - positions:
+        - {x: 0, y: 1}
+        - {x: 1, y: 2}
+        - {x: 2, y: 1}
+        - {x: 3, y: 2}
       bossDefenseType: 0
     - position: {x: 2, y: 3}
       dimensions: {x: 1, y: 1}
-      attackPositions:
-      - {x: 2, y: 0}
-      - {x: 2, y: 1}
-      - {x: 2, y: 2}
+      areasOfEffect:
+      - positions:
+        - {x: 2, y: 2}
+        - {x: 1, y: 3}
       bossDefenseType: 1
     - position: {x: 1, y: 3}
       dimensions: {x: 1, y: 1}
-      attackPositions: []
+      areasOfEffect: []
       bossDefenseType: 3
