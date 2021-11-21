@@ -22,6 +22,7 @@ public class BattleGridUI : MonoBehaviour, NotificationsListener
     {
         instance = this;
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.BattleLoaded, InitializeGrid);
+        GameNotificationsManager.Instance.AddActionToEvent(GameNotification.CharacterMoved, RefreshCharacters);
     }
 
     private void InitializeGrid()
@@ -51,12 +52,23 @@ public class BattleGridUI : MonoBehaviour, NotificationsListener
             characterVisuals.transform.SetParent(cellsContainer);
             characterVisuals.transform.position = BattleGridUtils.TranslatedPosition(character.Value.CurrentPosition, 0.1f);
             characterVisuals.Paint(character.Key);
+            characters.Add(character.Key, characterVisuals);
         }
 
         bossVisuals = Instantiate(bossPrefab).GetComponent<BossVisuals>();
         bossVisuals.transform.SetParent(cellsContainer);
         bossVisuals.transform.position = BattleGridUtils.TranslatedPosition(Vector2Int.zero, 0.1f);
         bossVisuals.Paint(BattleManager.Instance.CharacterManagement.Boss);
+    }
+
+    private void RefreshCharacters()
+    {
+
+        foreach (KeyValuePair<CharacterID, Character> character in BattleManager.Instance.CharacterManagement.Characters)
+        {
+            CharacterVisuals characterVisuals = characters[character.Key];
+            characterVisuals.transform.position = BattleGridUtils.TranslatedPosition(character.Value.CurrentPosition, 0.1f);
+        }
     }
 
     public void ToggleRange(bool visible)

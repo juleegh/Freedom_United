@@ -4,4 +4,5 @@ public enum GameNotification
     BattleLoaded,
     BattleUILoaded,
     BossStatsModified,
+    CharacterMoved,
 }
