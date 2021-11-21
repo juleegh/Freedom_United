@@ -19,6 +19,9 @@ public class BattleManager : MonoBehaviour, NotificationsListener
     private MagicManagement magicManagement;
     public MagicManagement MagicManagement { get { return magicManagement; } }
 
+    private BattleValues battleValues;
+    public BattleValues BattleValues { get { return battleValues; } }
+
     [SerializeField] private PartyStats partyStats;
     public PartyStats PartyStats { get { return partyStats; } }
 
@@ -34,6 +37,7 @@ public class BattleManager : MonoBehaviour, NotificationsListener
         characterManagement = GetComponent<CharacterManagement>();
         actionPile = GetComponent<ActionPile>();
         magicManagement = GetComponent<MagicManagement>();
+        battleValues = GetComponent<BattleValues>();
         GameNotificationsManager.Instance.Notify(GameNotification.BattleLoaded);
     }
 

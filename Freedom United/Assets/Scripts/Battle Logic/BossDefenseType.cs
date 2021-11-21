@@ -1,7 +1,7 @@
 public enum BossDefenseType
 {
     None,
-    Self,
-    Adjacent,
-    All,
+    Itself,
+    Paired,
+    Absolute,
 }

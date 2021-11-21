@@ -32,5 +32,10 @@ public class BattleUIInput : MonoBehaviour
         {
             battleUINavigation.Backwards();
         }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            TurnExecutor.Instance.StartTurnExecution();
+        }
     }
 }

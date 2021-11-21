@@ -8,6 +8,8 @@ public class CharacterStats : ScriptableObject
     [SerializeField] private AttackRange attackRange;
     [SerializeField] private AttackType attackType;
 
+    [SerializeField] private float baseHealth;
+
     [SerializeField] private int attackSpeed;
     [SerializeField] private int defenseSpeed;
     [SerializeField] private int recklessChangeSpeed;
@@ -23,6 +25,8 @@ public class CharacterStats : ScriptableObject
 
     public AttackRange AttackRange { get { return attackRange; } }
     public AttackType AttackType { get { return attackType; } }
+
+    public float BaseHealth { get { return baseHealth; } }
 
     public int AttackSpeed { get { return attackSpeed; } }
     public int DefenseSpeed { get { return defenseSpeed; } }

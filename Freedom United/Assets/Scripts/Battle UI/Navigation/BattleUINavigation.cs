@@ -114,6 +114,12 @@ public class BattleUINavigation : MonoBehaviour, NotificationsListener
         }
         else if (currentLevel == BattleSelectionLevel.Cell)
         {
+            if (ActionSelection.ActionSelected == BattleActionType.Attack && BattleManager.Instance.CharacterManagement.GetBossPartInPosition(CellSelection.SelectedPosition) == null)
+                return;
+
+            if (ActionSelection.ActionSelected == BattleActionType.Defend && BattleManager.Instance.CharacterManagement.GetCharacterInPosition(CellSelection.SelectedPosition) == null)
+                return;
+
             currentAction.position = CellSelection.SelectedPosition;
             CreateAllyAction();
             ResetActionSelection();

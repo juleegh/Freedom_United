@@ -11,6 +11,7 @@ public class CharacterManagement : MonoBehaviour, NotificationsListener
     public Dictionary<CharacterID, Character> Characters { get { return characters; } }
     private Boss boss;
     public Boss Boss { get { return boss; } }
+    public BossConfig BossConfig { get { return bossConfig; } }
 
     public void ConfigureComponent()
     {
@@ -34,5 +35,29 @@ public class CharacterManagement : MonoBehaviour, NotificationsListener
     public void SetCharacterInPosition(CharacterID characterID, Vector2Int newPosition)
     {
         characters[characterID].MoveToPosition(newPosition);
+    }
+
+
+    public BossPart GetBossPartInPosition(Vector2Int position)
+    {
+
+        foreach (BossPart bossPart in boss.Parts)
+        {
+            if (bossPart.OccupiesPosition(position.x, position.y))
+                return bossPart;
+        }
+
+        return null;
+    }
+
+    public Character GetCharacterInPosition(Vector2Int position)
+    {
+        foreach (Character character in characters.Values)
+        {
+            if (character.CurrentPosition == position)
+                return character;
+        }
+
+        return null;
     }
 }
