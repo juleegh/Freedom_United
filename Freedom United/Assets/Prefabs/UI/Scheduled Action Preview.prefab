@@ -92,7 +92,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 56.45
+  m_fontSize: 18
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -321,3 +321,5 @@ MonoBehaviour:
   background: {fileID: 620863757181361466}
   regularColor: {r: 0.77254903, g: 0.77254903, b: 0.77254903, a: 1}
   selectedColor: {r: 1, g: 0.99869174, b: 0.5613208, a: 1}
+  currentColor: {r: 0, g: 0.9612422, b: 1, a: 1}
+  overdueColor: {r: 0.122641504, g: 0.122641504, b: 0.122641504, a: 1}

@@ -38,5 +38,8 @@ public class ActionPile : MonoBehaviour, NotificationsListener
         actionsForTurn.Clear();
         foreach (CharacterID character in BattleManager.Instance.CharacterManagement.Characters.Keys.ToList())
             charactersAvailable.Add(character);
+
+        BattleUIManager.Instance.ActionPileUI.RefreshView(0, 0);
+        BattleUIManager.Instance.CharacterSelectionUI.RefreshView(0, 0);
     }
 }

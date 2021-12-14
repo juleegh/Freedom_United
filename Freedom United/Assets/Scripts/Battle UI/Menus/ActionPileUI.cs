@@ -68,7 +68,12 @@ public class ActionPileUI : MonoBehaviour
     {
         for (int i = 0; i < actionsOnScreen; i++)
         {
-            actionsPreviews[i].ToggleSelected(i == selectedAction && focus);
+            actionsPreviews[i].UpdateStatus(i == selectedAction && focus ? UIStatus.Highlighted : UIStatus.Regular);
         }
+    }
+
+    public void UpdateStatus(int selectedAction, UIStatus status)
+    {
+        actionsPreviews[selectedAction].UpdateStatus(status);
     }
 }

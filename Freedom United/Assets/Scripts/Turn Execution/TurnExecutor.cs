@@ -40,14 +40,22 @@ public class TurnExecutor : MonoBehaviour, NotificationsListener
             executionDelta += Time.deltaTime;
             if (executionDelta >= timeBetweenActions)
             {
-                executionDelta = 0;
-                actionsQueued[executionIndex].Execute();
-                executionIndex++;
-
                 if (executionIndex >= actionsQueued.Count)
                 {
                     executing = false;
+                    BattleManager.Instance.ActionPile.ClearList();
+                    GameNotificationsManager.Instance.Notify(GameNotification.TurnEndedExecution);
+                    return;
                 }
+
+                if (executionIndex > 0)
+                    BattleUIManager.Instance.ActionPileUI.UpdateStatus(executionIndex - 1, UIStatus.Overdue);
+
+                executionDelta = 0;
+                actionsQueued[executionIndex].Execute();
+                BattleUIManager.Instance.ActionPileUI.UpdateStatus(executionIndex, UIStatus.Current);
+                executionIndex++;
+
             }
         }
     }

@@ -22,6 +22,7 @@ public class BattleUINavigation : MonoBehaviour, NotificationsListener
     {
         instance = this;
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.BattleLoaded, ResetActionSelection);
+        GameNotificationsManager.Instance.AddActionToEvent(GameNotification.TurnEndedExecution, ResetActionSelection);
     }
 
     public void Down()
@@ -174,4 +175,5 @@ public class BattleUINavigation : MonoBehaviour, NotificationsListener
         MagicSelection.Toggle(false);
         CharacterSelection.Refresh();
     }
+
 }

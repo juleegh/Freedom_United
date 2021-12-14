@@ -14,6 +14,8 @@ public class ScheduledActionPreview : MonoBehaviour
     [SerializeField] private Image background;
     [SerializeField] private Color regularColor;
     [SerializeField] private Color selectedColor;
+    [SerializeField] private Color currentColor;
+    [SerializeField] private Color overdueColor;
 
     public void ConfigVisuals(ScheduledAction scheduledAction)
     {
@@ -24,8 +26,22 @@ public class ScheduledActionPreview : MonoBehaviour
             actorIcon.sprite = bossesAssets.Parts[BattleGridUtils.GetBossPart(scheduledAction.ActionOwner)];
     }
 
-    public void ToggleSelected(bool selected)
+    public void UpdateStatus(UIStatus status)
     {
-        background.color = selected ? selectedColor : regularColor;
+        switch (status)
+        {
+            case UIStatus.Regular:
+                background.color = regularColor;
+                break;
+            case UIStatus.Highlighted:
+                background.color = selectedColor;
+                break;
+            case UIStatus.Current:
+                background.color = currentColor;
+                break;
+            case UIStatus.Overdue:
+                background.color = overdueColor;
+                break;
+        }
     }
 }
