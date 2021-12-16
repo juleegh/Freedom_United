@@ -69,6 +69,9 @@ public class BattleGrid : MonoBehaviour, NotificationsListener
         positionsInRange.Clear();
         foreach (KeyValuePair<Vector2Int, GridCell> cell in grid)
         {
+            if (cell.Key == origin)
+                continue;
+
             if (cell.Value.CellType != CellType.Available)
                 continue;
 

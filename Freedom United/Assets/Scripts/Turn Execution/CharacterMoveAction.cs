@@ -21,7 +21,7 @@ public class CharacterMoveAction : ExecutingAction
         if (changeWithTeammate)
             BattleManager.Instance.CharacterManagement.GetCharacterInPosition(finalPosition).MoveToPosition(originPosition);
 
-        BattleManager.Instance.CharacterManagement.GetCharacterInPosition(originPosition).MoveToPosition(finalPosition);
+        BattleManager.Instance.CharacterManagement.Characters[movingCharacter].MoveToPosition(finalPosition);
 
         GameNotificationsManager.Instance.Notify(GameNotification.CharacterMoved);
     }

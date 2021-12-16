@@ -63,7 +63,6 @@ public class BattleGridUI : MonoBehaviour, NotificationsListener
 
     private void RefreshCharacters()
     {
-
         foreach (KeyValuePair<CharacterID, Character> character in BattleManager.Instance.CharacterManagement.Characters)
         {
             CharacterVisuals characterVisuals = characters[character.Key];
