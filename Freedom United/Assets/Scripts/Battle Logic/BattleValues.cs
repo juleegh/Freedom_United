@@ -17,6 +17,11 @@ public class BattleValues : MonoBehaviour, NotificationsListener
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.BattleLoaded, InitializeHealth);
     }
 
+    public void CharacterTakeDamage(CharacterID character, float damageTaken)
+    {
+        partyHealthPoints[character] -= damageTaken;
+    }
+
     public void BossTakeDamage(BossPartType partType, float damageTaken)
     {
         if (PartsList[partType].IsCore)

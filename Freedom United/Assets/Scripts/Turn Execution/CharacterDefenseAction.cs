@@ -1,18 +1,36 @@
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+
 public class CharacterDefenseAction : ExecutingAction
 {
-    private CharacterID targetCharacter;
+    private CharacterID defendingCharacter;
+    private List<Vector2Int> defendedPositions;
+    private Vector2Int defenseDelta;
+
     private float defenseProvided;
+    public float DefenseProvided { get { return defenseProvided; } }
 
     public CharacterDefenseAction(AllyAction scheduledAction) : base(scheduledAction)
     {
-        targetCharacter = BattleManager.Instance.CharacterManagement.GetCharacterInPosition(scheduledAction.position).CharacterID;
-
+        defendingCharacter = scheduledAction.actionOwner;
+        defenseDelta = scheduledAction.position;
         defenseProvided = BattleManager.Instance.PartyStats.Stats[scheduledAction.actionOwner].BaseDefense;
+        defendedPositions = new List<Vector2Int>();
+
+        if (defenseDelta != Vector2Int.zero)
+            defenseProvided *= 0.5f;
     }
 
     public override void Execute()
     {
-        //BattleManager.Instance.BattleValues.BossTakeDamage(targetPart.PartType, damageTaken);
-        //GameNotificationsManager.Instance.Notify(GameNotification.BossStatsModified);
+        defendedPositions.Add(defenseDelta);
+        if (defenseDelta != Vector2Int.zero)
+            defendedPositions.Add(Vector2Int.zero);
+    }
+
+    public bool PositionIsDefended(Vector2Int position)
+    {
+        return defendedPositions.Contains(position - BattleManager.Instance.CharacterManagement.Characters[defendingCharacter].CurrentPosition);
     }
 }

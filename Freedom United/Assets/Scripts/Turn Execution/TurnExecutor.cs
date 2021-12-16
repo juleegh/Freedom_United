@@ -59,4 +59,20 @@ public class TurnExecutor : MonoBehaviour, NotificationsListener
             }
         }
     }
+
+    public float DefenseValueInPosition(Vector2Int position)
+    {
+        float defense = 0f;
+        foreach (ExecutingAction currentAction in actionsQueued)
+        {
+            if (currentAction as CharacterDefenseAction != null)
+            {
+                CharacterDefenseAction defenseAction = currentAction as CharacterDefenseAction;
+                if (defenseAction.PositionIsDefended(position))
+                    defense += defenseAction.DefenseProvided;
+            }
+        }
+
+        return defense;
+    }
 }
