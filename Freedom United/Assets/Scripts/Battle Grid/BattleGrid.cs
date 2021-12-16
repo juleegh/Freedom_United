@@ -44,10 +44,11 @@ public class BattleGrid : MonoBehaviour, NotificationsListener
         return grid[position];
     }
 
-    public void CalculateRange(AttackRange range, Vector2Int origin)
+    public void CalculateRange(AttackRange range, Vector2Int origin, bool includeOrigin)
     {
         positionsInRange.Clear();
-        positionsInRange.Add(origin);
+        if (includeOrigin)
+            positionsInRange.Add(origin);
         int extent = BattleGridUtils.GetRangeConversion(range);
 
         for (int i = 1; i <= extent; i++)

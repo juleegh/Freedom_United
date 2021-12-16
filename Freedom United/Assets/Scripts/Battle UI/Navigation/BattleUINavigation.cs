@@ -115,6 +115,9 @@ public class BattleUINavigation : MonoBehaviour, NotificationsListener
         }
         else if (currentLevel == BattleSelectionLevel.Cell)
         {
+            if (!BattleManager.Instance.BattleGrid.PositionsInRange.Contains(CellSelection.SelectedPosition))
+                return;
+
             if (ActionSelection.ActionSelected == BattleActionType.Attack || ActionSelection.ActionSelected == BattleActionType.Defend)
                 currentAction.position = CellSelection.SelectedPosition - BattleManager.Instance.CharacterManagement.Characters[CharacterSelection.CharacterID].CurrentPosition;
             else

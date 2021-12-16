@@ -44,13 +44,13 @@ public class BattleManager : MonoBehaviour, NotificationsListener
     public void CalculateAttackRange(CharacterID characterID)
     {
         Character character = characterManagement.Characters[characterID];
-        battleGrid.CalculateRange(partyStats.Stats[characterID].AttackRange, character.CurrentPosition);
+        battleGrid.CalculateRange(partyStats.Stats[characterID].AttackRange, character.CurrentPosition, false);
     }
 
     public void CalculateDefenseRange(CharacterID characterID)
     {
         Character character = characterManagement.Characters[characterID];
-        battleGrid.CalculateRange(AttackRange.Short, character.CurrentPosition);
+        battleGrid.CalculateRange(AttackRange.Short, character.CurrentPosition, true);
     }
 
     public void CalculateMoveRange(CharacterID characterID)
