@@ -68,4 +68,32 @@ public static class BattleGridUtils
 
         return 0;
     }
+
+
+    public static int GetActionSpeed()
+    {
+        NavigationCurrentState navigationState = BattleUINavigation.Instance.NavigationState;
+
+        switch (navigationState.currentLevel)
+        {
+            case BattleSelectionLevel.Character:
+            case BattleSelectionLevel.ActionPile:
+            case BattleSelectionLevel.Action:
+                return 0;
+        }
+
+        switch (navigationState.ActionSelection.ActionSelected)
+        {
+            case BattleActionType.Attack:
+                return BattleManager.Instance.PartyStats.Stats[navigationState.CharacterSelection.CharacterID].AttackSpeed;
+            case BattleActionType.Defend:
+                return BattleManager.Instance.PartyStats.Stats[navigationState.CharacterSelection.CharacterID].DefenseSpeed;
+            case BattleActionType.MoveFast:
+                return BattleManager.Instance.PartyStats.Stats[navigationState.CharacterSelection.CharacterID].RecklessChangeSpeed;
+            case BattleActionType.MoveSafely:
+                return BattleManager.Instance.PartyStats.Stats[navigationState.CharacterSelection.CharacterID].SafeChangeSpeed;
+        }
+
+        return 0;
+    }
 }

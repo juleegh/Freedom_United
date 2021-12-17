@@ -68,6 +68,7 @@ public class NavigationActionExecuter
             CreateAllyAction();
             navigationState.ResetActionSelection();
         }
+        navigationState.currentAction.speed = BattleGridUtils.GetActionSpeed();
     }
 
     public void Backwards()
@@ -101,6 +102,7 @@ public class NavigationActionExecuter
             navigationState.MagicSelection.Toggle(false);
             navigationState.CellSelection.Toggle(false);
         }
+        navigationState.currentAction.speed = BattleGridUtils.GetActionSpeed();
     }
 
     private void CreateAllyAction()
