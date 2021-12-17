@@ -13,7 +13,7 @@ public static class ActionParser
                     return new CharacterDefenseAction(allyAction);
                 case BattleActionType.MoveSafely:
                     return new CharacterMoveAction(allyAction, true);
-                case BattleActionType.MoveRecklessly:
+                case BattleActionType.MoveFast:
                     return new CharacterMoveAction(allyAction, false);
             }
         }

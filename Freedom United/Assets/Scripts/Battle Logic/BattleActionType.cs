@@ -7,7 +7,7 @@ public enum BattleActionType
     Attack,
     Defend,
     MoveSafely,
-    MoveRecklessly,
+    MoveFast,
     Magic,
 }
 
@@ -24,7 +24,7 @@ public static class BattleActionsUtils
             case 2:
                 return BattleActionType.MoveSafely;
             case 3:
-                return BattleActionType.MoveRecklessly;
+                return BattleActionType.MoveFast;
             case 4:
                 return BattleActionType.Magic;
         }
@@ -38,7 +38,7 @@ public static class BattleActionsUtils
         actionsAvailable.Add(BattleActionType.Attack);
         actionsAvailable.Add(BattleActionType.Defend);
         actionsAvailable.Add(BattleActionType.MoveSafely);
-        actionsAvailable.Add(BattleActionType.MoveRecklessly);
+        actionsAvailable.Add(BattleActionType.MoveFast);
         actionsAvailable.Add(BattleActionType.Magic);
         return actionsAvailable;
     }
