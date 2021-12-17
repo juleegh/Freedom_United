@@ -96,7 +96,7 @@ public class BattleUINavigation : MonoBehaviour, NotificationsListener
                     BattleManager.Instance.CalculateDefenseRange(CharacterSelection.CharacterID);
                     BattleGridUI.Instance.ToggleRange(true);
                 }
-                else if (ActionSelection.ActionSelected == BattleActionType.Move)
+                else if (ActionSelection.ActionSelected == BattleActionType.MoveSafely || ActionSelection.ActionSelected == BattleActionType.MoveRecklessly)
                 {
                     BattleManager.Instance.CalculateMoveRange(CharacterSelection.CharacterID);
                     BattleGridUI.Instance.ToggleRange(true);
