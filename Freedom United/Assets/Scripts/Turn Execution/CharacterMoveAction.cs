@@ -22,12 +22,12 @@ public class CharacterMoveAction : ExecutingAction
 
         if (changeWithTeammate)
         {
-            BattleManager.Instance.CharacterManagement.GetCharacterInPosition(finalPosition).MoveToPosition(originPosition);
             if (!isSafe)
             {
                 Character targetCharacter = BattleManager.Instance.CharacterManagement.GetCharacterInPosition(finalPosition);
                 BattleManager.Instance.BattleValues.CharacterTakeDamage(targetCharacter.CharacterID, BattleGridUtils.ShovingDamage);
             }
+            BattleManager.Instance.CharacterManagement.GetCharacterInPosition(finalPosition).MoveToPosition(originPosition);
         }
 
         BattleManager.Instance.CharacterManagement.Characters[movingCharacter].MoveToPosition(finalPosition);

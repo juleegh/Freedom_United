@@ -22,6 +22,7 @@ public class GameNotificationsManager : MonoBehaviour
         {
             comp.ConfigureComponent();
         }
+
         Notify(GameNotification.DependenciesLoaded);
     }
 

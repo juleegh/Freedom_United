@@ -16,7 +16,7 @@ public class CharacterSelectionUI : MonoBehaviour, NotificationsListener
 
     public void ConfigureComponent()
     {
-        GameNotificationsManager.Instance.AddActionToEvent(GameNotification.BattleLoaded, LoadUI);
+        GameNotificationsManager.Instance.AddActionToEvent(GameNotification.BattleUILoaded, LoadUI);
     }
 
     private void LoadUI()

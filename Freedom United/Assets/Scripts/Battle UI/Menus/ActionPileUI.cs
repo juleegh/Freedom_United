@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActionPileUI : MonoBehaviour
+public class ActionPileUI : MonoBehaviour, NotificationsListener
 {
     [SerializeField] private int actionsOnScreen;
     [SerializeField] private SimpleObjectPool previewsPool;
@@ -13,9 +13,9 @@ public class ActionPileUI : MonoBehaviour
     public int ActionsOnScreen { get { return actionsOnScreen; } }
     private bool focus { get { return BattleUINavigation.Instance.CurrentLevel == BattleSelectionLevel.ActionPile; } }
 
-    void Start()
+    public void ConfigureComponent()
     {
-        LoadUI();
+        GameNotificationsManager.Instance.AddActionToEvent(GameNotification.BattleUILoaded, LoadUI);
     }
 
     private void LoadUI()
