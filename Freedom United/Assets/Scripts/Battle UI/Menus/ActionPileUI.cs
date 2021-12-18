@@ -68,7 +68,8 @@ public class ActionPileUI : MonoBehaviour, NotificationsListener
     {
         for (int i = 0; i < actionsOnScreen; i++)
         {
-            actionsPreviews[i].UpdateStatus(i == selectedAction && focus ? UIStatus.Highlighted : UIStatus.Regular);
+            UIStatus actionStatus = i == selectedAction && focus ? UIStatus.Highlighted : UIStatus.Regular;
+            actionsPreviews[i].UpdateStatus(actionStatus);
         }
     }
 

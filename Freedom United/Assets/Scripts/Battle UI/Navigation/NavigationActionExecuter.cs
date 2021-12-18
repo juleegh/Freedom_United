@@ -16,11 +16,12 @@ public class NavigationActionExecuter
 
             navigationState.currentAction.actionOwner = navigationState.CharacterSelection.CharacterID;
             navigationState.currentLevel = BattleSelectionLevel.Action;
+            navigationState.currentAction.speed = BattleActionsUtils.GetActionSpeed();
+            BattleUIManager.Instance.ActionPileUI.RefreshView(0, 0);
             navigationState.ActionSelection.Toggle(true);
         }
         else if (navigationState.currentLevel == BattleSelectionLevel.Action)
         {
-            navigationState.currentAction.actionType = navigationState.ActionSelection.ActionSelected;
             if (navigationState.ActionSelection.ActionSelected == BattleActionType.Magic)
             {
                 navigationState.currentLevel = BattleSelectionLevel.Magic;
@@ -68,7 +69,6 @@ public class NavigationActionExecuter
             CreateAllyAction();
             navigationState.ResetActionSelection();
         }
-        navigationState.currentAction.speed = BattleGridUtils.GetActionSpeed();
     }
 
     public void Backwards()
@@ -88,21 +88,27 @@ public class NavigationActionExecuter
         else if (navigationState.currentLevel == BattleSelectionLevel.Action)
         {
             navigationState.currentLevel = BattleSelectionLevel.Character;
+            navigationState.currentAction.speed = BattleActionsUtils.GetActionSpeed();
+            BattleUIManager.Instance.ActionPileUI.RefreshView(0, 0);
             navigationState.ActionSelection.Toggle(false);
         }
         else if (navigationState.currentLevel == BattleSelectionLevel.Magic)
         {
             navigationState.currentLevel = BattleSelectionLevel.Action;
+            navigationState.currentAction.speed = BattleActionsUtils.GetActionSpeed();
+            BattleUIManager.Instance.ActionPileUI.RefreshView(0, 0);
             navigationState.MagicSelection.Toggle(false);
         }
         else if (navigationState.currentLevel == BattleSelectionLevel.Cell)
         {
             BattleGridUI.Instance.ToggleRange(false);
             navigationState.currentLevel = BattleSelectionLevel.Action;
+            navigationState.currentAction.speed = BattleActionsUtils.GetActionSpeed();
+            BattleUIManager.Instance.ActionPileUI.RefreshView(0, 0);
             navigationState.MagicSelection.Toggle(false);
             navigationState.CellSelection.Toggle(false);
         }
-        navigationState.currentAction.speed = BattleGridUtils.GetActionSpeed();
+        navigationState.currentAction.speed = BattleActionsUtils.GetActionSpeed();
     }
 
     private void CreateAllyAction()

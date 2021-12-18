@@ -5,15 +5,16 @@ using System.Linq;
 
 public class ActionPile : MonoBehaviour, NotificationsListener
 {
-    public List<ScheduledAction> actionsForTurn;
-    public List<ScheduledAction> ActionsForTurn { get { return actionsForTurn; } }
 
     private List<CharacterID> charactersAvailable;
     public List<CharacterID> CharactersAvailable { get { return charactersAvailable; } }
 
+    private AllyAction currentAction { get { return BattleUINavigation.Instance.NavigationState.currentAction; } }
+    private Dictionary<CharacterID, ScheduledAction> actionsForTurn;
+
     public void ConfigureComponent()
     {
-        actionsForTurn = new List<ScheduledAction>();
+        actionsForTurn = new Dictionary<CharacterID, ScheduledAction>();
         charactersAvailable = new List<CharacterID>();
 
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.BattleLoaded, Initialize);
@@ -27,9 +28,8 @@ public class ActionPile : MonoBehaviour, NotificationsListener
 
     public void AddActionToPile(AllyAction action)
     {
-        charactersAvailable.Remove(action.actionOwner);
-        actionsForTurn.Add(action);
-        actionsForTurn = actionsForTurn.OrderBy(o => (o.speed)).ToList();
+        action.confirmed = true;
+        actionsForTurn.Add(action.actionOwner, action);
         BattleUIManager.Instance.ActionPileUI.RefreshView(0, 0);
     }
 
@@ -41,5 +41,19 @@ public class ActionPile : MonoBehaviour, NotificationsListener
 
         BattleUIManager.Instance.ActionPileUI.RefreshView(0, 0);
         BattleUIManager.Instance.CharacterSelectionUI.RefreshView(0, 0);
+    }
+
+    public List<ScheduledAction> ActionsForTurn
+    {
+        get
+        {
+            List<ScheduledAction> actionsToShow = actionsForTurn.Values.ToList();
+            if (currentAction != null && !actionsForTurn.ContainsKey(currentAction.actionOwner) && currentAction.speed > 0)
+            {
+                actionsToShow.Add(currentAction);
+                actionsToShow = actionsToShow.OrderBy(o => (o.speed)).ToList();
+            }
+            return actionsToShow;
+        }
     }
 }

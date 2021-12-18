@@ -7,6 +7,7 @@ using TMPro;
 public class ScheduledActionPreview : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI actionName;
+    [SerializeField] private TextMeshProUGUI actionSpeed;
     [SerializeField] private Image actorIcon;
     [SerializeField] private CharacterAssets characterAssets;
     [SerializeField] private BossesAssets bossesAssets;
@@ -16,10 +17,16 @@ public class ScheduledActionPreview : MonoBehaviour
     [SerializeField] private Color selectedColor;
     [SerializeField] private Color currentColor;
     [SerializeField] private Color overdueColor;
+    [SerializeField] private Color previewColor;
+
+    private bool isPreview;
 
     public void ConfigVisuals(ScheduledAction scheduledAction)
     {
         actionName.text = scheduledAction.actionType.ToString();
+        actionSpeed.text = scheduledAction.speed.ToString();
+        isPreview = !scheduledAction.confirmed;
+
         if (BattleGridUtils.IsACharacter(scheduledAction.ActionOwner))
             actorIcon.sprite = characterAssets.Bodies[BattleGridUtils.GetCharacterID(scheduledAction.ActionOwner)];
         else
@@ -43,5 +50,8 @@ public class ScheduledActionPreview : MonoBehaviour
                 background.color = overdueColor;
                 break;
         }
+
+        if (isPreview)
+            background.color = previewColor;
     }
 }

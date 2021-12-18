@@ -1,6 +1,6 @@
 public class ActionSelection : NavigationSelection
 {
-    protected override int MaxElements { get { return 4; } }
+    protected override int MaxElements { get { return BattleActionsUtils.GetActionsList().Count; } }
 
     public override void Next()
     {

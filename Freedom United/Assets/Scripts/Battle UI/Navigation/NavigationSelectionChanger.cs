@@ -11,7 +11,13 @@ public class NavigationSelectionChanger
         if (navigationState.currentLevel == BattleSelectionLevel.ActionPile)
             navigationState.ActionPileSelection.Next();
         if (navigationState.currentLevel == BattleSelectionLevel.Action)
+        {
             navigationState.ActionSelection.Next();
+            navigationState.currentAction.actionType = navigationState.ActionSelection.ActionSelected;
+            navigationState.currentAction.speed = BattleActionsUtils.GetActionSpeed();
+            BattleUIManager.Instance.ActionPileUI.RefreshView(0, 0);
+            Debug.LogError(BattleActionsUtils.GetActionSpeed());
+        }
         if (navigationState.currentLevel == BattleSelectionLevel.Magic)
             navigationState.MagicSelection.Next();
         if (navigationState.currentLevel == BattleSelectionLevel.Cell)
@@ -23,7 +29,13 @@ public class NavigationSelectionChanger
         if (navigationState.currentLevel == BattleSelectionLevel.ActionPile)
             navigationState.ActionPileSelection.Previous();
         if (navigationState.currentLevel == BattleSelectionLevel.Action)
+        {
             navigationState.ActionSelection.Previous();
+            navigationState.currentAction.actionType = navigationState.ActionSelection.ActionSelected;
+            navigationState.currentAction.speed = BattleActionsUtils.GetActionSpeed();
+            Debug.LogError(BattleActionsUtils.GetActionSpeed());
+            BattleUIManager.Instance.ActionPileUI.RefreshView(0, 0);
+        }
         if (navigationState.currentLevel == BattleSelectionLevel.Magic)
             navigationState.MagicSelection.Previous();
         if (navigationState.currentLevel == BattleSelectionLevel.Cell)
