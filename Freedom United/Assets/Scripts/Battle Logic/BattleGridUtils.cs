@@ -4,6 +4,7 @@ using System;
 public static class BattleGridUtils
 {
     public static float ShovingDamage { get { return 3.0f; } }
+    public static float DefenseSplitFactor { get { return 0.5f; } }
 
     public static Vector3 TranslatedPosition(Vector2Int original, float heightDelta)
     {

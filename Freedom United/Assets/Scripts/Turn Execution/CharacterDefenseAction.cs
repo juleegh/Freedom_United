@@ -19,7 +19,7 @@ public class CharacterDefenseAction : ExecutingAction
         defendedPositions = new List<Vector2Int>();
 
         if (defenseDelta != Vector2Int.zero)
-            defenseProvided *= 0.5f;
+            defenseProvided *= BattleGridUtils.DefenseSplitFactor;
     }
 
     public override void Execute()

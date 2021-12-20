@@ -6,4 +6,6 @@ public enum GameNotification
     BossStatsModified,
     CharacterMoved,
     TurnEndedExecution,
+    NavigationStateUpdated,
+    NavigationInfoUpdated,
 }

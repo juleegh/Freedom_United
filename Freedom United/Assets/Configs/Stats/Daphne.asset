@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackRange: 0
   attackType: 0
+  baseHealth: 8
   attackSpeed: 4
   defenseSpeed: 5
   recklessChangeSpeed: 2

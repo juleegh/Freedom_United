@@ -26,6 +26,7 @@ public class CellSelection
         //    return;
 
         currentRow--;
+        BattleUINavigation.Instance.NavigationState.currentAction.position = SelectedPosition;
         BattleUIManager.Instance.CellSelectionUI.UpdateSelection(currentColumn, currentRow);
     }
 
@@ -35,6 +36,7 @@ public class CellSelection
             return;
 
         currentRow++;
+        BattleUINavigation.Instance.NavigationState.currentAction.position = SelectedPosition;
         BattleUIManager.Instance.CellSelectionUI.UpdateSelection(currentColumn, currentRow);
     }
 
@@ -44,6 +46,7 @@ public class CellSelection
             return;
 
         currentColumn--;
+        BattleUINavigation.Instance.NavigationState.currentAction.position = SelectedPosition;
         BattleUIManager.Instance.CellSelectionUI.UpdateSelection(currentColumn, currentRow);
     }
 
@@ -53,6 +56,7 @@ public class CellSelection
             return;
 
         currentColumn++;
+        BattleUINavigation.Instance.NavigationState.currentAction.position = SelectedPosition;
         BattleUIManager.Instance.CellSelectionUI.UpdateSelection(currentColumn, currentRow);
     }
 

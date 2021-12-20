@@ -16,12 +16,13 @@ public class NavigationSelectionChanger
             navigationState.currentAction.actionType = navigationState.ActionSelection.ActionSelected;
             navigationState.currentAction.speed = BattleActionsUtils.GetActionSpeed();
             BattleUIManager.Instance.ActionPileUI.RefreshView(0, 0);
-            Debug.LogError(BattleActionsUtils.GetActionSpeed());
         }
         if (navigationState.currentLevel == BattleSelectionLevel.Magic)
             navigationState.MagicSelection.Next();
         if (navigationState.currentLevel == BattleSelectionLevel.Cell)
             navigationState.CellSelection.Down();
+
+        GameNotificationsManager.Instance.Notify(GameNotification.NavigationStateUpdated);
     }
 
     public void Up()
@@ -33,13 +34,14 @@ public class NavigationSelectionChanger
             navigationState.ActionSelection.Previous();
             navigationState.currentAction.actionType = navigationState.ActionSelection.ActionSelected;
             navigationState.currentAction.speed = BattleActionsUtils.GetActionSpeed();
-            Debug.LogError(BattleActionsUtils.GetActionSpeed());
             BattleUIManager.Instance.ActionPileUI.RefreshView(0, 0);
         }
         if (navigationState.currentLevel == BattleSelectionLevel.Magic)
             navigationState.MagicSelection.Previous();
         if (navigationState.currentLevel == BattleSelectionLevel.Cell)
             navigationState.CellSelection.Up();
+
+        GameNotificationsManager.Instance.Notify(GameNotification.NavigationStateUpdated);
     }
 
     public void Left()
@@ -48,6 +50,8 @@ public class NavigationSelectionChanger
             navigationState.CharacterSelection.Previous();
         else if (navigationState.currentLevel == BattleSelectionLevel.Cell)
             navigationState.CellSelection.Left();
+
+        GameNotificationsManager.Instance.Notify(GameNotification.NavigationStateUpdated);
     }
 
     public void Right()
@@ -56,5 +60,7 @@ public class NavigationSelectionChanger
             navigationState.CharacterSelection.Next();
         else if (navigationState.currentLevel == BattleSelectionLevel.Cell)
             navigationState.CellSelection.Right();
+
+        GameNotificationsManager.Instance.Notify(GameNotification.NavigationStateUpdated);
     }
 }

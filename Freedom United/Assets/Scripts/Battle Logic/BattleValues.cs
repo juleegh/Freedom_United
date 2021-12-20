@@ -8,7 +8,10 @@ public class BattleValues : MonoBehaviour, NotificationsListener
     private Dictionary<CharacterID, float> partyHealthPoints;
     private float totalBossHealth;
     private BossParts PartsList { get { return BattleManager.Instance.CharacterManagement.BossConfig.PartsList; } }
+
     public float BossHealth { get { return totalBossHealth; } }
+    public Dictionary<BossPartType, float> BossPartsHealth { get { return bossHealthPoints; } }
+    public Dictionary<CharacterID, float> PartyHealth { get { return partyHealthPoints; } }
 
     public void ConfigureComponent()
     {

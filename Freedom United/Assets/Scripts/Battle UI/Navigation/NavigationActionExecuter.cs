@@ -46,9 +46,10 @@ public class NavigationActionExecuter
                 }
 
                 navigationState.currentLevel = BattleSelectionLevel.Cell;
-                Vector2Int position = navigationState.CharacterSelection.SelectedCharacter.CurrentPosition;
+                Vector2Int position = BattleManager.Instance.BattleGrid.PositionsInRange[0];
+                navigationState.currentAction.position = position;
                 navigationState.CellSelection.Toggle(true);
-                navigationState.CellSelection.Initialize(BattleManager.Instance.BattleGrid.PositionsInRange[0]);
+                navigationState.CellSelection.Initialize(position);
             }
         }
         else if (navigationState.currentLevel == BattleSelectionLevel.Magic)
@@ -69,6 +70,8 @@ public class NavigationActionExecuter
             CreateAllyAction();
             navigationState.ResetActionSelection();
         }
+
+        GameNotificationsManager.Instance.Notify(GameNotification.NavigationStateUpdated);
     }
 
     public void Backwards()
@@ -109,6 +112,7 @@ public class NavigationActionExecuter
             navigationState.CellSelection.Toggle(false);
         }
         navigationState.currentAction.speed = BattleActionsUtils.GetActionSpeed();
+        GameNotificationsManager.Instance.Notify(GameNotification.NavigationStateUpdated);
     }
 
     private void CreateAllyAction()
