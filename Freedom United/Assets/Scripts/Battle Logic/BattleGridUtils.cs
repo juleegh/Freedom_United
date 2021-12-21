@@ -29,6 +29,19 @@ public static class BattleGridUtils
         }
     }
 
+    public static bool IsABossPart(string partID)
+    {
+        try
+        {
+            BossPartType bossPart = (BossPartType)System.Enum.Parse(typeof(BossPartType), partID);
+            return true;
+        }
+        catch (Exception)
+        {
+            return false;
+        }
+    }
+
     public static CharacterID GetCharacterID(string characterID)
     {
         try

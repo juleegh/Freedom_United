@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class GameNotificationData
 {
-    private Dictionary<string, object> data;
-    public Dictionary<string, object> Data { get { return data; } }
+    private Dictionary<NotificationDataIDs, object> data;
+    public Dictionary<NotificationDataIDs, object> Data { get { return data; } }
 
     public GameNotificationData()
     {
-        data = new Dictionary<string, object>();
+        data = new Dictionary<NotificationDataIDs, object>();
     }
 }

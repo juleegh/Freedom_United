@@ -28,6 +28,7 @@ public class TurnExecutor : MonoBehaviour, NotificationsListener
         {
             actionsQueued.Add(ActionParser.GetParsedAction(scheduledAction));
         }
+        GameNotificationsManager.Instance.Notify(GameNotification.TurnStartedExecution);
         executionIndex = 0;
         executionDelta = 0;
         executing = true;
@@ -55,7 +56,7 @@ public class TurnExecutor : MonoBehaviour, NotificationsListener
                 actionsQueued[executionIndex].Execute();
                 BattleUIManager.Instance.ActionPileUI.UpdateStatus(executionIndex, UIStatus.Current);
                 executionIndex++;
-
+                GameNotificationsManager.Instance.Notify(GameNotification.ActionEndedExecution);
             }
         }
     }

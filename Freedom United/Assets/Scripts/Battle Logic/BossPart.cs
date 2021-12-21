@@ -25,4 +25,9 @@ public class BossPart
         return x >= position.x && x <= position.x + width &&
         y >= position.y && y <= position.y + height;
     }
+
+    public override string ToString()
+    {
+        return partType.ToString();
+    }
 }

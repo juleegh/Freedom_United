@@ -8,4 +8,7 @@ public enum GameNotification
     TurnEndedExecution,
     NavigationStateUpdated,
     NavigationInfoUpdated,
+    AttackWasExecuted,
+    ActionEndedExecution,
+    TurnStartedExecution,
 }

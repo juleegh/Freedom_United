@@ -24,4 +24,8 @@ public class Character
         currentPosition = newPosition;
     }
 
+    public override string ToString()
+    {
+        return characterID.ToString();
+    }
 }

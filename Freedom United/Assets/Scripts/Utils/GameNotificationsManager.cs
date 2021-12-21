@@ -36,12 +36,12 @@ public class GameNotificationsManager : MonoBehaviour
         linkedEvents[typeEvent].Add(newAction);
     }
 
-    public void Notify(GameNotification typeEvent, List<GameNotificationData> additionalInfo = null)
+    public void Notify(GameNotification typeEvent, GameNotificationData additionalInfo = null)
     {
         if (!linkedEvents.ContainsKey(typeEvent) || linkedEvents[typeEvent] == null)
             return;
 
-        foreach (Action<List<GameNotificationData>> linkedAction in linkedEvents[typeEvent])
+        foreach (Action<GameNotificationData> linkedAction in linkedEvents[typeEvent])
         {
             linkedAction(additionalInfo);
         }

@@ -2,13 +2,6 @@ using UnityEngine;
 
 public class ActionInformationParser
 {
-    private enum TargetType
-    {
-        Empty,
-        Character,
-        BossPart,
-    }
-
     private string Speed { get { return "Speed: " + BattleActionsUtils.GetActionSpeed(); } }
     private CharacterID ActionCharacterID { get { return BattleGridUtils.GetCharacterID(BattleUINavigation.Instance.NavigationState.currentAction.ActionOwner); } }
     private bool SelectingCell { get { return BattleUINavigation.Instance.CurrentLevel == BattleSelectionLevel.Cell; } }
