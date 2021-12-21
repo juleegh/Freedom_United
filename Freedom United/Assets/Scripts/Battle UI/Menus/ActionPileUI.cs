@@ -18,7 +18,7 @@ public class ActionPileUI : MonoBehaviour, NotificationsListener
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.BattleUILoaded, LoadUI);
     }
 
-    private void LoadUI()
+    private void LoadUI(GameNotificationData notificationData)
     {
         actionsPreviews = new ScheduledActionPreview[actionsOnScreen];
 

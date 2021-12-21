@@ -20,7 +20,7 @@ public class ActionPile : MonoBehaviour, NotificationsListener
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.BattleLoaded, Initialize);
     }
 
-    private void Initialize()
+    private void Initialize(GameNotificationData notificationData)
     {
         foreach (CharacterID character in BattleManager.Instance.CharacterManagement.Characters.Keys.ToList())
             charactersAvailable.Add(character);

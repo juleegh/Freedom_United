@@ -22,7 +22,7 @@ public class BattleUINavigation : MonoBehaviour, NotificationsListener
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.TurnEndedExecution, ResetActionSelection);
     }
 
-    private void Initialize()
+    private void Initialize(GameNotificationData notificationData)
     {
         navigationState = new NavigationCurrentState();
         actionExecuter = new NavigationActionExecuter();
@@ -31,7 +31,7 @@ public class BattleUINavigation : MonoBehaviour, NotificationsListener
         navigationState.ResetActionSelection();
     }
 
-    private void ResetActionSelection()
+    private void ResetActionSelection(GameNotificationData notificationData)
     {
         navigationState.ResetActionSelection();
     }

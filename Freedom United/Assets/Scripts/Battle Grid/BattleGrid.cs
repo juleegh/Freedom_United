@@ -21,7 +21,7 @@ public class BattleGrid : MonoBehaviour, NotificationsListener
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.DependenciesLoaded, InitializeGrid);
     }
 
-    private void InitializeGrid()
+    private void InitializeGrid(GameNotificationData notificationData)
     {
         grid = new Dictionary<Vector2Int, GridCell>();
         positionsInRange = new List<Vector2Int>();

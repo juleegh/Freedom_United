@@ -39,7 +39,7 @@ public class BattleValues : MonoBehaviour, NotificationsListener
         }
     }
 
-    private void InitializeHealth()
+    private void InitializeHealth(GameNotificationData notificationData)
     {
         totalBossHealth = BattleManager.Instance.CharacterManagement.BossConfig.BaseHealth;
 

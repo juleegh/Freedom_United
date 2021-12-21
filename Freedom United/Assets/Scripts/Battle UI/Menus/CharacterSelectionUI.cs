@@ -19,7 +19,7 @@ public class CharacterSelectionUI : MonoBehaviour, NotificationsListener
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.BattleUILoaded, LoadUI);
     }
 
-    private void LoadUI()
+    private void LoadUI(GameNotificationData notificationData)
     {
         characterPreviews = new CharacterSelectionOption[charactersOnScreen];
         List<CharacterID> characters = BattleManager.Instance.CharacterManagement.Characters.Keys.ToList();

@@ -31,7 +31,7 @@ public class BattleManager : MonoBehaviour, NotificationsListener
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.DependenciesLoaded, Initialize);
     }
 
-    private void Initialize()
+    private void Initialize(GameNotificationData notificationData)
     {
         battleGrid = GetComponent<BattleGrid>();
         characterManagement = GetComponent<CharacterManagement>();

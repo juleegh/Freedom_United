@@ -12,7 +12,7 @@ public class ActionSelectionUI : MonoBehaviour, NotificationsListener
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.BattleLoaded, Initialize);
     }
 
-    private void Initialize()
+    private void Initialize(GameNotificationData notificationData)
     {
         for (int i = 0; i < actionPreviews.Length; i++)
         {

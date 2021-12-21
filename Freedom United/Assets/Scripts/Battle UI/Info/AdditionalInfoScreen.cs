@@ -17,13 +17,13 @@ public class AdditionalInfoScreen : MonoBehaviour, NotificationsListener
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.NavigationInfoUpdated, NavigationInfoUpdated);
     }
 
-    private void Clear()
+    private void Clear(GameNotificationData notificationData)
     {
         actionInfoContainer.SetActive(false);
         actionTargetContainer.SetActive(false);
     }
 
-    private void NavigationInfoUpdated()
+    private void NavigationInfoUpdated(GameNotificationData notificationData)
     {
         switch (BattleUINavigation.Instance.CurrentLevel)
         {

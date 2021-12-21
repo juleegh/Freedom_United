@@ -26,7 +26,7 @@ public class AdditionalInfoController : MonoBehaviour, NotificationsListener
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.NavigationStateUpdated, NavigationStateUpdated);
     }
 
-    private void NavigationStateUpdated()
+    private void NavigationStateUpdated(GameNotificationData notificationData)
     {
         switch (BattleUINavigation.Instance.CurrentLevel)
         {

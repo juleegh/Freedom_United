@@ -15,13 +15,13 @@ public class BossInfoUI : MonoBehaviour, NotificationsListener
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.BattleLoaded, Initialize);
     }
 
-    private void Initialize()
+    private void Initialize(GameNotificationData notificationData)
     {
         healthFill.fillAmount = 1f;
         bossName.text = BattleManager.Instance.CharacterManagement.BossConfig.BossName;
     }
 
-    private void UpdateBar()
+    private void UpdateBar(GameNotificationData notificationData)
     {
         float current = BattleManager.Instance.BattleValues.BossHealth;
         float max = BattleManager.Instance.CharacterManagement.BossConfig.BaseHealth;

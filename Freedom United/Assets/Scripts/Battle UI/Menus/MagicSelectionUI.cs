@@ -18,7 +18,7 @@ public class MagicSelectionUI : MonoBehaviour, NotificationsListener
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.BattleLoaded, LoadUI);
     }
 
-    private void LoadUI()
+    private void LoadUI(GameNotificationData notificationData)
     {
         spellPreviews = new MagicActionOption[spellsOnScreen];
         List<MagicSpell> spells = new List<MagicSpell>();

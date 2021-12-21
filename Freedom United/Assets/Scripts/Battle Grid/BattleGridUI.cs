@@ -25,7 +25,7 @@ public class BattleGridUI : MonoBehaviour, NotificationsListener
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.CharacterMoved, RefreshCharacters);
     }
 
-    private void InitializeGrid()
+    private void InitializeGrid(GameNotificationData notificationData)
     {
         grid = new Dictionary<Vector2Int, GridCellUI>();
 
@@ -61,7 +61,7 @@ public class BattleGridUI : MonoBehaviour, NotificationsListener
         bossVisuals.Paint(BattleManager.Instance.CharacterManagement.Boss);
     }
 
-    private void RefreshCharacters()
+    private void RefreshCharacters(GameNotificationData notificationData)
     {
         foreach (KeyValuePair<CharacterID, Character> character in BattleManager.Instance.CharacterManagement.Characters)
         {
