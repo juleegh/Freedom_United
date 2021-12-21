@@ -49,10 +49,9 @@ public class ActionPile : MonoBehaviour, NotificationsListener
         {
             List<ScheduledAction> actionsToShow = actionsForTurn.Values.ToList();
             if (currentAction != null && !actionsForTurn.ContainsKey(currentAction.actionOwner) && currentAction.speed > 0)
-            {
                 actionsToShow.Add(currentAction);
-                actionsToShow = actionsToShow.OrderBy(o => (o.speed)).ToList();
-            }
+
+            actionsToShow = actionsToShow.OrderBy(o => (o.speed)).ToList();
             return actionsToShow;
         }
     }
