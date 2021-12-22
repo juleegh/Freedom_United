@@ -8,7 +8,7 @@ public class BossVisuals : MonoBehaviour
 
     public void Paint(Boss boss)
     {
-        foreach (BossPart part in boss.Parts)
+        foreach (BossPart part in boss.Parts.Values)
         {
             BossPartVisuals nextPart = Instantiate(partPrefab).GetComponent<BossPartVisuals>();
             nextPart.transform.SetParent(this.transform);

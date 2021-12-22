@@ -4,21 +4,24 @@ using UnityEngine;
 
 public class TurnBlackBoard : MonoBehaviour, NotificationsListener
 {
+    private static TurnBlackBoard instance;
+    public static TurnBlackBoard Instance { get { return instance; } }
+
     private PostActionInfo currentRegister;
     private List<PostActionInfo> registers;
+    public List<PostActionInfo> Registers { get { return registers; } }
 
     public void ConfigureComponent()
     {
+        instance = this;
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.AttackWasExecuted, RegisterAttackInfo);
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.ActionEndedExecution, SaveRegister);
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.TurnStartedExecution, StartRegisteringTurn);
+        registers = new List<PostActionInfo>();
     }
 
     private void StartRegisteringTurn(GameNotificationData notificationData)
     {
-        if (registers == null)
-            registers = new List<PostActionInfo>();
-
         registers.Clear();
         currentRegister = new PostActionInfo();
     }
@@ -43,15 +46,5 @@ public class TurnBlackBoard : MonoBehaviour, NotificationsListener
     {
         registers.Add(currentRegister);
         currentRegister = new PostActionInfo();
-    }
-
-    private TargetType GetTargetType(string targetId)
-    {
-        if (BattleGridUtils.IsACharacter(targetId))
-            return TargetType.Character;
-        else if (BattleGridUtils.IsABossPart(targetId))
-            return TargetType.BossPart;
-
-        return TargetType.Empty;
     }
 }

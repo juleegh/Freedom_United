@@ -49,7 +49,7 @@ public class BattleValues : MonoBehaviour, NotificationsListener
         }
 
         foreach (BossPart bossPart in BattleManager.Instance
-        .CharacterManagement.Boss.Parts)
+        .CharacterManagement.Boss.Parts.Values)
         {
             bossHealthPoints.Add(bossPart.PartType, PartsList[bossPart.PartType].BaseDurability);
         }

@@ -11,4 +11,5 @@ public enum GameNotification
     AttackWasExecuted,
     ActionEndedExecution,
     TurnStartedExecution,
+    TurnStarted,
 }

@@ -10,11 +10,11 @@ public class ActionPile : MonoBehaviour, NotificationsListener
     public List<CharacterID> CharactersAvailable { get { return charactersAvailable; } }
 
     private AllyAction currentAction { get { return BattleUINavigation.Instance.NavigationState.currentAction; } }
-    private Dictionary<CharacterID, ScheduledAction> actionsForTurn;
+    private Dictionary<string, ScheduledAction> actionsForTurn;
 
     public void ConfigureComponent()
     {
-        actionsForTurn = new Dictionary<CharacterID, ScheduledAction>();
+        actionsForTurn = new Dictionary<string, ScheduledAction>();
         charactersAvailable = new List<CharacterID>();
 
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.BattleLoaded, Initialize);
@@ -26,10 +26,10 @@ public class ActionPile : MonoBehaviour, NotificationsListener
             charactersAvailable.Add(character);
     }
 
-    public void AddActionToPile(AllyAction action)
+    public void AddActionToPile(ScheduledAction action)
     {
         action.confirmed = true;
-        actionsForTurn.Add(action.actionOwner, action);
+        actionsForTurn.Add(action.ActionOwner, action);
         BattleUIManager.Instance.ActionPileUI.RefreshView(0, 0);
     }
 
@@ -48,7 +48,7 @@ public class ActionPile : MonoBehaviour, NotificationsListener
         get
         {
             List<ScheduledAction> actionsToShow = actionsForTurn.Values.ToList();
-            if (currentAction != null && !actionsForTurn.ContainsKey(currentAction.actionOwner) && currentAction.speed > 0)
+            if (currentAction != null && !actionsForTurn.ContainsKey(currentAction.actionOwner.ToString()) && currentAction.speed > 0)
                 actionsToShow.Add(currentAction);
 
             actionsToShow = actionsToShow.OrderBy(o => (o.speed)).ToList();

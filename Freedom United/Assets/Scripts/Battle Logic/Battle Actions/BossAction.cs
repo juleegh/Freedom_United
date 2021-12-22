@@ -6,4 +6,6 @@ public class BossAction : ScheduledAction
 {
     public BossPartType actionOwner;
     public override string ActionOwner { get { return actionOwner.ToString(); } }
+
+    public AreaOfEffect areaOfEffect;
 }

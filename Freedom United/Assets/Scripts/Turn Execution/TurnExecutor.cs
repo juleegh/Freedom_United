@@ -46,6 +46,7 @@ public class TurnExecutor : MonoBehaviour, NotificationsListener
                     executing = false;
                     BattleManager.Instance.ActionPile.ClearList();
                     GameNotificationsManager.Instance.Notify(GameNotification.TurnEndedExecution);
+                    GameNotificationsManager.Instance.Notify(GameNotification.TurnStarted);
                     return;
                 }
 

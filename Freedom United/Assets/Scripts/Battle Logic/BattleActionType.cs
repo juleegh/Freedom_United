@@ -11,6 +11,13 @@ public enum BattleActionType
     Magic,
 }
 
+public enum TargetType
+{
+    Empty,
+    Character,
+    BossPart,
+}
+
 public static class BattleActionsUtils
 {
     public static BattleActionType GetByIndex(int index)
@@ -67,5 +74,15 @@ public static class BattleActionsUtils
         }
 
         return 0;
+    }
+
+    public static TargetType GetTargetType(string targetId)
+    {
+        if (BattleGridUtils.IsACharacter(targetId))
+            return TargetType.Character;
+        else if (BattleGridUtils.IsABossPart(targetId))
+            return TargetType.BossPart;
+
+        return TargetType.Empty;
     }
 }
