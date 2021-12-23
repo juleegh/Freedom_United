@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72f52722acfb3ef4aa4ab6da27d628c6, type: 3}
+  m_Script: {fileID: 11500000, guid: dcd3db8d71bd82b4d9c6153f8c7b9928, type: 3}
   m_Name: AIC No Player Attacks
   m_EditorClassIdentifier: 

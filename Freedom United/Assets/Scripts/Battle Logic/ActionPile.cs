@@ -10,11 +10,11 @@ public class ActionPile : MonoBehaviour, NotificationsListener
     public List<CharacterID> CharactersAvailable { get { return charactersAvailable; } }
 
     private AllyAction currentAction { get { return BattleUINavigation.Instance.NavigationState.currentAction; } }
-    private Dictionary<string, ScheduledAction> actionsForTurn;
+    private Dictionary<string, List<ScheduledAction>> actionsForTurn;
 
     public void ConfigureComponent()
     {
-        actionsForTurn = new Dictionary<string, ScheduledAction>();
+        actionsForTurn = new Dictionary<string, List<ScheduledAction>>();
         charactersAvailable = new List<CharacterID>();
 
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.BattleLoaded, Initialize);
@@ -29,7 +29,11 @@ public class ActionPile : MonoBehaviour, NotificationsListener
     public void AddActionToPile(ScheduledAction action)
     {
         action.confirmed = true;
-        actionsForTurn.Add(action.ActionOwner, action);
+
+        if (!actionsForTurn.ContainsKey(action.ActionOwner))
+            actionsForTurn.Add(action.ActionOwner, new List<ScheduledAction>());
+
+        actionsForTurn[action.ActionOwner].Add(action);
         BattleUIManager.Instance.ActionPileUI.RefreshView(0, 0);
     }
 
@@ -47,11 +51,15 @@ public class ActionPile : MonoBehaviour, NotificationsListener
     {
         get
         {
-            List<ScheduledAction> actionsToShow = actionsForTurn.Values.ToList();
+            List<ScheduledAction> actionsToShow = new List<ScheduledAction>();
+
+            foreach (List<ScheduledAction> characterActions in actionsForTurn.Values)
+                actionsToShow.AddRange(characterActions);
+
             if (currentAction != null && !actionsForTurn.ContainsKey(currentAction.actionOwner.ToString()) && currentAction.speed > 0)
                 actionsToShow.Add(currentAction);
 
-            actionsToShow = actionsToShow.OrderBy(o => (o.speed)).ToList();
+            actionsToShow = actionsToShow.OrderBy(o => (-o.speed)).ToList();
             return actionsToShow;
         }
     }

@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 602dbbf61e6977843b77e8cf5dd6b042, type: 3}
+  m_Script: {fileID: 11500000, guid: 99e3bd7cde674e646a07ca319ec9f37b, type: 3}
   m_Name: AIC Boss HP Below Half
   m_EditorClassIdentifier: 

@@ -14,6 +14,10 @@ public class AIAttackWhoAttackedMe : AIAttackAction
 
     private bool SelectWhoAttackedMe()
     {
+        CharacterID characterAttack = CharacterID.Daphne;
+        Vector2Int positionToAttack = Vector2Int.zero;
+        bool foundOne = false;
+
         foreach (PostActionInfo actionInfo in TurnBlackBoard.Instance.Registers)
         {
             if (BattleActionsUtils.GetTargetType(actionInfo.actionOwner) == TargetType.Character)
@@ -21,19 +25,30 @@ public class AIAttackWhoAttackedMe : AIAttackAction
                 if (BattleActionsUtils.GetTargetType(actionInfo.actionTarget) != TargetType.BossPart)
                     continue;
 
-                CharacterID characterAttack = BattleGridUtils.GetCharacterID(actionInfo.actionOwner);
-                Vector2Int positionToAttack = BattleManager.Instance.CharacterManagement.Characters[characterAttack].CurrentPosition;
+                CharacterID character = BattleGridUtils.GetCharacterID(actionInfo.actionOwner);
+                Vector2Int pos = BattleManager.Instance.CharacterManagement.Characters[character].CurrentPosition;
 
-                BossPart attackingPart = BossUtils.GetPartWhoCanAttackPosition(positionToAttack);
-                AreaOfEffect usedAreaOfEffect = null;
+                BossPart attackingPart = BossUtils.GetPartWhoCanAttackPosition(pos);
 
                 if (attackingPart != null)
                 {
-                    usedAreaOfEffect = BossUtils.GetAreaOfEffectForPosition(attackingPart, positionToAttack);
-                    AddAttackActionToPile(attackingPart, usedAreaOfEffect);
-                    return true;
+                    characterAttack = character;
+                    positionToAttack = pos;
+                    foundOne = true;
                 }
             }
+        }
+
+        if (!foundOne)
+            return false;
+
+        BossPart partWillAttack = BossUtils.GetPartWhoCanAttackPosition(positionToAttack);
+
+        if (partWillAttack != null)
+        {
+            AreaOfEffect usedAreaOfEffect = BossUtils.GetAreaOfEffectForPosition(partWillAttack, positionToAttack);
+            AddAttackActionToPile(partWillAttack, usedAreaOfEffect);
+            return true;
         }
 
         return false;
