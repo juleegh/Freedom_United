@@ -11,12 +11,12 @@ public class GridCellUI : MonoBehaviour
     public void Refresh(CellType cellTypeDefined)
     {
         cellType = cellTypeDefined;
-        background.color = cellTypeDefined == CellType.Available ? Color.gray : Color.black;
+        background.color = cellTypeDefined != CellType.Available ? Color.gray : Color.black;
     }
 
     public void PaintAsRange(bool inRange)
     {
-        background.color = cellType == CellType.Available ? Color.gray : Color.black;
+        background.color = cellType != CellType.Available ? Color.gray : Color.black;
         if (inRange)
             background.color = Color.red;
     }

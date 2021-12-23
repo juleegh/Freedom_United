@@ -43,7 +43,6 @@ public class CharacterManagement : MonoBehaviour, NotificationsListener
 
     public BossPart GetBossPartInPosition(Vector2Int position)
     {
-
         foreach (BossPart bossPart in boss.Parts.Values)
         {
             if (bossPart.OccupiesPosition(position.x, position.y))

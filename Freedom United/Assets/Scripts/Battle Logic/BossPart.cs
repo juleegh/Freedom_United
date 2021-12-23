@@ -22,8 +22,8 @@ public class BossPart
 
     public bool OccupiesPosition(int x, int y)
     {
-        return x >= position.x && x <= position.x + width &&
-        y >= position.y && y <= position.y + height;
+        return x >= position.x && x <= position.x + width - 1 &&
+        y >= position.y && y <= position.y + height - 1;
     }
 
     public override string ToString()

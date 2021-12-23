@@ -1,0 +1,158 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 989d71e8b3d988141b799ab0386140c6, type: 3}
+  m_Name: Wrath Lord
+  m_EditorClassIdentifier: 
+  bossName: Wrath Lord
+  baseHealth: 180
+  bossParts:
+    reorderableList:
+      canAdd: 1
+      canRemove: 1
+      draggable: 1
+      expandable: 1
+      multipleSelection: 1
+      isExpanded: 1
+      label:
+        m_Text: Keys
+        m_Image: {fileID: 0}
+        m_Tooltip: 
+      headerHeight: 18
+      footerHeight: 13
+      slideEasing: 0.15
+      verticalSpacing: 2
+      showDefaultBackground: 1
+      elementDisplayType: 0
+      elementNameProperty: 
+      elementNameOverride: 
+      elementIcon: {fileID: 0}
+    reqReferences: {fileID: 0}
+    isExpanded: 1
+    _keyValues: 0300000004000000050000000600000007000000
+    _keys: 0300000004000000050000000600000007000000
+    _values:
+    - partType: 3
+      baseDurability: 2000
+      isCore: 1
+      position: {x: 3, y: 2}
+      dimensions: {x: 3, y: 5}
+      baseAttack: 30
+      baseDefense: 0
+      attackSpeed: 8
+      defenseSpeed: 0
+      areasOfEffect:
+      - positions:
+        - {x: 3, y: 1}
+        - {x: 4, y: 1}
+        - {x: 5, y: 1}
+        - {x: 2, y: 6}
+        - {x: 3, y: 7}
+        - {x: 5, y: 7}
+        - {x: 3, y: 8}
+        - {x: 5, y: 8}
+      bossDefenseType: 0
+      defendedParts: 
+      normalSuccessChance: 0.8
+      criticalSuccessChance: 0.025
+      criticalFailureChance: 0.175
+    - partType: 4
+      baseDurability: 250
+      isCore: 0
+      position: {x: 2, y: 1}
+      dimensions: {x: 1, y: 3}
+      baseAttack: 80
+      baseDefense: 10
+      attackSpeed: 9
+      defenseSpeed: 15
+      areasOfEffect:
+      - positions:
+        - {x: 1, y: 1}
+        - {x: 2, y: 0}
+        - {x: 3, y: 0}
+        - {x: 4, y: 0}
+      - positions:
+        - {x: 1, y: 1}
+        - {x: 0, y: 1}
+        - {x: 0, y: 2}
+        - {x: 0, y: 3}
+      bossDefenseType: 2
+      defendedParts: 03000000
+      normalSuccessChance: 0.7
+      criticalSuccessChance: 0.2
+      criticalFailureChance: 0.1
+    - partType: 5
+      baseDurability: 250
+      isCore: 0
+      position: {x: 6, y: 1}
+      dimensions: {x: 1, y: 3}
+      baseAttack: 80
+      baseDefense: 10
+      attackSpeed: 9
+      defenseSpeed: 15
+      areasOfEffect:
+      - positions:
+        - {x: 4, y: 0}
+        - {x: 5, y: 0}
+        - {x: 6, y: 0}
+        - {x: 7, y: 0}
+      - positions:
+        - {x: 8, y: 1}
+        - {x: 8, y: 2}
+        - {x: 7, y: 3}
+      bossDefenseType: 2
+      defendedParts: 03000000
+      normalSuccessChance: 0.7
+      criticalSuccessChance: 0.2
+      criticalFailureChance: 0.1
+    - partType: 6
+      baseDurability: 750
+      isCore: 0
+      position: {x: 2, y: 5}
+      dimensions: {x: 1, y: 1}
+      baseAttack: 750
+      baseDefense: 60
+      attackSpeed: 20
+      defenseSpeed: 20
+      areasOfEffect:
+      - positions:
+        - {x: 1, y: 5}
+      - positions:
+        - {x: 0, y: 6}
+      - positions:
+        - {x: 0, y: 4}
+      bossDefenseType: 2
+      defendedParts: 0400000003000000
+      normalSuccessChance: 0.6
+      criticalSuccessChance: 0.2
+      criticalFailureChance: 0.2
+    - partType: 7
+      baseDurability: 750
+      isCore: 0
+      position: {x: 6, y: 5}
+      dimensions: {x: 1, y: 1}
+      baseAttack: 750
+      baseDefense: 60
+      attackSpeed: 20
+      defenseSpeed: 20
+      areasOfEffect:
+      - positions:
+        - {x: 7, y: 5}
+      - positions:
+        - {x: 7, y: 4}
+      - positions:
+        - {x: 8, y: 6}
+      bossDefenseType: 2
+      defendedParts: 0300000005000000
+      normalSuccessChance: 0.6
+      criticalSuccessChance: 0.2
+      criticalFailureChance: 0.2
+  characterCounterPart: 0
