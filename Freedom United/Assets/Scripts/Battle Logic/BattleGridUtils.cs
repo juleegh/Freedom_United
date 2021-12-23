@@ -51,7 +51,7 @@ public static class BattleGridUtils
         }
         catch (Exception)
         {
-            return CharacterID.Daphne;
+            return CharacterID.Noma;
         }
     }
 

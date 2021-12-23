@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6f5003ac207c6c94b999c120ca9cabd2, type: 3}
-  m_Name: Daphne
+  m_Name: Yon Shichi
   m_EditorClassIdentifier: 
   attackRange: 0
   attackType: 0
-  baseHealth: 8
-  attackSpeed: 4
-  defenseSpeed: 5
-  recklessChangeSpeed: 2
-  safeChangeSpeed: 4
-  baseWillPower: 8
-  baseAttack: 5
-  baseDefense: 6
-  normalSuccessChance: 0.2
-  criticalSuccessChance: 0.7
-  criticalFailureChance: 0.1
+  baseHealth: 50
+  baseWillPower: 60
+  baseAttack: 65
+  normalSuccessChance: 0.7
+  criticalSuccessChance: 0.25
+  criticalFailureChance: 0.05
+  baseDefense: 45
+  attackSpeed: 5
+  defenseSpeed: 20
+  recklessChangeSpeed: 10
+  safeChangeSpeed: 10

@@ -9,19 +9,20 @@ public class CharacterStats : ScriptableObject
     [SerializeField] private AttackType attackType;
 
     [SerializeField] private float baseHealth;
+    [SerializeField] private int baseWillPower;
+
+    [SerializeField] private int baseAttack;
+
+    [SerializeField] private float normalSuccessChance;
+    [SerializeField] private float criticalSuccessChance;
+    [SerializeField] private float criticalFailureChance;
+
+    [SerializeField] private int baseDefense;
 
     [SerializeField] private int attackSpeed;
     [SerializeField] private int defenseSpeed;
     [SerializeField] private int recklessChangeSpeed;
     [SerializeField] private int safeChangeSpeed;
-    [SerializeField] private int baseWillPower;
-
-    [SerializeField] private int baseAttack;
-    [SerializeField] private int baseDefense;
-
-    [SerializeField] private float normalSuccessChance;
-    [SerializeField] private float criticalSuccessChance;
-    [SerializeField] private float criticalFailureChance;
 
     public AttackRange AttackRange { get { return attackRange; } }
     public AttackType AttackType { get { return attackType; } }

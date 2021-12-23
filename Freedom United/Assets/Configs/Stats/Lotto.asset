@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6f5003ac207c6c94b999c120ca9cabd2, type: 3}
-  m_Name: Anthony
+  m_Name: Lotto
   m_EditorClassIdentifier: 
-  attackRange: 1
+  attackRange: 2
   attackType: 1
-  baseHealth: 10
-  attackSpeed: 7
-  defenseSpeed: 4
-  recklessChangeSpeed: 6
-  safeChangeSpeed: 3
-  baseWillPower: 2
-  baseAttack: 9
-  baseDefense: 8
-  normalSuccessChance: 0.6
-  criticalSuccessChance: 0.2
-  criticalFailureChance: 0.2
+  baseHealth: 70
+  baseWillPower: 70
+  baseAttack: 30
+  normalSuccessChance: 0.8
+  criticalSuccessChance: 0.1
+  criticalFailureChance: 0.1
+  baseDefense: 60
+  attackSpeed: 10
+  defenseSpeed: 5
+  recklessChangeSpeed: 20
+  safeChangeSpeed: 5

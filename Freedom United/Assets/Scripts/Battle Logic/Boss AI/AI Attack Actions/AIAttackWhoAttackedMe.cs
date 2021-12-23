@@ -14,7 +14,7 @@ public class AIAttackWhoAttackedMe : AIAttackAction
 
     private bool SelectWhoAttackedMe()
     {
-        CharacterID characterAttack = CharacterID.Daphne;
+        CharacterID characterAttack = CharacterID.Noma;
         Vector2Int positionToAttack = Vector2Int.zero;
         bool foundOne = false;
 

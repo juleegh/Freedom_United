@@ -15,19 +15,22 @@ public class CharacterManagement : MonoBehaviour, NotificationsListener
 
     public void ConfigureComponent()
     {
-        InitializeCharacters();
+        GameNotificationsManager.Instance.AddActionToEvent(GameNotification.DependenciesLoaded, InitializeCharacters);
     }
 
-    private void InitializeCharacters()
+    private void InitializeCharacters(GameNotificationData notificationData)
     {
         characters = new Dictionary<CharacterID, Character>();
-        characters.Add(CharacterID.Daphne, new Character(CharacterID.Daphne));
-        characters.Add(CharacterID.Simon, new Character(CharacterID.Simon));
-        characters.Add(CharacterID.Anthony, new Character(CharacterID.Anthony));
 
-        SetCharacterInPosition(CharacterID.Daphne, initialPositions[0]);
-        SetCharacterInPosition(CharacterID.Simon, initialPositions[1]);
-        SetCharacterInPosition(CharacterID.Anthony, initialPositions[2]);
+        int index = 0;
+        foreach (CharacterID stats in BattleManager.Instance.PartyStats.Stats.Keys)
+        {
+            characters.Add(stats, new Character(stats));
+            SetCharacterInPosition(CharacterID.Noma, initialPositions[index]);
+
+            if (index <= BattleManager.Instance.PartyStats.Stats.Count)
+                index++;
+        }
 
         boss = new Boss(bossConfig);
     }

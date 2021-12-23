@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6f5003ac207c6c94b999c120ca9cabd2, type: 3}
-  m_Name: Simon
+  m_Name: Dio
   m_EditorClassIdentifier: 
-  attackRange: 2
-  attackType: 2
-  baseHealth: 9
-  attackSpeed: 2
-  defenseSpeed: 2
-  recklessChangeSpeed: 1
-  safeChangeSpeed: 9
-  baseWillPower: 8
-  baseAttack: 4
-  baseDefense: 3
-  normalSuccessChance: 0.3
+  attackRange: 0
+  attackType: 1
+  baseHealth: 65
+  baseWillPower: 100
+  baseAttack: 70
+  normalSuccessChance: 0.4
   criticalSuccessChance: 0.3
-  criticalFailureChance: 0.4
+  criticalFailureChance: 0.3
+  baseDefense: 15
+  attackSpeed: 20
+  defenseSpeed: 1
+  recklessChangeSpeed: 15
+  safeChangeSpeed: 5

@@ -1,6 +1,7 @@
 public enum CharacterID
 {
-    Daphne,
-    Simon,
-    Anthony,
+    Noma,
+    Lotto,
+    YonShichi,
+    Dio,
 }
