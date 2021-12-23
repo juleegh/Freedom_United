@@ -26,9 +26,9 @@ public class CharacterManagement : MonoBehaviour, NotificationsListener
         foreach (CharacterID stats in BattleManager.Instance.PartyStats.Stats.Keys)
         {
             characters.Add(stats, new Character(stats));
-            SetCharacterInPosition(CharacterID.Noma, initialPositions[index]);
+            SetCharacterInPosition(stats, initialPositions[index]);
 
-            if (index <= BattleManager.Instance.PartyStats.Stats.Count)
+            if (index < BattleManager.Instance.PartyStats.Stats.Count - 1)
                 index++;
         }
 
