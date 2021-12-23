@@ -106,7 +106,7 @@ public class ActionInformationParser
     {
         string content = "";
         content += TargetCharacter.CharacterID.ToString() + Jump;
-        content += "Health: " + BattleManager.Instance.BattleValues.PartyHealth[ActionCharacterID] + " / " + BattleManager.Instance.PartyStats.Stats[ActionCharacterID].BaseHealth;
+        content += "Health: " + BattleManager.Instance.BattleValues.PartyHealth[TargetCharacter.CharacterID] + " / " + BattleManager.Instance.PartyStats.Stats[TargetCharacter.CharacterID].BaseHealth;
 
         return content;
     }

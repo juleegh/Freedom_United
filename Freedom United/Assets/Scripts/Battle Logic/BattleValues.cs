@@ -23,6 +23,8 @@ public class BattleValues : MonoBehaviour, NotificationsListener
     public void CharacterTakeDamage(CharacterID character, float damageTaken)
     {
         partyHealthPoints[character] -= damageTaken;
+        if (partyHealthPoints[character] <= 0)
+            partyHealthPoints[character] = 0;
     }
 
     public void BossTakeDamage(BossPartType partType, float damageTaken)

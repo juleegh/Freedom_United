@@ -34,8 +34,8 @@ public class AdditionalInfoScreen : MonoBehaviour, NotificationsListener
                 actionInfoText.text = AdditionalInfoController.Instance.ActionDescription;
                 break;
             case BattleSelectionLevel.Cell:
-                actionInfoContainer.SetActive(true);
-                actionTargetContainer.SetActive(BattleManager.Instance.BattleGrid.PositionsInRange.Contains(BattleUINavigation.Instance.NavigationState.currentAction.position));
+                actionInfoContainer.SetActive(BattleManager.Instance.BattleGrid.PositionsInRange.Contains(BattleUINavigation.Instance.NavigationState.currentAction.position));
+                actionTargetContainer.SetActive(true);
                 actionInfoTitle.text = AdditionalInfoController.Instance.ActionTitle;
                 actionInfoText.text = AdditionalInfoController.Instance.ActionDescription;
                 actionTargetText.text = AdditionalInfoController.Instance.ActionTarget;

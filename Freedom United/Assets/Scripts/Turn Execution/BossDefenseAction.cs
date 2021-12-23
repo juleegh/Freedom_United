@@ -18,6 +18,7 @@ public class BossDefenseAction : ExecutingAction
 
         defenseProvided *= scheduledAction.areaOfEffect.Positions.Count;
         areaOfEffect = scheduledAction.areaOfEffect.Positions;
+        defendedPositions = new List<Vector2Int>();
     }
 
     public override void Execute()
