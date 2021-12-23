@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "AIC Boss HP Below Half")]
+//[CreateAssetMenu(fileName = "AIC Boss HP Below Half")]
 public class AIC_BossHPBelowHalf : AICondition
 {
     public override bool MeetsRequirement()
