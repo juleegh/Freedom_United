@@ -73,6 +73,12 @@ public class TurnExecutor : MonoBehaviour, NotificationsListener
                 if (defenseAction.PositionIsDefended(position))
                     defense += defenseAction.DefenseProvided;
             }
+            else if (currentAction as BossDefenseAction != null)
+            {
+                BossDefenseAction defenseAction = currentAction as BossDefenseAction;
+                if (defenseAction.PositionIsDefended(position))
+                    defense += defenseAction.DefenseProvided;
+            }
         }
 
         return defense;

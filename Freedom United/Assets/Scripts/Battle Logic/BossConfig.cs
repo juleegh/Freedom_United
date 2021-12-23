@@ -30,6 +30,8 @@ public class BossPartConfig
 
     [SerializeField] private Vector2Int position;
     [SerializeField] private Vector2Int dimensions;
+    [SerializeField] private float baseAttack;
+    [SerializeField] private float baseDefense;
     [SerializeField] private int attackSpeed;
     [SerializeField] private int defenseSpeed;
 
@@ -37,8 +39,14 @@ public class BossPartConfig
     [SerializeField] private BossDefenseType bossDefenseType;
     [SerializeField] private List<BossPartType> defendedParts;
 
+    [SerializeField] private float normalSuccessChance;
+    [SerializeField] private float criticalSuccessChance;
+    [SerializeField] private float criticalFailureChance;
+
     public BossPartType PartType { get { return partType; } }
     public float BaseDurability { get { return baseDurability; } }
+    public float BaseAttack { get { return baseAttack; } }
+    public float BaseDefense { get { return baseDefense; } }
     public bool IsCore { get { return isCore; } }
     public Vector2Int Position { get { return position; } }
     public Vector2Int Dimensions { get { return dimensions; } }
@@ -47,6 +55,9 @@ public class BossPartConfig
     public int DefenseSpeed { get { return defenseSpeed; } }
     public BossDefenseType BossDefenseType { get { return bossDefenseType; } }
     public List<BossPartType> DefendedParts { get { return defendedParts; } }
+    public float NormalSuccessChance { get { return normalSuccessChance; } }
+    public float CriticalSuccessChance { get { return criticalFailureChance; } }
+    public float CriticalFailureChance { get { return criticalFailureChance; } }
 }
 
 [Serializable]
