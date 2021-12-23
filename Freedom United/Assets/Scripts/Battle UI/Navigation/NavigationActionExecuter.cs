@@ -11,7 +11,7 @@ public class NavigationActionExecuter
     {
         if (navigationState.currentLevel == BattleSelectionLevel.Character)
         {
-            if (!BattleManager.Instance.ActionPile.CharactersAvailable.Contains(navigationState.CharacterSelection.CharacterID))
+            if (!BattleManager.Instance.ActionPile.CharacterAvailable(navigationState.CharacterSelection.CharacterID))
                 return;
 
             navigationState.currentAction.actionOwner = navigationState.CharacterSelection.CharacterID;

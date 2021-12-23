@@ -47,7 +47,7 @@ public class CharacterSelectionUI : MonoBehaviour, NotificationsListener
             }
 
             characterPreviews[previewIndex].Config(characters[i]);
-            characterPreviews[previewIndex].AvailableForAction(BattleManager.Instance.ActionPile.CharactersAvailable.Contains(characters[i]));
+            characterPreviews[previewIndex].AvailableForAction(BattleManager.Instance.ActionPile.CharacterAvailable(characters[i]));
             previewIndex++;
         }
 
