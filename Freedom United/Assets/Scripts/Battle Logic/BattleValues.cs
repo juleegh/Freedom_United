@@ -43,7 +43,7 @@ public class BattleValues : MonoBehaviour, NotificationsListener
 
     private void InitializeHealth(GameNotificationData notificationData)
     {
-        totalBossHealth = BattleManager.Instance.CharacterManagement.BossConfig.BaseHealth;
+        totalBossHealth = 0;
 
         foreach (Character character in BattleManager.Instance.CharacterManagement.Characters.Values)
         {
@@ -54,6 +54,7 @@ public class BattleValues : MonoBehaviour, NotificationsListener
         .CharacterManagement.Boss.Parts.Values)
         {
             bossHealthPoints.Add(bossPart.PartType, PartsList[bossPart.PartType].BaseDurability);
+            totalBossHealth += PartsList[bossPart.PartType].BaseDurability;
         }
     }
 

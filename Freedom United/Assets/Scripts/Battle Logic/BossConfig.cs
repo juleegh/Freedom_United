@@ -10,14 +10,24 @@ public class BossConfig : ScriptableObject
     [SerializeField] private string bossName;
     public string BossName { get { return bossName; } }
 
-    [SerializeField] private float baseHealth;
-    public float BaseHealth { get { return baseHealth; } }
-
     [SerializeField] private BossParts bossParts;
     public BossParts PartsList { get { return bossParts; } }
 
     [SerializeField] private CharacterID characterCounterPart;
     public CharacterID CharacterCounterPart { get { return characterCounterPart; } }
+
+    public float BaseHealth
+    {
+        get
+        {
+            float totalHealth = 0;
+            foreach (BossPartConfig part in bossParts.Values)
+            {
+                totalHealth += part.BaseDurability;
+            }
+            return totalHealth;
+        }
+    }
 
 }
 
