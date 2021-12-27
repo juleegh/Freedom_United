@@ -23,6 +23,7 @@ public class BattleGridUI : MonoBehaviour, NotificationsListener
         instance = this;
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.BattleLoaded, InitializeGrid);
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.CharacterMoved, RefreshCharacters);
+        GameNotificationsManager.Instance.AddActionToEvent(GameNotification.AttackWasExecuted, ShowBattleAction);
     }
 
     private void InitializeGrid(GameNotificationData notificationData)
@@ -57,7 +58,7 @@ public class BattleGridUI : MonoBehaviour, NotificationsListener
 
         bossVisuals = Instantiate(bossPrefab).GetComponent<BossVisuals>();
         bossVisuals.transform.SetParent(cellsContainer);
-        bossVisuals.transform.position = BattleGridUtils.TranslatedPosition(Vector2Int.zero, 0.1f);
+        bossVisuals.transform.position = BattleGridUtils.TranslatedPosition(Vector2Int.zero, 0.01f);
         bossVisuals.Paint(BattleManager.Instance.CharacterManagement.Boss);
     }
 
@@ -75,6 +76,23 @@ public class BattleGridUI : MonoBehaviour, NotificationsListener
         foreach (KeyValuePair<Vector2Int, GridCellUI> cell in grid)
         {
             cell.Value.PaintAsRange(visible && BattleManager.Instance.BattleGrid.PositionsInRange.Contains(cell.Key));
+        }
+    }
+
+    private void ShowBattleAction(GameNotificationData notificationData)
+    {
+        if (notificationData != null)
+        {
+            Vector2Int position = (Vector2Int)notificationData.Data[NotificationDataIDs.CellPosition];
+            bool failure = (bool)notificationData.Data[NotificationDataIDs.Failure];
+            float damage = (float)notificationData.Data[NotificationDataIDs.NewHP] - (float)notificationData.Data[NotificationDataIDs.PreviousHP];
+            damage = Mathf.Abs(damage);
+
+            if (failure)
+                grid[position].PromptFailed();
+            else
+                grid[position].PromptDamage(damage);
+
         }
     }
 }

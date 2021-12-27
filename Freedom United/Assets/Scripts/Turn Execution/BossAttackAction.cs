@@ -32,6 +32,7 @@ public class BossAttackAction : ExecutingAction
             attackData.Data[NotificationDataIDs.ActionTarget] = "empty";
             attackData.Data[NotificationDataIDs.NewHP] = 0f;
             attackData.Data[NotificationDataIDs.PreviousHP] = 0f;
+            attackData.Data[NotificationDataIDs.CellPosition] = attackedPosition;
 
             float defenseInPosition = TurnExecutor.Instance.DefenseValueInPosition(attackedPosition);
             float damageProvided = damageTaken - defenseInPosition;

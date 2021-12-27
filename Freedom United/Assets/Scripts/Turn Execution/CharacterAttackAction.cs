@@ -37,14 +37,16 @@ public class CharacterAttackAction : ExecutingAction
     {
         foreach (Vector2Int position in attackedPositions)
         {
+            Vector2Int attackedPosition = position + BattleManager.Instance.CharacterManagement.Characters[attackingCharacter].CurrentPosition;
+
             GameNotificationData attackData = new GameNotificationData();
             attackData.Data[NotificationDataIDs.ActionOwner] = attackingCharacter.ToString();
             attackData.Data[NotificationDataIDs.Failure] = FailedSuccess();
             attackData.Data[NotificationDataIDs.ActionTarget] = "empty";
             attackData.Data[NotificationDataIDs.NewHP] = 0f;
             attackData.Data[NotificationDataIDs.PreviousHP] = 0f;
+            attackData.Data[NotificationDataIDs.CellPosition] = attackedPosition;
 
-            Vector2Int attackedPosition = position + BattleManager.Instance.CharacterManagement.Characters[attackingCharacter].CurrentPosition;
             float defenseInPosition = TurnExecutor.Instance.DefenseValueInPosition(attackedPosition);
             float damageProvided = damageTaken - defenseInPosition;
             damageProvided = Mathf.Clamp(damageProvided, 0, damageProvided);
@@ -70,6 +72,7 @@ public class CharacterAttackAction : ExecutingAction
                 BattleManager.Instance.BattleValues.CharacterTakeDamage(targetCharacter.CharacterID, damageProvided);
                 attackData.Data[NotificationDataIDs.NewHP] = BattleManager.Instance.BattleValues.PartyHealth[targetCharacter.CharacterID];
             }
+
             GameNotificationsManager.Instance.Notify(GameNotification.AttackWasExecuted, attackData);
         }
     }
