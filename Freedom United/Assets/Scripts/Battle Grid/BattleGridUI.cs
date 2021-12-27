@@ -23,7 +23,9 @@ public class BattleGridUI : MonoBehaviour, NotificationsListener
         instance = this;
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.BattleLoaded, InitializeGrid);
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.CharacterMoved, RefreshCharacters);
-        GameNotificationsManager.Instance.AddActionToEvent(GameNotification.AttackWasExecuted, ShowBattleAction);
+        GameNotificationsManager.Instance.AddActionToEvent(GameNotification.AttackWasExecuted, ShowAttackBattleAction);
+        GameNotificationsManager.Instance.AddActionToEvent(GameNotification.DefenseWasExecuted, ShowDefenseBattleAction);
+        GameNotificationsManager.Instance.AddActionToEvent(GameNotification.TurnEndedExecution, ClearBoardEffects);
     }
 
     private void InitializeGrid(GameNotificationData notificationData)
@@ -69,6 +71,7 @@ public class BattleGridUI : MonoBehaviour, NotificationsListener
             CharacterVisuals characterVisuals = characters[character.Key];
             characterVisuals.transform.position = BattleGridUtils.TranslatedPosition(character.Value.CurrentPosition, 0.1f);
         }
+        UpdateDefenseInBoard();
     }
 
     public void ToggleRange(bool visible)
@@ -79,7 +82,7 @@ public class BattleGridUI : MonoBehaviour, NotificationsListener
         }
     }
 
-    private void ShowBattleAction(GameNotificationData notificationData)
+    private void ShowAttackBattleAction(GameNotificationData notificationData)
     {
         if (notificationData != null)
         {
@@ -93,6 +96,33 @@ public class BattleGridUI : MonoBehaviour, NotificationsListener
             else
                 grid[position].PromptDamage(damage);
 
+        }
+    }
+
+    private void ShowDefenseBattleAction(GameNotificationData notificationData)
+    {
+        if (notificationData != null)
+        {
+            Vector2Int position = (Vector2Int)notificationData.Data[NotificationDataIDs.CellPosition];
+            grid[position].ShowShield(true);
+        }
+    }
+
+    private void UpdateDefenseInBoard()
+    {
+        foreach (KeyValuePair<Vector2Int, GridCellUI> cell in grid)
+        {
+            bool positionGuarded = TurnExecutor.Instance.DefenseValueInPosition(cell.Key) > 0;
+            grid[cell.Key].ShowShield(positionGuarded);
+        }
+    }
+
+    private void ClearBoardEffects(GameNotificationData notificationData)
+    {
+        foreach (KeyValuePair<Vector2Int, GridCellUI> cell in grid)
+        {
+            bool positionGuarded = TurnExecutor.Instance.DefenseValueInPosition(cell.Key) > 0;
+            grid[cell.Key].ShowShield(false);
         }
     }
 }

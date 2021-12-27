@@ -10,6 +10,7 @@ public class CharacterDefenseAction : ExecutingAction
 
     private float defenseProvided;
     public float DefenseProvided { get { return defenseProvided; } }
+    private Vector2Int CurrentCharacterPosition { get { return BattleManager.Instance.CharacterManagement.Characters[defendingCharacter].CurrentPosition; } }
 
     public CharacterDefenseAction(AllyAction scheduledAction) : base(scheduledAction)
     {
@@ -25,12 +26,22 @@ public class CharacterDefenseAction : ExecutingAction
     public override void Execute()
     {
         defendedPositions.Add(defenseDelta);
+
+        GameNotificationData defenseData = new GameNotificationData();
+        defenseData.Data[NotificationDataIDs.CellPosition] = CurrentCharacterPosition + defenseDelta;
+        GameNotificationsManager.Instance.Notify(GameNotification.DefenseWasExecuted, defenseData);
+
         if (defenseDelta != Vector2Int.zero)
+        {
             defendedPositions.Add(Vector2Int.zero);
+            defenseData.Data[NotificationDataIDs.CellPosition] = CurrentCharacterPosition;
+            GameNotificationsManager.Instance.Notify(GameNotification.DefenseWasExecuted, defenseData);
+        }
+
     }
 
     public bool PositionIsDefended(Vector2Int position)
     {
-        return defendedPositions.Contains(position - BattleManager.Instance.CharacterManagement.Characters[defendingCharacter].CurrentPosition);
+        return defendedPositions.Contains(position - CurrentCharacterPosition);
     }
 }

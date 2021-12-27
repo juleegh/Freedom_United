@@ -7,6 +7,7 @@ public class GridCellUI : MonoBehaviour
     [SerializeField] private SpriteRenderer background;
     [SerializeField] private FailPromptUI failPrompt;
     [SerializeField] private DamagePromptUI damagePrompt;
+    [SerializeField] private ShieldPromptUI shieldPrompt;
 
     CellType cellType;
 
@@ -31,5 +32,10 @@ public class GridCellUI : MonoBehaviour
     public void PromptDamage(float damageTaken)
     {
         damagePrompt.ShowDamage(damageTaken);
+    }
+
+    public void ShowShield(bool guarded)
+    {
+        shieldPrompt.ShowShield(guarded);
     }
 }

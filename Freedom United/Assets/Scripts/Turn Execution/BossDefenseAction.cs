@@ -24,6 +24,13 @@ public class BossDefenseAction : ExecutingAction
     public override void Execute()
     {
         defendedPositions = areaOfEffect;
+
+        foreach (Vector2Int pos in defendedPositions)
+        {
+            GameNotificationData defenseData = new GameNotificationData();
+            defenseData.Data[NotificationDataIDs.CellPosition] = pos;
+            GameNotificationsManager.Instance.Notify(GameNotification.DefenseWasExecuted, defenseData);
+        }
     }
 
     public bool PositionIsDefended(Vector2Int position)
