@@ -12,6 +12,8 @@ public class CharacterSelectionOption : MonoBehaviour
     [SerializeField] private GameObject blocked;
     [SerializeField] private TextMeshProUGUI characterName;
     [SerializeField] private TextMeshProUGUI characterHealth;
+    [SerializeField] private GameObject characterContent;
+    [SerializeField] private GameObject otherContent;
 
     [SerializeField] private Color regularColor;
     [SerializeField] private Color selectedColor;
@@ -24,6 +26,7 @@ public class CharacterSelectionOption : MonoBehaviour
         characterPreview.sprite = assets.Bodies[character];
         UpdateInfo();
         blocked.SetActive(false);
+        ToggleCharacterView(true);
     }
 
     public void AvailableForAction(bool available)
@@ -46,5 +49,11 @@ public class CharacterSelectionOption : MonoBehaviour
     public void ToggleSelected(bool selected)
     {
         background.color = selected ? selectedColor : regularColor;
+    }
+
+    public void ToggleCharacterView(bool visible)
+    {
+        characterContent.SetActive(visible);
+        otherContent.SetActive(!visible);
     }
 }

@@ -1983,7 +1983,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aae3004d76579243aefcf615be2afb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charactersOnScreen: 4
+  charactersOnScreen: 5
   charactersContainer: {fileID: 1422690368}
   characterPreviewPrefab: {fileID: 2895226861213311130, guid: 27b2b1900934af14f9832d9e082411d0, type: 3}
   previousIndicator: {fileID: 298875111}

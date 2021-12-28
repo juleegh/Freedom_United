@@ -28,7 +28,7 @@ public class CharacterSelectionUI : MonoBehaviour, NotificationsListener
         {
             characterPreviews[i] = Instantiate(characterPreviewPrefab).GetComponent<CharacterSelectionOption>();
             characterPreviews[i].transform.SetParent(charactersContainer);
-            characterPreviews[i].gameObject.SetActive(i < characters.Count);
+            characterPreviews[i].gameObject.SetActive(i < characters.Count + 1);
         }
         RefreshView(0, 0);
     }
@@ -40,19 +40,26 @@ public class CharacterSelectionUI : MonoBehaviour, NotificationsListener
         List<CharacterID> characters = BattleManager.Instance.CharacterManagement.Characters.Keys.ToList();
         for (int i = topCharacter; i < topCharacter + charactersOnScreen; i++)
         {
-            if (i >= characters.Count)
+            if (i == characters.Count)
+            {
+                characterPreviews[previewIndex].ToggleCharacterView(false);
+                previewIndex++;
+                continue;
+            }
+            else if (i > characters.Count)
             {
                 previewIndex++;
                 continue;
             }
 
+            characterPreviews[previewIndex].ToggleCharacterView(true);
             characterPreviews[previewIndex].Config(characters[i]);
             characterPreviews[previewIndex].AvailableForAction(BattleManager.Instance.ActionPile.CharacterAvailable(characters[i]));
             previewIndex++;
         }
 
         previousIndicator.SetActive(topCharacter > 0);
-        nextIndicator.SetActive(topCharacter + charactersOnScreen <= characters.Count - 1);
+        nextIndicator.SetActive(topCharacter + charactersOnScreen <= characters.Count);
         RefreshSelectedCharacter(selectedCharacter);
     }
 

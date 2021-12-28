@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class CharacterSelection : NavigationSelection
 {
-    protected override int MaxElements { get { return BattleManager.Instance.CharacterManagement.Characters.Keys.Count; } }
+    protected override int MaxElements { get { return BattleManager.Instance.CharacterManagement.Characters.Keys.Count + 1; } }
     private int topElement;
     private int ElementsOnScreen { get { return BattleUIManager.Instance.CharacterSelectionUI.CharactersOnScreen; } }
 
@@ -51,6 +51,6 @@ public class CharacterSelection : NavigationSelection
         BattleUIManager.Instance.CharacterSelectionUI.RefreshView(topElement, currentIndex);
     }
 
-    public Character SelectedCharacter { get { return BattleManager.Instance.CharacterManagement.Characters.Values.ToList()[currentIndex + topElement]; } }
+    public bool FinishTurnSelected { get { return currentIndex + topElement == MaxElements - 1; } }
     public CharacterID CharacterID { get { return BattleManager.Instance.CharacterManagement.Characters.Keys.ToList()[currentIndex + topElement]; } }
 }

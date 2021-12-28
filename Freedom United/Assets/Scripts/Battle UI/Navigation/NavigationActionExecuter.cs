@@ -11,6 +11,12 @@ public class NavigationActionExecuter
     {
         if (navigationState.currentLevel == BattleSelectionLevel.Character)
         {
+            if (navigationState.CharacterSelection.FinishTurnSelected)
+            {
+                TurnExecutor.Instance.StartTurnExecution();
+                return;
+            }
+
             if (!BattleManager.Instance.ActionPile.CharacterAvailable(navigationState.CharacterSelection.CharacterID))
                 return;
 
