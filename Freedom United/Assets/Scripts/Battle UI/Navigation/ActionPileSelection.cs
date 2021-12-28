@@ -1,8 +1,13 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
 public class ActionPileSelection : NavigationSelection
 {
     protected override int MaxElements { get { return BattleManager.Instance.ActionPile.ActionsForTurn.Count; } }
     private int topElement;
     private int ElementsOnScreen { get { return BattleUIManager.Instance.ActionPileUI.ActionsOnScreen; } }
+    private bool focus { get { return BattleUINavigation.Instance.CurrentLevel == BattleSelectionLevel.ActionPile; } }
 
     public override void Next()
     {
@@ -19,6 +24,7 @@ public class ActionPileSelection : NavigationSelection
             topElement++;
             BattleUIManager.Instance.ActionPileUI.RefreshView(topElement, currentIndex);
         }
+        PaintPreviewRange();
     }
 
     public override void Previous()
@@ -36,6 +42,40 @@ public class ActionPileSelection : NavigationSelection
             topElement--;
             BattleUIManager.Instance.ActionPileUI.RefreshView(topElement, currentIndex);
         }
+        PaintPreviewRange();
+    }
+
+    private void PaintPreviewRange()
+    {
+        BattleActionType actionType = ShowingAction.actionType;
+        if (ShowingAction as AllyAction != null)
+        {
+            AllyAction allyAction = ShowingAction as AllyAction;
+            CharacterID character = BattleGridUtils.GetCharacterID(ShowingAction.ActionOwner);
+            List<Vector2Int> positions = new List<Vector2Int>();
+            if (actionType == BattleActionType.Defend)
+            {
+                positions.Add(allyAction.position + BattleManager.Instance.CharacterManagement.Characters[character].CurrentPosition);
+                if (allyAction.position != Vector2Int.zero)
+                    positions.Add(BattleManager.Instance.CharacterManagement.Characters[character].CurrentPosition);
+            }
+            else if (actionType == BattleActionType.MoveFast || actionType == BattleActionType.MoveSafely)
+            {
+                positions.Add(allyAction.position);
+            }
+            else
+            {
+                BattleManager.Instance.CalculateActionRange(actionType, character);
+                positions = BattleManager.Instance.BattleGrid.PositionsInRange;
+            }
+            BattleGridUI.Instance.ToggleRange(positions, actionType);
+        }
+        else if (ShowingAction as BossAction != null)
+        {
+            BossAction bossAction = ShowingAction as BossAction;
+            List<Vector2Int> positions = bossAction.areaOfEffect.Positions;
+            BattleGridUI.Instance.ToggleRange(positions, actionType);
+        }
     }
 
     public void Refresh()
@@ -43,5 +83,11 @@ public class ActionPileSelection : NavigationSelection
         currentIndex = 0;
         topElement = 0;
         BattleUIManager.Instance.ActionPileUI.RefreshView(topElement, currentIndex);
+        if (focus)
+            PaintPreviewRange();
+        else
+            BattleGridUI.Instance.ToggleRange();
     }
+
+    private ScheduledAction ShowingAction { get { return BattleManager.Instance.ActionPile.ActionsForTurn[topElement + currentIndex]; } }
 }

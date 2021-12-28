@@ -41,19 +41,36 @@ public class BattleManager : MonoBehaviour, NotificationsListener
         GameNotificationsManager.Instance.Notify(GameNotification.BattleLoaded);
     }
 
-    public void CalculateAttackRange(CharacterID characterID)
+    public void CalculateActionRange(BattleActionType actionType, CharacterID characterID)
+    {
+        switch (actionType)
+        {
+            case BattleActionType.Attack:
+                CalculateAttackRange(characterID);
+                break;
+            case BattleActionType.Defend:
+                CalculateDefenseRange(characterID);
+                break;
+            case BattleActionType.MoveFast:
+            case BattleActionType.MoveSafely:
+                CalculateMoveRange(characterID);
+                break;
+        }
+    }
+
+    private void CalculateAttackRange(CharacterID characterID)
     {
         Character character = characterManagement.Characters[characterID];
         battleGrid.CalculateRange(partyStats.Stats[characterID].AttackRange, character.CurrentPosition, false);
     }
 
-    public void CalculateDefenseRange(CharacterID characterID)
+    private void CalculateDefenseRange(CharacterID characterID)
     {
         Character character = characterManagement.Characters[characterID];
         battleGrid.CalculateRange(AttackRange.Short, character.CurrentPosition, true);
     }
 
-    public void CalculateMoveRange(CharacterID characterID)
+    private void CalculateMoveRange(CharacterID characterID)
     {
         Character character = characterManagement.Characters[characterID];
         battleGrid.CalculateRange(character.CurrentPosition);

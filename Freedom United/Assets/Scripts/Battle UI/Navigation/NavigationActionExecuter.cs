@@ -29,21 +29,8 @@ public class NavigationActionExecuter
             }
             else
             {
-                if (navigationState.ActionSelection.ActionSelected == BattleActionType.Attack)
-                {
-                    BattleManager.Instance.CalculateAttackRange(navigationState.CharacterSelection.CharacterID);
-                    BattleGridUI.Instance.ToggleRange(true);
-                }
-                else if (navigationState.ActionSelection.ActionSelected == BattleActionType.Defend)
-                {
-                    BattleManager.Instance.CalculateDefenseRange(navigationState.CharacterSelection.CharacterID);
-                    BattleGridUI.Instance.ToggleRange(true);
-                }
-                else if (navigationState.ActionSelection.ActionSelected == BattleActionType.MoveSafely || navigationState.ActionSelection.ActionSelected == BattleActionType.MoveFast)
-                {
-                    BattleManager.Instance.CalculateMoveRange(navigationState.CharacterSelection.CharacterID);
-                    BattleGridUI.Instance.ToggleRange(true);
-                }
+                BattleManager.Instance.CalculateActionRange(navigationState.ActionSelection.ActionSelected, navigationState.CharacterSelection.CharacterID);
+                BattleGridUI.Instance.ToggleRange(BattleManager.Instance.BattleGrid.PositionsInRange, navigationState.ActionSelection.ActionSelected);
 
                 navigationState.currentLevel = BattleSelectionLevel.Cell;
                 Vector2Int position = BattleManager.Instance.BattleGrid.PositionsInRange[0];
@@ -104,7 +91,7 @@ public class NavigationActionExecuter
         }
         else if (navigationState.currentLevel == BattleSelectionLevel.Cell)
         {
-            BattleGridUI.Instance.ToggleRange(false);
+            BattleGridUI.Instance.ToggleRange();
             navigationState.currentLevel = BattleSelectionLevel.Action;
             navigationState.currentAction.speed = BattleActionsUtils.GetActionSpeed();
             BattleUIManager.Instance.ActionPileUI.RefreshView(0, 0);
@@ -118,6 +105,6 @@ public class NavigationActionExecuter
     private void CreateAllyAction()
     {
         BattleManager.Instance.ActionPile.AddActionToPile(navigationState.currentAction);
-        BattleGridUI.Instance.ToggleRange(false);
+        BattleGridUI.Instance.ToggleRange();
     }
 }

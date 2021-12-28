@@ -16,6 +16,7 @@ public class BattleGridUI : MonoBehaviour, NotificationsListener
     Dictionary<Vector2Int, GridCellUI> grid;
     Dictionary<CharacterID, CharacterVisuals> characters;
     BossVisuals bossVisuals;
+    private float charactersHeightOnBoard = 0.02f;
 
 
     public void ConfigureComponent()
@@ -53,14 +54,14 @@ public class BattleGridUI : MonoBehaviour, NotificationsListener
         {
             CharacterVisuals characterVisuals = Instantiate(characterPrefab).GetComponent<CharacterVisuals>();
             characterVisuals.transform.SetParent(cellsContainer);
-            characterVisuals.transform.position = BattleGridUtils.TranslatedPosition(character.Value.CurrentPosition, 0.1f);
+            characterVisuals.transform.position = BattleGridUtils.TranslatedPosition(character.Value.CurrentPosition, charactersHeightOnBoard);
             characterVisuals.Paint(character.Key);
             characters.Add(character.Key, characterVisuals);
         }
 
         bossVisuals = Instantiate(bossPrefab).GetComponent<BossVisuals>();
         bossVisuals.transform.SetParent(cellsContainer);
-        bossVisuals.transform.position = BattleGridUtils.TranslatedPosition(Vector2Int.zero, 0.01f);
+        bossVisuals.transform.position = BattleGridUtils.TranslatedPosition(Vector2Int.zero, charactersHeightOnBoard);
         bossVisuals.Paint(BattleManager.Instance.CharacterManagement.Boss);
     }
 
@@ -69,16 +70,19 @@ public class BattleGridUI : MonoBehaviour, NotificationsListener
         foreach (KeyValuePair<CharacterID, Character> character in BattleManager.Instance.CharacterManagement.Characters)
         {
             CharacterVisuals characterVisuals = characters[character.Key];
-            characterVisuals.transform.position = BattleGridUtils.TranslatedPosition(character.Value.CurrentPosition, 0.1f);
+            characterVisuals.transform.position = BattleGridUtils.TranslatedPosition(character.Value.CurrentPosition, charactersHeightOnBoard);
         }
         UpdateDefenseInBoard();
     }
 
-    public void ToggleRange(bool visible)
+    public void ToggleRange(List<Vector2Int> positions = null, BattleActionType actionType = BattleActionType.Attack)
     {
         foreach (KeyValuePair<Vector2Int, GridCellUI> cell in grid)
         {
-            cell.Value.PaintAsRange(visible && BattleManager.Instance.BattleGrid.PositionsInRange.Contains(cell.Key));
+            if (positions == null || !positions.Contains(cell.Key))
+                cell.Value.CleanRange();
+            else
+                cell.Value.PaintAsRange(actionType);
         }
     }
 
