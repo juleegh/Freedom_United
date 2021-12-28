@@ -61,7 +61,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 40
+  spritePixelsToUnits: 38
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -122,11 +122,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 42
-        y: 41
+        y: 40
         width: 112
-        height: 182
+        height: 184
       alignment: 9
-      pivot: {x: 0.16980788, y: 0.09589281}
+      pivot: {x: 0.16609788, y: 0.08430313}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -147,7 +147,7 @@ TextureImporter:
         width: 36
         height: 35
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -168,7 +168,7 @@ TextureImporter:
         width: 37
         height: 37
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -184,12 +184,12 @@ TextureImporter:
       name: wrath_lord_left_axe
       rect:
         serializedVersion: 2
-        x: 1
-        y: 2
-        width: 39
-        height: 111
+        x: 3
+        y: 3
+        width: 35
+        height: 109
       alignment: 9
-      pivot: {x: 0.5213089, y: 0.16308968}
+      pivot: {x: 0.50943685, y: 0.14402887}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -205,12 +205,12 @@ TextureImporter:
       name: wrath_lord_axe_eight
       rect:
         serializedVersion: 2
-        x: 156
-        y: 2
-        width: 38
-        height: 111
+        x: 158
+        y: 3
+        width: 35
+        height: 110
       alignment: 9
-      pivot: {x: 0.5, y: 0.17806347}
+      pivot: {x: 0.5000004, y: 0.14784367}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

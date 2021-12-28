@@ -8,7 +8,7 @@ public class CellSelectionUI : MonoBehaviour
 
     public void UpdateSelection(int x, int y)
     {
-        selectionPreview.transform.position = BattleGridUtils.TranslatedPosition(x, y, 0.2f);
+        selectionPreview.transform.position = BattleGridUtils.TranslatedPosition(x, y, 0.1f);
     }
 
     public void Toggle(bool visible)
