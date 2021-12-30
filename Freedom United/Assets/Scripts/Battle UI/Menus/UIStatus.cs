@@ -4,4 +4,5 @@ public enum UIStatus
     Highlighted,
     Current,
     Overdue,
+    Canceling,
 }

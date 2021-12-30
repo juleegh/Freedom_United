@@ -24,7 +24,10 @@ public class ActionSelection : NavigationSelection
     {
         BattleUIManager.Instance.ActionSelectionUI.ToggleVisible(visible);
         if (visible)
+        {
             currentIndex = 0;
+            BattleUIManager.Instance.ActionSelectionUI.RefreshSelectedAction(currentIndex);
+        }
     }
 
     public BattleActionType ActionSelected { get { return BattleActionsUtils.GetByIndex(currentIndex); } }

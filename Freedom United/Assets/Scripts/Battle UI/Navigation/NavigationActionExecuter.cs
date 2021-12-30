@@ -21,6 +21,7 @@ public class NavigationActionExecuter
             {
                 navigationState.currentLevel = BattleSelectionLevel.Cancel;
                 BattleUIManager.Instance.CancelUI.ToggleVisible(true);
+                navigationState.ActionPileSelection.SetAsSelected(navigationState.CharacterSelection.CharacterID);
             }
             else
             {

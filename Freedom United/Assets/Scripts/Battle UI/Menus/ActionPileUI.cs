@@ -11,7 +11,7 @@ public class ActionPileUI : MonoBehaviour, NotificationsListener
     [SerializeField] private GameObject DownIndicator;
     private ScheduledActionPreview[] actionsPreviews;
     public int ActionsOnScreen { get { return actionsOnScreen; } }
-    private bool focus { get { return BattleUINavigation.Instance.CurrentLevel == BattleSelectionLevel.ActionPile; } }
+    private bool focus { get { return BattleUINavigation.Instance.CurrentLevel == BattleSelectionLevel.ActionPile || BattleUINavigation.Instance.CurrentLevel == BattleSelectionLevel.Cancel; } }
 
     public void ConfigureComponent()
     {
@@ -68,7 +68,13 @@ public class ActionPileUI : MonoBehaviour, NotificationsListener
     {
         for (int i = 0; i < actionsOnScreen; i++)
         {
-            UIStatus actionStatus = i == selectedAction && focus ? UIStatus.Highlighted : UIStatus.Regular;
+            UIStatus actionStatus = UIStatus.Regular;
+            if (i == selectedAction && focus)
+            {
+                actionStatus = UIStatus.Highlighted;
+                if (BattleUINavigation.Instance.CurrentLevel == BattleSelectionLevel.Cancel)
+                    actionStatus = UIStatus.Canceling;
+            }
             actionsPreviews[i].UpdateStatus(actionStatus);
         }
     }
