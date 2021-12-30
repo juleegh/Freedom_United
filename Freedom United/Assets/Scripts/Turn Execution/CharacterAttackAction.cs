@@ -56,12 +56,18 @@ public class CharacterAttackAction : ExecutingAction
             if (BattleManager.Instance.CharacterManagement.GetBossPartInPosition(attackedPosition) != null)
             {
                 BossPart targetPart = BattleManager.Instance.CharacterManagement.GetBossPartInPosition(attackedPosition);
+                if (BattleManager.Instance.BattleValues.BossPartIsDestroyed(targetPart.PartType))
+                    continue;
+
                 attackData.Data[NotificationDataIDs.ActionTarget] = targetPart.ToString();
 
                 attackData.Data[NotificationDataIDs.PreviousHP] = BattleManager.Instance.BattleValues.BossPartsHealth[targetPart.PartType];
                 BattleManager.Instance.BattleValues.BossTakeDamage(targetPart.PartType, damageProvided);
                 attackData.Data[NotificationDataIDs.NewHP] = BattleManager.Instance.BattleValues.BossPartsHealth[targetPart.PartType];
                 GameNotificationsManager.Instance.Notify(GameNotification.BossStatsModified);
+
+                if (BattleManager.Instance.BattleValues.BossPartIsDestroyed(targetPart.PartType))
+                    BattleManager.Instance.BattleValues.CharacterModifyWillPower(attackingCharacter, BattleGridUtils.DestroyingBodyPartWillPercentage);
             }
             else if (BattleManager.Instance.CharacterManagement.GetCharacterInPosition(attackedPosition) != null)
             {
@@ -74,6 +80,16 @@ public class CharacterAttackAction : ExecutingAction
             }
 
             GameNotificationsManager.Instance.Notify(GameNotification.AttackWasExecuted, attackData);
+
+        }
+
+        if (FailedSuccess())
+        {
+            BattleManager.Instance.BattleValues.CharacterModifyWillPower(attackingCharacter, BattleGridUtils.FailureWillPercentage);
+        }
+        else if (PassedCritical())
+        {
+            BattleManager.Instance.BattleValues.CharacterModifyWillPower(attackingCharacter, BattleGridUtils.CriticalWillPercentage);
         }
     }
 

@@ -12,6 +12,7 @@ public class CharacterSelectionOption : MonoBehaviour
     [SerializeField] private GameObject blocked;
     [SerializeField] private TextMeshProUGUI characterName;
     [SerializeField] private TextMeshProUGUI characterHealth;
+    [SerializeField] private TextMeshProUGUI characterWill;
     [SerializeField] private GameObject characterContent;
     [SerializeField] private GameObject otherContent;
 
@@ -37,8 +38,8 @@ public class CharacterSelectionOption : MonoBehaviour
     private void UpdateInfo()
     {
         characterName.text = currentCharacter.ToString();
-        characterHealth.text = BattleManager.Instance.BattleValues.PartyHealth[currentCharacter] + " / " + BattleManager.Instance.PartyStats.Stats[currentCharacter].BaseHealth;
-
+        characterHealth.text = "HP: " + BattleManager.Instance.BattleValues.PartyHealth[currentCharacter] + " / " + BattleManager.Instance.PartyStats.Stats[currentCharacter].BaseHealth;
+        characterWill.text = "WP: " + BattleManager.Instance.BattleValues.PartyWill[currentCharacter] + " / " + BattleManager.Instance.PartyStats.Stats[currentCharacter].BaseWillPower;
     }
 
     public void OnSelectionTriggered()

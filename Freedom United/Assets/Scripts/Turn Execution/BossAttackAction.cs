@@ -58,9 +58,15 @@ public class BossAttackAction : ExecutingAction
                 attackData.Data[NotificationDataIDs.PreviousHP] = BattleManager.Instance.BattleValues.PartyHealth[targetCharacter.CharacterID];
                 BattleManager.Instance.BattleValues.CharacterTakeDamage(targetCharacter.CharacterID, damageProvided);
                 attackData.Data[NotificationDataIDs.NewHP] = BattleManager.Instance.BattleValues.PartyHealth[targetCharacter.CharacterID];
+
+                if (PassedCritical())
+                {
+                    BattleManager.Instance.BattleValues.CharacterModifyWillPower(targetCharacter.CharacterID, BattleGridUtils.ReceivedCriticalWillPercentage);
+                }
             }
             GameNotificationsManager.Instance.Notify(GameNotification.AttackWasExecuted, attackData);
         }
+
     }
 
     private bool FailedSuccess()
