@@ -24,6 +24,12 @@ public class ActionPile : MonoBehaviour, NotificationsListener
         BattleUIManager.Instance.ActionPileUI.RefreshView(0, 0);
     }
 
+    public void RemoveActionFromPile(CharacterID selectedCharacter)
+    {
+        actionsForTurn.Remove(selectedCharacter.ToString());
+        BattleUIManager.Instance.ActionPileUI.RefreshView(0, 0);
+    }
+
     public bool CharacterAvailable(CharacterID character)
     {
         string actionOwner = character.ToString();

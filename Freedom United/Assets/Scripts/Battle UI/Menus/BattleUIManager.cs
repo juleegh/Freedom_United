@@ -13,6 +13,9 @@ public class BattleUIManager : MonoBehaviour, NotificationsListener
     [SerializeField] private ActionSelectionUI actionSelectionUI;
     public ActionSelectionUI ActionSelectionUI { get { return actionSelectionUI; } }
 
+    [SerializeField] private CancelUI cancelUI;
+    public CancelUI CancelUI { get { return cancelUI; } }
+
     [SerializeField] private ActionPileUI actionPileUI;
     public ActionPileUI ActionPileUI { get { return actionPileUI; } }
 

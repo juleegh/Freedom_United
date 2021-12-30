@@ -18,13 +18,27 @@ public class NavigationActionExecuter
             }
 
             if (!BattleManager.Instance.ActionPile.CharacterAvailable(navigationState.CharacterSelection.CharacterID))
-                return;
+            {
+                navigationState.currentLevel = BattleSelectionLevel.Cancel;
+                BattleUIManager.Instance.CancelUI.ToggleVisible(true);
+            }
+            else
+            {
+                navigationState.currentAction.actionOwner = navigationState.CharacterSelection.CharacterID;
+                navigationState.currentLevel = BattleSelectionLevel.Action;
+                navigationState.currentAction.speed = BattleActionsUtils.GetActionSpeed();
+                BattleUIManager.Instance.ActionPileUI.RefreshView(0, 0);
+                navigationState.ActionSelection.Toggle(true);
+            }
+        }
+        else if (navigationState.currentLevel == BattleSelectionLevel.Cancel)
+        {
+            BattleUIManager.Instance.CancelUI.ToggleVisible(false);
+            BattleManager.Instance.ActionPile.RemoveActionFromPile(navigationState.CharacterSelection.CharacterID);
 
-            navigationState.currentAction.actionOwner = navigationState.CharacterSelection.CharacterID;
-            navigationState.currentLevel = BattleSelectionLevel.Action;
-            navigationState.currentAction.speed = BattleActionsUtils.GetActionSpeed();
-            BattleUIManager.Instance.ActionPileUI.RefreshView(0, 0);
-            navigationState.ActionSelection.Toggle(true);
+            navigationState.currentLevel = BattleSelectionLevel.Character;
+            navigationState.ActionPileSelection.Refresh();
+            navigationState.CharacterSelection.Refresh();
         }
         else if (navigationState.currentLevel == BattleSelectionLevel.Action)
         {
@@ -47,8 +61,8 @@ public class NavigationActionExecuter
         }
         else if (navigationState.currentLevel == BattleSelectionLevel.Magic)
         {
-            navigationState.currentLevel = BattleSelectionLevel.Cell;
-            navigationState.CellSelection.Toggle(true);
+            //navigationState.currentLevel = BattleSelectionLevel.Cell;
+            //navigationState.CellSelection.Toggle(true);
         }
         else if (navigationState.currentLevel == BattleSelectionLevel.Cell)
         {
@@ -78,6 +92,13 @@ public class NavigationActionExecuter
         else if (navigationState.currentLevel == BattleSelectionLevel.Character)
         {
             navigationState.currentLevel = BattleSelectionLevel.ActionPile;
+            navigationState.ActionPileSelection.Refresh();
+            navigationState.CharacterSelection.Refresh();
+        }
+        else if (navigationState.currentLevel == BattleSelectionLevel.Cancel)
+        {
+            BattleUIManager.Instance.CancelUI.ToggleVisible(false);
+            navigationState.currentLevel = BattleSelectionLevel.Character;
             navigationState.ActionPileSelection.Refresh();
             navigationState.CharacterSelection.Refresh();
         }
