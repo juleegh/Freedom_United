@@ -23,7 +23,8 @@ public class AIAttackRangeAroundBodyPart : AIAttackAction
 
         foreach (Vector2Int positionToAttack in attackRange)
         {
-            if (BattleManager.Instance.CharacterManagement.GetCharacterInPosition(positionToAttack) == null)
+            Character characterInPosition = BattleManager.Instance.CharacterManagement.GetCharacterInPosition(positionToAttack);
+            if (characterInPosition == null || !BattleManager.Instance.BattleValues.IsAlive(characterInPosition.CharacterID))
                 continue;
 
             BossPart attackingPart = BossUtils.GetPartWhoCanAttackPosition(positionToAttack);

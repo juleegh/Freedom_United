@@ -26,6 +26,8 @@ public class AIAttackWhoAttackedMe : AIAttackAction
                     continue;
 
                 CharacterID character = BattleGridUtils.GetCharacterID(actionInfo.actionOwner);
+                if (!BattleManager.Instance.BattleValues.IsAlive(character))
+                    continue;
                 Vector2Int pos = BattleManager.Instance.CharacterManagement.Characters[character].CurrentPosition;
 
                 BossPart attackingPart = BossUtils.GetPartWhoCanAttackPosition(pos);

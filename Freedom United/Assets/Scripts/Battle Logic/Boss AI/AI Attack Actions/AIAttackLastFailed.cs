@@ -24,6 +24,10 @@ public class AIAttackLastFailed : AIAttackAction
                 if (actionInfo.wasFailure)
                 {
                     CharacterID characterAttack = BattleGridUtils.GetCharacterID(actionInfo.actionTarget);
+
+                    if (!BattleManager.Instance.BattleValues.IsAlive(characterAttack))
+                        continue;
+
                     Vector2Int positionToAttack = BattleManager.Instance.CharacterManagement.Characters[characterAttack].CurrentPosition;
 
                     BossPart attackingPart = BossUtils.GetPartWhoCanAttackPosition(positionToAttack);

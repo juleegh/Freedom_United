@@ -25,6 +25,10 @@ public class AIAttackAction : ScriptableObject
     protected bool SelectCounterPartTarget()
     {
         CharacterID counterPart = BattleManager.Instance.CharacterManagement.BossConfig.CharacterCounterPart;
+
+        if (!BattleManager.Instance.BattleValues.IsAlive(counterPart))
+            return false;
+
         Vector2Int counterPartPosition = BattleManager.Instance.CharacterManagement.Characters[counterPart].CurrentPosition;
 
         BossPart attackingPart = BossUtils.GetPartWhoCanAttackPosition(counterPartPosition);
@@ -45,7 +49,7 @@ public class AIAttackAction : ScriptableObject
         List<Vector2Int> playerPositions = new List<Vector2Int>();
         foreach (Character character in BattleManager.Instance.CharacterManagement.Characters.Values)
         {
-            if (BattleManager.Instance.BattleValues.PartyHealth[character.CharacterID] <= 0)
+            if (!BattleManager.Instance.BattleValues.IsAlive(character.CharacterID))
                 continue;
 
             playerPositions.Add(character.CurrentPosition);

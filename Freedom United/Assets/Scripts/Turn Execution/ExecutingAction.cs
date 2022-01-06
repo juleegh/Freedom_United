@@ -22,6 +22,6 @@ public class ExecutingAction
         if (BattleGridUtils.IsACharacter(actionOwner))
             return BattleManager.Instance.BattleValues.IsAlive(BattleGridUtils.GetCharacterID(actionOwner));
         else
-            return BattleManager.Instance.BattleValues.BossPartIsDestroyed(BattleGridUtils.GetBossPart(actionOwner));
+            return !BattleManager.Instance.BattleValues.BossPartIsDestroyed(BattleGridUtils.GetBossPart(actionOwner));
     }
 }

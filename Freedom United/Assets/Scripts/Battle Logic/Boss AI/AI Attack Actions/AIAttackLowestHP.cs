@@ -19,7 +19,7 @@ public class AIAttackLowestHP : AIAttackAction
 
         foreach (Character character in BattleManager.Instance.CharacterManagement.Characters.Values)
         {
-            if (BattleManager.Instance.BattleValues.PartyHealth[character.CharacterID] <= 0)
+            if (!BattleManager.Instance.BattleValues.IsAlive(character.CharacterID))
                 continue;
 
             if (BattleManager.Instance.BattleValues.PartyHealth[character.CharacterID] < lowest || lowest <= 0)
