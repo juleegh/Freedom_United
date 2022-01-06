@@ -17,6 +17,11 @@ public class NavigationActionExecuter
                 return;
             }
 
+            if (!BattleManager.Instance.BattleValues.IsAlive(navigationState.CharacterSelection.CharacterID))
+            {
+                return;
+            }
+
             if (!BattleManager.Instance.ActionPile.CharacterAvailable(navigationState.CharacterSelection.CharacterID))
             {
                 navigationState.currentLevel = BattleSelectionLevel.Cancel;

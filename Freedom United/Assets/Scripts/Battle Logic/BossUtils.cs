@@ -8,7 +8,7 @@ public static class BossUtils
     {
         foreach (KeyValuePair<BossPartType, BossPartConfig> bossPart in BattleManager.Instance.CharacterManagement.BossConfig.PartsList)
         {
-            if (BattleManager.Instance.BattleValues.BossPartsHealth[bossPart.Key] <= 0 && !bossPart.Value.IsCore)
+            if (BattleManager.Instance.BattleValues.BossPartIsDestroyed(bossPart.Key))
                 continue;
 
             foreach (AreaOfEffect areaOfEffect in bossPart.Value.AreasOfEffect)

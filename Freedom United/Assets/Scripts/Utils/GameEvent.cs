@@ -13,4 +13,5 @@ public enum GameNotification
     TurnStartedExecution,
     TurnStarted,
     DefenseWasExecuted,
+    RecentDeath,
 }

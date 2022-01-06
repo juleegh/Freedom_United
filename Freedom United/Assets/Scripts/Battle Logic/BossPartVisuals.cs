@@ -6,10 +6,17 @@ public class BossPartVisuals : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer body;
     [SerializeField] private BossesAssets assets;
+    [SerializeField] private DeathIcon deathIcon;
 
-    public void Paint(BossPartType partType, int xPosition, int yPosition)
+    public void Paint(BossPart part, int xPosition, int yPosition)
     {
-        body.sprite = assets.Parts[partType];
+        body.sprite = assets.Parts[part.PartType];
         transform.localPosition = new Vector3(xPosition, 0, yPosition);
+        deathIcon.transform.localPosition = new Vector3(xPosition + part.Width / 2, 0.05f, yPosition + part.Height / 2);
+    }
+
+    public void PaintDeath()
+    {
+        deathIcon.Died();
     }
 }

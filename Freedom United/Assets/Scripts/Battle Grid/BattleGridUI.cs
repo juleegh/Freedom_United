@@ -24,6 +24,7 @@ public class BattleGridUI : MonoBehaviour, NotificationsListener
         instance = this;
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.BattleLoaded, InitializeGrid);
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.CharacterMoved, RefreshCharacters);
+        GameNotificationsManager.Instance.AddActionToEvent(GameNotification.RecentDeath, RefreshDeaths);
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.AttackWasExecuted, ShowAttackBattleAction);
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.DefenseWasExecuted, ShowDefenseBattleAction);
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.TurnEndedExecution, ClearBoardEffects);
@@ -73,6 +74,22 @@ public class BattleGridUI : MonoBehaviour, NotificationsListener
             characterVisuals.transform.position = BattleGridUtils.TranslatedPosition(character.Value.CurrentPosition, charactersHeightOnBoard);
         }
         UpdateDefenseInBoard();
+    }
+
+    private void RefreshDeaths(GameNotificationData notificationData)
+    {
+        string dead = (string)notificationData.Data[NotificationDataIDs.Deceased];
+        if (BattleGridUtils.IsACharacter(dead))
+        {
+            CharacterID character = BattleGridUtils.GetCharacterID(dead);
+            CharacterVisuals characterVisuals = characters[character];
+            characterVisuals.PaintDeath();
+        }
+        else
+        {
+            BossPartType bossPart = BattleGridUtils.GetBossPart(dead);
+            bossVisuals.PaintDeath(bossPart);
+        }
     }
 
     public void ToggleRange(List<Vector2Int> positions = null, BattleActionType actionType = BattleActionType.Attack)

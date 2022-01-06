@@ -9,4 +9,6 @@ public enum NotificationDataIDs
     PreviousHP,
     NewHP,
     CellPosition,
+
+    Deceased,
 }

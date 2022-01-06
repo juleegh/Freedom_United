@@ -35,6 +35,8 @@ public class BattleValues : MonoBehaviour, NotificationsListener
 
     public void CharacterModifyWillPower(CharacterID character, float percentage)
     {
+        bool alive = IsAlive(character);
+
         partyWillPoints[character] += BattleManager.Instance.PartyStats.Stats[character].BaseWillPower * percentage;
         if (partyWillPoints[character] <= 0)
         {
@@ -45,10 +47,24 @@ public class BattleValues : MonoBehaviour, NotificationsListener
         {
             partyWillPoints[character] = BattleManager.Instance.PartyStats.Stats[character].BaseWillPower;
         }
+
+        if (alive != IsAlive(character))
+        {
+            GameNotificationData notificationData = new GameNotificationData();
+            notificationData.Data[NotificationDataIDs.Deceased] = character.ToString();
+            GameNotificationsManager.Instance.Notify(GameNotification.RecentDeath, notificationData);
+        }
+    }
+
+    public bool IsAlive(CharacterID character)
+    {
+        return partyWillPoints[character] > 0;
     }
 
     public void BossTakeDamage(BossPartType partType, float damageTaken)
     {
+        bool isDestroyed = BossPartIsDestroyed(partType);
+
         if (PartsList[partType].IsCore)
         {
             totalBossHealth -= damageTaken;
@@ -59,11 +75,18 @@ public class BattleValues : MonoBehaviour, NotificationsListener
             totalBossHealth -= acceptedDamage;
             bossHealthPoints[partType] -= acceptedDamage;
         }
+
+        if (isDestroyed != BossPartIsDestroyed(partType))
+        {
+            GameNotificationData notificationData = new GameNotificationData();
+            notificationData.Data[NotificationDataIDs.Deceased] = partType.ToString();
+            GameNotificationsManager.Instance.Notify(GameNotification.RecentDeath, notificationData);
+        }
     }
 
     public bool BossPartIsDestroyed(BossPartType partType)
     {
-        return bossHealthPoints[partType] <= 0 || (PartsList[partType].IsCore && totalBossHealth <= 0);
+        return (PartsList[partType].IsCore && totalBossHealth <= 0) || bossHealthPoints[partType] <= 0;
     }
 
     private void InitializeValues(GameNotificationData notificationData)

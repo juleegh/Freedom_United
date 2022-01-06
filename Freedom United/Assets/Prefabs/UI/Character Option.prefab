@@ -372,8 +372,8 @@ MonoBehaviour:
   characterWill: {fileID: 265544574157765266}
   characterContent: {fileID: 2436369565782089310}
   otherContent: {fileID: 7907469368601299280}
-  regularColor: {r: 0.24523854, g: 0.30471256, b: 0.31132078, a: 1}
-  selectedColor: {r: 0.9837489, g: 1, b: 0, a: 1}
+  regularColor: {r: 0.25431648, g: 0.4245283, b: 0.34408912, a: 1}
+  selectedColor: {r: 0.5943396, g: 0.5943396, b: 0.23268954, a: 1}
 --- !u!1 &3275202583177232359
 GameObject:
   m_ObjectHideFlags: 0
@@ -613,8 +613,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278231295
-  m_fontColor: {r: 1, g: 0.62671614, b: 0, a: 1}
+    rgba: 4294904064
+  m_fontColor: {r: 0, g: 0.035513878, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -953,8 +953,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278249471
-  m_fontColor: {r: 1, g: 0.9060749, b: 0, a: 1}
+    rgba: 4293984000
+  m_fontColor: {r: 0, g: 1, b: 0.9400835, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
