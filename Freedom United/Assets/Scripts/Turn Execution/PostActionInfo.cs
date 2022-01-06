@@ -5,6 +5,7 @@ public class PostActionInfo
 
     public BattleActionType actionType;
     public bool wasFailure;
+    public bool wasCritical;
 
     public float previousTargetHP;
     public float newTargetHP;

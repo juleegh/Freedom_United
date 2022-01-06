@@ -715,7 +715,7 @@ GameObject:
   - component: {fileID: 3071100318271729499}
   - component: {fileID: 6275880816405837516}
   m_Layer: 0
-  m_Name: Failed Prompt
+  m_Name: Attack Prompt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -884,7 +884,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf5f9fb23d21d534e832927ec083c29e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  failPrompt: {fileID: 3071100318271729499}
+  textPrompt: {fileID: 3071100318271729499}
   fadeIn: 0.3
   fadeOut: 0.7
   delay: 1

@@ -37,6 +37,7 @@ public class TurnBlackBoard : MonoBehaviour, NotificationsListener
         currentRegister.actionOwner = (string)notificationData.Data[NotificationDataIDs.ActionOwner];
         currentRegister.actionTarget = (string)notificationData.Data[NotificationDataIDs.ActionTarget];
         currentRegister.wasFailure = (bool)notificationData.Data[NotificationDataIDs.Failure];
+        currentRegister.wasCritical = (bool)notificationData.Data[NotificationDataIDs.Critical];
         currentRegister.actionType = BattleActionType.Attack;
         currentRegister.previousTargetHP = (float)notificationData.Data[NotificationDataIDs.PreviousHP];
         currentRegister.newTargetHP = (float)notificationData.Data[NotificationDataIDs.NewHP];

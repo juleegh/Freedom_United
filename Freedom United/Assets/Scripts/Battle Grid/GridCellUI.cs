@@ -6,7 +6,7 @@ public class GridCellUI : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer highlight;
     [SerializeField] private SpriteRenderer background;
-    [SerializeField] private FailPromptUI failPrompt;
+    [SerializeField] private AttackInfoPrompt failPrompt;
     [SerializeField] private DamagePromptUI damagePrompt;
     [SerializeField] private ShieldPromptUI shieldPrompt;
 
@@ -46,6 +46,11 @@ public class GridCellUI : MonoBehaviour
                 break;
         }
         highlight.color = color;
+    }
+
+    public void PromptCritical()
+    {
+        failPrompt.ShowCritical();
     }
 
     public void PromptFailed()

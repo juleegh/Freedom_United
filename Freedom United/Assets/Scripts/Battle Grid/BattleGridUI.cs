@@ -109,13 +109,18 @@ public class BattleGridUI : MonoBehaviour, NotificationsListener
         {
             Vector2Int position = (Vector2Int)notificationData.Data[NotificationDataIDs.CellPosition];
             bool failure = (bool)notificationData.Data[NotificationDataIDs.Failure];
+            bool critical = (bool)notificationData.Data[NotificationDataIDs.Critical];
             float damage = (float)notificationData.Data[NotificationDataIDs.NewHP] - (float)notificationData.Data[NotificationDataIDs.PreviousHP];
             damage = Mathf.Abs(damage);
 
             if (failure)
                 grid[position].PromptFailed();
             else
+            {
+                if (critical)
+                    grid[position].PromptCritical();
                 grid[position].PromptDamage(damage);
+            }
 
         }
     }

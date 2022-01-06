@@ -29,6 +29,7 @@ public class BossAttackAction : ExecutingAction
 
             attackData.Data[NotificationDataIDs.ActionOwner] = attackingPart.ToString();
             attackData.Data[NotificationDataIDs.Failure] = FailedSuccess();
+            attackData.Data[NotificationDataIDs.Critical] = PassedCritical();
             attackData.Data[NotificationDataIDs.ActionTarget] = "empty";
             attackData.Data[NotificationDataIDs.NewHP] = 0f;
             attackData.Data[NotificationDataIDs.PreviousHP] = 0f;
@@ -39,6 +40,8 @@ public class BossAttackAction : ExecutingAction
             damageProvided = Mathf.Clamp(damageProvided, 0, damageProvided);
             if (FailedSuccess())
                 damageProvided = 0;
+            else if (PassedCritical())
+                damageProvided *= BattleGridUtils.BossCriticalDamageMultiplier;
 
             if (BattleManager.Instance.CharacterManagement.GetBossPartInPosition(attackedPosition) != null)
             {
@@ -78,7 +81,7 @@ public class BossAttackAction : ExecutingAction
     {
         float failure = BattleManager.Instance.CharacterManagement.BossConfig.PartsList[attackingPart].CriticalFailureChance;
         float success = BattleManager.Instance.CharacterManagement.BossConfig.PartsList[attackingPart].NormalSuccessChance;
-        return chanceResult + failure + success >= BattleManager.Instance.CharacterManagement.BossConfig.PartsList[attackingPart].CriticalSuccessChance;
+        return chanceResult >= failure + success;
     }
 
 }

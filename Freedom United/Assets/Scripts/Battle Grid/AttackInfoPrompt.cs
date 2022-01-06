@@ -4,9 +4,9 @@ using UnityEngine;
 using TMPro;
 using DG.Tweening;
 
-public class FailPromptUI : MonoBehaviour
+public class AttackInfoPrompt : MonoBehaviour
 {
-    [SerializeField] private TextMeshPro failPrompt;
+    [SerializeField] private TextMeshPro textPrompt;
     [SerializeField] private float fadeIn;
     [SerializeField] private float fadeOut;
     [SerializeField] private float delay;
@@ -17,12 +17,24 @@ public class FailPromptUI : MonoBehaviour
 
     void Awake()
     {
-        failPrompt.color = hidden;
+        textPrompt.color = hidden;
+    }
+
+    public void ShowCritical()
+    {
+        textPrompt.text = "CRITICAL";
+        RunPrompt();
     }
 
     public void ShowFailure()
     {
-        failPrompt.color = hidden;
+        textPrompt.text = "FAILED";
+        RunPrompt();
+    }
+
+    private void RunPrompt()
+    {
+        textPrompt.color = hidden;
         DOTween.Kill(sequence);
         FadeIn();
 
@@ -34,12 +46,12 @@ public class FailPromptUI : MonoBehaviour
 
     private void FadeIn()
     {
-        failPrompt.DOColor(visible, fadeIn);
+        textPrompt.DOColor(visible, fadeIn);
     }
 
     private void FadeOut()
     {
-        failPrompt.DOColor(hidden, fadeOut);
+        textPrompt.DOColor(hidden, fadeOut);
     }
 
 }

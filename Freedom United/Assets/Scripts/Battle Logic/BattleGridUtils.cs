@@ -10,6 +10,8 @@ public static class BattleGridUtils
     public static float ReceivedCriticalWillPercentage { get { return -0.1f; } }
     public static float CriticalWillPercentage { get { return 0.05f; } }
     public static float DestroyingBodyPartWillPercentage { get { return 0.1f; } }
+    public static float BossCriticalDamageMultiplier { get { return 1.25f; } }
+    public static float CharacterCriticalDamageMultiplier { get { return 1.5f; } }
 
     public static Vector3 TranslatedPosition(Vector2Int original, float heightDelta)
     {

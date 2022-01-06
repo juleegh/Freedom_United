@@ -12,7 +12,7 @@ public class BossPartVisuals : MonoBehaviour
     {
         body.sprite = assets.Parts[part.PartType];
         transform.localPosition = new Vector3(xPosition, 0, yPosition);
-        deathIcon.transform.localPosition = new Vector3(xPosition + part.Width / 2, 0.05f, yPosition + part.Height / 2);
+        deathIcon.transform.localPosition = new Vector3(part.Width / 2, part.Height / 2, -0.05f);
     }
 
     public void PaintDeath()

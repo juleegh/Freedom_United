@@ -5,6 +5,7 @@ public enum NotificationDataIDs
 
     BattleActionType,
     Failure,
+    Critical,
 
     PreviousHP,
     NewHP,
