@@ -18,9 +18,7 @@ public class NavigationActionExecuter
             }
 
             if (!BattleManager.Instance.BattleValues.IsAlive(navigationState.CharacterSelection.CharacterID))
-            {
                 return;
-            }
 
             if (!BattleManager.Instance.ActionPile.CharacterAvailable(navigationState.CharacterSelection.CharacterID))
             {
@@ -32,9 +30,10 @@ public class NavigationActionExecuter
             {
                 navigationState.currentAction.actionOwner = navigationState.CharacterSelection.CharacterID;
                 navigationState.currentLevel = BattleSelectionLevel.Action;
-                navigationState.currentAction.speed = BattleActionsUtils.GetActionSpeed();
-                BattleUIManager.Instance.ActionPileUI.RefreshView(0, 0);
                 navigationState.ActionSelection.Toggle(true);
+                navigationState.currentAction.actionType = navigationState.ActionSelection.ActionSelected;
+                navigationState.currentAction.speed = BattleActionsUtils.GetActionSpeed();
+                navigationState.ActionPileSelection.Refresh();
             }
         }
         else if (navigationState.currentLevel == BattleSelectionLevel.Cancel)
