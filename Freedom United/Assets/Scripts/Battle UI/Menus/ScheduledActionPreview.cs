@@ -19,6 +19,7 @@ public class ScheduledActionPreview : MonoBehaviour
     [SerializeField] private Color overdueColor;
     [SerializeField] private Color previewColor;
     [SerializeField] private Color cancelingColor;
+    [SerializeField] private Color invalidColor;
 
     private bool isPreview;
 
@@ -52,6 +53,9 @@ public class ScheduledActionPreview : MonoBehaviour
                 break;
             case UIStatus.Canceling:
                 background.color = cancelingColor;
+                break;
+            case UIStatus.Invalid:
+                background.color = invalidColor;
                 break;
         }
 

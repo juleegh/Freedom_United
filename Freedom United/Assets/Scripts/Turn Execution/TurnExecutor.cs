@@ -54,8 +54,12 @@ public class TurnExecutor : MonoBehaviour, NotificationsListener
                     BattleUIManager.Instance.ActionPileUI.UpdateStatus(executionIndex - 1, UIStatus.Overdue);
 
                 executionDelta = 0;
-                actionsQueued[executionIndex].Execute();
-                BattleUIManager.Instance.ActionPileUI.UpdateStatus(executionIndex, UIStatus.Current);
+                bool canPerform = actionsQueued[executionIndex].CanPerform();
+                if (canPerform)
+                {
+                    actionsQueued[executionIndex].Execute();
+                }
+                BattleUIManager.Instance.ActionPileUI.UpdateStatus(executionIndex, canPerform ? UIStatus.Current : UIStatus.Invalid);
                 executionIndex++;
                 GameNotificationsManager.Instance.Notify(GameNotification.ActionEndedExecution);
             }

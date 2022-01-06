@@ -15,4 +15,13 @@ public class ExecutingAction
     {
         Debug.LogError("Undefined action " + representedAction.ActionOwner + " - " + representedAction.actionType);
     }
+
+    public bool CanPerform()
+    {
+        string actionOwner = representedAction.ActionOwner;
+        if (BattleGridUtils.IsACharacter(actionOwner))
+            return BattleManager.Instance.BattleValues.IsAlive(BattleGridUtils.GetCharacterID(actionOwner));
+        else
+            return BattleManager.Instance.BattleValues.BossPartIsDestroyed(BattleGridUtils.GetBossPart(actionOwner));
+    }
 }

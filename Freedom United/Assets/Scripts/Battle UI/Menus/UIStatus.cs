@@ -5,4 +5,5 @@ public enum UIStatus
     Current,
     Overdue,
     Canceling,
+    Invalid,
 }
