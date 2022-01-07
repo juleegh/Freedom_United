@@ -71,7 +71,13 @@ public class BattleGridUI : MonoBehaviour, NotificationsListener
         foreach (KeyValuePair<CharacterID, Character> character in BattleManager.Instance.CharacterManagement.Characters)
         {
             CharacterVisuals characterVisuals = characters[character.Key];
-            characterVisuals.transform.position = BattleGridUtils.TranslatedPosition(character.Value.CurrentPosition, charactersHeightOnBoard);
+            Vector3 currentPosition = characterVisuals.transform.position;
+            Vector3 nextPosition = BattleGridUtils.TranslatedPosition(character.Value.CurrentPosition, charactersHeightOnBoard);
+            if (!Mathf.Approximately(Vector3.Distance(currentPosition, nextPosition), 0f))
+            {
+                grid[BattleGridUtils.GridPosition(currentPosition)].PromptMove();
+                characterVisuals.transform.position = nextPosition;
+            }
         }
         UpdateDefenseInBoard();
     }

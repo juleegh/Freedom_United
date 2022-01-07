@@ -42,6 +42,8 @@ public class CharacterStatsVisuals : MonoBehaviour
             healthBar.DOColor(healthColor, barDelay);
             healthBar.DOFillAmount(health, barDelay);
         }
+        else
+            healthBar.fillAmount = health;
 
         if (!Mathf.Approximately(willPower, willBar.fillAmount))
         {
@@ -50,5 +52,7 @@ public class CharacterStatsVisuals : MonoBehaviour
             willBar.DOColor(willColor, barDelay);
             willBar.DOFillAmount(willPower, barDelay);
         }
+        else
+            willBar.fillAmount = willPower;
     }
 }

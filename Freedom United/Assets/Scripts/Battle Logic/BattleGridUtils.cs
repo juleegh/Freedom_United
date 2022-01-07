@@ -23,6 +23,11 @@ public static class BattleGridUtils
         return new Vector3(x, heightDelta, y);
     }
 
+    public static Vector2Int GridPosition(Vector3 worldPosition)
+    {
+        return new Vector2Int((int)worldPosition.x, (int)worldPosition.z);
+    }
+
     public static bool IsACharacter(string characterID)
     {
         try
