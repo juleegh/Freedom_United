@@ -31,6 +31,7 @@ public class BattleValues : MonoBehaviour, NotificationsListener
             partyHealthPoints[character] = BattleManager.Instance.PartyStats.Stats[character].BaseHealth;
             CharacterModifyWillPower(character, BattleGridUtils.DeathWillPercentage);
         }
+        GameNotificationsManager.Instance.Notify(GameNotification.CharacterStatsChanged);
     }
 
     public void CharacterModifyWillPower(CharacterID character, float percentage)
@@ -48,6 +49,7 @@ public class BattleValues : MonoBehaviour, NotificationsListener
             partyWillPoints[character] = BattleManager.Instance.PartyStats.Stats[character].BaseWillPower;
         }
 
+        GameNotificationsManager.Instance.Notify(GameNotification.CharacterStatsChanged);
         if (alive != IsAlive(character))
         {
             GameNotificationData notificationData = new GameNotificationData();

@@ -105,7 +105,6 @@ public class CharacterAttackAction : ExecutingAction
     {
         float failure = BattleManager.Instance.PartyStats.Stats[attackingCharacter].CriticalFailureChance;
         float success = BattleManager.Instance.PartyStats.Stats[attackingCharacter].NormalSuccessChance;
-        Debug.LogError(chanceResult + " - " + (failure + success));
         return chanceResult >= failure + success;
     }
 }
