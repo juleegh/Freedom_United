@@ -8,6 +8,9 @@ public class BattleUIInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (TurnExecutor.Instance.Executing)
+            return;
+
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             battleUINavigation.Down();
