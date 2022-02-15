@@ -1,7 +1,199 @@
 fileFormatVersion: 2
 guid: 6b81fcaecc2f9984ebb37d7bcf625c02
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -3017326278816425646
+    second: elementals2_0
+  - first:
+      213: 4609419273200266940
+    second: elementals2_1
+  - first:
+      213: 8494767985210561845
+    second: elementals2_2
+  - first:
+      213: 6968384536185133832
+    second: elementals2_3
+  - first:
+      213: 4333691889602903441
+    second: elementals2_4
+  - first:
+      213: -8029634830159731729
+    second: elementals2_5
+  - first:
+      213: 4346850172732233507
+    second: elementals2_6
+  - first:
+      213: 70818974761192309
+    second: elementals2_7
+  - first:
+      213: -889776764089887300
+    second: elementals2_8
+  - first:
+      213: -1136149134653604855
+    second: elementals2_9
+  - first:
+      213: 312116810489703304
+    second: elementals2_10
+  - first:
+      213: 2905716449511299861
+    second: elementals2_11
+  - first:
+      213: 2651669625832567355
+    second: elementals2_12
+  - first:
+      213: 3577071014423741116
+    second: elementals2_13
+  - first:
+      213: 584104495431346247
+    second: elementals2_14
+  - first:
+      213: 8238694563688883523
+    second: elementals2_15
+  - first:
+      213: 5922844418073184259
+    second: elementals2_16
+  - first:
+      213: 7011216569377752031
+    second: elementals2_17
+  - first:
+      213: -3533004341575063602
+    second: elementals2_18
+  - first:
+      213: -2413799749481861744
+    second: elementals2_19
+  - first:
+      213: 5110761922008056556
+    second: elementals2_20
+  - first:
+      213: -5448860451200972759
+    second: elementals2_21
+  - first:
+      213: -1545063361415724188
+    second: elementals2_22
+  - first:
+      213: -5752334434701061240
+    second: elementals2_23
+  - first:
+      213: -6767165651330837797
+    second: elementals2_24
+  - first:
+      213: 7539319182743567707
+    second: elementals2_25
+  - first:
+      213: 2937073205127612866
+    second: elementals2_26
+  - first:
+      213: -4746495978323981769
+    second: elementals2_27
+  - first:
+      213: -2250370786444339945
+    second: elementals2_28
+  - first:
+      213: 3525744986307728415
+    second: elementals2_29
+  - first:
+      213: 8510598683517258743
+    second: elementals2_30
+  - first:
+      213: 7560094630445430936
+    second: elementals2_31
+  - first:
+      213: 202797903476886392
+    second: elementals2_32
+  - first:
+      213: -1545682638006473237
+    second: elementals2_33
+  - first:
+      213: -8807765034314646458
+    second: elementals2_34
+  - first:
+      213: 8023386189786966526
+    second: elementals2_35
+  - first:
+      213: -7689554330007808759
+    second: elementals2_36
+  - first:
+      213: -7696989812416067427
+    second: elementals2_37
+  - first:
+      213: 2512578793977360661
+    second: elementals2_38
+  - first:
+      213: 6593860313213806964
+    second: elementals2_39
+  - first:
+      213: -2011837822555048332
+    second: elementals2_40
+  - first:
+      213: 7396991523870598593
+    second: elementals2_41
+  - first:
+      213: 634035572463694434
+    second: elementals2_42
+  - first:
+      213: 6494887290332604701
+    second: elementals2_43
+  - first:
+      213: 8828608209075466248
+    second: elementals2_44
+  - first:
+      213: 870870403195186847
+    second: elementals2_45
+  - first:
+      213: -2336521642228146091
+    second: elementals2_46
+  - first:
+      213: -2570578842198838091
+    second: elementals2_47
+  - first:
+      213: 5584688909884360980
+    second: elementals2_48
+  - first:
+      213: -1357662146814497812
+    second: elementals2_49
+  - first:
+      213: -8461322948258415693
+    second: elementals2_50
+  - first:
+      213: 8578299102018395022
+    second: elementals2_51
+  - first:
+      213: -1547518057539370783
+    second: elementals2_52
+  - first:
+      213: 3297443837724995380
+    second: elementals2_53
+  - first:
+      213: 2550933415622697351
+    second: elementals2_54
+  - first:
+      213: -3778383602307515635
+    second: elementals2_55
+  - first:
+      213: -2778063043984497450
+    second: elementals2_56
+  - first:
+      213: 6042784139844694930
+    second: elementals2_57
+  - first:
+      213: -383498756830461823
+    second: elementals2_58
+  - first:
+      213: -1331312613927211203
+    second: elementals2_59
+  - first:
+      213: -2154346485416541339
+    second: elementals2_60
+  - first:
+      213: 3354337035659889007
+    second: elementals2_61
+  - first:
+      213: 6426040465493302076
+    second: elementals2_62
+  - first:
+      213: -3339421144319451801
+    second: elementals2_63
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -46,7 +238,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 18
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -125,11 +317,1355 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: elementals2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 126
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25912b36cbd4026d0800000000000000
+      internalID: -3017326278816425646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_1
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 126
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbee0ff3862f7ff30800000000000000
+      internalID: 4609419273200266940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_2
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 126
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53516dfa97a73e570800000000000000
+      internalID: 8494767985210561845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_3
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 126
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80bd3a9c0dca4b060800000000000000
+      internalID: 6968384536185133832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_4
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 126
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19db5cd00dd542c30800000000000000
+      internalID: 4333691889602903441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_5
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 126
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe3a9303aa1019090800000000000000
+      internalID: -8029634830159731729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_6
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 126
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 327dc85933d135c30800000000000000
+      internalID: 4346850172732233507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_7
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 126
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57b8ff97b799bf000800000000000000
+      internalID: 70818974761192309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 108
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb5960f4fb0e6a3f0800000000000000
+      internalID: -889776764089887300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_9
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 108
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90cba11b1669b30f0800000000000000
+      internalID: -1136149134653604855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_10
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 108
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88baaa1e59cd45400800000000000000
+      internalID: 312116810489703304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_11
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 108
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51b512737bd235820800000000000000
+      internalID: 2905716449511299861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_12
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 108
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b32717db97f9cc420800000000000000
+      internalID: 2651669625832567355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_13
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 108
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb2c21fa22f44a130800000000000000
+      internalID: 3577071014423741116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_14
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 108
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 748e4e1a1f72b1800800000000000000
+      internalID: 584104495431346247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_15
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 108
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3452e912e09b55270800000000000000
+      internalID: 8238694563688883523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 90
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 308482f1e9b223250800000000000000
+      internalID: 5922844418073184259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_17
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 90
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd30815a258dc4160800000000000000
+      internalID: 7011216569377752031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_18
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 90
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec7618e154f38fec0800000000000000
+      internalID: -3533004341575063602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_19
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 90
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09de43daae5708ed0800000000000000
+      internalID: -2413799749481861744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_20
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 90
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce202ecd3e21de640800000000000000
+      internalID: 5110761922008056556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_21
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 90
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 928cd77f942c164b0800000000000000
+      internalID: -5448860451200972759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_22
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 90
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46348531f05de8ae0800000000000000
+      internalID: -1545063361415724188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_23
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 90
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 883556e0f4a9b20b0800000000000000
+      internalID: -5752334434701061240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 72
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd25330b1b23612a0800000000000000
+      internalID: -6767165651330837797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_25
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 72
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5df7b70ada01a860800000000000000
+      internalID: 7539319182743567707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_26
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 72
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c903fec48492c820800000000000000
+      internalID: 2937073205127612866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_27
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 72
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73acd244e0f012eb0800000000000000
+      internalID: -4746495978323981769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_28
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 72
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 715911551b315c0e0800000000000000
+      internalID: -2250370786444339945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_29
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 72
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f149c758266fde030800000000000000
+      internalID: 3525744986307728415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_30
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 72
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fb04fc5968bb1670800000000000000
+      internalID: 8510598683517258743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_31
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 72
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 898b904e20adae860800000000000000
+      internalID: 7560094630445430936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 54
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87b0fe56e9b70d200800000000000000
+      internalID: 202797903476886392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_33
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 54
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: beda22284d1ac8ae0800000000000000
+      internalID: -1545682638006473237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_34
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 54
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64cb198ed5884c580800000000000000
+      internalID: -8807765034314646458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_35
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 54
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef9e60ada3bc85f60800000000000000
+      internalID: 8023386189786966526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_36
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 54
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90551dee317394590800000000000000
+      internalID: -7689554330007808759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_37
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 54
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d98c327cb8cce2590800000000000000
+      internalID: -7696989812416067427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_38
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 54
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5113335d9197ed220800000000000000
+      internalID: 2512578793977360661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_39
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 54
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 479a7a3e409128b50800000000000000
+      internalID: 6593860313213806964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 36
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47639e8d8248414e0800000000000000
+      internalID: -2011837822555048332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_41
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 36
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c5e1ea999467a660800000000000000
+      internalID: 7396991523870598593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_42
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 36
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 262f8af6efb8cc800800000000000000
+      internalID: 634035572463694434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_43
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 36
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1969744499722a50800000000000000
+      internalID: 6494887290332604701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_44
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 36
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8007a03e364858a70800000000000000
+      internalID: 8828608209075466248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_45
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 36
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9ea9d38404f51c00800000000000000
+      internalID: 870870403195186847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_46
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 36
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 550aaf022f1039fd0800000000000000
+      internalID: -2336521642228146091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_47
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 36
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b47a9b9928735cd0800000000000000
+      internalID: -2570578842198838091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_48
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 18
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41988be79fcc08d40800000000000000
+      internalID: 5584688909884360980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_49
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 18
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ceba02e787d982de0800000000000000
+      internalID: -1357662146814497812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_50
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 18
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3bb323bcb97539a80800000000000000
+      internalID: -8461322948258415693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_51
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 18
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8bdbd0659d3c0770800000000000000
+      internalID: 8578299102018395022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_52
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 18
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e00dd8968c168ae0800000000000000
+      internalID: -1547518057539370783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_53
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 18
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43f266623bfd2cd20800000000000000
+      internalID: 3297443837724995380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_54
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 18
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7816dd31d6cb66320800000000000000
+      internalID: 2550933415622697351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_55
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 18
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0bbc47e12c709bc0800000000000000
+      internalID: -3778383602307515635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_56
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d4e9ab51665279d0800000000000000
+      internalID: -2778063043984497450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_57
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 0
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 293becdb8284cd350800000000000000
+      internalID: 6042784139844694930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_58
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 0
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 180015b99e98daaf0800000000000000
+      internalID: -383498756830461823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_59
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 0
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3f2fd13b3a368de0800000000000000
+      internalID: -1331312613927211203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_60
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 563c2a529493a12e0800000000000000
+      internalID: -2154346485416541339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_61
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 0
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f69c17b03cffc8e20800000000000000
+      internalID: 3354337035659889007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_62
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 0
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3b930ab1c1ed2950800000000000000
+      internalID: 6426040465493302076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elementals2_63
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 0
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76d1969892ef7a1d0800000000000000
+      internalID: -3339421144319451801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 6c91771e1794d7647917ed48a45b943d
     internalID: 0
     vertices: []
     indices: 
