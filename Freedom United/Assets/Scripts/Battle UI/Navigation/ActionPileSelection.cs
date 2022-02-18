@@ -84,7 +84,7 @@ public class ActionPileSelection : NavigationSelection
         else if (ShowingAction as BossAction != null)
         {
             BossAction bossAction = ShowingAction as BossAction;
-            List<Vector2Int> positions = bossAction.areaOfEffect.Positions;
+            List<Vector2Int> positions = bossAction.PreviewPositions;
             BattleGridUI.Instance.ToggleRange(positions, actionType);
         }
     }

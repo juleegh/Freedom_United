@@ -24,6 +24,7 @@ public class BattleGridUI : MonoBehaviour, NotificationsListener
         instance = this;
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.BattleLoaded, InitializeGrid);
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.CharacterMoved, RefreshCharacters);
+        GameNotificationsManager.Instance.AddActionToEvent(GameNotification.BossMoved, RefreshBoss);
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.RecentDeath, RefreshDeaths);
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.AttackWasExecuted, ShowAttackBattleAction);
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.DefenseWasExecuted, ShowDefenseBattleAction);
@@ -82,6 +83,11 @@ public class BattleGridUI : MonoBehaviour, NotificationsListener
         UpdateDefenseInBoard();
     }
 
+    private void RefreshBoss(GameNotificationData notificationData)
+    {
+        bossVisuals.Refresh(BattleManager.Instance.CharacterManagement.Boss);
+    }
+
     private void RefreshDeaths(GameNotificationData notificationData)
     {
         string dead = (string)notificationData.Data[NotificationDataIDs.Deceased];
@@ -103,7 +109,10 @@ public class BattleGridUI : MonoBehaviour, NotificationsListener
         foreach (KeyValuePair<Vector2Int, GridCellUI> cell in grid)
         {
             if (positions == null || !positions.Contains(cell.Key))
+            {
                 cell.Value.CleanRange();
+                continue;
+            }
             else
                 cell.Value.PaintAsRange(actionType);
         }
@@ -114,6 +123,8 @@ public class BattleGridUI : MonoBehaviour, NotificationsListener
         if (notificationData != null)
         {
             Vector2Int position = (Vector2Int)notificationData.Data[NotificationDataIDs.CellPosition];
+            if (!grid.ContainsKey(position))
+                return;
             bool failure = (bool)notificationData.Data[NotificationDataIDs.Failure];
             bool critical = (bool)notificationData.Data[NotificationDataIDs.Critical];
             float damage = (float)notificationData.Data[NotificationDataIDs.NewHP] - (float)notificationData.Data[NotificationDataIDs.PreviousHP];

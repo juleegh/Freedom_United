@@ -5,10 +5,8 @@ using System.Collections.Generic;
 public class BossAttackAction : ExecutingAction
 {
     private BossPartType attackingPart;
-    private List<Vector2Int> attackedPositions;
+    private AreaOfEffect selectedArea;
 
-    private float defenseProvided;
-    public float DefenseProvided { get { return defenseProvided; } }
     private float damageTaken;
 
     private float chanceResult;
@@ -16,13 +14,17 @@ public class BossAttackAction : ExecutingAction
     public BossAttackAction(BossAction scheduledAction) : base(scheduledAction)
     {
         attackingPart = scheduledAction.actionOwner;
-        attackedPositions = scheduledAction.areaOfEffect.Positions;
         damageTaken = BattleManager.Instance.CharacterManagement.BossConfig.PartsList[attackingPart].BaseAttack;
+        selectedArea = scheduledAction.areaOfEffect;
         chanceResult = Random.Range(0f, 1f);
     }
 
     public override void Execute()
     {
+        Vector2Int currentPartPosition = BattleManager.Instance.CharacterManagement.Boss.Parts[attackingPart].Position;
+        Vector2Int currentPartOrientation = BattleManager.Instance.CharacterManagement.Boss.Parts[attackingPart].Orientation;
+        List<Vector2Int> attackedPositions = selectedArea.GetPositions(currentPartPosition, currentPartOrientation);
+
         foreach (Vector2Int attackedPosition in attackedPositions)
         {
             GameNotificationData attackData = new GameNotificationData();

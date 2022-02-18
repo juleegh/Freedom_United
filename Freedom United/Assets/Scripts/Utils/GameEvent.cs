@@ -5,6 +5,7 @@ public enum GameNotification
     BattleUILoaded,
     BossStatsModified,
     CharacterMoved,
+    BossMoved,
     TurnEndedExecution,
     NavigationStateUpdated,
     NavigationInfoUpdated,

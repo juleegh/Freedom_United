@@ -14,8 +14,18 @@ public class BossVisuals : MonoBehaviour
         {
             BossPartVisuals nextPart = Instantiate(partPrefab).GetComponent<BossPartVisuals>();
             nextPart.transform.SetParent(this.transform);
-            nextPart.Paint(part, part.Position.x, part.Position.y);
+            nextPart.Paint(part);
             partVisuals[part.PartType] = nextPart;
+        }
+    }
+
+    public void Refresh(Boss boss)
+    {
+        foreach (KeyValuePair<BossPartType, BossPartVisuals> part in partVisuals)
+        {
+            BossPartVisuals nextPart = part.Value;
+            BossPart partData = boss.Parts[part.Key];
+            nextPart.Paint(partData);
         }
     }
 

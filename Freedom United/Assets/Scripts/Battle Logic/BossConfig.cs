@@ -37,6 +37,7 @@ public class BossPartConfig
     [SerializeField] private BossPartType partType;
     [SerializeField] private float baseDurability;
     [SerializeField] private bool isCore;
+    [SerializeField] private bool rotatesWithBody;
 
     [SerializeField] private Vector2Int position;
     [SerializeField] private Vector2Int dimensions;
@@ -58,7 +59,8 @@ public class BossPartConfig
     public float BaseAttack { get { return baseAttack; } }
     public float BaseDefense { get { return baseDefense; } }
     public bool IsCore { get { return isCore; } }
-    public Vector2Int Position { get { return position; } }
+    public bool RotatesWithBody { get { return rotatesWithBody; } }
+    public Vector2Int InitialPosition { get { return position; } }
     public Vector2Int Dimensions { get { return dimensions; } }
     public List<AreaOfEffect> AreasOfEffect { get { return areasOfEffect; } }
     public int AttackSpeed { get { return attackSpeed; } }
@@ -76,6 +78,28 @@ public class AreaOfEffect
     [SerializeField] private List<Vector2Int> positions;
     public AreaOfEffect(List<Vector2Int> pos) { positions = pos; }
     public List<Vector2Int> Positions { get { return positions; } }
+
+    public bool PositionInsideArea(Vector2Int targetPosition, Vector2Int pivotPosition, Vector2Int orientation)
+    {
+        foreach (Vector2Int pos in positions)
+        {
+            Vector2Int affectedPosition = BossUtils.GetOrientedTransformation(orientation, pos.x, pos.y) + pivotPosition;
+            if (affectedPosition == targetPosition)
+                return true;
+        }
+        return false;
+    }
+
+    public List<Vector2Int> GetPositions(Vector2Int pivot, Vector2Int orientation)
+    {
+        List<Vector2Int> transformed = new List<Vector2Int>();
+        foreach (Vector2Int pos in positions)
+        {
+            Vector2Int affectedPosition = pivot + BossUtils.GetOrientedTransformation(orientation, pos.x, pos.y);
+            transformed.Add(affectedPosition);
+        }
+        return transformed;
+    }
 }
 
 [Serializable]

@@ -53,7 +53,7 @@ public class AIAttackRangeAroundBodyPart : AIAttackAction
                 {
                     BossPartType brokenPart = BattleGridUtils.GetBossPart(actionInfo.actionTarget);
                     BossPartConfig partConfig = BattleManager.Instance.CharacterManagement.BossConfig.PartsList[brokenPart];
-                    partPositions = BossUtils.GetPositionsOccupiedByPart(partConfig);
+                    partPositions = BossUtils.GetPositionsOccupiedByPart(partConfig.PartType);
                 }
             }
         }

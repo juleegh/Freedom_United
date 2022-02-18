@@ -53,7 +53,7 @@ public class AIAttackOrDefend : AIAttackAction
         foreach (BossPartType defendedPart in defendingPart.DefendedParts)
         {
             BossPartConfig partConfig = BattleManager.Instance.CharacterManagement.BossConfig.PartsList[defendedPart];
-            List<Vector2Int> partPositions = BossUtils.GetPositionsOccupiedByPart(partConfig);
+            List<Vector2Int> partPositions = BossUtils.GetPositionsOccupiedByPart(partConfig.PartType);
             positionsToDefend.AddRange(partPositions);
         }
 

@@ -6,14 +6,15 @@ public static class BossUtils
 {
     public static BossPart GetPartWhoCanAttackPosition(Vector2Int targetPosition)
     {
-        foreach (KeyValuePair<BossPartType, BossPartConfig> bossPart in BattleManager.Instance.CharacterManagement.BossConfig.PartsList)
+        foreach (KeyValuePair<BossPartType, BossPart> bossPart in BattleManager.Instance.CharacterManagement.Boss.Parts)
         {
             if (BattleManager.Instance.BattleValues.BossPartIsDestroyed(bossPart.Key))
                 continue;
 
-            foreach (AreaOfEffect areaOfEffect in bossPart.Value.AreasOfEffect)
+            List<AreaOfEffect> areasOfEffect = BattleManager.Instance.CharacterManagement.BossConfig.PartsList[bossPart.Key].AreasOfEffect;
+            foreach (AreaOfEffect areaOfEffect in areasOfEffect)
             {
-                if (areaOfEffect.Positions.Contains(targetPosition))
+                if (areaOfEffect.PositionInsideArea(targetPosition, bossPart.Value.Position, bossPart.Value.Orientation))
                     return BattleManager.Instance.CharacterManagement.Boss.Parts[bossPart.Key];
             }
         }
@@ -23,29 +24,25 @@ public static class BossUtils
 
     public static AreaOfEffect GetAreaOfEffectForPosition(BossPart bossPart, Vector2Int targetPosition)
     {
-
         BossPartConfig config = BattleManager.Instance.CharacterManagement.BossConfig.PartsList[bossPart.PartType];
         foreach (AreaOfEffect areaOfEffect in config.AreasOfEffect)
         {
-            if (areaOfEffect.Positions.Contains(targetPosition))
+            if (areaOfEffect.PositionInsideArea(targetPosition, bossPart.Position, bossPart.Orientation))
                 return areaOfEffect;
         }
 
         return null;
     }
 
-    public static List<Vector2Int> GetPositionsOccupiedByPart(BossPartConfig bossPart)
+    public static List<Vector2Int> GetPositionsOccupiedByPart(BossPartType bossPartType)
     {
-        List<Vector2Int> positions = new List<Vector2Int>();
+        return BattleManager.Instance.CharacterManagement.Boss.GetPositionsOccupiedByPart(bossPartType);
+    }
 
-        for (int column = 0; column < bossPart.Dimensions.x; column++)
-        {
-            for (int row = 0; row < bossPart.Dimensions.y; row++)
-            {
-                positions.Add(bossPart.Position + new Vector2Int(column, row));
-            }
-        }
-
-        return positions;
+    public static Vector2Int GetOrientedTransformation(Vector2Int orientation, int x, int y)
+    {
+        Vector2Int xValue = orientation * y;
+        Vector2Int yValue = new Vector2Int(orientation.y, -orientation.x) * x;
+        return xValue + yValue;
     }
 }

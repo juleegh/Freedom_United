@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Wrath Lord
   m_EditorClassIdentifier: 
   bossName: Wrath Lord
-  baseHealth: 180
   bossParts:
     reorderableList:
       canAdd: 1
@@ -43,6 +42,7 @@ MonoBehaviour:
     - partType: 3
       baseDurability: 2000
       isCore: 1
+      rotatesWithBody: 0
       position: {x: 3, y: 2}
       dimensions: {x: 3, y: 5}
       baseAttack: 30
@@ -51,14 +51,14 @@ MonoBehaviour:
       defenseSpeed: 0
       areasOfEffect:
       - positions:
-        - {x: 3, y: 1}
-        - {x: 4, y: 1}
-        - {x: 5, y: 1}
-        - {x: 2, y: 6}
-        - {x: 3, y: 7}
-        - {x: 5, y: 7}
-        - {x: 3, y: 8}
-        - {x: 5, y: 8}
+        - {x: 0, y: 1}
+        - {x: -1, y: 1}
+        - {x: -2, y: 1}
+        - {x: 1, y: -4}
+        - {x: 0, y: -5}
+        - {x: -2, y: -5}
+        - {x: 0, y: -6}
+        - {x: -2, y: -6}
       bossDefenseType: 0
       defendedParts: 
       normalSuccessChance: 0.8
@@ -67,6 +67,7 @@ MonoBehaviour:
     - partType: 4
       baseDurability: 250
       isCore: 0
+      rotatesWithBody: 1
       position: {x: 2, y: 1}
       dimensions: {x: 1, y: 3}
       baseAttack: 80
@@ -75,15 +76,15 @@ MonoBehaviour:
       defenseSpeed: 15
       areasOfEffect:
       - positions:
-        - {x: 1, y: 1}
+        - {x: 1, y: 0}
         - {x: 2, y: 0}
-        - {x: 3, y: 0}
-        - {x: 4, y: 0}
+        - {x: 2, y: -1}
+        - {x: 2, y: -2}
       - positions:
-        - {x: 1, y: 1}
+        - {x: 1, y: 0}
         - {x: 0, y: 1}
-        - {x: 0, y: 2}
-        - {x: 0, y: 3}
+        - {x: -1, y: 1}
+        - {x: -2, y: 1}
       bossDefenseType: 2
       defendedParts: 03000000
       normalSuccessChance: 0.7
@@ -92,6 +93,7 @@ MonoBehaviour:
     - partType: 5
       baseDurability: 250
       isCore: 0
+      rotatesWithBody: 1
       position: {x: 6, y: 1}
       dimensions: {x: 1, y: 3}
       baseAttack: 80
@@ -100,14 +102,14 @@ MonoBehaviour:
       defenseSpeed: 15
       areasOfEffect:
       - positions:
-        - {x: 4, y: 0}
-        - {x: 5, y: 0}
-        - {x: 6, y: 0}
-        - {x: 7, y: 0}
+        - {x: 2, y: 1}
+        - {x: 1, y: 1}
+        - {x: 0, y: 1}
+        - {x: -1, y: 1}
       - positions:
-        - {x: 8, y: 1}
-        - {x: 8, y: 2}
-        - {x: 7, y: 3}
+        - {x: -2, y: 0}
+        - {x: -2, y: -1}
+        - {x: -1, y: -2}
       bossDefenseType: 2
       defendedParts: 03000000
       normalSuccessChance: 0.7
@@ -116,6 +118,7 @@ MonoBehaviour:
     - partType: 6
       baseDurability: 750
       isCore: 0
+      rotatesWithBody: 1
       position: {x: 2, y: 5}
       dimensions: {x: 1, y: 1}
       baseAttack: 750
@@ -124,11 +127,13 @@ MonoBehaviour:
       defenseSpeed: 20
       areasOfEffect:
       - positions:
-        - {x: 1, y: 5}
+        - {x: 1, y: 0}
       - positions:
-        - {x: 0, y: 6}
+        - {x: 2, y: 1}
       - positions:
-        - {x: 0, y: 4}
+        - {x: 2, y: -1}
+      - positions:
+        - {x: -2, y: -3}
       bossDefenseType: 2
       defendedParts: 0400000003000000
       normalSuccessChance: 0.6
@@ -137,6 +142,7 @@ MonoBehaviour:
     - partType: 7
       baseDurability: 750
       isCore: 0
+      rotatesWithBody: 1
       position: {x: 6, y: 5}
       dimensions: {x: 1, y: 1}
       baseAttack: 750
@@ -145,11 +151,13 @@ MonoBehaviour:
       defenseSpeed: 20
       areasOfEffect:
       - positions:
-        - {x: 7, y: 5}
+        - {x: -1, y: 0}
       - positions:
-        - {x: 7, y: 4}
+        - {x: -1, y: 1}
       - positions:
-        - {x: 8, y: 6}
+        - {x: -2, y: -1}
+      - positions:
+        - {x: 2, y: -3}
       bossDefenseType: 2
       defendedParts: 0300000005000000
       normalSuccessChance: 0.6
