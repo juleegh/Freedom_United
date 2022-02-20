@@ -164,3 +164,5 @@ MonoBehaviour:
       criticalSuccessChance: 0.2
       criticalFailureChance: 0.2
   characterCounterPart: 0
+  fovDepth: 1
+  fovWidth: 1

@@ -17,7 +17,7 @@ public class AITurnOption
         return condition.MeetsRequirement();
     }
 
-    public void ExecuteActions()
+    public void SelectActions()
     {
         foreach (AIAttackAction attackAction in attackActions)
         {

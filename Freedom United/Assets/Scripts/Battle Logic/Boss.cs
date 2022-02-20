@@ -6,9 +6,14 @@ public class Boss
     private Dictionary<BossPartType, BossPart> parts;
     public Dictionary<BossPartType, BossPart> Parts { get { return parts; } }
     private BossPart core;
+    private int fovDepth;
+    private int fovWidth;
 
     public Boss(BossConfig config)
     {
+        fovDepth = config.FoVDepth;
+        fovWidth = config.FoVWidth;
+
         parts = new Dictionary<BossPartType, BossPart>();
 
         foreach (KeyValuePair<BossPartType, BossPartConfig> part in config.PartsList)
@@ -47,5 +52,25 @@ public class Boss
             if (part.ShouldRotate)
                 part.Rotate(core.GetCenterPosition(), orientation);
         }
+    }
+
+    public List<Vector2Int> GetFieldOfView()
+    {
+        List<Vector2Int> FoV = new List<Vector2Int>();
+        Vector2Int nosePosition = core.Position + BossUtils.GetOrientedTransformation(core.Orientation, -core.Width / 2, 0);
+
+        Vector2Int verticaldelta = -core.Orientation;
+        Vector2Int horizontaldelta = new Vector2Int(-core.Orientation.y, core.Orientation.x);
+
+        for (int depth = 1; depth <= fovDepth; depth++)
+        {
+            for (int width = -fovWidth * depth; width <= fovWidth * depth; width++)
+            {
+                Vector2Int delta = horizontaldelta * width + verticaldelta * -depth;
+                FoV.Add(nosePosition + delta);
+            }
+        }
+
+        return FoV;
     }
 }

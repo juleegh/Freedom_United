@@ -16,6 +16,11 @@ public class BossConfig : ScriptableObject
     [SerializeField] private CharacterID characterCounterPart;
     public CharacterID CharacterCounterPart { get { return characterCounterPart; } }
 
+    [SerializeField] private int fovDepth;
+    public int FoVDepth { get { return fovDepth; } }
+    [SerializeField] private int fovWidth;
+    public int FoVWidth { get { return fovWidth; } }
+
     public float BaseHealth
     {
         get

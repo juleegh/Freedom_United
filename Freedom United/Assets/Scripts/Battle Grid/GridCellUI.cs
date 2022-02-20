@@ -10,6 +10,7 @@ public class GridCellUI : MonoBehaviour
     [SerializeField] private DamagePromptUI damagePrompt;
     [SerializeField] private RunPromptUI runPrompt;
     [SerializeField] private ShieldPromptUI shieldPrompt;
+    [SerializeField] private FOVIndicator fovIndicator;
 
     [SerializeField] private Color attackColor;
     [SerializeField] private Color defenseColor;
@@ -72,5 +73,10 @@ public class GridCellUI : MonoBehaviour
     public void ShowShield(bool guarded)
     {
         shieldPrompt.ShowShield(guarded);
+    }
+
+    public void ToggleFOV(bool visible)
+    {
+        fovIndicator.ToggleFOV(visible);
     }
 }

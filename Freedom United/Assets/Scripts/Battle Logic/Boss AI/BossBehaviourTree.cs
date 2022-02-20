@@ -18,7 +18,7 @@ public class BossBehaviourTree : MonoBehaviour, NotificationsListener
         {
             if (turnOption.CanExecute())
             {
-                turnOption.ExecuteActions();
+                turnOption.SelectActions();
                 return;
             }
         }

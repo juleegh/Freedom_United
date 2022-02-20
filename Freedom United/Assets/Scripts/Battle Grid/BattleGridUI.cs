@@ -29,6 +29,8 @@ public class BattleGridUI : MonoBehaviour, NotificationsListener
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.AttackWasExecuted, ShowAttackBattleAction);
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.DefenseWasExecuted, ShowDefenseBattleAction);
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.TurnEndedExecution, ClearBoardEffects);
+        GameNotificationsManager.Instance.AddActionToEvent(GameNotification.TurnStarted, ShowBossFieldOfView);
+
     }
 
     private void InitializeGrid(GameNotificationData notificationData)
@@ -166,6 +168,16 @@ public class BattleGridUI : MonoBehaviour, NotificationsListener
         {
             bool positionGuarded = TurnExecutor.Instance.DefenseValueInPosition(cell.Key) > 0;
             grid[cell.Key].ShowShield(false);
+        }
+    }
+
+    public void ShowBossFieldOfView(GameNotificationData notificationData)
+    {
+        List<Vector2Int> fov = BattleManager.Instance.CharacterManagement.Boss.GetFieldOfView();
+
+        foreach (KeyValuePair<Vector2Int, GridCellUI> cell in grid)
+        {
+            grid[cell.Key].ToggleFOV(fov.Contains(cell.Key));
         }
     }
 }
