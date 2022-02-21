@@ -13,7 +13,7 @@ public class AIAttackOrDefend : AIAttackAction
         if (WillDefend())
         {
             BossPartConfig defendingPart = SelectRandomPartToDefend();
-            AreaOfEffect defenseArea = GetDefendArea(defendingPart);
+            SetOfPositions defenseArea = GetDefendArea(defendingPart);
             AddDefenseActionToPile(BattleManager.Instance.CharacterManagement.Boss.Parts[defendingPart.PartType], defenseArea);
         }
         else
@@ -46,7 +46,7 @@ public class AIAttackOrDefend : AIAttackAction
         return null;
     }
 
-    private AreaOfEffect GetDefendArea(BossPartConfig defendingPart)
+    private SetOfPositions GetDefendArea(BossPartConfig defendingPart)
     {
         List<Vector2Int> positionsToDefend = new List<Vector2Int>();
 
@@ -57,7 +57,7 @@ public class AIAttackOrDefend : AIAttackAction
             positionsToDefend.AddRange(partPositions);
         }
 
-        AreaOfEffect areaOfDefense = new AreaOfEffect(positionsToDefend);
+        SetOfPositions areaOfDefense = new SetOfPositions(positionsToDefend);
         return areaOfDefense;
     }
 }

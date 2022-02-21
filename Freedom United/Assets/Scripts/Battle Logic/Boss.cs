@@ -18,7 +18,7 @@ public class Boss
 
         foreach (KeyValuePair<BossPartType, BossPartConfig> part in config.PartsList)
         {
-            BossPart nextPart = new BossPart(part.Key, part.Value.InitialPosition, part.Value.Dimensions.x, part.Value.Dimensions.y, part.Value.RotatesWithBody);
+            BossPart nextPart = new BossPart(part.Value);
             parts.Add(part.Key, nextPart);
 
             if (part.Value.IsCore)

@@ -3,34 +3,28 @@ using System.Collections.Generic;
 
 public class BossPart
 {
-    private BossPartType partType;
+    private BossPartConfig partStats;
     private Vector2Int position;
-    private int width;
-    private int height;
     private Vector2Int orientation;
-    private bool shouldRotate;
 
-    public BossPartType PartType { get { return partType; } }
+    public BossPartType PartType { get { return partStats.PartType; } }
     public Vector2Int Position { get { return position; } }
-    public int Width { get { return width; } }
-    public int Height { get { return height; } }
-    public bool ShouldRotate { get { return shouldRotate; } }
+    public int Width { get { return partStats.Dimensions.x; } }
+    public int Height { get { return partStats.Dimensions.y; } }
+    public bool ShouldRotate { get { return partStats.RotatesWithBody; } }
     public Vector2Int Orientation { get { return orientation; } }
 
-    public BossPart(BossPartType partT, Vector2Int p, int w, int h, bool rotates)
+    public BossPart(BossPartConfig partStat)
     {
-        partType = partT;
-        position = p;
-        width = w;
-        height = h;
-        shouldRotate = rotates;
+        partStats = partStat;
+        position = partStat.InitialPosition;
         orientation = Vector2Int.down;
     }
 
     public bool OccupiesPosition(int x, int y)
     {
-        return x >= position.x - width / 2 && x <= position.x + width / 2 &&
-        y >= position.y - height / 2 && y <= position.y + height / 2;
+        return x >= position.x - Width / 2 && x <= position.x + Width / 2 &&
+        y >= position.y - Height / 2 && y <= position.y + Height / 2;
     }
 
     public List<Vector2Int> GetOccupiedPositions()
@@ -39,9 +33,9 @@ public class BossPart
         Vector2Int verticaldelta = -orientation;
         Vector2Int horizontaldelta = new Vector2Int(-orientation.y, orientation.x);
 
-        for (int column = 0; column < width; column++)
+        for (int column = 0; column < Width; column++)
         {
-            for (int row = 0; row < height; row++)
+            for (int row = 0; row < Height; row++)
             {
                 Vector2Int delta = horizontaldelta * column + verticaldelta * row;
                 positions.Add(delta + position);
@@ -55,7 +49,7 @@ public class BossPart
     {
         Vector2Int center = GetCenterPosition();
         orientation = newOrientation;
-        Vector2Int orientedTransformation = center + GetOrientedTransformation(width / 2, height / 2);
+        Vector2Int orientedTransformation = center + GetOrientedTransformation(Width / 2, Height / 2);
         Vector2Int distanceFromPivot = center - pivot;
         Vector2Int pivotTransformation = new Vector2Int(distanceFromPivot.y - distanceFromPivot.x, -(distanceFromPivot.x + distanceFromPivot.y));
         position = orientedTransformation + pivotTransformation;
@@ -63,13 +57,13 @@ public class BossPart
 
     public Vector2Int GetCenterPosition()
     {
-        Vector2Int transformation = GetOrientedTransformation(width / 2, height / 2);
+        Vector2Int transformation = GetOrientedTransformation(Width / 2, Height / 2);
         return new Vector2Int(position.x - transformation.x, position.y - transformation.y);
     }
 
     public Vector2Int GetWorldPosition()
     {
-        return GetCenterPosition() + GetOrientedTransformation(width / 2, height / 2);
+        return GetCenterPosition() + GetOrientedTransformation(Width / 2, Height / 2);
     }
 
     private Vector2Int GetOrientedTransformation(int x, int y)
@@ -77,8 +71,22 @@ public class BossPart
         return BossUtils.GetOrientedTransformation(orientation, x, y);
     }
 
+    private List<Vector2Int> GetDeltaOfActionForPosition(SetOfPositions usedSet, Vector2Int actionCenter)
+    {
+        List<Vector2Int> transformedSet = usedSet.GetRotatedDeltas(orientation);
+        Vector2Int distanceApplied = actionCenter - transformedSet[0];
+
+        List<Vector2Int> resultDelta = new List<Vector2Int>();
+        foreach (Vector2Int transformed in transformedSet)
+        {
+            resultDelta.Add(transformed + distanceApplied);
+        }
+
+        return resultDelta;
+    }
+
     public override string ToString()
     {
-        return partType.ToString();
+        return PartType.ToString();
     }
 }

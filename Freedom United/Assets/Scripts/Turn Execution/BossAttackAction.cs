@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class BossAttackAction : ExecutingAction
 {
     private BossPartType attackingPart;
-    private AreaOfEffect selectedArea;
+    private SetOfPositions selectedArea;
 
     private float damageTaken;
 
@@ -15,7 +15,7 @@ public class BossAttackAction : ExecutingAction
     {
         attackingPart = scheduledAction.actionOwner;
         damageTaken = BattleManager.Instance.CharacterManagement.BossConfig.PartsList[attackingPart].BaseAttack;
-        selectedArea = scheduledAction.areaOfEffect;
+        selectedArea = scheduledAction.deltaOfAction;
         chanceResult = Random.Range(0f, 1f);
     }
 

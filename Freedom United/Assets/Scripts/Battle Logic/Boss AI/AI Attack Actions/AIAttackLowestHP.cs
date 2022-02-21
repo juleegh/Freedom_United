@@ -30,7 +30,7 @@ public class AIAttackLowestHP : AIAttackAction
         }
 
         BossPart attackingPart = BossUtils.GetPartWhoCanAttackPosition(positionToAttack);
-        AreaOfEffect usedAreaOfEffect = null;
+        SetOfPositions usedAreaOfEffect = null;
 
         if (attackingPart != null)
         {

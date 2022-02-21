@@ -11,8 +11,8 @@ public static class BossUtils
             if (BattleManager.Instance.BattleValues.BossPartIsDestroyed(bossPart.Key))
                 continue;
 
-            List<AreaOfEffect> areasOfEffect = BattleManager.Instance.CharacterManagement.BossConfig.PartsList[bossPart.Key].AreasOfEffect;
-            foreach (AreaOfEffect areaOfEffect in areasOfEffect)
+            List<SetOfPositions> areasOfEffect = BattleManager.Instance.CharacterManagement.BossConfig.PartsList[bossPart.Key].AreasOfEffect;
+            foreach (SetOfPositions areaOfEffect in areasOfEffect)
             {
                 if (areaOfEffect.PositionInsideArea(targetPosition, bossPart.Value.Position, bossPart.Value.Orientation))
                     return BattleManager.Instance.CharacterManagement.Boss.Parts[bossPart.Key];
@@ -22,10 +22,10 @@ public static class BossUtils
         return null;
     }
 
-    public static AreaOfEffect GetAreaOfEffectForPosition(BossPart bossPart, Vector2Int targetPosition)
+    public static SetOfPositions GetAreaOfEffectForPosition(BossPart bossPart, Vector2Int targetPosition)
     {
         BossPartConfig config = BattleManager.Instance.CharacterManagement.BossConfig.PartsList[bossPart.PartType];
-        foreach (AreaOfEffect areaOfEffect in config.AreasOfEffect)
+        foreach (SetOfPositions areaOfEffect in config.AreasOfEffect)
         {
             if (areaOfEffect.PositionInsideArea(targetPosition, bossPart.Position, bossPart.Orientation))
                 return areaOfEffect;

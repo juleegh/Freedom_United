@@ -28,7 +28,7 @@ public class AIAttackRangeAroundBodyPart : AIAttackAction
                 continue;
 
             BossPart attackingPart = BossUtils.GetPartWhoCanAttackPosition(positionToAttack);
-            AreaOfEffect usedAreaOfEffect = null;
+            SetOfPositions usedAreaOfEffect = null;
 
             if (attackingPart != null)
             {

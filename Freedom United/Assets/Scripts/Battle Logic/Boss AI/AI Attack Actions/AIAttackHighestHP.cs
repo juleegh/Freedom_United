@@ -27,7 +27,7 @@ public class AIAttackHighestHP : AIAttackAction
         }
 
         BossPart attackingPart = BossUtils.GetPartWhoCanAttackPosition(positionToAttack);
-        AreaOfEffect usedAreaOfEffect = null;
+        SetOfPositions usedAreaOfEffect = null;
 
         if (attackingPart != null)
         {

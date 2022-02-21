@@ -16,8 +16,8 @@ public class BossDefenseAction : ExecutingAction
         defendingBossPart = scheduledAction.actionOwner;
         defenseProvided = BattleManager.Instance.CharacterManagement.BossConfig.PartsList[defendingBossPart].BaseDefense;
 
-        defenseProvided /= scheduledAction.areaOfEffect.Positions.Count;
-        areaOfEffect = scheduledAction.areaOfEffect.Positions;
+        defenseProvided /= scheduledAction.deltaOfAction.Positions.Count;
+        areaOfEffect = scheduledAction.deltaOfAction.Positions;
         defendedPositions = new List<Vector2Int>();
     }
 

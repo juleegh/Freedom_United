@@ -32,7 +32,7 @@ public class AIAttackAction : ScriptableObject
         Vector2Int counterPartPosition = BattleManager.Instance.CharacterManagement.Characters[counterPart].CurrentPosition;
 
         BossPart attackingPart = BossUtils.GetPartWhoCanAttackPosition(counterPartPosition);
-        AreaOfEffect usedAreaOfEffect = null;
+        SetOfPositions usedAreaOfEffect = null;
 
         if (attackingPart != null)
         {
@@ -73,21 +73,21 @@ public class AIAttackAction : ScriptableObject
         return false;
     }
 
-    protected void AddAttackActionToPile(BossPart bossPart, AreaOfEffect areaOfEffect)
+    protected void AddAttackActionToPile(BossPart bossPart, SetOfPositions areaOfEffect)
     {
         BossAction currentAction = new BossAction();
         currentAction.actionOwner = bossPart.PartType;
-        currentAction.areaOfEffect = areaOfEffect;
+        currentAction.deltaOfAction = areaOfEffect;
         currentAction.actionType = BattleActionType.Attack;
         currentAction.speed = BattleManager.Instance.CharacterManagement.BossConfig.PartsList[bossPart.PartType].AttackSpeed;
         BattleManager.Instance.ActionPile.AddActionToPile(currentAction);
     }
 
-    protected void AddDefenseActionToPile(BossPart bossPart, AreaOfEffect areaOfEffect)
+    protected void AddDefenseActionToPile(BossPart bossPart, SetOfPositions areaOfEffect)
     {
         BossAction currentAction = new BossAction();
         currentAction.actionOwner = bossPart.PartType;
-        currentAction.areaOfEffect = areaOfEffect;
+        currentAction.deltaOfAction = areaOfEffect;
         currentAction.actionType = BattleActionType.Defend;
         currentAction.speed = BattleManager.Instance.CharacterManagement.BossConfig.PartsList[bossPart.PartType].DefenseSpeed;
         BattleManager.Instance.ActionPile.AddActionToPile(currentAction);
