@@ -5,6 +5,7 @@ using UnityEngine;
 public class FOVIndicator : MonoBehaviour
 {
     [SerializeField] private GameObject fovIcon;
+    [SerializeField] private GameObject hidingIcon;
 
     void Awake()
     {
@@ -14,5 +15,12 @@ public class FOVIndicator : MonoBehaviour
     public void ToggleFOV(bool visible)
     {
         fovIcon.SetActive(visible);
+    }
+
+    public void ToggleHiding(bool visible)
+    {
+        if (visible)
+            ToggleFOV(false);
+        hidingIcon.SetActive(visible);
     }
 }

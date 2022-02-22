@@ -79,4 +79,9 @@ public class GridCellUI : MonoBehaviour
     {
         fovIndicator.ToggleFOV(visible);
     }
+
+    public void ToggleHiding(bool visible)
+    {
+        fovIndicator.ToggleHiding(visible);
+    }
 }

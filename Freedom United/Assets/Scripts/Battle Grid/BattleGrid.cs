@@ -15,6 +15,8 @@ public class BattleGrid : MonoBehaviour, NotificationsListener
     private Dictionary<Vector2Int, GridCell> grid;
     private List<Vector2Int> positionsInRange;
     public List<Vector2Int> PositionsInRange { get { return positionsInRange; } }
+    private List<Vector2Int> hidingPositions;
+    public List<Vector2Int> HidingPositions { get { return hidingPositions; } }
 
     public void ConfigureComponent()
     {
@@ -25,6 +27,7 @@ public class BattleGrid : MonoBehaviour, NotificationsListener
     {
         grid = new Dictionary<Vector2Int, GridCell>();
         positionsInRange = new List<Vector2Int>();
+        hidingPositions = new List<Vector2Int>();
 
         for (int row = 0; row < height; row++)
         {
@@ -79,6 +82,32 @@ public class BattleGrid : MonoBehaviour, NotificationsListener
                 continue;
 
             positionsInRange.Add(cell.Key);
+        }
+    }
+
+    public void CalculateHidingPositions()
+    {
+        hidingPositions.Clear();
+        List<Vector2Int> bossFieldOfView = BattleManager.Instance.CharacterManagement.Boss.GetFieldOfView();
+        Vector2Int bossOrientation = BattleManager.Instance.CharacterManagement.Boss.Orientation;
+        Vector2Int bossPosition = BattleManager.Instance.CharacterManagement.Boss.Position;
+
+        foreach (KeyValuePair<Vector2Int, GridCell> cell in grid)
+        {
+            if (!bossFieldOfView.Contains(cell.Key))
+                continue;
+
+            if (cell.Value.CellType == CellType.Obstacle)
+            {
+                hidingPositions.Add(cell.Key);
+                continue;
+            }
+
+            Vector2Int possibleObstacle = cell.Key - bossOrientation;
+            if (grid.ContainsKey(possibleObstacle) && grid[possibleObstacle].CellType == CellType.Obstacle)
+            {
+                hidingPositions.Add(cell.Key);
+            }
         }
     }
 }

@@ -5,6 +5,8 @@ public class Boss
 {
     private Dictionary<BossPartType, BossPart> parts;
     public Dictionary<BossPartType, BossPart> Parts { get { return parts; } }
+    public Vector2Int Orientation { get { return core.Orientation; } }
+    public Vector2Int Position { get { return core.Position; } }
     private BossPart core;
     private int fovDepth;
     private int fovWidth;

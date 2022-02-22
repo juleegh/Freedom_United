@@ -29,7 +29,7 @@ public class BattleGridUI : MonoBehaviour, NotificationsListener
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.AttackWasExecuted, ShowAttackBattleAction);
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.DefenseWasExecuted, ShowDefenseBattleAction);
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.TurnEndedExecution, ClearBoardEffects);
-        GameNotificationsManager.Instance.AddActionToEvent(GameNotification.TurnStarted, ShowBossFieldOfView);
+        GameNotificationsManager.Instance.AddActionToEvent(GameNotification.TurnStarted, UpdateBossFieldOfView);
 
     }
 
@@ -171,13 +171,29 @@ public class BattleGridUI : MonoBehaviour, NotificationsListener
         }
     }
 
-    public void ShowBossFieldOfView(GameNotificationData notificationData)
+    public void UpdateBossFieldOfView(GameNotificationData notificationData)
     {
         List<Vector2Int> fov = BattleManager.Instance.CharacterManagement.Boss.GetFieldOfView();
 
         foreach (KeyValuePair<Vector2Int, GridCellUI> cell in grid)
         {
             grid[cell.Key].ToggleFOV(fov.Contains(cell.Key));
+        }
+        BattleManager.Instance.BattleGrid.CalculateHidingPositions();
+        UpdateHidingPositions(BattleManager.Instance.BattleGrid.HidingPositions);
+    }
+
+    private void UpdateHidingPositions(List<Vector2Int> positions = null)
+    {
+        foreach (KeyValuePair<Vector2Int, GridCellUI> cell in grid)
+        {
+            if (positions == null || !positions.Contains(cell.Key))
+            {
+                cell.Value.ToggleHiding(false);
+                continue;
+            }
+            else
+                cell.Value.ToggleHiding(true);
         }
     }
 }
