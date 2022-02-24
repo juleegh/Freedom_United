@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class BattleGrid : MonoBehaviour, NotificationsListener
 {
@@ -13,8 +14,9 @@ public class BattleGrid : MonoBehaviour, NotificationsListener
     [SerializeField] private List<Vector2Int> initialAvailablePositions;
     [SerializeField] private float obstacleHP;
 
+    private Dictionary<BossPartType, PartObstacle> partObstacles;
     private Dictionary<Vector2Int, Obstacle> obstacles;
-    public Dictionary<Vector2Int, Obstacle> Obstacles { get { return obstacles; } }
+
     private List<Vector2Int> positionsInRange;
     public List<Vector2Int> PositionsInRange { get { return positionsInRange; } }
     private List<Vector2Int> hidingPositions;
@@ -28,6 +30,7 @@ public class BattleGrid : MonoBehaviour, NotificationsListener
     private void InitializeGrid(GameNotificationData notificationData)
     {
         obstacles = new Dictionary<Vector2Int, Obstacle>();
+        partObstacles = new Dictionary<BossPartType, PartObstacle>();
         positionsInRange = new List<Vector2Int>();
         hidingPositions = new List<Vector2Int>();
 
@@ -94,20 +97,27 @@ public class BattleGrid : MonoBehaviour, NotificationsListener
     {
         hidingPositions.Clear();
         List<Vector2Int> bossFieldOfView = BattleManager.Instance.CharacterManagement.Boss.GetFieldOfView();
+        List<Vector2Int> positionsToCheck = obstacles.Keys.ToList();
         Vector2Int bossOrientation = BattleManager.Instance.CharacterManagement.Boss.Orientation;
         Vector2Int bossPosition = BattleManager.Instance.CharacterManagement.Boss.Position;
 
-        foreach (Vector2Int position in obstacles.Keys)
+        foreach (BossPartType obstacle in partObstacles.Keys)
+        {
+            List<Vector2Int> positions = BattleManager.Instance.CharacterManagement.Boss.Parts[obstacle].GetOccupiedPositions();
+            positionsToCheck.AddRange(positions);
+        }
+
+        foreach (Vector2Int position in positionsToCheck)
         {
             Vector2Int hidingPosition = position + bossOrientation;
 
             if (!IsInsideGrid(hidingPosition.x, hidingPosition.y))
                 continue;
 
-            if (obstacles.ContainsKey(hidingPosition))
+            if (!bossFieldOfView.Contains(hidingPosition))
                 continue;
 
-            if (!bossFieldOfView.Contains(hidingPosition))
+            if (positionsToCheck.Contains(hidingPosition))
                 continue;
 
             hidingPositions.Add(hidingPosition);
@@ -120,18 +130,60 @@ public class BattleGrid : MonoBehaviour, NotificationsListener
         return obstacles.ContainsKey(position) ? CellType.Obstacle : CellType.Available;
     }
 
+    public float GetObstacleHP(Vector2Int position)
+    {
+        if (obstacles.ContainsKey(position))
+            return obstacles[position].HP;
+
+        foreach (BossPartType obstacle in partObstacles.Keys)
+        {
+            List<Vector2Int> positions = BattleManager.Instance.CharacterManagement.Boss.Parts[obstacle].GetOccupiedPositions();
+            if (positions.Contains(position))
+                return partObstacles[obstacle].HP;
+        }
+
+        return 0;
+    }
+
+    public void AddPartObstacle(BossPartType partType)
+    {
+        partObstacles.Add(partType, new PartObstacle(Vector2Int.zero, partType, obstacleHP));
+        GameNotificationsManager.Instance.Notify(GameNotification.FieldOfViewChanged);
+    }
+
     public void HitObstacle(Vector2Int position, float damageTaken)
     {
-        if (!obstacles.ContainsKey(position))
-            return;
-
-        obstacles[position].TakeDamage(damageTaken);
-        if (obstacles[position].HP <= 0)
+        if (obstacles.ContainsKey(position))
         {
-            obstacles.Remove(position);
-            GameNotificationData notificationData = new GameNotificationData();
-            notificationData.Data[NotificationDataIDs.CellPosition] = position;
-            GameNotificationsManager.Instance.Notify(GameNotification.ObstaclesStatsChanged, notificationData);
+            obstacles[position].TakeDamage(damageTaken);
+            if (obstacles[position].HP <= 0)
+            {
+                obstacles.Remove(position);
+                GameNotificationData notificationData = new GameNotificationData();
+                notificationData.Data[NotificationDataIDs.CellPosition] = position;
+                GameNotificationsManager.Instance.Notify(GameNotification.ObstaclesStatsChanged, notificationData);
+                GameNotificationsManager.Instance.Notify(GameNotification.FieldOfViewChanged);
+            }
+        }
+        else
+        {
+            foreach (BossPartType obstacle in partObstacles.Keys)
+            {
+                List<Vector2Int> positions = BattleManager.Instance.CharacterManagement.Boss.Parts[obstacle].GetOccupiedPositions();
+                if (positions.Contains(position))
+                {
+                    partObstacles[obstacle].TakeDamage(damageTaken);
+                    if (partObstacles[obstacle].HP <= 0)
+                    {
+                        partObstacles.Remove(obstacle);
+                        GameNotificationData notificationData = new GameNotificationData();
+                        notificationData.Data[NotificationDataIDs.CellPosition] = position;
+                        GameNotificationsManager.Instance.Notify(GameNotification.ObstaclesStatsChanged, notificationData);
+                        GameNotificationsManager.Instance.Notify(GameNotification.FieldOfViewChanged);
+                    }
+                    break;
+                }
+            }
         }
     }
 }

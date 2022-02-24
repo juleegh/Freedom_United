@@ -23,8 +23,12 @@ public class BossPart
 
     public bool OccupiesPosition(int x, int y)
     {
-        return x >= position.x - Width / 2 && x <= position.x + Width / 2 &&
-        y >= position.y - Height / 2 && y <= position.y + Height / 2;
+        Vector2Int verticaldelta = -orientation;
+        Vector2Int horizontaldelta = new Vector2Int(-orientation.y, orientation.x);
+        Vector2Int oppositeCorner = horizontaldelta * (Width - 1) + verticaldelta * (Height - 1) + position;
+
+        return x >= Mathf.Min(position.x, oppositeCorner.x) && x <= Mathf.Max(position.x, oppositeCorner.x) &&
+            y >= Mathf.Min(position.y, oppositeCorner.y) && y <= Mathf.Max(position.y, oppositeCorner.y);
     }
 
     public List<Vector2Int> GetOccupiedPositions()

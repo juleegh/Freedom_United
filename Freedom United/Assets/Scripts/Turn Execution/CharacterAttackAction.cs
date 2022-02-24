@@ -59,18 +59,27 @@ public class CharacterAttackAction : ExecutingAction
             if (BattleManager.Instance.CharacterManagement.GetBossPartInPosition(attackedPosition) != null)
             {
                 BossPart targetPart = BattleManager.Instance.CharacterManagement.GetBossPartInPosition(attackedPosition);
-                if (BattleManager.Instance.BattleValues.BossPartIsDestroyed(targetPart.PartType))
-                    continue;
+                if (!BattleManager.Instance.BattleValues.BossPartIsDestroyed(targetPart.PartType))
+                {
+                    attackData.Data[NotificationDataIDs.ActionTarget] = targetPart.ToString();
+                    attackData.Data[NotificationDataIDs.PreviousHP] = BattleManager.Instance.BattleValues.BossPartsHealth[targetPart.PartType];
+                    BattleManager.Instance.BattleValues.BossTakeDamage(targetPart.PartType, damageProvided);
+                    attackData.Data[NotificationDataIDs.NewHP] = BattleManager.Instance.BattleValues.BossPartsHealth[targetPart.PartType];
+                    GameNotificationsManager.Instance.Notify(GameNotification.BossStatsModified);
 
-                attackData.Data[NotificationDataIDs.ActionTarget] = targetPart.ToString();
-
-                attackData.Data[NotificationDataIDs.PreviousHP] = BattleManager.Instance.BattleValues.BossPartsHealth[targetPart.PartType];
-                BattleManager.Instance.BattleValues.BossTakeDamage(targetPart.PartType, damageProvided);
-                attackData.Data[NotificationDataIDs.NewHP] = BattleManager.Instance.BattleValues.BossPartsHealth[targetPart.PartType];
-                GameNotificationsManager.Instance.Notify(GameNotification.BossStatsModified);
-
-                if (BattleManager.Instance.BattleValues.BossPartIsDestroyed(targetPart.PartType))
-                    BattleManager.Instance.BattleValues.CharacterModifyWillPower(attackingCharacter, BattleGridUtils.DestroyingBodyPartWillPercentage);
+                    if (BattleManager.Instance.BattleValues.BossPartIsDestroyed(targetPart.PartType))
+                    {
+                        BattleManager.Instance.BattleValues.CharacterModifyWillPower(attackingCharacter, BattleGridUtils.DestroyingBodyPartWillPercentage);
+                        BattleManager.Instance.BattleGrid.AddPartObstacle(targetPart.PartType);
+                    }
+                }
+                else if (BattleManager.Instance.BattleGrid.GetObstacleHP(attackedPosition) > 0)
+                {
+                    attackData.Data[NotificationDataIDs.ActionTarget] = "Obstacle";
+                    attackData.Data[NotificationDataIDs.PreviousHP] = BattleManager.Instance.BattleGrid.GetObstacleHP(attackedPosition);
+                    BattleManager.Instance.BattleGrid.HitObstacle(attackedPosition, damageProvided);
+                    attackData.Data[NotificationDataIDs.NewHP] = BattleManager.Instance.BattleGrid.GetObstacleHP(attackedPosition);
+                }
             }
             else if (BattleManager.Instance.CharacterManagement.GetCharacterInPosition(attackedPosition) != null)
             {
@@ -81,12 +90,12 @@ public class CharacterAttackAction : ExecutingAction
                 BattleManager.Instance.BattleValues.CharacterTakeDamage(targetCharacter.CharacterID, damageProvided);
                 attackData.Data[NotificationDataIDs.NewHP] = BattleManager.Instance.BattleValues.PartyHealth[targetCharacter.CharacterID];
             }
-            else if (BattleManager.Instance.BattleGrid.Obstacles.ContainsKey(attackedPosition))
+            else if (BattleManager.Instance.BattleGrid.GetObstacleHP(attackedPosition) > 0)
             {
                 attackData.Data[NotificationDataIDs.ActionTarget] = "Obstacle";
-                attackData.Data[NotificationDataIDs.PreviousHP] = BattleManager.Instance.BattleGrid.Obstacles[attackedPosition].HP;
+                attackData.Data[NotificationDataIDs.PreviousHP] = BattleManager.Instance.BattleGrid.GetObstacleHP(attackedPosition);
                 BattleManager.Instance.BattleGrid.HitObstacle(attackedPosition, damageProvided);
-                attackData.Data[NotificationDataIDs.NewHP] = BattleManager.Instance.BattleGrid.Obstacles.ContainsKey(attackedPosition) ? BattleManager.Instance.BattleGrid.Obstacles[attackedPosition].HP : 0;
+                attackData.Data[NotificationDataIDs.NewHP] = BattleManager.Instance.BattleGrid.GetObstacleHP(attackedPosition);
             }
 
             GameNotificationsManager.Instance.Notify(GameNotification.AttackWasExecuted, attackData);

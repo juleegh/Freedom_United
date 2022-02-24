@@ -33,4 +33,9 @@ public class BossVisuals : MonoBehaviour
     {
         partVisuals[death].PaintDeath();
     }
+
+    public void RemovePart(BossPartType partType)
+    {
+        partVisuals[partType].gameObject.SetActive(false);
+    }
 }

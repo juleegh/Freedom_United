@@ -54,6 +54,7 @@ public class Boss
             if (part.ShouldRotate)
                 part.Rotate(core.GetCenterPosition(), orientation);
         }
+        GameNotificationsManager.Instance.Notify(GameNotification.FieldOfViewChanged);
     }
 
     public List<Vector2Int> GetFieldOfView()

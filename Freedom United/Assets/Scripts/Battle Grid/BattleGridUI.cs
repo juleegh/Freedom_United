@@ -29,7 +29,7 @@ public class BattleGridUI : MonoBehaviour, NotificationsListener
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.AttackWasExecuted, ShowAttackBattleAction);
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.DefenseWasExecuted, ShowDefenseBattleAction);
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.TurnEndedExecution, ClearBoardEffects);
-        GameNotificationsManager.Instance.AddActionToEvent(GameNotification.TurnStarted, UpdateBossFieldOfView);
+        GameNotificationsManager.Instance.AddActionToEvent(GameNotification.FieldOfViewChanged, UpdateBossFieldOfView);
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.ObstaclesStatsChanged, RefreshObstacles);
 
     }
@@ -68,6 +68,7 @@ public class BattleGridUI : MonoBehaviour, NotificationsListener
         bossVisuals.transform.SetParent(cellsContainer);
         bossVisuals.transform.position = BattleGridUtils.TranslatedPosition(Vector2Int.zero, charactersHeightOnBoard);
         bossVisuals.Paint(BattleManager.Instance.CharacterManagement.Boss);
+        UpdateBossFieldOfView(null);
     }
 
     private void RefreshCharacters(GameNotificationData notificationData)
@@ -96,6 +97,9 @@ public class BattleGridUI : MonoBehaviour, NotificationsListener
         Vector2Int position = (Vector2Int)notificationData.Data[NotificationDataIDs.CellPosition];
         GridCellUI newGridCell = grid[position];
         newGridCell.Refresh(BattleManager.Instance.BattleGrid.GetInPosition(position.x, position.y));
+        BossPart partInPosition = BattleManager.Instance.CharacterManagement.GetBossPartInPosition(position);
+        if (partInPosition != null)
+            bossVisuals.RemovePart(partInPosition.PartType);
     }
 
     private void RefreshDeaths(GameNotificationData notificationData)
@@ -179,7 +183,7 @@ public class BattleGridUI : MonoBehaviour, NotificationsListener
         }
     }
 
-    public void UpdateBossFieldOfView(GameNotificationData notificationData)
+    private void UpdateBossFieldOfView(GameNotificationData notificationData)
     {
         List<Vector2Int> fov = BattleManager.Instance.CharacterManagement.Boss.GetFieldOfView();
 

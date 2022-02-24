@@ -17,4 +17,5 @@ public enum GameNotification
     RecentDeath,
     CharacterStatsChanged,
     ObstaclesStatsChanged,
+    FieldOfViewChanged,
 }
