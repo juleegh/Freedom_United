@@ -69,6 +69,14 @@ public class BossAttackAction : ExecutingAction
                     BattleManager.Instance.BattleValues.CharacterModifyWillPower(targetCharacter.CharacterID, BattleGridUtils.ReceivedCriticalWillPercentage);
                 }
             }
+            else if (BattleManager.Instance.BattleGrid.Obstacles.ContainsKey(attackedPosition))
+            {
+                attackData.Data[NotificationDataIDs.ActionTarget] = "Obstacle";
+                attackData.Data[NotificationDataIDs.PreviousHP] = BattleManager.Instance.BattleGrid.Obstacles[attackedPosition].HP;
+                BattleManager.Instance.BattleGrid.HitObstacle(attackedPosition, damageProvided);
+                attackData.Data[NotificationDataIDs.NewHP] = BattleManager.Instance.BattleGrid.Obstacles.ContainsKey(attackedPosition) ? BattleManager.Instance.BattleGrid.Obstacles[attackedPosition].HP : 0;
+            }
+
             GameNotificationsManager.Instance.Notify(GameNotification.AttackWasExecuted, attackData);
         }
 

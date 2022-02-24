@@ -81,6 +81,13 @@ public class CharacterAttackAction : ExecutingAction
                 BattleManager.Instance.BattleValues.CharacterTakeDamage(targetCharacter.CharacterID, damageProvided);
                 attackData.Data[NotificationDataIDs.NewHP] = BattleManager.Instance.BattleValues.PartyHealth[targetCharacter.CharacterID];
             }
+            else if (BattleManager.Instance.BattleGrid.Obstacles.ContainsKey(attackedPosition))
+            {
+                attackData.Data[NotificationDataIDs.ActionTarget] = "Obstacle";
+                attackData.Data[NotificationDataIDs.PreviousHP] = BattleManager.Instance.BattleGrid.Obstacles[attackedPosition].HP;
+                BattleManager.Instance.BattleGrid.HitObstacle(attackedPosition, damageProvided);
+                attackData.Data[NotificationDataIDs.NewHP] = BattleManager.Instance.BattleGrid.Obstacles.ContainsKey(attackedPosition) ? BattleManager.Instance.BattleGrid.Obstacles[attackedPosition].HP : 0;
+            }
 
             GameNotificationsManager.Instance.Notify(GameNotification.AttackWasExecuted, attackData);
 

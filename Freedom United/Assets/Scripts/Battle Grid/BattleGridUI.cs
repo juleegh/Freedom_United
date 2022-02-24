@@ -30,6 +30,7 @@ public class BattleGridUI : MonoBehaviour, NotificationsListener
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.DefenseWasExecuted, ShowDefenseBattleAction);
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.TurnEndedExecution, ClearBoardEffects);
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.TurnStarted, UpdateBossFieldOfView);
+        GameNotificationsManager.Instance.AddActionToEvent(GameNotification.ObstaclesStatsChanged, RefreshObstacles);
 
     }
 
@@ -45,7 +46,7 @@ public class BattleGridUI : MonoBehaviour, NotificationsListener
                 Vector3 positionInWorld = new Vector3(column * cellDistance, 0, row * cellDistance);
 
                 GridCellUI newGridCell = Instantiate(cellPrefab).GetComponent<GridCellUI>();
-                newGridCell.Refresh(BattleManager.Instance.BattleGrid.GetInPosition(column, row).CellType);
+                newGridCell.Refresh(BattleManager.Instance.BattleGrid.GetInPosition(column, row));
                 grid.Add(position, newGridCell);
                 newGridCell.transform.SetParent(cellsContainer);
                 newGridCell.transform.position = positionInWorld;
@@ -88,6 +89,13 @@ public class BattleGridUI : MonoBehaviour, NotificationsListener
     private void RefreshBoss(GameNotificationData notificationData)
     {
         bossVisuals.Refresh(BattleManager.Instance.CharacterManagement.Boss);
+    }
+
+    private void RefreshObstacles(GameNotificationData notificationData)
+    {
+        Vector2Int position = (Vector2Int)notificationData.Data[NotificationDataIDs.CellPosition];
+        GridCellUI newGridCell = grid[position];
+        newGridCell.Refresh(BattleManager.Instance.BattleGrid.GetInPosition(position.x, position.y));
     }
 
     private void RefreshDeaths(GameNotificationData notificationData)

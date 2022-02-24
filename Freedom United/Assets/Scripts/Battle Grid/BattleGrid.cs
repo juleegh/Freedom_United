@@ -11,8 +11,10 @@ public class BattleGrid : MonoBehaviour, NotificationsListener
     public int Height { get { return height; } }
 
     [SerializeField] private List<Vector2Int> initialAvailablePositions;
+    [SerializeField] private float obstacleHP;
 
-    private Dictionary<Vector2Int, GridCell> grid;
+    private Dictionary<Vector2Int, Obstacle> obstacles;
+    public Dictionary<Vector2Int, Obstacle> Obstacles { get { return obstacles; } }
     private List<Vector2Int> positionsInRange;
     public List<Vector2Int> PositionsInRange { get { return positionsInRange; } }
     private List<Vector2Int> hidingPositions;
@@ -25,7 +27,7 @@ public class BattleGrid : MonoBehaviour, NotificationsListener
 
     private void InitializeGrid(GameNotificationData notificationData)
     {
-        grid = new Dictionary<Vector2Int, GridCell>();
+        obstacles = new Dictionary<Vector2Int, Obstacle>();
         positionsInRange = new List<Vector2Int>();
         hidingPositions = new List<Vector2Int>();
 
@@ -34,17 +36,12 @@ public class BattleGrid : MonoBehaviour, NotificationsListener
             for (int column = 0; column < width; column++)
             {
                 Vector2Int position = new Vector2Int(column, row);
-                CellType cellType = initialAvailablePositions.Contains(position) ? CellType.Available : CellType.Obstacle;
-                GridCell newGridCell = new GridCell(cellType);
-                grid.Add(position, newGridCell);
+                if (initialAvailablePositions.Contains(position))
+                    continue;
+
+                obstacles.Add(position, new Obstacle(position, obstacleHP));
             }
         }
-    }
-
-    public GridCell GetInPosition(int column, int row)
-    {
-        Vector2Int position = new Vector2Int(column, row);
-        return grid[position];
     }
 
     public void CalculateRange(AttackRange range, Vector2Int origin, bool includeOrigin)
@@ -70,19 +67,27 @@ public class BattleGrid : MonoBehaviour, NotificationsListener
     public void CalculateRange(Vector2Int origin)
     {
         positionsInRange.Clear();
-        foreach (KeyValuePair<Vector2Int, GridCell> cell in grid)
+
+        for (int row = 0; row < height; row++)
         {
-            if (cell.Key == origin)
-                continue;
+            for (int column = 0; column < width; column++)
+            {
+                Vector2Int position = new Vector2Int(column, row);
 
-            if (cell.Value.CellType != CellType.Available)
-                continue;
+                if (position == origin || obstacles.ContainsKey(position))
+                    continue;
 
-            if (BattleManager.Instance.CharacterManagement.Boss.OccupiesPosition(cell.Key.x, cell.Key.y))
-                continue;
+                if (BattleManager.Instance.CharacterManagement.Boss.OccupiesPosition(position.x, position.y))
+                    continue;
 
-            positionsInRange.Add(cell.Key);
+                positionsInRange.Add(position);
+            }
         }
+    }
+
+    private bool IsInsideGrid(int x, int y)
+    {
+        return !(x < 0 || x >= height || y < 0 || y >= width);
     }
 
     public void CalculateHidingPositions()
@@ -92,22 +97,41 @@ public class BattleGrid : MonoBehaviour, NotificationsListener
         Vector2Int bossOrientation = BattleManager.Instance.CharacterManagement.Boss.Orientation;
         Vector2Int bossPosition = BattleManager.Instance.CharacterManagement.Boss.Position;
 
-        foreach (KeyValuePair<Vector2Int, GridCell> cell in grid)
+        foreach (Vector2Int position in obstacles.Keys)
         {
-            if (!bossFieldOfView.Contains(cell.Key))
+            Vector2Int hidingPosition = position + bossOrientation;
+
+            if (!IsInsideGrid(hidingPosition.x, hidingPosition.y))
                 continue;
 
-            if (cell.Value.CellType == CellType.Obstacle)
-            {
-                hidingPositions.Add(cell.Key);
+            if (obstacles.ContainsKey(hidingPosition))
                 continue;
-            }
 
-            Vector2Int possibleObstacle = cell.Key - bossOrientation;
-            if (grid.ContainsKey(possibleObstacle) && grid[possibleObstacle].CellType == CellType.Obstacle)
-            {
-                hidingPositions.Add(cell.Key);
-            }
+            if (!bossFieldOfView.Contains(hidingPosition))
+                continue;
+
+            hidingPositions.Add(hidingPosition);
+        }
+    }
+
+    public CellType GetInPosition(int x, int y)
+    {
+        Vector2Int position = new Vector2Int(x, y);
+        return obstacles.ContainsKey(position) ? CellType.Obstacle : CellType.Available;
+    }
+
+    public void HitObstacle(Vector2Int position, float damageTaken)
+    {
+        if (!obstacles.ContainsKey(position))
+            return;
+
+        obstacles[position].TakeDamage(damageTaken);
+        if (obstacles[position].HP <= 0)
+        {
+            obstacles.Remove(position);
+            GameNotificationData notificationData = new GameNotificationData();
+            notificationData.Data[NotificationDataIDs.CellPosition] = position;
+            GameNotificationsManager.Instance.Notify(GameNotification.ObstaclesStatsChanged, notificationData);
         }
     }
 }

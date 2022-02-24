@@ -16,4 +16,5 @@ public enum GameNotification
     DefenseWasExecuted,
     RecentDeath,
     CharacterStatsChanged,
+    ObstaclesStatsChanged,
 }
