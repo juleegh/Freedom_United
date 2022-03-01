@@ -10,6 +10,7 @@ public class CharacterDefenseAction : ExecutingAction
 
     private float defenseProvided;
     public float DefenseProvided { get { return defenseProvided; } }
+    public CharacterID DefendingCharacter { get { return defendingCharacter; } }
     private Vector2Int CurrentCharacterPosition { get { return BattleManager.Instance.CharacterManagement.Characters[defendingCharacter].CurrentPosition; } }
 
     public CharacterDefenseAction(AllyAction scheduledAction) : base(scheduledAction)

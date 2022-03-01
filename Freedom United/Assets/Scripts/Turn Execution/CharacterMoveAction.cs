@@ -17,21 +17,31 @@ public class CharacterMoveAction : ExecutingAction
 
     public override void Execute()
     {
+        GameNotificationData notificationData = new GameNotificationData();
         originPosition = BattleManager.Instance.CharacterManagement.Characters[movingCharacter].CurrentPosition;
         changeWithTeammate = BattleManager.Instance.CharacterManagement.GetCharacterInPosition(finalPosition) != null;
 
         if (changeWithTeammate)
         {
+            Character targetCharacter = BattleManager.Instance.CharacterManagement.GetCharacterInPosition(finalPosition);
+
             if (!isSafe)
             {
-                Character targetCharacter = BattleManager.Instance.CharacterManagement.GetCharacterInPosition(finalPosition);
                 BattleManager.Instance.BattleValues.CharacterTakeDamage(targetCharacter.CharacterID, BattleGridUtils.ShovingDamage);
             }
-            BattleManager.Instance.CharacterManagement.GetCharacterInPosition(finalPosition).MoveToPosition(originPosition);
+
+            targetCharacter.MoveToPosition(originPosition);
+            notificationData.Data[NotificationDataIDs.ActionOwner] = targetCharacter.CharacterID;
+            notificationData.Data[NotificationDataIDs.CellPosition] = originPosition;
+            notificationData.Data[NotificationDataIDs.WasReckless] = !isSafe;
+            GameNotificationsManager.Instance.Notify(GameNotification.CharacterMoved, notificationData);
         }
 
         BattleManager.Instance.CharacterManagement.Characters[movingCharacter].MoveToPosition(finalPosition);
 
-        GameNotificationsManager.Instance.Notify(GameNotification.CharacterMoved);
+        notificationData.Data[NotificationDataIDs.ActionOwner] = movingCharacter;
+        notificationData.Data[NotificationDataIDs.CellPosition] = finalPosition;
+        notificationData.Data[NotificationDataIDs.WasReckless] = !isSafe;
+        GameNotificationsManager.Instance.Notify(GameNotification.CharacterMoved, notificationData);
     }
 }

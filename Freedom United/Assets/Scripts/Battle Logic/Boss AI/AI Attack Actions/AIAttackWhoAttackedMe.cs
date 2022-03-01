@@ -18,7 +18,7 @@ public class AIAttackWhoAttackedMe : AIAttackAction
         Vector2Int positionToAttack = Vector2Int.zero;
         bool foundOne = false;
 
-        foreach (PostActionInfo actionInfo in TurnBlackBoard.Instance.Registers)
+        foreach (PostActionInfo actionInfo in TurnBlackBoard.Instance.LastTurnRegisters)
         {
             if (BattleActionsUtils.GetTargetType(actionInfo.actionOwner) == TargetType.Character)
             {

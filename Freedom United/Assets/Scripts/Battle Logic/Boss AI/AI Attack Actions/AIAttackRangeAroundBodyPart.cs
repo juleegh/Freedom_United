@@ -45,7 +45,7 @@ public class AIAttackRangeAroundBodyPart : AIAttackAction
     {
         List<Vector2Int> partPositions = new List<Vector2Int>();
 
-        foreach (PostActionInfo actionInfo in TurnBlackBoard.Instance.Registers)
+        foreach (PostActionInfo actionInfo in TurnBlackBoard.Instance.LastTurnRegisters)
         {
             if (BattleActionsUtils.GetTargetType(actionInfo.actionTarget) == TargetType.BossPart)
             {

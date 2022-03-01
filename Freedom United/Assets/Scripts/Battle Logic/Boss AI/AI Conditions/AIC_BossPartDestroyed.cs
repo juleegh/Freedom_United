@@ -8,7 +8,7 @@ public class AIC_BossPartDestroyed : AICondition
 {
     public override bool MeetsRequirement()
     {
-        foreach (PostActionInfo actionInfo in TurnBlackBoard.Instance.Registers)
+        foreach (PostActionInfo actionInfo in TurnBlackBoard.Instance.LastTurnRegisters)
         {
             if (BattleActionsUtils.GetTargetType(actionInfo.actionTarget) == TargetType.BossPart)
             {

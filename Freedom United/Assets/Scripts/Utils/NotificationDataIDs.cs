@@ -12,4 +12,5 @@ public enum NotificationDataIDs
     CellPosition,
 
     Deceased,
+    WasReckless,
 }

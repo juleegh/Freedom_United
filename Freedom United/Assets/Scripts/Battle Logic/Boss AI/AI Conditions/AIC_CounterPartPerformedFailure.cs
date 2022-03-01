@@ -8,7 +8,7 @@ public class AIC_CounterPartPerformedFailure : AICondition
 {
     public override bool MeetsRequirement()
     {
-        foreach (PostActionInfo actionInfo in TurnBlackBoard.Instance.Registers)
+        foreach (PostActionInfo actionInfo in TurnBlackBoard.Instance.LastTurnRegisters)
         {
             if (BattleActionsUtils.GetTargetType(actionInfo.actionOwner) == TargetType.Character && BattleGridUtils.GetCharacterID(actionInfo.actionOwner) == BattleManager.Instance.CharacterManagement.BossConfig.CharacterCounterPart)
             {

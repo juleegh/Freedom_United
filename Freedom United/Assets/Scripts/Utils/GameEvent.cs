@@ -14,6 +14,7 @@ public enum GameNotification
     TurnStartedExecution,
     TurnStarted,
     DefenseWasExecuted,
+    DefenseWasHit,
     RecentDeath,
     CharacterStatsChanged,
     ObstaclesStatsChanged,

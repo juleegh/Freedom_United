@@ -14,7 +14,7 @@ public class AIAttackLastFailed : AIAttackAction
 
     private bool SelectPreviouslyFailed()
     {
-        foreach (PostActionInfo actionInfo in TurnBlackBoard.Instance.Registers)
+        foreach (PostActionInfo actionInfo in TurnBlackBoard.Instance.LastTurnRegisters)
         {
             if (BattleActionsUtils.GetTargetType(actionInfo.actionOwner) == TargetType.BossPart)
             {

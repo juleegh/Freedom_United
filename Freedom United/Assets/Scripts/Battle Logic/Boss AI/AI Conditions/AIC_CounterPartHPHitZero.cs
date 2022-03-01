@@ -7,7 +7,7 @@ public class AIC_CounterPartHPHitZero : AICondition
 {
     public override bool MeetsRequirement()
     {
-        foreach (PostActionInfo actionInfo in TurnBlackBoard.Instance.Registers)
+        foreach (PostActionInfo actionInfo in TurnBlackBoard.Instance.LastTurnRegisters)
         {
             if (BattleActionsUtils.GetTargetType(actionInfo.actionTarget) == TargetType.Character)
             {
