@@ -9,6 +9,7 @@ public enum BattleActionType
     MoveSafely,
     MoveFast,
     Magic,
+    Rotate,
 }
 
 public enum TargetType

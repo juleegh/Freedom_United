@@ -19,6 +19,8 @@ public class BossPartConfig
     [SerializeField] private float baseDefense;
     [SerializeField] private int attackSpeed;
     [SerializeField] private int defenseSpeed;
+    [SerializeField] private int moveSpeed;
+    [SerializeField] private int rotateSpeed;
 
     [SerializeField] private List<SetOfPositions> areasOfEffect;
     [SerializeField] private List<SetOfPositions> shapesOfAttack;
@@ -41,6 +43,8 @@ public class BossPartConfig
     public List<SetOfPositions> ShapesOfAtttack { get { return shapesOfAttack; } }
     public int AttackSpeed { get { return attackSpeed; } }
     public int DefenseSpeed { get { return defenseSpeed; } }
+    public int MoveSpeed { get { return moveSpeed; } }
+    public int RotateSpeed { get { return rotateSpeed; } }
     public BossDefenseType BossDefenseType { get { return bossDefenseType; } }
     public List<BossPartType> DefendedParts { get { return defendedParts; } }
     public float NormalSuccessChance { get { return normalSuccessChance; } }

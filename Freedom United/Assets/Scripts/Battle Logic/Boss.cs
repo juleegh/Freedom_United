@@ -7,6 +7,7 @@ public class Boss
     public Dictionary<BossPartType, BossPart> Parts { get { return parts; } }
     public Vector2Int Orientation { get { return core.Orientation; } }
     public Vector2Int Position { get { return core.Position; } }
+    public BossPart Core { get { return core; } }
     private BossPart core;
     private int fovDepth;
     private int fovWidth;
@@ -45,13 +46,12 @@ public class Boss
         return parts[partType].GetOccupiedPositions();
     }
 
-    public void Rotate()
+    public void Rotate(Vector2Int orientation)
     {
-        Vector2Int orientation = new Vector2Int(core.Orientation.y, -core.Orientation.x);
         core.Rotate(core.GetCenterPosition(), orientation);
         foreach (BossPart part in parts.Values)
         {
-            if (part.ShouldRotate)
+            if (part.RotateWithBody)
                 part.Rotate(core.GetCenterPosition(), orientation);
         }
         GameNotificationsManager.Instance.Notify(GameNotification.FieldOfViewChanged);

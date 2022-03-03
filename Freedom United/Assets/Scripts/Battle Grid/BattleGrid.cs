@@ -97,15 +97,9 @@ public class BattleGrid : MonoBehaviour, NotificationsListener
     {
         hidingPositions.Clear();
         List<Vector2Int> bossFieldOfView = BattleManager.Instance.CharacterManagement.Boss.GetFieldOfView();
-        List<Vector2Int> positionsToCheck = obstacles.Keys.ToList();
+        List<Vector2Int> positionsToCheck = ObstaclePositions;
         Vector2Int bossOrientation = BattleManager.Instance.CharacterManagement.Boss.Orientation;
         Vector2Int bossPosition = BattleManager.Instance.CharacterManagement.Boss.Position;
-
-        foreach (BossPartType obstacle in partObstacles.Keys)
-        {
-            List<Vector2Int> positions = BattleManager.Instance.CharacterManagement.Boss.Parts[obstacle].GetOccupiedPositions();
-            positionsToCheck.AddRange(positions);
-        }
 
         foreach (Vector2Int position in positionsToCheck)
         {
@@ -143,6 +137,20 @@ public class BattleGrid : MonoBehaviour, NotificationsListener
         }
 
         return 0;
+    }
+
+    public List<Vector2Int> ObstaclePositions
+    {
+        get
+        {
+            List<Vector2Int> obstaclePositions = obstacles.Keys.ToList();
+            foreach (BossPartType obstacle in partObstacles.Keys)
+            {
+                List<Vector2Int> positions = BattleManager.Instance.CharacterManagement.Boss.Parts[obstacle].GetOccupiedPositions();
+                obstaclePositions.AddRange(positions);
+            }
+            return obstaclePositions;
+        }
     }
 
     public void AddPartObstacle(BossPartType partType)

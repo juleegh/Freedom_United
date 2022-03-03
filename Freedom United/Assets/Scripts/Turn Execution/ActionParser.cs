@@ -26,6 +26,8 @@ public static class ActionParser
                     return new BossAttackAction(bossAction);
                 case BattleActionType.Defend:
                     return new BossDefenseAction(bossAction);
+                case BattleActionType.Rotate:
+                    return new BossRotateAction(bossAction);
             }
         }
 

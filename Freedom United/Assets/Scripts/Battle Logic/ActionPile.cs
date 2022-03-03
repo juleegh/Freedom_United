@@ -7,6 +7,7 @@ public class ActionPile : MonoBehaviour, NotificationsListener
 {
     private AllyAction currentAction { get { return BattleUINavigation.Instance.NavigationState.currentAction; } }
     private Dictionary<string, List<ScheduledAction>> actionsForTurn;
+    [SerializeField] private int bossActionLimit;
 
     public void ConfigureComponent()
     {
@@ -60,4 +61,22 @@ public class ActionPile : MonoBehaviour, NotificationsListener
             return actionsToShow;
         }
     }
+
+    public bool BossReachedLimit
+    {
+        get
+        {
+            int bossActions = 0;
+            foreach (KeyValuePair<string, List<ScheduledAction>> scheduledActions in actionsForTurn)
+            {
+                if (BattleGridUtils.IsABossPart(scheduledActions.Key))
+                {
+                    bossActions += scheduledActions.Value.Count;
+                }
+            }
+
+            return bossActions >= bossActionLimit;
+        }
+    }
+
 }

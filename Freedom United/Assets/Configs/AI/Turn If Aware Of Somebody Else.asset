@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23beb14b6e99df348ab7faa18e64f5e5, type: 3}
+  m_Name: Turn If Aware Of Somebody Else
+  m_EditorClassIdentifier: 
+  condition: {fileID: 11400000, guid: d5be5d2277240bf4d98688645c20796c, type: 2}
+  attackActions:
+  - {fileID: 11400000, guid: c84edee0b53023545bc0536c81fc682e, type: 2}
+  - {fileID: 11400000, guid: 0bf7d9431063a1c4a99fc5ab6f8df4de, type: 2}
+  - {fileID: 11400000, guid: c931ae8c4a14d0f46b2fb0d5279d255b, type: 2}
+  - {fileID: 11400000, guid: 68a7a7f4b23d32b4bb4290e1307938b3, type: 2}
+  - {fileID: 11400000, guid: 777d1bd9d78488046bde23f33556ae12, type: 2}
+  - {fileID: 11400000, guid: ee13d8b0ee5bf5942829856127a8dcb3, type: 2}

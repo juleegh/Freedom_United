@@ -3,25 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+
+//[CreateAssetMenu(fileName = "AI Turn Option")]
 [Serializable]
-public class AITurnOption
+public class AITurnOption : ScriptableObject
 {
-    [SerializeField] private AICondition condition;
-    [SerializeField] private List<AIAttackAction> attackActions;
+    [SerializeField] protected AICondition condition;
+    [SerializeField] protected List<AITurnAction> attackActions;
 
     public bool CanExecute()
     {
         if (condition == null)
-            return false;
+            return true;
 
         return condition.MeetsRequirement();
     }
 
     public void SelectActions()
     {
-        foreach (AIAttackAction attackAction in attackActions)
+        foreach (AITurnAction attackAction in attackActions)
         {
             attackAction.AddToPile();
+            if (BattleManager.Instance.ActionPile.BossReachedLimit)
+                return;
         }
     }
 }
+

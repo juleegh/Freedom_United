@@ -11,7 +11,7 @@ public class BossPart
     public Vector2Int Position { get { return position; } }
     public int Width { get { return partStats.Dimensions.x; } }
     public int Height { get { return partStats.Dimensions.y; } }
-    public bool ShouldRotate { get { return partStats.RotatesWithBody; } }
+    public bool RotateWithBody { get { return partStats.RotatesWithBody; } }
     public Vector2Int Orientation { get { return orientation; } }
 
     public BossPart(BossPartConfig partStat)

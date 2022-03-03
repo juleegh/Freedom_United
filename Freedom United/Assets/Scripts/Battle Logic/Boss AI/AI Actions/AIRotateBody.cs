@@ -1,0 +1,87 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+//[CreateAssetMenu(fileName = "AI Rotate Body")]
+public class AIRotateBody : AITurnAction
+{
+    protected override void AddToActionPile()
+    {
+        bool result = RotateToCharacter();
+        if (!result)
+            RotateToObstacle();
+    }
+
+    private bool RotateToCharacter()
+    {
+        Vector2Int bossPosition = BattleManager.Instance.CharacterManagement.Boss.Position;
+        Vector2Int bossOrientation = BattleManager.Instance.CharacterManagement.Boss.Orientation;
+        foreach (Character character in BattleManager.Instance.CharacterManagement.Characters.Values)
+        {
+            if (!TurnBlackBoard.Instance.IsAwareOfCharacter(character.CharacterID))
+                continue;
+
+            Vector2Int position = character.CurrentPosition;
+
+            if (BattleManager.Instance.CharacterManagement.Boss.GetFieldOfView().Contains(position))
+                continue;
+
+            if (position.x < bossPosition.x && bossOrientation != Vector2Int.left)
+            {
+                AddRotationActionToPile(BattleManager.Instance.CharacterManagement.Boss.Core, Vector2Int.left);
+                return true;
+            }
+            else if (position.x > bossPosition.x && bossOrientation != Vector2Int.right)
+            {
+                AddRotationActionToPile(BattleManager.Instance.CharacterManagement.Boss.Core, Vector2Int.right);
+                return true;
+            }
+            else if (position.y > bossPosition.y && bossOrientation != Vector2Int.up)
+            {
+                AddRotationActionToPile(BattleManager.Instance.CharacterManagement.Boss.Core, Vector2Int.up);
+                return true;
+            }
+            else if (position.y < bossPosition.y && bossOrientation != Vector2Int.down)
+            {
+                AddRotationActionToPile(BattleManager.Instance.CharacterManagement.Boss.Core, Vector2Int.down);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private bool RotateToObstacle()
+    {
+        Vector2Int bossPosition = BattleManager.Instance.CharacterManagement.Boss.Position;
+        Vector2Int bossOrientation = BattleManager.Instance.CharacterManagement.Boss.Orientation;
+        List<Vector2Int> obstaclePositions = BattleManager.Instance.BattleGrid.ObstaclePositions;
+
+        foreach (Vector2Int obstacle in obstaclePositions)
+        {
+            if (BattleManager.Instance.CharacterManagement.Boss.GetFieldOfView().Contains(obstacle))
+                continue;
+
+            if (obstacle.x < bossPosition.x && bossOrientation != Vector2Int.left)
+            {
+                AddRotationActionToPile(BattleManager.Instance.CharacterManagement.Boss.Core, Vector2Int.left);
+                return true;
+            }
+            else if (obstacle.x > bossPosition.x && bossOrientation != Vector2Int.right)
+            {
+                AddRotationActionToPile(BattleManager.Instance.CharacterManagement.Boss.Core, Vector2Int.right);
+                return true;
+            }
+            else if (obstacle.y > bossPosition.y && bossOrientation != Vector2Int.up)
+            {
+                AddRotationActionToPile(BattleManager.Instance.CharacterManagement.Boss.Core, Vector2Int.up);
+                return true;
+            }
+            else if (obstacle.y < bossPosition.y && bossOrientation != Vector2Int.down)
+            {
+                AddRotationActionToPile(BattleManager.Instance.CharacterManagement.Boss.Core, Vector2Int.down);
+                return true;
+            }
+        }
+        return false;
+    }
+}

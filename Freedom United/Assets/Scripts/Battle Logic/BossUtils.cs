@@ -45,4 +45,19 @@ public static class BossUtils
         Vector2Int yValue = new Vector2Int(orientation.y, -orientation.x) * x;
         return xValue + yValue;
     }
+
+    public static bool PartCanAttackPosition(BossPartType partType, Vector2Int position)
+    {
+        BossPart bossPart = BattleManager.Instance.CharacterManagement.Boss.Parts[partType];
+        List<SetOfPositions> areasOfEffect = BattleManager.Instance.CharacterManagement.BossConfig.PartsList[partType].AreasOfEffect;
+
+        foreach (SetOfPositions areaOfEffect in areasOfEffect)
+        {
+            if (areaOfEffect.PositionInsideArea(position, bossPart.Position, bossPart.Orientation))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }

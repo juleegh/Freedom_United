@@ -2856,6 +2856,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1ac0b92d7590624aab1d3dbac31a77c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bossActionLimit: 0
 --- !u!4 &1006105887
 Transform:
   m_ObjectHideFlags: 0
@@ -3985,41 +3986,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnOptions:
-  - condition: {fileID: 11400000, guid: 94a537459b91a6f4fa6541f39870f482, type: 2}
-    attackActions:
-    - {fileID: 11400000, guid: 9864d2e8b1f2a8a4db8ee75b5c486e3b, type: 2}
-    - {fileID: 11400000, guid: 9864d2e8b1f2a8a4db8ee75b5c486e3b, type: 2}
-    - {fileID: 11400000, guid: 547d895481ec8884a9b249e8ed32bdf1, type: 2}
-  - condition: {fileID: 11400000, guid: d9e5056804dc9004eb45d630cd146b13, type: 2}
-    attackActions:
-    - {fileID: 11400000, guid: 9864d2e8b1f2a8a4db8ee75b5c486e3b, type: 2}
-    - {fileID: 11400000, guid: 9864d2e8b1f2a8a4db8ee75b5c486e3b, type: 2}
-    - {fileID: 11400000, guid: 9864d2e8b1f2a8a4db8ee75b5c486e3b, type: 2}
-  - condition: {fileID: 11400000, guid: 2c9a3d03d83d28e48989e6d08aa7faa2, type: 2}
-    attackActions:
-    - {fileID: 11400000, guid: ff2d250c7b45a624b9e9e50c2e212539, type: 2}
-    - {fileID: 11400000, guid: 5c21a5d2753df5f4b9a8f8103b270608, type: 2}
-    - {fileID: 11400000, guid: 981a1ed1381594c43ba088d94d1df8d3, type: 2}
-  - condition: {fileID: 11400000, guid: 099e287497541d14d96156366306f4c1, type: 2}
-    attackActions:
-    - {fileID: 11400000, guid: 75c2ed3db8bb50243b33b2948050df5e, type: 2}
-    - {fileID: 11400000, guid: 75c2ed3db8bb50243b33b2948050df5e, type: 2}
-    - {fileID: 11400000, guid: 75c2ed3db8bb50243b33b2948050df5e, type: 2}
-  - condition: {fileID: 11400000, guid: affc1622fb83cbb40af3cda871de0526, type: 2}
-    attackActions:
-    - {fileID: 11400000, guid: f119a7b9423919e459965b335aaf12ee, type: 2}
-    - {fileID: 11400000, guid: 9864d2e8b1f2a8a4db8ee75b5c486e3b, type: 2}
-    - {fileID: 11400000, guid: ff2d250c7b45a624b9e9e50c2e212539, type: 2}
-  - condition: {fileID: 11400000, guid: f7980dcaf327df34fb22f1b24609bca8, type: 2}
-    attackActions:
-    - {fileID: 11400000, guid: ff2d250c7b45a624b9e9e50c2e212539, type: 2}
-    - {fileID: 11400000, guid: 9864d2e8b1f2a8a4db8ee75b5c486e3b, type: 2}
-    - {fileID: 11400000, guid: 981a1ed1381594c43ba088d94d1df8d3, type: 2}
-  - condition: {fileID: 11400000, guid: c33744ca461e81245ae6ab3781bbe31b, type: 2}
-    attackActions:
-    - {fileID: 11400000, guid: b695b164c70f25a4c88b73c3c42e3feb, type: 2}
-    - {fileID: 11400000, guid: b695b164c70f25a4c88b73c3c42e3feb, type: 2}
-    - {fileID: 11400000, guid: b695b164c70f25a4c88b73c3c42e3feb, type: 2}
+  - {fileID: 11400000, guid: c8c68cd5de200ea42831299b7a4b091d, type: 2}
+  - {fileID: 11400000, guid: 2cbb4efd66044754c8746a28674b99f2, type: 2}
+  - {fileID: 11400000, guid: f55e76dd8fe6d0048bf98eef99116001, type: 2}
 --- !u!1 &1422690367
 GameObject:
   m_ObjectHideFlags: 0
