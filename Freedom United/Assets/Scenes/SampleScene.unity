@@ -2856,7 +2856,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1ac0b92d7590624aab1d3dbac31a77c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossActionLimit: 0
+  bossActionLimit: 3
 --- !u!4 &1006105887
 Transform:
   m_ObjectHideFlags: 0

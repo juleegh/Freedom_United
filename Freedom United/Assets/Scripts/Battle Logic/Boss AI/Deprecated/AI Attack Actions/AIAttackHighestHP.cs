@@ -27,7 +27,7 @@ public class AIAttackHighestHP : AITurnAction
         }
 
         BossPart attackingPart = BossUtils.GetPartWhoCanAttackPosition(positionToAttack);
-        SetOfPositions usedAreaOfEffect = null;
+        BossAttackInfo usedAreaOfEffect = null;
 
         if (attackingPart != null)
         {

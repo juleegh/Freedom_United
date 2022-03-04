@@ -19,7 +19,7 @@ public class BossAction : ScheduledAction
 
             Vector2Int currentPartPosition = BattleManager.Instance.CharacterManagement.Boss.Parts[actionOwner].Position;
             Vector2Int currentPartOrientation = BattleManager.Instance.CharacterManagement.Boss.Parts[actionOwner].Orientation;
-            return deltaOfAction.GetPositions(currentPartPosition, currentPartOrientation);
+            return deltaOfAction.GetPositions(currentPartPosition + position, currentPartOrientation);
         }
     }
 }

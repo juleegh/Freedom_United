@@ -33,6 +33,17 @@ public class SetOfPositions
         return transformed;
     }
 
+    public List<Vector2Int> GetRotatedDeltasWithPivot(Vector2Int pivot, Vector2Int orientation)
+    {
+        List<Vector2Int> transformed = new List<Vector2Int>();
+        foreach (Vector2Int pos in positions)
+        {
+            Vector2Int affectedPosition = BossUtils.GetOrientedTransformation(orientation, pos.x, pos.y);
+            transformed.Add(affectedPosition + pivot);
+        }
+        return transformed;
+    }
+
     public List<Vector2Int> GetPositions(Vector2Int pivot, Vector2Int orientation)
     {
         List<Vector2Int> transformed = new List<Vector2Int>();

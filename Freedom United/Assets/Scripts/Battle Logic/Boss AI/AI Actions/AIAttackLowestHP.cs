@@ -37,7 +37,7 @@ public class AIAttackLowestHP : AITurnAction
             return found;
 
         BossPart attackingPart = BossUtils.GetPartWhoCanAttackPosition(positionToAttack);
-        SetOfPositions usedAreaOfEffect = BossUtils.GetAreaOfEffectForPosition(attackingPart, positionToAttack);
+        BossAttackInfo usedAreaOfEffect = BossUtils.GetAreaOfEffectForPosition(attackingPart, positionToAttack);
         AddAttackActionToPile(attackingPart, usedAreaOfEffect);
         return true;
     }

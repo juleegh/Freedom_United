@@ -31,7 +31,7 @@ public class AIAttackLastFailed : AITurnAction
                     Vector2Int positionToAttack = BattleManager.Instance.CharacterManagement.Characters[characterAttack].CurrentPosition;
 
                     BossPart attackingPart = BossUtils.GetPartWhoCanAttackPosition(positionToAttack);
-                    SetOfPositions usedAreaOfEffect = null;
+                    BossAttackInfo usedAreaOfEffect = null;
 
                     if (attackingPart != null)
                     {

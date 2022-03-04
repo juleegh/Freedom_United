@@ -23,7 +23,7 @@ public class AIAttackAnyObstacle : AITurnAction
             BossPart attackingPart = BossUtils.GetPartWhoCanAttackPosition(randomPosition);
             if (attackingPart != null)
             {
-                SetOfPositions usedAreaOfEffect = BossUtils.GetAreaOfEffectForPosition(attackingPart, randomPosition);
+                BossAttackInfo usedAreaOfEffect = BossUtils.GetAreaOfEffectForPosition(attackingPart, randomPosition);
                 AddAttackActionToPile(attackingPart, usedAreaOfEffect);
                 return true;
             }

@@ -60,16 +60,9 @@ public class AIRandomAttackWithChances : AITurnAction
             randomnessCounter += probabilities[prospect];
             if (randomnessCounter <= attackRandomIndex)
             {
-                List<SetOfPositions> areasOfEffect = BattleManager.Instance.CharacterManagement.BossConfig.PartsList[prospect].AreasOfEffect;
-
-                foreach (SetOfPositions areaOfEffect in areasOfEffect)
-                {
-                    if (areaOfEffect.PositionInsideArea(characterPosition, bossPart.Position, bossPart.Orientation))
-                    {
-                        AddAttackActionToPile(bossPart, areaOfEffect);
-                        return true;
-                    }
-                }
+                BossAttackInfo usedAreaOfEffect = BossUtils.GetAreaOfEffectForPosition(bossPart, characterPosition);
+                AddAttackActionToPile(bossPart, usedAreaOfEffect);
+                return true;
             }
         }
 

@@ -49,17 +49,23 @@ MonoBehaviour:
       baseDefense: 0
       attackSpeed: 8
       defenseSpeed: 0
+      moveSpeed: 0
+      rotateSpeed: 0
       areasOfEffect:
       - positions:
         - {x: 0, y: 1}
         - {x: -1, y: 1}
         - {x: -2, y: 1}
-        - {x: 1, y: -4}
-        - {x: 0, y: -5}
-        - {x: -2, y: -5}
-        - {x: 0, y: -6}
-        - {x: -2, y: -6}
-      shapesOfAttack: []
+      shapesOfAttack:
+      - positions:
+        - {x: 0, y: 0}
+        - {x: -1, y: 0}
+        - {x: -2, y: 0}
+        - {x: 1, y: 1}
+        - {x: 0, y: 1}
+        - {x: -1, y: 1}
+        - {x: -2, y: 1}
+        - {x: -3, y: 1}
       bossDefenseType: 0
       defendedParts: 
       normalSuccessChance: 0.8
@@ -75,6 +81,8 @@ MonoBehaviour:
       baseDefense: 10
       attackSpeed: 9
       defenseSpeed: 15
+      moveSpeed: 0
+      rotateSpeed: 0
       areasOfEffect:
       - positions:
         - {x: 1, y: 0}
@@ -86,7 +94,10 @@ MonoBehaviour:
         - {x: 0, y: 1}
         - {x: -1, y: 1}
         - {x: -2, y: 1}
-      shapesOfAttack: []
+      shapesOfAttack:
+      - positions:
+        - {x: 0, y: 0}
+        - {x: -1, y: 0}
       bossDefenseType: 2
       defendedParts: 03000000
       normalSuccessChance: 0.7
@@ -102,6 +113,8 @@ MonoBehaviour:
       baseDefense: 10
       attackSpeed: 9
       defenseSpeed: 15
+      moveSpeed: 0
+      rotateSpeed: 0
       areasOfEffect:
       - positions:
         - {x: 2, y: 1}
@@ -112,7 +125,10 @@ MonoBehaviour:
         - {x: -2, y: 0}
         - {x: -2, y: -1}
         - {x: -1, y: -2}
-      shapesOfAttack: []
+      shapesOfAttack:
+      - positions:
+        - {x: 0, y: 0}
+        - {x: 1, y: 0}
       bossDefenseType: 2
       defendedParts: 03000000
       normalSuccessChance: 0.7
@@ -128,6 +144,8 @@ MonoBehaviour:
       baseDefense: 60
       attackSpeed: 20
       defenseSpeed: 20
+      moveSpeed: 0
+      rotateSpeed: 0
       areasOfEffect:
       - positions:
         - {x: 1, y: 0}
@@ -137,7 +155,9 @@ MonoBehaviour:
         - {x: 2, y: -1}
       - positions:
         - {x: -2, y: -3}
-      shapesOfAttack: []
+      shapesOfAttack:
+      - positions:
+        - {x: 0, y: 0}
       bossDefenseType: 2
       defendedParts: 0400000003000000
       normalSuccessChance: 0.6
@@ -153,6 +173,8 @@ MonoBehaviour:
       baseDefense: 60
       attackSpeed: 20
       defenseSpeed: 20
+      moveSpeed: 0
+      rotateSpeed: 0
       areasOfEffect:
       - positions:
         - {x: -1, y: 0}
@@ -162,7 +184,9 @@ MonoBehaviour:
         - {x: -2, y: -1}
       - positions:
         - {x: 2, y: -3}
-      shapesOfAttack: []
+      shapesOfAttack:
+      - positions:
+        - {x: 0, y: 0}
       bossDefenseType: 2
       defendedParts: 0300000005000000
       normalSuccessChance: 0.6

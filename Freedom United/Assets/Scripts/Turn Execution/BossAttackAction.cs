@@ -5,7 +5,8 @@ using System.Collections.Generic;
 public class BossAttackAction : ExecutingAction
 {
     private BossPartType attackingPart;
-    private SetOfPositions selectedArea;
+    private Vector2Int pivot;
+    private SetOfPositions attackShape;
 
     private float damageTaken;
 
@@ -15,7 +16,8 @@ public class BossAttackAction : ExecutingAction
     {
         attackingPart = scheduledAction.actionOwner;
         damageTaken = BattleManager.Instance.CharacterManagement.BossConfig.PartsList[attackingPart].BaseAttack;
-        selectedArea = scheduledAction.deltaOfAction;
+        attackShape = scheduledAction.deltaOfAction;
+        pivot = scheduledAction.position;
         chanceResult = Random.Range(0f, 1f);
     }
 
@@ -23,10 +25,11 @@ public class BossAttackAction : ExecutingAction
     {
         Vector2Int currentPartPosition = BattleManager.Instance.CharacterManagement.Boss.Parts[attackingPart].Position;
         Vector2Int currentPartOrientation = BattleManager.Instance.CharacterManagement.Boss.Parts[attackingPart].Orientation;
-        List<Vector2Int> attackedPositions = selectedArea.GetPositions(currentPartPosition, currentPartOrientation);
+        List<Vector2Int> attackedPositions = attackShape.GetRotatedDeltasWithPivot(pivot, currentPartOrientation);
 
-        foreach (Vector2Int attackedPosition in attackedPositions)
+        foreach (Vector2Int attackPosition in attackedPositions)
         {
+            Vector2Int attackedPosition = attackPosition + currentPartPosition;
             GameNotificationData attackData = new GameNotificationData();
 
             attackData.Data[NotificationDataIDs.ActionOwner] = attackingPart.ToString();

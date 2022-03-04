@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   condition: {fileID: 11400000, guid: a8662fb3644b587489e2f89ff7decb59, type: 2}
   attackActions:
-  - {fileID: 11400000, guid: 968abfc4931a19d4fa2d853877b30674, type: 2}
-  - {fileID: 11400000, guid: 968abfc4931a19d4fa2d853877b30674, type: 2}
-  - {fileID: 11400000, guid: 7b6fd4fd180489f42b4683f9e7c5dd22, type: 2}
+  - {fileID: 11400000, guid: 33cc1fc85ea234b4cbe8ecf5e6dce541, type: 2}
+  - {fileID: 11400000, guid: 33cc1fc85ea234b4cbe8ecf5e6dce541, type: 2}
+  - {fileID: 11400000, guid: da3a22faf5e9f5f4a8b5003a24aa03bf, type: 2}

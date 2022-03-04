@@ -17,26 +17,38 @@ public class AIAttackWithBody : AITurnAction
 
     private bool SelectToAttackInFront()
     {
-        int possibleAttacks = 0;
         BossPart core = BattleManager.Instance.CharacterManagement.Boss.Core;
         BossPartType coreType = core.PartType;
-        List<SetOfPositions> areasOfEffect = BattleManager.Instance.CharacterManagement.BossConfig.PartsList[coreType].AreasOfEffect;
+        BossPartConfig config = BattleManager.Instance.CharacterManagement.BossConfig.PartsList[coreType];
+        List<SetOfPositions> areasOfEffect = config.AreasOfEffect;
 
         foreach (SetOfPositions areaOfEffect in areasOfEffect)
         {
-            foreach (Character character in BattleManager.Instance.CharacterManagement.Characters.Values)
-            {
-                Vector2Int characterPos = character.CurrentPosition;
-                if (areaOfEffect.PositionInsideArea(characterPos, core.Position, core.Orientation))
-                {
-                    possibleAttacks++;
-                }
-            }
+            List<Vector2Int> pivots = areaOfEffect.GetPositions(core.Position, core.Orientation);
 
-            if (possibleAttacks >= unitsToAttack)
+            foreach (SetOfPositions attackShape in config.ShapesOfAtttack)
             {
-                AddAttackActionToPile(core, areaOfEffect);
-                return true;
+                foreach (Vector2Int pivot in pivots)
+                {
+                    int possibleAttacks = 0;
+                    List<Vector2Int> attackPositions = attackShape.GetRotatedDeltasWithPivot(pivot, core.Orientation);
+                    foreach (Character character in BattleManager.Instance.CharacterManagement.Characters.Values)
+                    {
+                        Vector2Int characterPos = character.CurrentPosition;
+                        if (attackPositions.Contains(characterPos))
+                        {
+                            possibleAttacks++;
+                            if (possibleAttacks >= unitsToAttack)
+                            {
+                                BossAttackInfo attackInfo = new BossAttackInfo();
+                                attackInfo.pivotDelta = pivot - core.Position;
+                                attackInfo.attackShape = attackShape;
+                                AddAttackActionToPile(core, attackInfo);
+                                return true;
+                            }
+                        }
+                    }
+                }
             }
         }
 

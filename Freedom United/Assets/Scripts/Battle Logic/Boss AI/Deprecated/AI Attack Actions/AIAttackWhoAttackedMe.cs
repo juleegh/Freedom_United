@@ -48,7 +48,7 @@ public class AIAttackWhoAttackedMe : AITurnAction
 
         if (partWillAttack != null)
         {
-            SetOfPositions usedAreaOfEffect = BossUtils.GetAreaOfEffectForPosition(partWillAttack, positionToAttack);
+            BossAttackInfo usedAreaOfEffect = BossUtils.GetAreaOfEffectForPosition(partWillAttack, positionToAttack);
             AddAttackActionToPile(partWillAttack, usedAreaOfEffect);
             return true;
         }

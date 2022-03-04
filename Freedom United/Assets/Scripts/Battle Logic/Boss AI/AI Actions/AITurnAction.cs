@@ -32,7 +32,7 @@ public class AITurnAction : ScriptableObject
         Vector2Int counterPartPosition = BattleManager.Instance.CharacterManagement.Characters[counterPart].CurrentPosition;
 
         BossPart attackingPart = BossUtils.GetPartWhoCanAttackPosition(counterPartPosition);
-        SetOfPositions usedAreaOfEffect = null;
+        BossAttackInfo usedAreaOfEffect = null;
 
         if (attackingPart != null)
         {
@@ -73,11 +73,12 @@ public class AITurnAction : ScriptableObject
         return false;
     }
 
-    protected void AddAttackActionToPile(BossPart bossPart, SetOfPositions areaOfEffect)
+    protected void AddAttackActionToPile(BossPart bossPart, BossAttackInfo areaOfEffect)
     {
         BossAction currentAction = new BossAction();
         currentAction.actionOwner = bossPart.PartType;
-        currentAction.deltaOfAction = areaOfEffect;
+        currentAction.deltaOfAction = areaOfEffect.attackShape;
+        currentAction.position = areaOfEffect.pivotDelta;
         currentAction.actionType = BattleActionType.Attack;
         currentAction.speed = BattleManager.Instance.CharacterManagement.BossConfig.PartsList[bossPart.PartType].AttackSpeed;
         BattleManager.Instance.ActionPile.AddActionToPile(currentAction);

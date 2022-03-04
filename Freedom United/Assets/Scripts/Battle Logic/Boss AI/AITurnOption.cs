@@ -25,7 +25,9 @@ public class AITurnOption : ScriptableObject
         {
             attackAction.AddToPile();
             if (BattleManager.Instance.ActionPile.BossReachedLimit)
+            {
                 return;
+            }
         }
     }
 }
