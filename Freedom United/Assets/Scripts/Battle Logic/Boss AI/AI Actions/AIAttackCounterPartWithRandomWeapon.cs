@@ -15,7 +15,7 @@ public class AIAttackCounterPartWithRandomWeapon : AITurnAction
     {
         CharacterID counterPart = BattleManager.Instance.CharacterManagement.BossConfig.CharacterCounterPart;
 
-        if (!BattleManager.Instance.BattleValues.IsAlive(counterPart))
+        if (!BattleManager.Instance.BattleValues.IsAlive(counterPart) || !TurnBlackBoard.Instance.IsAwareOfCharacter(counterPart))
             return false;
 
         Vector2Int counterPartPosition = BattleManager.Instance.CharacterManagement.Characters[counterPart].CurrentPosition;
