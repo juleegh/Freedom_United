@@ -16,5 +16,6 @@ public class BossRotateAction : ExecutingAction
     public override void Execute()
     {
         BattleManager.Instance.CharacterManagement.Boss.Rotate(rotation);
+        GameNotificationsManager.Instance.Notify(GameNotification.BossMoved);
     }
 }

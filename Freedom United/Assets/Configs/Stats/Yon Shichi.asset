@@ -20,7 +20,7 @@ MonoBehaviour:
   normalSuccessChance: 0.7
   criticalSuccessChance: 0.25
   criticalFailureChance: 0.05
-  baseDefense: 45
+  baseDefense: 450
   attackSpeed: 5
   defenseSpeed: 20
   recklessChangeSpeed: 10

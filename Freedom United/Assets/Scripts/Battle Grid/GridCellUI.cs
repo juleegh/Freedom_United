@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GridCellUI : MonoBehaviour
 {
+    [SerializeField] private Sprite obstacle;
+    [SerializeField] private Sprite empty;
     [SerializeField] private SpriteRenderer highlight;
     [SerializeField] private SpriteRenderer background;
     [SerializeField] private AttackInfoPrompt failPrompt;
@@ -22,7 +24,7 @@ public class GridCellUI : MonoBehaviour
     public void Refresh(CellType cellTypeDefined)
     {
         cellType = cellTypeDefined;
-        background.color = cellTypeDefined != CellType.Available ? Color.gray : Color.black;
+        background.sprite = cellTypeDefined != CellType.Available ? obstacle : empty;
         highlight.color = transparent;
     }
 
@@ -44,6 +46,7 @@ public class GridCellUI : MonoBehaviour
                 break;
             case BattleActionType.MoveSafely:
             case BattleActionType.MoveFast:
+            case BattleActionType.Rotate:
                 color = moveColor;
                 break;
         }

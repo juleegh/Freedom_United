@@ -67,7 +67,7 @@ public class Boss
 
         for (int depth = 1; depth <= fovDepth; depth++)
         {
-            for (int width = -fovWidth * depth; width <= fovWidth * depth; width++)
+            for (int width = -fovWidth * depth - 1; width <= fovWidth * depth + 1; width++)
             {
                 Vector2Int delta = horizontaldelta * width + verticaldelta * -depth;
                 FoV.Add(nosePosition + delta);

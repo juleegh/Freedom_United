@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackRange: 2
   attackType: 1
-  baseHealth: 70
+  baseHealth: 100
   baseWillPower: 70
   baseAttack: 30
   normalSuccessChance: 0.8
   criticalSuccessChance: 0.1
   criticalFailureChance: 0.1
-  baseDefense: 60
+  baseDefense: 800
   attackSpeed: 10
   defenseSpeed: 5
   recklessChangeSpeed: 20

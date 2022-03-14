@@ -666,7 +666,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: db750325989564987a34393247d883b4, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -778,6 +778,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1716f9476841e754396667015b3e6338, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  obstacle: {fileID: 3557687265762168066, guid: 5bdd7ec4c7b73a744a86eb798c751920, type: 3}
+  empty: {fileID: 2360578758331838590, guid: 5bdd7ec4c7b73a744a86eb798c751920, type: 3}
   highlight: {fileID: 1605697010341962611}
   background: {fileID: 2080421442078325148}
   failPrompt: {fileID: 6275880816405837516}

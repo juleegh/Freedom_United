@@ -17,6 +17,9 @@ public class BossAction : ScheduledAction
             if (actionType == BattleActionType.Defend)
                 return deltaOfAction.Positions;
 
+            if (actionType == BattleActionType.Rotate)
+                return BattleManager.Instance.CharacterManagement.Boss.GetPositionsOccupiedByPart(actionOwner);
+
             Vector2Int currentPartPosition = BattleManager.Instance.CharacterManagement.Boss.Parts[actionOwner].Position;
             Vector2Int currentPartOrientation = BattleManager.Instance.CharacterManagement.Boss.Parts[actionOwner].Orientation;
             return deltaOfAction.GetPositions(currentPartPosition + position, currentPartOrientation);
