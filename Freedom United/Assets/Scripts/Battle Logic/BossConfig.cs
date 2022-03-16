@@ -34,7 +34,16 @@ public class BossConfig : ScriptableObject
         }
     }
 
+    //[ContextMenu("Fill Positions")]
+    public void FillPositions()
+    {
+        foreach (BossPartConfig config in bossParts.Values)
+        {
+            config.FillPositions();
+        }
+    }
 }
+
 
 [Serializable]
 public class BossParts : SerializableDictionaryBase<BossPartType, BossPartConfig> { }

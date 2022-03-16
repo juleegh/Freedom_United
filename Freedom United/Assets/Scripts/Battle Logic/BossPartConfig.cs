@@ -50,4 +50,12 @@ public class BossPartConfig
     public float NormalSuccessChance { get { return normalSuccessChance; } }
     public float CriticalSuccessChance { get { return criticalFailureChance; } }
     public float CriticalFailureChance { get { return criticalFailureChance; } }
+
+    public void FillPositions()
+    {
+        foreach (SetOfPositions set in areasOfEffect)
+            set.FillPositions();
+        foreach (SetOfPositions set in shapesOfAttack)
+            set.FillPositions();
+    }
 }
