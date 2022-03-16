@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 using System;
 
 public static class BattleGridUtils
@@ -12,6 +13,8 @@ public static class BattleGridUtils
     public static float DestroyingBodyPartWillPercentage { get { return 0.1f; } }
     public static float BossCriticalDamageMultiplier { get { return 1.25f; } }
     public static float CharacterCriticalDamageMultiplier { get { return 1.5f; } }
+    private static int Width { get { return BattleManager.Instance.BattleGrid.Width; } }
+    private static int Height { get { return BattleManager.Instance.BattleGrid.Height; } }
 
     public static Vector3 TranslatedPosition(Vector2Int original, float heightDelta)
     {
@@ -93,5 +96,26 @@ public static class BattleGridUtils
         }
 
         return 0;
+    }
+
+    public static List<Vector2Int> GetAdjacentPositions(Vector2Int center)
+    {
+        List<Vector2Int> adjacent = new List<Vector2Int>();
+        for (int rowDelta = -1; rowDelta <= 1; rowDelta++)
+        {
+            for (int columnDelta = -1; columnDelta <= 1; columnDelta++)
+            {
+                Vector2Int delta = new Vector2Int(columnDelta, rowDelta);
+                if (delta == Vector2Int.zero)
+                    continue;
+
+                Vector2Int position = center + delta;
+                if (position.x < 0 || position.x >= Width || position.y < 0 || position.y >= Height)
+                    continue;
+
+                adjacent.Add(position);
+            }
+        }
+        return adjacent;
     }
 }

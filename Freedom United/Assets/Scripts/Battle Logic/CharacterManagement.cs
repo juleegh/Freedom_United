@@ -62,4 +62,28 @@ public class CharacterManagement : MonoBehaviour, NotificationsListener
 
         return null;
     }
+
+    public void CheckForCharactersUnderBoss()
+    {
+        foreach (Character character in characters.Values)
+        {
+            Vector2Int characterPosition = character.CurrentPosition;
+            if (GetBossPartInPosition(characterPosition) != null)
+            {
+                List<Vector2Int> availablePos = BattleGridUtils.GetAdjacentPositions(characterPosition);
+                foreach (Vector2Int pos in availablePos)
+                {
+                    if (BattleManager.Instance.BattleGrid.ObstaclePositions.Contains(pos))
+                        continue;
+
+                    if (GetBossPartInPosition(pos) != null || GetCharacterInPosition(pos) != null)
+                        continue;
+
+                    character.MoveToPosition(pos);
+                    BattleManager.Instance.BattleValues.CharacterTakeDamage(character.CharacterID, 15);
+                    break;
+                }
+            }
+        }
+    }
 }
