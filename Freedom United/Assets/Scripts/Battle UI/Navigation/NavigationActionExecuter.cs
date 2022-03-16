@@ -59,6 +59,8 @@ public class NavigationActionExecuter
 
                 navigationState.currentLevel = BattleSelectionLevel.Cell;
                 Vector2Int position = BattleManager.Instance.BattleGrid.PositionsInRange[0];
+                if (navigationState.ActionSelection.ActionSelected == BattleActionType.MoveSafely || navigationState.ActionSelection.ActionSelected == BattleActionType.MoveFast)
+                    position = BattleManager.Instance.CharacterManagement.Characters[navigationState.CharacterSelection.CharacterID].CurrentPosition;
                 navigationState.currentAction.position = position;
                 navigationState.CellSelection.Toggle(true);
                 navigationState.CellSelection.Initialize(position);
