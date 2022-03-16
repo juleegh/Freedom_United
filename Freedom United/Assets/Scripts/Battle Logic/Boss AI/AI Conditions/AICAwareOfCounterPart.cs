@@ -8,6 +8,7 @@ public class AICAwareOfCounterPart : AICondition
     public override bool MeetsRequirement()
     {
         CharacterID counterPart = BattleManager.Instance.CharacterManagement.BossConfig.CharacterCounterPart;
-        return BattleManager.Instance.BattleValues.IsAlive(counterPart) && TurnBlackBoard.Instance.IsAwareOfCharacter(counterPart);
+        Vector2Int counterPosition = BattleManager.Instance.CharacterManagement.Characters[counterPart].CurrentPosition;
+        return BattleManager.Instance.BattleValues.IsAlive(counterPart) && TurnBlackBoard.Instance.IsAwareOfCharacter(counterPart) && BossUtils.GetPartWhoCanAttackPosition(counterPosition) != null;
     }
 }
