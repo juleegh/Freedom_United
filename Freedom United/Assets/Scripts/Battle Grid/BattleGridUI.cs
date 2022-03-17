@@ -73,16 +73,16 @@ public class BattleGridUI : MonoBehaviour, NotificationsListener
 
     private void RefreshCharacters(GameNotificationData notificationData)
     {
-        foreach (KeyValuePair<CharacterID, Character> character in BattleManager.Instance.CharacterManagement.Characters)
+        CharacterVisuals characterVisuals = characters[(CharacterID)notificationData.Data[NotificationDataIDs.ActionOwner]];
+        Vector3 currentPosition = characterVisuals.transform.position;
+        Vector2Int newPosition = (Vector2Int)notificationData.Data[NotificationDataIDs.CellPosition];
+        Vector3 nextPosition = BattleGridUtils.TranslatedPosition(newPosition, charactersHeightOnBoard);
+
+        grid[BattleGridUtils.GridPosition(currentPosition)].PromptMove();
+        characterVisuals.transform.position = nextPosition;
+        if ((bool)notificationData.Data[NotificationDataIDs.WasPushed])
         {
-            CharacterVisuals characterVisuals = characters[character.Key];
-            Vector3 currentPosition = characterVisuals.transform.position;
-            Vector3 nextPosition = BattleGridUtils.TranslatedPosition(character.Value.CurrentPosition, charactersHeightOnBoard);
-            if (!Mathf.Approximately(Vector3.Distance(currentPosition, nextPosition), 0f))
-            {
-                grid[BattleGridUtils.GridPosition(currentPosition)].PromptMove();
-                characterVisuals.transform.position = nextPosition;
-            }
+            grid[newPosition].PromptDamage(15);
         }
         UpdateDefenseInBoard();
     }

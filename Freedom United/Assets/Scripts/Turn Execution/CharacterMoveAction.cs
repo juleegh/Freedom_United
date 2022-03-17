@@ -34,6 +34,7 @@ public class CharacterMoveAction : ExecutingAction
             notificationData.Data[NotificationDataIDs.ActionOwner] = targetCharacter.CharacterID;
             notificationData.Data[NotificationDataIDs.CellPosition] = originPosition;
             notificationData.Data[NotificationDataIDs.WasReckless] = !isSafe;
+            notificationData.Data[NotificationDataIDs.WasPushed] = !isSafe;
             GameNotificationsManager.Instance.Notify(GameNotification.CharacterMoved, notificationData);
         }
 
@@ -42,6 +43,7 @@ public class CharacterMoveAction : ExecutingAction
         notificationData.Data[NotificationDataIDs.ActionOwner] = movingCharacter;
         notificationData.Data[NotificationDataIDs.CellPosition] = finalPosition;
         notificationData.Data[NotificationDataIDs.WasReckless] = !isSafe;
+        notificationData.Data[NotificationDataIDs.WasPushed] = false;
         GameNotificationsManager.Instance.Notify(GameNotification.CharacterMoved, notificationData);
     }
 }

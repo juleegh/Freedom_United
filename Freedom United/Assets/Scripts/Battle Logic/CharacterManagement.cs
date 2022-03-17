@@ -81,6 +81,14 @@ public class CharacterManagement : MonoBehaviour, NotificationsListener
 
                     character.MoveToPosition(pos);
                     BattleManager.Instance.BattleValues.CharacterTakeDamage(character.CharacterID, 15);
+
+                    GameNotificationData notificationData = new GameNotificationData();
+                    notificationData.Data[NotificationDataIDs.ActionOwner] = character.CharacterID;
+                    notificationData.Data[NotificationDataIDs.CellPosition] = pos;
+                    notificationData.Data[NotificationDataIDs.WasReckless] = true;
+                    notificationData.Data[NotificationDataIDs.WasPushed] = true;
+                    GameNotificationsManager.Instance.Notify(GameNotification.CharacterMoved, notificationData);
+
                     break;
                 }
             }

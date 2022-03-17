@@ -13,4 +13,5 @@ public enum NotificationDataIDs
 
     Deceased,
     WasReckless,
+    WasPushed,
 }
