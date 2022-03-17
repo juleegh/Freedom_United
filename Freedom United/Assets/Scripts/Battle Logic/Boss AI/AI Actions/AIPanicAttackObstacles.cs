@@ -60,7 +60,7 @@ public class AIPanicAttackObstacles : AITurnAction
         orientations.Add(Vector2Int.left);
         orientations.Add(Vector2Int.right);
         orientations.Remove(BattleManager.Instance.CharacterManagement.Boss.Orientation);
-        BattleManager.Instance.CharacterManagement.Boss.Rotate(orientations[Random.Range(0, 3)]);
+        AddRotationActionToPile(BattleManager.Instance.CharacterManagement.Boss.Core, orientations[Random.Range(0, 3)]);
     }
 
     private void RotateEverything()
@@ -76,7 +76,7 @@ public class AIPanicAttackObstacles : AITurnAction
             orientations.Add(Vector2Int.left);
             orientations.Add(Vector2Int.right);
             orientations.Remove(bossPart.Orientation);
-            bossPart.Rotate(bossPart.Position, orientations[Random.Range(0, 3)]);
+            AddRotationActionToPile(bossPart, orientations[Random.Range(0, 3)]);
         }
     }
 }
