@@ -48,12 +48,21 @@ public class Boss
 
     public void Rotate(Vector2Int orientation)
     {
-        core.Rotate(core.GetCenterPosition(), orientation);
-        foreach (BossPart part in parts.Values)
+        bool finishedSteps = false;
+        while (!finishedSteps)
         {
-            if (part.RotateWithBody)
-                part.Rotate(core.GetCenterPosition(), orientation);
+            Vector2Int nextOrientation = new Vector2Int(Orientation.y, -Orientation.x);
+            core.Rotate(core.GetCenterPosition(), nextOrientation);
+            foreach (BossPart part in parts.Values)
+            {
+                if (part.RotateWithBody)
+                    part.Rotate(core.GetCenterPosition(), nextOrientation);
+            }
+
+            if (nextOrientation == orientation)
+                finishedSteps = true;
         }
+
         GameNotificationsManager.Instance.Notify(GameNotification.FieldOfViewChanged);
     }
 
