@@ -82,6 +82,7 @@ public class AITurnAction : ScriptableObject
         currentAction.actionType = BattleActionType.Attack;
         currentAction.speed = BattleManager.Instance.CharacterManagement.BossConfig.PartsList[bossPart.PartType].AttackSpeed;
         BattleManager.Instance.ActionPile.AddActionToPile(currentAction);
+        Debug.LogError("-- Attack Action Added: " + GetType());
     }
 
     protected void AddDefenseActionToPile(BossPart bossPart, SetOfPositions areaOfEffect)
@@ -92,6 +93,7 @@ public class AITurnAction : ScriptableObject
         currentAction.actionType = BattleActionType.Defend;
         currentAction.speed = BattleManager.Instance.CharacterManagement.BossConfig.PartsList[bossPart.PartType].DefenseSpeed;
         BattleManager.Instance.ActionPile.AddActionToPile(currentAction);
+        Debug.LogError("-- Defense Action Added: " + GetType());
     }
 
     protected void AddRotationActionToPile(BossPart bossPart, Vector2Int rotation)
@@ -102,5 +104,6 @@ public class AITurnAction : ScriptableObject
         currentAction.actionType = BattleActionType.Rotate;
         currentAction.speed = BattleManager.Instance.CharacterManagement.BossConfig.PartsList[bossPart.PartType].RotateSpeed;
         BattleManager.Instance.ActionPile.AddActionToPile(currentAction);
+        Debug.LogError("-- Rotation Action Added: " + GetType());
     }
 }
