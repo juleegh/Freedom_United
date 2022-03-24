@@ -57,8 +57,6 @@ public class BossPart
         Vector2Int distanceFromPivot = center - pivot;
         Vector2Int pivotTransformation = new Vector2Int(distanceFromPivot.y - distanceFromPivot.x, -(distanceFromPivot.x + distanceFromPivot.y));
         position = orientedTransformation + pivotTransformation;
-
-        BattleManager.Instance.CharacterManagement.CheckForCharactersUnderBoss();
     }
 
     public Vector2Int GetCenterPosition()

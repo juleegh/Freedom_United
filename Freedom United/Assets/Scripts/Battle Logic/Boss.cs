@@ -46,23 +46,29 @@ public class Boss
         return parts[partType].GetOccupiedPositions();
     }
 
-    public void Rotate(Vector2Int orientation)
+    public void Rotate(BossPart bossPart, Vector2Int orientation)
     {
-        bool finishedSteps = false;
-        while (!finishedSteps)
+        if (bossPart.PartType == core.PartType)
         {
-            Vector2Int nextOrientation = new Vector2Int(Orientation.y, -Orientation.x);
-            core.Rotate(core.GetCenterPosition(), nextOrientation);
-            foreach (BossPart part in parts.Values)
+            bool finishedSteps = false;
+            while (!finishedSteps)
             {
-                if (part.RotateWithBody)
-                    part.Rotate(core.GetCenterPosition(), nextOrientation);
+                Vector2Int nextOrientation = new Vector2Int(Orientation.y, -Orientation.x);
+                core.Rotate(core.GetCenterPosition(), nextOrientation);
+                foreach (BossPart part in parts.Values)
+                {
+                    if (part.RotateWithBody)
+                        part.Rotate(core.GetCenterPosition(), nextOrientation);
+                }
+
+                if (nextOrientation == orientation)
+                    finishedSteps = true;
             }
-
-            if (nextOrientation == orientation)
-                finishedSteps = true;
         }
+        else
+            bossPart.Rotate(core.GetCenterPosition(), orientation);
 
+        BattleManager.Instance.CharacterManagement.CheckForCharactersUnderBoss();
         GameNotificationsManager.Instance.Notify(GameNotification.FieldOfViewChanged);
     }
 

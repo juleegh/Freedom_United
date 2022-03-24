@@ -17,14 +17,7 @@ public class BossRotateAction : ExecutingAction
 
     public override void Execute()
     {
-        if (rotatingPart == BattleManager.Instance.CharacterManagement.Boss.Core.PartType)
-        {
-            BattleManager.Instance.CharacterManagement.Boss.Rotate(rotation);
-        }
-        else
-        {
-            bossPart.Rotate(BattleManager.Instance.CharacterManagement.Boss.Core.GetCenterPosition(), rotation);
-        }
+        BattleManager.Instance.CharacterManagement.Boss.Rotate(bossPart, rotation);
         GameNotificationsManager.Instance.Notify(GameNotification.BossMoved);
     }
 }
