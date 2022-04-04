@@ -43,6 +43,6 @@ public class CharacterDefenseAction : ExecutingAction
 
     public bool PositionIsDefended(Vector2Int position)
     {
-        return defendedPositions.Contains(position - CurrentCharacterPosition);
+        return defendedPositions.Contains(position - CurrentCharacterPosition) && BattleManager.Instance.BattleValues.CanDefend(defendingCharacter);
     }
 }

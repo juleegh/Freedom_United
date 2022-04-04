@@ -21,7 +21,7 @@ public class AITurnOption : ScriptableObject
 
     public void SelectActions()
     {
-        Debug.LogError("-------- Condition met: " + condition.GetType() + "--------");
+        Debug.LogWarning("-------- Condition met: " + condition.GetType() + "--------");
         foreach (AITurnAction attackAction in attackActions)
         {
             attackAction.AddToPile();

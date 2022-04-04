@@ -11,12 +11,13 @@ public class ShieldPromptUI : MonoBehaviour
     [SerializeField] private float fadeOut;
 
     private Color hidden = new Color(0, 0, 0, 0);
-    private Color visible = new Color(0, 0, 1, 1);
+    private Color visible;
 
     private bool isGuarding;
 
     void Awake()
     {
+        visible = shieldIcon.color;
         shieldIcon.color = hidden;
         isGuarding = false;
     }

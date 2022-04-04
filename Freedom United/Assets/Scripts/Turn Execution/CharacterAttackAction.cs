@@ -89,6 +89,15 @@ public class CharacterAttackAction : ExecutingAction
                 attackData.Data[NotificationDataIDs.PreviousHP] = BattleManager.Instance.BattleValues.PartyHealth[targetCharacter.CharacterID];
                 BattleManager.Instance.BattleValues.CharacterTakeDamage(targetCharacter.CharacterID, damageProvided);
                 attackData.Data[NotificationDataIDs.NewHP] = BattleManager.Instance.BattleValues.PartyHealth[targetCharacter.CharacterID];
+
+                if (defenseInPosition > 0)
+                {
+                    List<CharacterID> defenders = TurnExecutor.Instance.GetDefendingCharacters(attackedPosition);
+                    foreach (CharacterID defender in defenders)
+                    {
+                        BattleManager.Instance.BattleValues.CharacterModifyDefensePower(defender, defenseInPosition);
+                    }
+                }
             }
             else if (BattleManager.Instance.BattleGrid.GetObstacleHP(attackedPosition) > 0)
             {

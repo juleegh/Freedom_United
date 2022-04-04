@@ -7,6 +7,7 @@ public class BattleValues : MonoBehaviour, NotificationsListener
     private Dictionary<BossPartType, float> bossHealthPoints;
     private Dictionary<CharacterID, float> partyHealthPoints;
     private Dictionary<CharacterID, float> partyWillPoints;
+    private Dictionary<CharacterID, float> partyDefensePoints;
     private float totalBossHealth;
     private BossParts PartsList { get { return BattleManager.Instance.CharacterManagement.BossConfig.PartsList; } }
 
@@ -14,11 +15,13 @@ public class BattleValues : MonoBehaviour, NotificationsListener
     public Dictionary<BossPartType, float> BossPartsHealth { get { return bossHealthPoints; } }
     public Dictionary<CharacterID, float> PartyHealth { get { return partyHealthPoints; } }
     public Dictionary<CharacterID, float> PartyWill { get { return partyWillPoints; } }
+    public Dictionary<CharacterID, float> PartyDefense { get { return partyDefensePoints; } }
 
     public void ConfigureComponent()
     {
         partyHealthPoints = new Dictionary<CharacterID, float>();
         partyWillPoints = new Dictionary<CharacterID, float>();
+        partyDefensePoints = new Dictionary<CharacterID, float>();
         bossHealthPoints = new Dictionary<BossPartType, float>();
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.BattleLoaded, InitializeValues);
     }
@@ -58,9 +61,25 @@ public class BattleValues : MonoBehaviour, NotificationsListener
         }
     }
 
+    public void CharacterModifyDefensePower(CharacterID character, float damage)
+    {
+        partyDefensePoints[character] -= damage;
+        if (partyDefensePoints[character] <= 0)
+        {
+            partyDefensePoints[character] = 0;
+        }
+
+        GameNotificationsManager.Instance.Notify(GameNotification.CharacterStatsChanged);
+    }
+
     public bool IsAlive(CharacterID character)
     {
         return partyWillPoints[character] > 0;
+    }
+
+    public bool CanDefend(CharacterID character)
+    {
+        return partyDefensePoints[character] > 0;
     }
 
     public void BossTakeDamage(BossPartType partType, float damageTaken)
@@ -99,6 +118,7 @@ public class BattleValues : MonoBehaviour, NotificationsListener
         {
             partyHealthPoints.Add(character.CharacterID, BattleManager.Instance.PartyStats.Stats[character.CharacterID].BaseHealth);
             partyWillPoints.Add(character.CharacterID, BattleManager.Instance.PartyStats.Stats[character.CharacterID].BaseWillPower);
+            partyDefensePoints.Add(character.CharacterID, BattleManager.Instance.PartyStats.Stats[character.CharacterID].BaseShieldDurability);
         }
 
         foreach (BossPart bossPart in BattleManager.Instance

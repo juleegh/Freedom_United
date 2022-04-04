@@ -64,10 +64,13 @@ public class BossAttackAction : ExecutingAction
 
                 if (!FailedSuccess() && defenseInPosition > 0)
                 {
-                    List<CharacterID> defendingCharacters = TurnExecutor.Instance.DefendingActorsOfPosition(attackedPosition);
+                    List<CharacterID> defendingCharacters = TurnExecutor.Instance.GetDefendingCharacters(attackedPosition);
+
                     GameNotificationData defenseData = new GameNotificationData();
                     foreach (CharacterID character in defendingCharacters)
                     {
+                        BattleManager.Instance.BattleValues.CharacterModifyDefensePower(character, defenseInPosition);
+
                         defenseData.Data[NotificationDataIDs.ActionOwner] = character;
                         defenseData.Data[NotificationDataIDs.CellPosition] = BattleManager.Instance.CharacterManagement.Characters[character].CurrentOrientation;
                         GameNotificationsManager.Instance.Notify(GameNotification.DefenseWasHit, defenseData);

@@ -16,6 +16,7 @@ MonoBehaviour:
   attackType: 1
   baseHealth: 65
   baseWillPower: 100
+  baseShieldDurability: 40
   baseAttack: 70
   normalSuccessChance: 0.4
   criticalSuccessChance: 0.3

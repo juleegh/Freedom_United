@@ -87,18 +87,18 @@ public class TurnExecutor : MonoBehaviour, NotificationsListener
         return defense;
     }
 
-    public List<CharacterID> DefendingActorsOfPosition(Vector2Int position)
+    public List<CharacterID> GetDefendingCharacters(Vector2Int position)
     {
-        List<CharacterID> characters = new List<CharacterID>();
+        List<CharacterID> defenders = new List<CharacterID>();
         foreach (ExecutingAction currentAction in actionsQueued)
         {
             if (currentAction as CharacterDefenseAction != null)
             {
                 CharacterDefenseAction defenseAction = currentAction as CharacterDefenseAction;
                 if (defenseAction.PositionIsDefended(position))
-                    characters.Add(defenseAction.DefendingCharacter);
+                    defenders.Add(defenseAction.DefendingCharacter);
             }
         }
-        return characters;
+        return defenders;
     }
 }

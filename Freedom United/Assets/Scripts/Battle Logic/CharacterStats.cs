@@ -10,6 +10,7 @@ public class CharacterStats : ScriptableObject
 
     [SerializeField] private float baseHealth;
     [SerializeField] private int baseWillPower;
+    [SerializeField] private int baseShieldDurability;
 
     [SerializeField] private int baseAttack;
 
@@ -34,6 +35,7 @@ public class CharacterStats : ScriptableObject
     public int RecklessChangeSpeed { get { return recklessChangeSpeed; } }
     public int SafeChangeSpeed { get { return safeChangeSpeed; } }
     public int BaseWillPower { get { return baseWillPower; } }
+    public int BaseShieldDurability { get { return baseShieldDurability; } }
 
     public int BaseAttack { get { return baseAttack; } }
     public int BaseDefense { get { return baseDefense; } }
