@@ -13,6 +13,7 @@ public class GridCellUI : MonoBehaviour
     [SerializeField] private RunPromptUI runPrompt;
     [SerializeField] private ShieldPromptUI shieldPrompt;
     [SerializeField] private FOVIndicator fovIndicator;
+    [SerializeField] private CellDebugger debugger;
 
     [SerializeField] private Color attackColor;
     [SerializeField] private Color defenseColor;
@@ -106,5 +107,10 @@ public class GridCellUI : MonoBehaviour
     public void ToggleHiding(bool visible)
     {
         fovIndicator.ToggleHiding(visible);
+    }
+
+    public void ToggleDebug(bool visible)
+    {
+        debugger.Toggle(visible);
     }
 }

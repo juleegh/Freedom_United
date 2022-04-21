@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: Wrath Lord
   m_EditorClassIdentifier: 
   bossName: Wrath Lord
+  characterCounterPart: 0
+  fovDepth: 4
+  fovWidth: 1
+  initialOrientation: {x: 0, y: -1}
   bossParts:
     reorderableList:
       canAdd: 1
@@ -20,7 +24,7 @@ MonoBehaviour:
       draggable: 1
       expandable: 1
       multipleSelection: 1
-      isExpanded: 1
+      isExpanded: 0
       label:
         m_Text: Keys
         m_Image: {fileID: 0}
@@ -35,7 +39,7 @@ MonoBehaviour:
       elementNameOverride: 
       elementIcon: {fileID: 0}
     reqReferences: {fileID: 0}
-    isExpanded: 1
+    isExpanded: 0
     _keyValues: 0300000004000000050000000600000007000000
     _keys: 0300000004000000050000000600000007000000
     _values:
@@ -43,7 +47,6 @@ MonoBehaviour:
       baseDurability: 4000
       isCore: 1
       rotatesWithBody: 0
-      position: {x: 9, y: 3}
       dimensions: {x: 3, y: 3}
       baseAttack: 25
       baseDefense: 0
@@ -51,9 +54,6 @@ MonoBehaviour:
       defenseSpeed: 0
       moveSpeed: 8
       rotateSpeed: 8
-      areasOfEffect:
-      - positions:
-        - {x: 0, y: 0}
       shapesOfAttack:
       - positions:
         - {x: 1, y: 0}
@@ -81,7 +81,6 @@ MonoBehaviour:
       baseDurability: 450
       isCore: 0
       rotatesWithBody: 1
-      position: {x: 7, y: 2}
       dimensions: {x: 1, y: 3}
       baseAttack: 500
       baseDefense: 10
@@ -89,71 +88,6 @@ MonoBehaviour:
       defenseSpeed: 8
       moveSpeed: 9
       rotateSpeed: 9
-      areasOfEffect:
-      - positions:
-        - {x: -3, y: 0}
-        - {x: -3, y: 1}
-        - {x: -3, y: 2}
-        - {x: -3, y: 3}
-        - {x: -3, y: 4}
-        - {x: -3, y: 5}
-        - {x: -3, y: 6}
-        - {x: -2, y: 0}
-        - {x: -2, y: 1}
-        - {x: -2, y: 2}
-        - {x: -2, y: 3}
-        - {x: -2, y: 4}
-        - {x: -2, y: 5}
-        - {x: -2, y: 6}
-        - {x: -1, y: 0}
-        - {x: -1, y: 1}
-        - {x: -1, y: 2}
-        - {x: -1, y: 3}
-        - {x: -1, y: 4}
-        - {x: -1, y: 5}
-        - {x: -1, y: 6}
-        - {x: 0, y: 0}
-        - {x: 0, y: 1}
-        - {x: 0, y: 2}
-        - {x: 0, y: 3}
-        - {x: 0, y: 4}
-        - {x: 0, y: 5}
-        - {x: 0, y: 6}
-        - {x: 1, y: 0}
-        - {x: 1, y: 1}
-        - {x: 1, y: 2}
-        - {x: 1, y: 3}
-        - {x: 1, y: 4}
-        - {x: 1, y: 5}
-        - {x: 1, y: 6}
-        - {x: 2, y: 0}
-        - {x: 2, y: 1}
-        - {x: 2, y: 2}
-        - {x: 2, y: 3}
-        - {x: 2, y: 4}
-        - {x: 2, y: 5}
-        - {x: 2, y: 6}
-        - {x: 3, y: 0}
-        - {x: 3, y: 1}
-        - {x: 3, y: 2}
-        - {x: 3, y: 3}
-        - {x: 3, y: 4}
-        - {x: 3, y: 5}
-        - {x: 3, y: 6}
-        - {x: 4, y: 0}
-        - {x: 4, y: 1}
-        - {x: 4, y: 2}
-        - {x: 4, y: 3}
-        - {x: 4, y: 4}
-        - {x: 4, y: 5}
-        - {x: 4, y: 6}
-        - {x: 5, y: 0}
-        - {x: 5, y: 1}
-        - {x: 5, y: 2}
-        - {x: 5, y: 3}
-        - {x: 5, y: 4}
-        - {x: 5, y: 5}
-        - {x: 5, y: 6}
       shapesOfAttack:
       - positions:
         - {x: 0, y: 0}
@@ -168,7 +102,6 @@ MonoBehaviour:
       baseDurability: 450
       isCore: 0
       rotatesWithBody: 1
-      position: {x: 13, y: 2}
       dimensions: {x: 1, y: 3}
       baseAttack: 500
       baseDefense: 10
@@ -176,71 +109,6 @@ MonoBehaviour:
       defenseSpeed: 15
       moveSpeed: 9
       rotateSpeed: 9
-      areasOfEffect:
-      - positions:
-        - {x: -5, y: 0}
-        - {x: -5, y: 1}
-        - {x: -5, y: 2}
-        - {x: -5, y: 3}
-        - {x: -5, y: 4}
-        - {x: -5, y: 5}
-        - {x: -5, y: 6}
-        - {x: -4, y: 0}
-        - {x: -4, y: 1}
-        - {x: -4, y: 2}
-        - {x: -4, y: 3}
-        - {x: -4, y: 4}
-        - {x: -4, y: 5}
-        - {x: -4, y: 6}
-        - {x: -3, y: 0}
-        - {x: -3, y: 1}
-        - {x: -3, y: 2}
-        - {x: -3, y: 3}
-        - {x: -3, y: 4}
-        - {x: -3, y: 5}
-        - {x: -3, y: 6}
-        - {x: -2, y: 0}
-        - {x: -2, y: 1}
-        - {x: -2, y: 2}
-        - {x: -2, y: 3}
-        - {x: -2, y: 4}
-        - {x: -2, y: 5}
-        - {x: -2, y: 6}
-        - {x: -1, y: 0}
-        - {x: -1, y: 1}
-        - {x: -1, y: 2}
-        - {x: -1, y: 3}
-        - {x: -1, y: 4}
-        - {x: -1, y: 5}
-        - {x: -1, y: 6}
-        - {x: 0, y: 0}
-        - {x: 0, y: 1}
-        - {x: 0, y: 2}
-        - {x: 0, y: 3}
-        - {x: 0, y: 4}
-        - {x: 0, y: 5}
-        - {x: 0, y: 6}
-        - {x: 1, y: 0}
-        - {x: 1, y: 1}
-        - {x: 1, y: 2}
-        - {x: 1, y: 3}
-        - {x: 1, y: 4}
-        - {x: 1, y: 5}
-        - {x: 1, y: 6}
-        - {x: 2, y: 0}
-        - {x: 2, y: 1}
-        - {x: 2, y: 2}
-        - {x: 2, y: 3}
-        - {x: 2, y: 4}
-        - {x: 2, y: 5}
-        - {x: 2, y: 6}
-        - {x: 3, y: 0}
-        - {x: 3, y: 1}
-        - {x: 3, y: 2}
-        - {x: 3, y: 3}
-        - {x: 3, y: 4}
-        - {x: 3, y: 5}
-        - {x: 3, y: 6}
       shapesOfAttack:
       - positions:
         - {x: 0, y: 0}
@@ -255,7 +123,6 @@ MonoBehaviour:
       baseDurability: 1150
       isCore: 0
       rotatesWithBody: 1
-      position: {x: 8, y: 6}
       dimensions: {x: 1, y: 1}
       baseAttack: 10
       baseDefense: 60
@@ -263,158 +130,6 @@ MonoBehaviour:
       defenseSpeed: 20
       moveSpeed: 20
       rotateSpeed: 20
-      areasOfEffect:
-      - positions:
-        - {x: -6, y: -3}
-        - {x: -6, y: -2}
-        - {x: -6, y: -1}
-        - {x: -6, y: 0}
-        - {x: -6, y: 1}
-        - {x: -6, y: 2}
-        - {x: -6, y: 3}
-        - {x: -6, y: 4}
-        - {x: -6, y: 5}
-        - {x: -6, y: 6}
-        - {x: -5, y: -3}
-        - {x: -5, y: -2}
-        - {x: -5, y: -1}
-        - {x: -5, y: 0}
-        - {x: -5, y: 1}
-        - {x: -5, y: 2}
-        - {x: -5, y: 3}
-        - {x: -5, y: 4}
-        - {x: -5, y: 5}
-        - {x: -5, y: 6}
-        - {x: -4, y: -3}
-        - {x: -4, y: -2}
-        - {x: -4, y: -1}
-        - {x: -4, y: 0}
-        - {x: -4, y: 1}
-        - {x: -4, y: 2}
-        - {x: -4, y: 3}
-        - {x: -4, y: 4}
-        - {x: -4, y: 5}
-        - {x: -4, y: 6}
-        - {x: -3, y: -3}
-        - {x: -3, y: -2}
-        - {x: -3, y: -1}
-        - {x: -3, y: 0}
-        - {x: -3, y: 1}
-        - {x: -3, y: 2}
-        - {x: -3, y: 3}
-        - {x: -3, y: 4}
-        - {x: -3, y: 5}
-        - {x: -3, y: 6}
-        - {x: -2, y: -3}
-        - {x: -2, y: -2}
-        - {x: -2, y: -1}
-        - {x: -2, y: 0}
-        - {x: -2, y: 1}
-        - {x: -2, y: 2}
-        - {x: -2, y: 3}
-        - {x: -2, y: 4}
-        - {x: -2, y: 5}
-        - {x: -2, y: 6}
-        - {x: -1, y: -3}
-        - {x: -1, y: -2}
-        - {x: -1, y: -1}
-        - {x: -1, y: 0}
-        - {x: -1, y: 1}
-        - {x: -1, y: 2}
-        - {x: -1, y: 3}
-        - {x: -1, y: 4}
-        - {x: -1, y: 5}
-        - {x: -1, y: 6}
-        - {x: 0, y: -3}
-        - {x: 0, y: -2}
-        - {x: 0, y: -1}
-        - {x: 0, y: 0}
-        - {x: 0, y: 1}
-        - {x: 0, y: 2}
-        - {x: 0, y: 3}
-        - {x: 0, y: 4}
-        - {x: 0, y: 5}
-        - {x: 0, y: 6}
-        - {x: 1, y: -3}
-        - {x: 1, y: -2}
-        - {x: 1, y: -1}
-        - {x: 1, y: 0}
-        - {x: 1, y: 1}
-        - {x: 1, y: 2}
-        - {x: 1, y: 3}
-        - {x: 1, y: 4}
-        - {x: 1, y: 5}
-        - {x: 1, y: 6}
-        - {x: 2, y: -3}
-        - {x: 2, y: -2}
-        - {x: 2, y: -1}
-        - {x: 2, y: 0}
-        - {x: 2, y: 1}
-        - {x: 2, y: 2}
-        - {x: 2, y: 3}
-        - {x: 2, y: 4}
-        - {x: 2, y: 5}
-        - {x: 2, y: 6}
-        - {x: 3, y: -3}
-        - {x: 3, y: -2}
-        - {x: 3, y: -1}
-        - {x: 3, y: 0}
-        - {x: 3, y: 1}
-        - {x: 3, y: 2}
-        - {x: 3, y: 3}
-        - {x: 3, y: 4}
-        - {x: 3, y: 5}
-        - {x: 3, y: 6}
-        - {x: 4, y: -3}
-        - {x: 4, y: -2}
-        - {x: 4, y: -1}
-        - {x: 4, y: 0}
-        - {x: 4, y: 1}
-        - {x: 4, y: 2}
-        - {x: 4, y: 3}
-        - {x: 4, y: 4}
-        - {x: 4, y: 5}
-        - {x: 4, y: 6}
-        - {x: 5, y: -3}
-        - {x: 5, y: -2}
-        - {x: 5, y: -1}
-        - {x: 5, y: 0}
-        - {x: 5, y: 1}
-        - {x: 5, y: 2}
-        - {x: 5, y: 3}
-        - {x: 5, y: 4}
-        - {x: 5, y: 5}
-        - {x: 5, y: 6}
-        - {x: 6, y: -3}
-        - {x: 6, y: -2}
-        - {x: 6, y: -1}
-        - {x: 6, y: 0}
-        - {x: 6, y: 1}
-        - {x: 6, y: 2}
-        - {x: 6, y: 3}
-        - {x: 6, y: 4}
-        - {x: 6, y: 5}
-        - {x: 6, y: 6}
-        - {x: 7, y: -3}
-        - {x: 7, y: -2}
-        - {x: 7, y: -1}
-        - {x: 7, y: 0}
-        - {x: 7, y: 1}
-        - {x: 7, y: 2}
-        - {x: 7, y: 3}
-        - {x: 7, y: 4}
-        - {x: 7, y: 5}
-        - {x: 7, y: 6}
-        - {x: 8, y: -3}
-        - {x: 8, y: -2}
-        - {x: 8, y: -1}
-        - {x: 8, y: 0}
-        - {x: 8, y: 1}
-        - {x: 8, y: 2}
-        - {x: 8, y: 3}
-        - {x: 8, y: 4}
-        - {x: 8, y: 5}
-        - {x: 8, y: 6}
       shapesOfAttack:
       - positions:
         - {x: 0, y: 0}
@@ -427,7 +142,6 @@ MonoBehaviour:
       baseDurability: 1150
       isCore: 0
       rotatesWithBody: 1
-      position: {x: 12, y: 6}
       dimensions: {x: 1, y: 1}
       baseAttack: 10
       baseDefense: 60
@@ -435,158 +149,6 @@ MonoBehaviour:
       defenseSpeed: 20
       moveSpeed: 20
       rotateSpeed: 20
-      areasOfEffect:
-      - positions:
-        - {x: -7, y: -3}
-        - {x: -7, y: -2}
-        - {x: -7, y: -1}
-        - {x: -7, y: 0}
-        - {x: -7, y: 1}
-        - {x: -7, y: 2}
-        - {x: -7, y: 3}
-        - {x: -7, y: 4}
-        - {x: -7, y: 5}
-        - {x: -7, y: 6}
-        - {x: -6, y: -3}
-        - {x: -6, y: -2}
-        - {x: -6, y: -1}
-        - {x: -6, y: 0}
-        - {x: -6, y: 1}
-        - {x: -6, y: 2}
-        - {x: -6, y: 3}
-        - {x: -6, y: 4}
-        - {x: -6, y: 5}
-        - {x: -6, y: 6}
-        - {x: -5, y: -3}
-        - {x: -5, y: -2}
-        - {x: -5, y: -1}
-        - {x: -5, y: 0}
-        - {x: -5, y: 1}
-        - {x: -5, y: 2}
-        - {x: -5, y: 3}
-        - {x: -5, y: 4}
-        - {x: -5, y: 5}
-        - {x: -5, y: 6}
-        - {x: -4, y: -3}
-        - {x: -4, y: -2}
-        - {x: -4, y: -1}
-        - {x: -4, y: 0}
-        - {x: -4, y: 1}
-        - {x: -4, y: 2}
-        - {x: -4, y: 3}
-        - {x: -4, y: 4}
-        - {x: -4, y: 5}
-        - {x: -4, y: 6}
-        - {x: -3, y: -3}
-        - {x: -3, y: -2}
-        - {x: -3, y: -1}
-        - {x: -3, y: 0}
-        - {x: -3, y: 1}
-        - {x: -3, y: 2}
-        - {x: -3, y: 3}
-        - {x: -3, y: 4}
-        - {x: -3, y: 5}
-        - {x: -3, y: 6}
-        - {x: -2, y: -3}
-        - {x: -2, y: -2}
-        - {x: -2, y: -1}
-        - {x: -2, y: 0}
-        - {x: -2, y: 1}
-        - {x: -2, y: 2}
-        - {x: -2, y: 3}
-        - {x: -2, y: 4}
-        - {x: -2, y: 5}
-        - {x: -2, y: 6}
-        - {x: -1, y: -3}
-        - {x: -1, y: -2}
-        - {x: -1, y: -1}
-        - {x: -1, y: 0}
-        - {x: -1, y: 1}
-        - {x: -1, y: 2}
-        - {x: -1, y: 3}
-        - {x: -1, y: 4}
-        - {x: -1, y: 5}
-        - {x: -1, y: 6}
-        - {x: 0, y: -3}
-        - {x: 0, y: -2}
-        - {x: 0, y: -1}
-        - {x: 0, y: 0}
-        - {x: 0, y: 1}
-        - {x: 0, y: 2}
-        - {x: 0, y: 3}
-        - {x: 0, y: 4}
-        - {x: 0, y: 5}
-        - {x: 0, y: 6}
-        - {x: 1, y: -3}
-        - {x: 1, y: -2}
-        - {x: 1, y: -1}
-        - {x: 1, y: 0}
-        - {x: 1, y: 1}
-        - {x: 1, y: 2}
-        - {x: 1, y: 3}
-        - {x: 1, y: 4}
-        - {x: 1, y: 5}
-        - {x: 1, y: 6}
-        - {x: 2, y: -3}
-        - {x: 2, y: -2}
-        - {x: 2, y: -1}
-        - {x: 2, y: 0}
-        - {x: 2, y: 1}
-        - {x: 2, y: 2}
-        - {x: 2, y: 3}
-        - {x: 2, y: 4}
-        - {x: 2, y: 5}
-        - {x: 2, y: 6}
-        - {x: 3, y: -3}
-        - {x: 3, y: -2}
-        - {x: 3, y: -1}
-        - {x: 3, y: 0}
-        - {x: 3, y: 1}
-        - {x: 3, y: 2}
-        - {x: 3, y: 3}
-        - {x: 3, y: 4}
-        - {x: 3, y: 5}
-        - {x: 3, y: 6}
-        - {x: 4, y: -3}
-        - {x: 4, y: -2}
-        - {x: 4, y: -1}
-        - {x: 4, y: 0}
-        - {x: 4, y: 1}
-        - {x: 4, y: 2}
-        - {x: 4, y: 3}
-        - {x: 4, y: 4}
-        - {x: 4, y: 5}
-        - {x: 4, y: 6}
-        - {x: 5, y: -3}
-        - {x: 5, y: -2}
-        - {x: 5, y: -1}
-        - {x: 5, y: 0}
-        - {x: 5, y: 1}
-        - {x: 5, y: 2}
-        - {x: 5, y: 3}
-        - {x: 5, y: 4}
-        - {x: 5, y: 5}
-        - {x: 5, y: 6}
-        - {x: 6, y: -3}
-        - {x: 6, y: -2}
-        - {x: 6, y: -1}
-        - {x: 6, y: 0}
-        - {x: 6, y: 1}
-        - {x: 6, y: 2}
-        - {x: 6, y: 3}
-        - {x: 6, y: 4}
-        - {x: 6, y: 5}
-        - {x: 6, y: 6}
-        - {x: 7, y: -3}
-        - {x: 7, y: -2}
-        - {x: 7, y: -1}
-        - {x: 7, y: 0}
-        - {x: 7, y: 1}
-        - {x: 7, y: 2}
-        - {x: 7, y: 3}
-        - {x: 7, y: 4}
-        - {x: 7, y: 5}
-        - {x: 7, y: 6}
       shapesOfAttack:
       - positions:
         - {x: 0, y: 0}
@@ -595,6 +157,3 @@ MonoBehaviour:
       normalSuccessChance: 0.6
       criticalSuccessChance: 0.2
       criticalFailureChance: 0.2
-  characterCounterPart: 0
-  fovDepth: 4
-  fovWidth: 1

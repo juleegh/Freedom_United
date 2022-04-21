@@ -118,32 +118,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: wrath_lord_body
-      rect:
-        serializedVersion: 2
-        x: 42
-        y: 40
-        width: 112
-        height: 110
-      alignment: 9
-      pivot: {x: 0.16609788, y: 0.08430313}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b5c1ed4d3e2df4cb0800000000000000
-      internalID: -4877447995448222629
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: wrath_lord_left_shield
       rect:
         serializedVersion: 2
-        x: 4
-        y: 151
+        x: 157
+        y: 40
         width: 36
         height: 35
       alignment: 0
@@ -163,8 +142,8 @@ TextureImporter:
       name: wrath_lord_right_shield
       rect:
         serializedVersion: 2
-        x: 156
-        y: 151
+        x: 4
+        y: 39
         width: 37
         height: 37
       alignment: 0
@@ -184,12 +163,12 @@ TextureImporter:
       name: wrath_lord_left_axe
       rect:
         serializedVersion: 2
-        x: 3
-        y: 3
+        x: 4
+        y: 115
         width: 35
         height: 109
       alignment: 9
-      pivot: {x: 0.50943685, y: 0.14402887}
+      pivot: {x: 0.50943667, y: 0.80381525}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -206,11 +185,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 158
-        y: 3
+        y: 114
         width: 35
         height: 110
       alignment: 9
-      pivot: {x: 0.5000004, y: 0.14784367}
+      pivot: {x: 0.49266183, y: 0.8249816}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

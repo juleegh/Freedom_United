@@ -10,8 +10,6 @@ public class BossConfig : ScriptableObject
     [SerializeField] private string bossName;
     public string BossName { get { return bossName; } }
 
-    [SerializeField] private BossParts bossParts;
-    public BossParts PartsList { get { return bossParts; } }
 
     [SerializeField] private CharacterID characterCounterPart;
     public CharacterID CharacterCounterPart { get { return characterCounterPart; } }
@@ -20,6 +18,12 @@ public class BossConfig : ScriptableObject
     public int FoVDepth { get { return fovDepth; } }
     [SerializeField] private int fovWidth;
     public int FoVWidth { get { return fovWidth; } }
+
+    [SerializeField] private Vector2Int initialOrientation;
+    public Vector2Int InitialOrientation { get { return initialOrientation; } }
+
+    [SerializeField] private BossParts bossParts;
+    public BossParts PartsList { get { return bossParts; } }
 
     public float BaseHealth
     {

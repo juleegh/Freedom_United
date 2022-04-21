@@ -24,7 +24,7 @@ public class BossPart
         position = initialPosition;
         areasOfEffect = areasEffect;
         shapesOfAttack = shapesAttack;
-        orientation = Vector2Int.down;
+        orientation = Vector2Int.up;
     }
 
     public bool OccupiesPosition(int x, int y)

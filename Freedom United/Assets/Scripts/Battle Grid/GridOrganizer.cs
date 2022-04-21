@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class GridOrganizer : MonoBehaviour
 {
+    private void Awake()
+    {
+        Organize();
+    }
+
     [ContextMenu("Organize")]
     public void Organize()
     {

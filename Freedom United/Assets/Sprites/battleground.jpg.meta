@@ -109,12 +109,12 @@ TextureImporter:
       name: battleground_0
       rect:
         serializedVersion: 2
-        x: 429
-        y: 142
+        x: 379
+        y: 192
         width: 148
         height: 143
       alignment: 9
-      pivot: {x: 0.16416106, y: 0.16413505}
+      pivot: {x: 0.83206505, y: 0.8202438}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

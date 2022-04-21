@@ -51,13 +51,13 @@ public class BossPartVisuals : MonoBehaviour
 
     private Vector3 TransfromRotation(Vector2Int orientation)
     {
-        if (orientation == Vector2Int.down)
-            return Vector3.zero;
-        if (orientation == Vector2Int.left)
-            return Vector3.up * 90;
-        if (orientation == Vector2Int.right)
-            return Vector3.up * -90;
         if (orientation == Vector2Int.up)
+            return Vector3.zero;
+        if (orientation == Vector2Int.right)
+            return Vector3.up * 90;
+        if (orientation == Vector2Int.left)
+            return Vector3.up * -90;
+        if (orientation == Vector2Int.down)
             return Vector3.up * 180;
         return Vector3.zero;
     }

@@ -35,6 +35,7 @@ public class CharacterManagement : MonoBehaviour, NotificationsListener
         }
 
         boss = new Boss(bossConfig, bossVisuals);
+        boss.SetRotation(bossConfig.InitialOrientation);
     }
 
     public void SetCharacterInPosition(CharacterID characterID, Vector2Int newPosition)
