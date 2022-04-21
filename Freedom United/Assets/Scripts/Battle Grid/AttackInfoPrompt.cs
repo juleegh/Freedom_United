@@ -17,7 +17,14 @@ public class AttackInfoPrompt : MonoBehaviour
 
     void Awake()
     {
+        Clear();
+        textPrompt.gameObject.SetActive(true);
+    }
+
+    public void Clear()
+    {
         textPrompt.color = hidden;
+        textPrompt.text = "";
     }
 
     public void ShowCritical()

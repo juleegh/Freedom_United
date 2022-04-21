@@ -17,6 +17,11 @@ public class ShieldPromptUI : MonoBehaviour
 
     void Awake()
     {
+        Clear();
+    }
+
+    public void Clear()
+    {
         visible = shieldIcon.color;
         shieldIcon.color = hidden;
         isGuarding = false;

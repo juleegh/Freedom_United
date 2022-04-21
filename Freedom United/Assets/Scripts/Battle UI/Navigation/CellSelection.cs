@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class CellSelection
 {
-    private int MaxRow { get { return BattleManager.Instance.BattleGrid.Height; } }
-    private int MaxColumn { get { return BattleManager.Instance.BattleGrid.Width; } }
     private int currentRow;
     private int currentColumn;
 
@@ -18,12 +16,8 @@ public class CellSelection
 
     public void Down()
     {
-        if (currentRow == 0)
+        if (!BattleManager.Instance.BattleGrid.IsInsideGrid(currentColumn, currentRow - 1))
             return;
-
-        //Vector2Int tentative = new Vector2Int(currentColumn, currentRow - 1);
-        //if (!BattleManager.Instance.BattleGrid.PositionsInRange.Contains(tentative))
-        //    return;
 
         currentRow--;
         BattleUINavigation.Instance.NavigationState.currentAction.position = SelectedPosition;
@@ -32,7 +26,7 @@ public class CellSelection
 
     public void Up()
     {
-        if (currentRow == MaxRow - 1)
+        if (!BattleManager.Instance.BattleGrid.IsInsideGrid(currentColumn, currentRow + 1))
             return;
 
         currentRow++;
@@ -42,7 +36,7 @@ public class CellSelection
 
     public void Left()
     {
-        if (currentColumn == 0)
+        if (!BattleManager.Instance.BattleGrid.IsInsideGrid(currentColumn - 1, currentRow))
             return;
 
         currentColumn--;
@@ -52,7 +46,7 @@ public class CellSelection
 
     public void Right()
     {
-        if (currentColumn == MaxColumn - 1)
+        if (!BattleManager.Instance.BattleGrid.IsInsideGrid(currentColumn + 1, currentRow))
             return;
 
         currentColumn++;

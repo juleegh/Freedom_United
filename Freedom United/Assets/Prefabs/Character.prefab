@@ -459,6 +459,7 @@ GameObject:
   - component: {fileID: 6909309439154826708}
   - component: {fileID: 2429766568426387017}
   - component: {fileID: 5144627601052601278}
+  - component: {fileID: 6859677386441717762}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -549,6 +550,18 @@ MonoBehaviour:
   assets: {fileID: 11400000, guid: d0a8c44cf1a34244b842980b7e858281, type: 2}
   stats: {fileID: 2257367178285559894}
   deathIcon: {fileID: 4341288037262559197}
+--- !u!114 &6859677386441717762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4435514643140344550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f64f980e2f9be4419b0fef67d04eb4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4437346306882807541
 GameObject:
   m_ObjectHideFlags: 0

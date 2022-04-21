@@ -13,8 +13,6 @@ public static class BattleGridUtils
     public static float DestroyingBodyPartWillPercentage { get { return 0.1f; } }
     public static float BossCriticalDamageMultiplier { get { return 1.25f; } }
     public static float CharacterCriticalDamageMultiplier { get { return 1.5f; } }
-    private static int Width { get { return BattleManager.Instance.BattleGrid.Width; } }
-    private static int Height { get { return BattleManager.Instance.BattleGrid.Height; } }
 
     public static Vector3 TranslatedPosition(Vector2Int original, float heightDelta)
     {
@@ -110,7 +108,7 @@ public static class BattleGridUtils
                     continue;
 
                 Vector2Int position = center + delta;
-                if (position.x < 0 || position.x >= Width || position.y < 0 || position.y >= Height)
+                if (!BattleManager.Instance.BattleGrid.IsInsideGrid(position.x, position.y))
                     continue;
 
                 adjacent.Add(position);

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterManagement : MonoBehaviour, NotificationsListener
 {
-    [SerializeField] private List<Vector2Int> initialPositions;
+    [SerializeField] private Transform charactersContainer;
     [SerializeField] private Vector2Int bossInitialPosition;
     [SerializeField] private BossConfig bossConfig;
     private Dictionary<CharacterID, Character> characters;
@@ -22,14 +22,15 @@ public class CharacterManagement : MonoBehaviour, NotificationsListener
     {
         characters = new Dictionary<CharacterID, Character>();
 
-        int index = 0;
-        foreach (CharacterID stats in BattleManager.Instance.PartyStats.Stats.Keys)
-        {
-            characters.Add(stats, new Character(stats));
-            SetCharacterInPosition(stats, initialPositions[index]);
+        CharacterVisuals[] charactersInGrid = charactersContainer.GetComponentsInChildren<CharacterVisuals>();
 
-            if (index < BattleManager.Instance.PartyStats.Stats.Count - 1)
-                index++;
+        foreach (CharacterVisuals characterVisuals in charactersInGrid)
+        {
+            Vector3Int roundedPos = Vector3Int.RoundToInt(characterVisuals.transform.position);
+            Vector2Int position = new Vector2Int(roundedPos.x, roundedPos.z);
+
+            characters.Add(characterVisuals.CharacterID, new Character(characterVisuals.CharacterID));
+            SetCharacterInPosition(characterVisuals.CharacterID, position);
         }
 
         boss = new Boss(bossConfig);

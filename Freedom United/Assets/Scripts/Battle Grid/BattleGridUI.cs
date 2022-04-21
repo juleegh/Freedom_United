@@ -7,11 +7,10 @@ public class BattleGridUI : MonoBehaviour, NotificationsListener
     private static BattleGridUI instance;
     public static BattleGridUI Instance { get { return instance; } }
 
-    [SerializeField] private GameObject cellPrefab;
-    [SerializeField] private GameObject characterPrefab;
     [SerializeField] private GameObject bossPrefab;
     [SerializeField] private float cellDistance;
     [SerializeField] private Transform cellsContainer;
+    [SerializeField] private Transform charactersContainer;
 
     Dictionary<Vector2Int, GridCellUI> grid;
     Dictionary<CharacterID, CharacterVisuals> characters;
@@ -38,30 +37,21 @@ public class BattleGridUI : MonoBehaviour, NotificationsListener
     {
         grid = new Dictionary<Vector2Int, GridCellUI>();
 
-        for (int row = 0; row < BattleManager.Instance.BattleGrid.Height; row++)
+        GridCellUI[] cells = cellsContainer.GetComponentsInChildren<GridCellUI>();
+        foreach (GridCellUI cell in cells)
         {
-            for (int column = 0; column < BattleManager.Instance.BattleGrid.Width; column++)
-            {
-                Vector2Int position = new Vector2Int(column, row);
-                Vector3 positionInWorld = new Vector3(column * cellDistance, 0, row * cellDistance);
-
-                GridCellUI newGridCell = Instantiate(cellPrefab).GetComponent<GridCellUI>();
-                newGridCell.Refresh(BattleManager.Instance.BattleGrid.GetInPosition(column, row));
-                grid.Add(position, newGridCell);
-                newGridCell.transform.SetParent(cellsContainer);
-                newGridCell.transform.position = positionInWorld;
-            }
+            Vector3Int roundedPos = Vector3Int.RoundToInt(cell.transform.position);
+            Vector2Int position = new Vector2Int(roundedPos.x, roundedPos.z);
+            grid.Add(position, cell);
         }
 
         characters = new Dictionary<CharacterID, CharacterVisuals>();
+        CharacterVisuals[] charactersInGrid = charactersContainer.GetComponentsInChildren<CharacterVisuals>();
 
-        foreach (KeyValuePair<CharacterID, Character> character in BattleManager.Instance.CharacterManagement.Characters)
+        foreach (CharacterVisuals characterVisuals in charactersInGrid)
         {
-            CharacterVisuals characterVisuals = Instantiate(characterPrefab).GetComponent<CharacterVisuals>();
-            characterVisuals.transform.SetParent(cellsContainer);
-            characterVisuals.transform.position = BattleGridUtils.TranslatedPosition(character.Value.CurrentPosition, charactersHeightOnBoard);
-            characterVisuals.Paint(character.Key);
-            characters.Add(character.Key, characterVisuals);
+            characters.Add(characterVisuals.CharacterID, characterVisuals);
+            characterVisuals.Initialize();
         }
 
         bossVisuals = Instantiate(bossPrefab).GetComponent<BossVisuals>();

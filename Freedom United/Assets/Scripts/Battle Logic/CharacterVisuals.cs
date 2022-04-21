@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class CharacterVisuals : MonoBehaviour
 {
+    [SerializeField] private CharacterID characterID;
     [SerializeField] private SpriteRenderer body;
     [SerializeField] private CharacterAssets assets;
     [SerializeField] private CharacterStatsVisuals stats;
     [SerializeField] private DeathIcon deathIcon;
 
-    public void Paint(CharacterID character)
+    public CharacterID CharacterID { get { return characterID; } }
+
+    [ContextMenu("Refresh")]
+    public void Paint()
     {
-        body.sprite = assets.Bodies[character];
-        stats.Initialize(character);
+        body.sprite = assets.Bodies[characterID];
+        deathIcon.Clear();
+    }
+
+    public void Initialize()
+    {
+        stats.Initialize(characterID);
     }
 
     public void PaintDeath()

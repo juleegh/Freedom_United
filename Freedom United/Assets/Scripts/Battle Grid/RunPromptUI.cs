@@ -17,6 +17,11 @@ public class RunPromptUI : MonoBehaviour
 
     void Awake()
     {
+        Clear();
+    }
+
+    public void Clear()
+    {
         runIcon.color = hidden;
     }
 

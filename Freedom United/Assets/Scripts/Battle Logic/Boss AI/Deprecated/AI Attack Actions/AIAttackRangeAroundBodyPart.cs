@@ -72,10 +72,13 @@ public class AIAttackRangeAroundBodyPart : AITurnAction
                 if (column < 0 || row < 0)
                     continue;
 
-                if (column >= BattleManager.Instance.BattleGrid.Width)
-                    continue;
-                if (row >= BattleManager.Instance.BattleGrid.Height)
-                    continue;
+                // This generates compilation error after grid modification
+                /*
+                                if (column >= BattleManager.Instance.BattleGrid.Width)
+                                    continue;
+                                if (row >= BattleManager.Instance.BattleGrid.Height)
+                                    continue;
+                */
 
                 Vector2Int temptingPosition = new Vector2Int(column, row);
 

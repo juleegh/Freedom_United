@@ -15,6 +15,11 @@ public class DeathIcon : MonoBehaviour
 
     void Awake()
     {
+        Clear();
+    }
+
+    public void Clear()
+    {
         theIcon.color = hidden;
     }
 

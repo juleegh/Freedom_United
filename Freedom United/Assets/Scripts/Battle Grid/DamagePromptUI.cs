@@ -18,6 +18,12 @@ public class DamagePromptUI : MonoBehaviour
 
     void Awake()
     {
+        Clear();
+        damageTaken.gameObject.SetActive(true);
+    }
+
+    public void Clear()
+    {
         damageTaken.color = hidden;
         damageIcon.color = hidden;
     }

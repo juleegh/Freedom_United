@@ -19,6 +19,7 @@ public class GridCellUI : MonoBehaviour
     [SerializeField] private Color moveColor;
 
     CellType cellType;
+    public bool IsObstacle { get { return background.sprite == obstacle; } }
     private Color transparent = new Color(0, 0, 0, 0);
 
     public void Refresh(CellType cellTypeDefined)
@@ -26,6 +27,25 @@ public class GridCellUI : MonoBehaviour
         cellType = cellTypeDefined;
         background.sprite = cellTypeDefined != CellType.Available ? obstacle : empty;
         highlight.color = transparent;
+    }
+
+    [ContextMenu("Set As Empty")]
+    private void SetAsEmpty()
+    {
+        Refresh(CellType.Available);
+        ShowShield(false);
+        runPrompt.Clear();
+        failPrompt.Clear();
+        damagePrompt.Clear();
+        shieldPrompt.Clear();
+        fovIndicator.ToggleFOV(false);
+        ToggleHiding(false);
+    }
+
+    [ContextMenu("Set As Obstacle")]
+    private void SetAsObstacle()
+    {
+        Refresh(CellType.Obstacle);
     }
 
     public void CleanRange()

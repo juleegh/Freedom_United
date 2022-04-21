@@ -5,17 +5,12 @@ using System.Linq;
 
 public class BattleGrid : MonoBehaviour, NotificationsListener
 {
-    [SerializeField] private int width;
-    [SerializeField] private int height;
-
-    public int Width { get { return width; } }
-    public int Height { get { return height; } }
-
-    [SerializeField] private List<Vector2Int> initialAvailablePositions;
     [SerializeField] private float obstacleHP;
+    [SerializeField] private Transform cellsContainer;
 
     private Dictionary<BossPartType, PartObstacle> partObstacles;
     private Dictionary<Vector2Int, Obstacle> obstacles;
+    private List<Vector2Int> gridPositions;
 
     private List<Vector2Int> positionsInRange;
     public List<Vector2Int> PositionsInRange { get { return positionsInRange; } }
@@ -29,19 +24,21 @@ public class BattleGrid : MonoBehaviour, NotificationsListener
 
     private void InitializeGrid(GameNotificationData notificationData)
     {
+        gridPositions = new List<Vector2Int>();
         obstacles = new Dictionary<Vector2Int, Obstacle>();
         partObstacles = new Dictionary<BossPartType, PartObstacle>();
         positionsInRange = new List<Vector2Int>();
         hidingPositions = new List<Vector2Int>();
 
-        for (int row = 0; row < height; row++)
+        GridCellUI[] cells = cellsContainer.GetComponentsInChildren<GridCellUI>();
+        foreach (GridCellUI cell in cells)
         {
-            for (int column = 0; column < width; column++)
-            {
-                Vector2Int position = new Vector2Int(column, row);
-                if (initialAvailablePositions.Contains(position))
-                    continue;
+            Vector3Int roundedPos = Vector3Int.RoundToInt(cell.transform.position);
+            Vector2Int position = new Vector2Int(roundedPos.x, roundedPos.z);
+            gridPositions.Add(position);
 
+            if (cell.IsObstacle)
+            {
                 obstacles.Add(position, new Obstacle(position, obstacleHP));
             }
         }
@@ -56,13 +53,13 @@ public class BattleGrid : MonoBehaviour, NotificationsListener
 
         for (int i = 1; i <= extent; i++)
         {
-            if (origin.x + i < Width)
+            if (gridPositions.Contains(origin + Vector2Int.right * i))
                 positionsInRange.Add(origin + Vector2Int.right * i);
-            if (origin.y + i < Height)
+            if (gridPositions.Contains(origin + Vector2Int.up * i))
                 positionsInRange.Add(origin + Vector2Int.up * i);
-            if (origin.x - i >= 0)
+            if (gridPositions.Contains(origin + Vector2Int.left * i))
                 positionsInRange.Add(origin + Vector2Int.left * i);
-            if (origin.y - i >= 0)
+            if (gridPositions.Contains(origin + Vector2Int.down * i))
                 positionsInRange.Add(origin + Vector2Int.down * i);
         }
     }
@@ -71,26 +68,21 @@ public class BattleGrid : MonoBehaviour, NotificationsListener
     {
         positionsInRange.Clear();
 
-        for (int row = 0; row < height; row++)
+        foreach (Vector2Int position in gridPositions)
         {
-            for (int column = 0; column < width; column++)
-            {
-                Vector2Int position = new Vector2Int(column, row);
+            if (position == origin || obstacles.ContainsKey(position))
+                continue;
 
-                if (position == origin || obstacles.ContainsKey(position))
-                    continue;
+            if (BattleManager.Instance.CharacterManagement.Boss.OccupiesPosition(position.x, position.y))
+                continue;
 
-                if (BattleManager.Instance.CharacterManagement.Boss.OccupiesPosition(position.x, position.y))
-                    continue;
-
-                positionsInRange.Add(position);
-            }
+            positionsInRange.Add(position);
         }
     }
 
-    private bool IsInsideGrid(int x, int y)
+    public bool IsInsideGrid(int x, int y)
     {
-        return !(x < 0 || x >= width || y < 0 || y >= height);
+        return gridPositions.Contains(new Vector2Int(x, y));
     }
 
     public void CalculateHidingPositions()
