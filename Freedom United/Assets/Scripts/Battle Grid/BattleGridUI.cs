@@ -7,14 +7,13 @@ public class BattleGridUI : MonoBehaviour, NotificationsListener
     private static BattleGridUI instance;
     public static BattleGridUI Instance { get { return instance; } }
 
-    [SerializeField] private GameObject bossPrefab;
     [SerializeField] private float cellDistance;
     [SerializeField] private Transform cellsContainer;
     [SerializeField] private Transform charactersContainer;
+    [SerializeField] private BossVisuals bossVisuals;
 
     Dictionary<Vector2Int, GridCellUI> grid;
     Dictionary<CharacterID, CharacterVisuals> characters;
-    BossVisuals bossVisuals;
     private float charactersHeightOnBoard = 0.02f;
 
 
@@ -54,10 +53,6 @@ public class BattleGridUI : MonoBehaviour, NotificationsListener
             characterVisuals.Initialize();
         }
 
-        bossVisuals = Instantiate(bossPrefab).GetComponent<BossVisuals>();
-        bossVisuals.transform.SetParent(cellsContainer);
-        bossVisuals.transform.position = BattleGridUtils.TranslatedPosition(Vector2Int.zero, charactersHeightOnBoard);
-        bossVisuals.Paint(BattleManager.Instance.CharacterManagement.Boss);
         UpdateBossFieldOfView(null);
     }
 

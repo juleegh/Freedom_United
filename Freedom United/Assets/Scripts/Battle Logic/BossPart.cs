@@ -6,6 +6,8 @@ public class BossPart
     private BossPartConfig partStats;
     private Vector2Int position;
     private Vector2Int orientation;
+    private List<SetOfPositions> areasOfEffect;
+    private List<SetOfPositions> shapesOfAttack;
 
     public BossPartType PartType { get { return partStats.PartType; } }
     public Vector2Int Position { get { return position; } }
@@ -13,11 +15,15 @@ public class BossPart
     public int Height { get { return partStats.Dimensions.y; } }
     public bool RotateWithBody { get { return partStats.RotatesWithBody; } }
     public Vector2Int Orientation { get { return orientation; } }
+    public List<SetOfPositions> AreasOfEffect { get { return areasOfEffect; } }
+    public List<SetOfPositions> ShapesOfAttack { get { return shapesOfAttack; } }
 
-    public BossPart(BossPartConfig partStat)
+    public BossPart(BossPartConfig partStat, Vector2Int initialPosition, List<SetOfPositions> areasEffect, List<SetOfPositions> shapesAttack)
     {
         partStats = partStat;
-        position = partStat.InitialPosition;
+        position = initialPosition;
+        areasOfEffect = areasEffect;
+        shapesOfAttack = shapesAttack;
         orientation = Vector2Int.down;
     }
 

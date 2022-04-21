@@ -33,15 +33,6 @@ public class BossConfig : ScriptableObject
             return totalHealth;
         }
     }
-
-    //[ContextMenu("Fill Positions")]
-    public void FillPositions()
-    {
-        foreach (BossPartConfig config in bossParts.Values)
-        {
-            config.FillPositions();
-        }
-    }
 }
 
 

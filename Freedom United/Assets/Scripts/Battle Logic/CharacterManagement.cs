@@ -7,6 +7,7 @@ public class CharacterManagement : MonoBehaviour, NotificationsListener
     [SerializeField] private Transform charactersContainer;
     [SerializeField] private Vector2Int bossInitialPosition;
     [SerializeField] private BossConfig bossConfig;
+    [SerializeField] private BossVisuals bossVisuals;
     private Dictionary<CharacterID, Character> characters;
     public Dictionary<CharacterID, Character> Characters { get { return characters; } }
     private Boss boss;
@@ -33,7 +34,7 @@ public class CharacterManagement : MonoBehaviour, NotificationsListener
             SetCharacterInPosition(characterVisuals.CharacterID, position);
         }
 
-        boss = new Boss(bossConfig);
+        boss = new Boss(bossConfig, bossVisuals);
     }
 
     public void SetCharacterInPosition(CharacterID characterID, Vector2Int newPosition)

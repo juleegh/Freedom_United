@@ -27,12 +27,12 @@ public static class BossUtils
 
     public static BossAttackInfo GetAreaOfEffectForPosition(BossPart bossPart, Vector2Int targetPosition)
     {
-        BossPartConfig config = BattleManager.Instance.CharacterManagement.BossConfig.PartsList[bossPart.PartType];
-        foreach (SetOfPositions areaOfEffect in config.AreasOfEffect)
+        BossPart part = BattleManager.Instance.CharacterManagement.Boss.Parts[bossPart.PartType];
+        foreach (SetOfPositions areaOfEffect in part.AreasOfEffect)
         {
             List<Vector2Int> pivots = areaOfEffect.GetPositions(bossPart.Position, bossPart.Orientation);
 
-            foreach (SetOfPositions attackShape in config.ShapesOfAtttack)
+            foreach (SetOfPositions attackShape in part.ShapesOfAttack)
             {
                 foreach (Vector2Int pivot in pivots)
                 {
@@ -70,7 +70,7 @@ public static class BossUtils
     public static bool PartCanAttackPosition(BossPartType partType, Vector2Int position)
     {
         BossPart bossPart = BattleManager.Instance.CharacterManagement.Boss.Parts[partType];
-        List<SetOfPositions> areasOfEffect = BattleManager.Instance.CharacterManagement.BossConfig.PartsList[partType].AreasOfEffect;
+        List<SetOfPositions> areasOfEffect = BattleManager.Instance.CharacterManagement.Boss.Parts[partType].AreasOfEffect;
 
         foreach (SetOfPositions areaOfEffect in areasOfEffect)
         {

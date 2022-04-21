@@ -4,17 +4,49 @@ using UnityEngine;
 
 public class BossPartVisuals : MonoBehaviour
 {
+    [SerializeField] private BossPartType partType;
     [SerializeField] private SpriteRenderer body;
     [SerializeField] private BossesAssets assets;
     [SerializeField] private DeathIcon deathIcon;
 
-    public void Paint(BossPart part)
+    public void Paint(BossPartConfig part)
     {
+        gameObject.name = part.PartType.ToString();
+        partType = part.PartType;
         body.sprite = assets.Parts[part.PartType];
+        deathIcon.transform.localPosition = new Vector3(part.Dimensions.x / 2, part.Dimensions.y / 2, -0.05f);
+        deathIcon.Clear();
+    }
+
+    public List<SetOfPositions> LoadAreasOfEffect()
+    {
+        List<SetOfPositions> areasOfEffect = new List<SetOfPositions>();
+        AreaOfEffectMarker[] areas = GetComponentsInChildren<AreaOfEffectMarker>();
+        foreach (AreaOfEffectMarker area in areas)
+        {
+            areasOfEffect.Add(area.GetPositions());
+        }
+
+        return areasOfEffect;
+    }
+
+    public List<SetOfPositions> LoadShapesOfAttack()
+    {
+        List<SetOfPositions> shapesOfAttack = new List<SetOfPositions>();
+        ShapeOfAttackMarker[] areas = GetComponentsInChildren<ShapeOfAttackMarker>();
+        foreach (ShapeOfAttackMarker area in areas)
+        {
+            shapesOfAttack.Add(area.GetPositions());
+        }
+
+        return shapesOfAttack;
+    }
+
+    public void Refresh(BossPart part)
+    {
         Vector2Int position = part.GetWorldPosition();
         transform.localPosition = new Vector3(position.x, 0, position.y);
         transform.localEulerAngles = Vector3.right * 90 + TransfromRotation(part.Orientation);
-        deathIcon.transform.localPosition = new Vector3(part.Width / 2, part.Height / 2, -0.05f);
     }
 
     private Vector3 TransfromRotation(Vector2Int orientation)

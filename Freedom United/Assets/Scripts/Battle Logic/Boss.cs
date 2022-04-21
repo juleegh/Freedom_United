@@ -12,16 +12,21 @@ public class Boss
     private int fovDepth;
     private int fovWidth;
 
-    public Boss(BossConfig config)
+    public Boss(BossConfig config, BossVisuals visuals)
     {
         fovDepth = config.FoVDepth;
         fovWidth = config.FoVWidth;
 
         parts = new Dictionary<BossPartType, BossPart>();
+        visuals.Load();
 
         foreach (KeyValuePair<BossPartType, BossPartConfig> part in config.PartsList)
         {
-            BossPart nextPart = new BossPart(part.Value);
+            Vector2Int initialPosition = visuals.GetPositionByPart(part.Key);
+            List<SetOfPositions> areasOfEffect = visuals.GetAreasOfEffectByPart(part.Key);
+            List<SetOfPositions> shapesOfAttack = visuals.GetShapesOfAttackByPart(part.Key);
+
+            BossPart nextPart = new BossPart(part.Value, initialPosition, areasOfEffect, shapesOfAttack);
             parts.Add(part.Key, nextPart);
 
             if (part.Value.IsCore)

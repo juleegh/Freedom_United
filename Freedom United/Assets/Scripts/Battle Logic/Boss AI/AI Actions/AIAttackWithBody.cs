@@ -19,14 +19,14 @@ public class AIAttackWithBody : AITurnAction
     {
         BossPart core = BattleManager.Instance.CharacterManagement.Boss.Core;
         BossPartType coreType = core.PartType;
-        BossPartConfig config = BattleManager.Instance.CharacterManagement.BossConfig.PartsList[coreType];
+        BossPart config = BattleManager.Instance.CharacterManagement.Boss.Parts[coreType];
         List<SetOfPositions> areasOfEffect = config.AreasOfEffect;
 
         foreach (SetOfPositions areaOfEffect in areasOfEffect)
         {
             List<Vector2Int> pivots = areaOfEffect.GetPositions(core.Position, core.Orientation);
 
-            foreach (SetOfPositions attackShape in config.ShapesOfAtttack)
+            foreach (SetOfPositions attackShape in config.ShapesOfAttack)
             {
                 foreach (Vector2Int pivot in pivots)
                 {

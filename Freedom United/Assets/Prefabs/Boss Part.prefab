@@ -108,6 +108,7 @@ GameObject:
   - component: {fileID: 7441897098479413642}
   - component: {fileID: 8880820814853813526}
   - component: {fileID: 3438681044333913652}
+  - component: {fileID: 8544152101150333703}
   m_Layer: 0
   m_Name: Boss Part
   m_TagString: Untagged
@@ -142,6 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e2d00b6b1d9ac047934cc88b980c22c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  partType: 0
   body: {fileID: 3438681044333913652}
   assets: {fileID: 11400000, guid: 6c64cb728acdf6045a3e7d8369f29303, type: 2}
   deathIcon: {fileID: 3271437002484813050}
@@ -196,3 +198,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8544152101150333703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7646014017695417288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f64f980e2f9be4419b0fef67d04eb4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
