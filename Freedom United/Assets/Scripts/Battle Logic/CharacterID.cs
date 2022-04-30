@@ -4,4 +4,9 @@ public enum CharacterID
     Lotto,
     YonShichi,
     Dio,
+    Sandalio,
+    Andras,
+    Belle,
+    Blake,
+    Lia,
 }
