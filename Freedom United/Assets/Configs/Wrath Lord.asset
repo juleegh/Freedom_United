@@ -24,7 +24,7 @@ MonoBehaviour:
       draggable: 1
       expandable: 1
       multipleSelection: 1
-      isExpanded: 0
+      isExpanded: 1
       label:
         m_Text: Keys
         m_Image: {fileID: 0}
@@ -39,7 +39,7 @@ MonoBehaviour:
       elementNameOverride: 
       elementIcon: {fileID: 0}
     reqReferences: {fileID: 0}
-    isExpanded: 0
+    isExpanded: 1
     _keyValues: 0300000004000000050000000600000007000000
     _keys: 0300000004000000050000000600000007000000
     _values:
@@ -126,7 +126,7 @@ MonoBehaviour:
       dimensions: {x: 1, y: 1}
       baseAttack: 10
       baseDefense: 60
-      attackSpeed: 20
+      attackSpeed: 18
       defenseSpeed: 20
       moveSpeed: 20
       rotateSpeed: 20
@@ -135,9 +135,9 @@ MonoBehaviour:
         - {x: 0, y: 0}
       bossDefenseType: 2
       defendedParts: 0400000003000000
-      normalSuccessChance: 0.6
-      criticalSuccessChance: 0.2
-      criticalFailureChance: 0.2
+      normalSuccessChance: 0.35
+      criticalSuccessChance: 0.05
+      criticalFailureChance: 0.6
     - partType: 7
       baseDurability: 1150
       isCore: 0
@@ -145,7 +145,7 @@ MonoBehaviour:
       dimensions: {x: 1, y: 1}
       baseAttack: 10
       baseDefense: 60
-      attackSpeed: 20
+      attackSpeed: 18
       defenseSpeed: 20
       moveSpeed: 20
       rotateSpeed: 20
@@ -154,6 +154,6 @@ MonoBehaviour:
         - {x: 0, y: 0}
       bossDefenseType: 2
       defendedParts: 0300000005000000
-      normalSuccessChance: 0.6
-      criticalSuccessChance: 0.2
-      criticalFailureChance: 0.2
+      normalSuccessChance: 0.35
+      criticalSuccessChance: 0.05
+      criticalFailureChance: 0.6
