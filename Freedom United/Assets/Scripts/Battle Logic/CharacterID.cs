@@ -9,4 +9,5 @@ public enum CharacterID
     Belle,
     Blake,
     Lia,
+    Garash,
 }
