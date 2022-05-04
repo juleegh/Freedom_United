@@ -6,6 +6,7 @@ using System.Linq;
 public class BattleGrid : MonoBehaviour, NotificationsListener
 {
     [SerializeField] private float obstacleHP;
+    [SerializeField] private int walkDistance;
     [SerializeField] private Transform cellsContainer;
 
     private Dictionary<BossPartType, PartObstacle> partObstacles;
@@ -68,15 +69,24 @@ public class BattleGrid : MonoBehaviour, NotificationsListener
     {
         positionsInRange.Clear();
 
-        foreach (Vector2Int position in gridPositions)
+        for (int column = -walkDistance; column <= walkDistance; column++)
         {
-            if (position == origin || obstacles.ContainsKey(position))
-                continue;
+            int diagonal = walkDistance - Mathf.Abs(column);
+            for (int row = -diagonal; row <= diagonal; row++)
+            {
+                Vector2Int position = new Vector2Int(column, row) + origin;
 
-            if (BattleManager.Instance.CharacterManagement.Boss.OccupiesPosition(position.x, position.y))
-                continue;
+                if (position == origin || obstacles.ContainsKey(position))
+                    continue;
 
-            positionsInRange.Add(position);
+                if (!gridPositions.Contains(position))
+                    continue;
+
+                if (BattleManager.Instance.CharacterManagement.Boss.OccupiesPosition(position.x, position.y))
+                    continue;
+
+                positionsInRange.Add(position);
+            }
         }
     }
 
