@@ -25,6 +25,10 @@ public class CharacterStats : ScriptableObject
     [SerializeField] private int recklessChangeSpeed;
     [SerializeField] private int safeChangeSpeed;
 
+    [SerializeField] private int sadWPDelta;
+    [SerializeField] private int deathWPDelta;
+    [SerializeField] private int happyWPDelta;
+
     public AttackRange AttackRange { get { return attackRange; } }
     public AttackType AttackType { get { return attackType; } }
 
@@ -43,4 +47,8 @@ public class CharacterStats : ScriptableObject
     public float NormalSuccessChance { get { return normalSuccessChance; } }
     public float CriticalSuccessChance { get { return criticalFailureChance; } }
     public float CriticalFailureChance { get { return criticalFailureChance; } }
+
+    public int SadWPDelta { get { return sadWPDelta; } }
+    public int DeathWPDelta { get { return deathWPDelta; } }
+    public int HappyWPDelta { get { return happyWPDelta; } }
 }

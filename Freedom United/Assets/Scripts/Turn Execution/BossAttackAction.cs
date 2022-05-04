@@ -59,7 +59,8 @@ public class BossAttackAction : ExecutingAction
 
                 if (PassedCritical())
                 {
-                    BattleManager.Instance.BattleValues.CharacterModifyWillPower(targetCharacter.CharacterID, BattleGridUtils.ReceivedCriticalWillPercentage);
+                    int wpLoss = BattleManager.Instance.PartyStats.Stats[targetCharacter.CharacterID].SadWPDelta;
+                    BattleManager.Instance.BattleValues.CharacterModifyWillPower(targetCharacter.CharacterID, wpLoss);
                 }
 
                 if (!FailedSuccess() && defenseInPosition > 0)

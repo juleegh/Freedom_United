@@ -15,7 +15,7 @@ MonoBehaviour:
   attackRange: 0
   attackType: 0
   baseHealth: 85
-  baseWillPower: 50
+  baseWillPower: 100
   baseShieldDurability: 20
   baseAttack: 80
   normalSuccessChance: 0.8
@@ -26,3 +26,6 @@ MonoBehaviour:
   defenseSpeed: 10
   recklessChangeSpeed: 15
   safeChangeSpeed: 5
+  sadWPDelta: 7
+  deathWPDelta: 50
+  happyWPDelta: 25

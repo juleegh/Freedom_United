@@ -26,3 +26,6 @@ MonoBehaviour:
   defenseSpeed: 1
   recklessChangeSpeed: 15
   safeChangeSpeed: 5
+  sadWPDelta: 1
+  deathWPDelta: 5
+  happyWPDelta: 5

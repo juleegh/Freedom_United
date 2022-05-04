@@ -69,7 +69,8 @@ public class CharacterAttackAction : ExecutingAction
 
                     if (BattleManager.Instance.BattleValues.BossPartIsDestroyed(targetPart.PartType))
                     {
-                        BattleManager.Instance.BattleValues.CharacterModifyWillPower(attackingCharacter, BattleGridUtils.DestroyingBodyPartWillPercentage);
+                        int wpGain = BattleManager.Instance.PartyStats.Stats[attackingCharacter].HappyWPDelta;
+                        BattleManager.Instance.BattleValues.CharacterModifyWillPower(attackingCharacter, wpGain);
                         BattleManager.Instance.BattleGrid.AddPartObstacle(targetPart.PartType);
                     }
                 }
@@ -113,11 +114,13 @@ public class CharacterAttackAction : ExecutingAction
 
         if (FailedSuccess())
         {
-            BattleManager.Instance.BattleValues.CharacterModifyWillPower(attackingCharacter, BattleGridUtils.FailureWillPercentage);
+            int wpLoss = BattleManager.Instance.PartyStats.Stats[attackingCharacter].SadWPDelta;
+            BattleManager.Instance.BattleValues.CharacterModifyWillPower(attackingCharacter, wpLoss);
         }
         else if (PassedCritical())
         {
-            BattleManager.Instance.BattleValues.CharacterModifyWillPower(attackingCharacter, BattleGridUtils.CriticalWillPercentage);
+            int wpWin = BattleManager.Instance.PartyStats.Stats[attackingCharacter].HappyWPDelta;
+            BattleManager.Instance.BattleValues.CharacterModifyWillPower(attackingCharacter, wpWin);
         }
     }
 

@@ -32,16 +32,16 @@ public class BattleValues : MonoBehaviour, NotificationsListener
         if (partyHealthPoints[character] <= 0)
         {
             partyHealthPoints[character] = BattleManager.Instance.PartyStats.Stats[character].BaseHealth;
-            CharacterModifyWillPower(character, BattleGridUtils.DeathWillPercentage);
+            CharacterModifyWillPower(character, BattleManager.Instance.PartyStats.Stats[character].DeathWPDelta);
         }
         GameNotificationsManager.Instance.Notify(GameNotification.CharacterStatsChanged);
     }
 
-    public void CharacterModifyWillPower(CharacterID character, float percentage)
+    public void CharacterModifyWillPower(CharacterID character, int delta)
     {
         bool alive = IsAlive(character);
 
-        partyWillPoints[character] += BattleManager.Instance.PartyStats.Stats[character].BaseWillPower * percentage;
+        partyWillPoints[character] += delta;
         if (partyWillPoints[character] <= 0)
         {
             partyWillPoints[character] = 0;

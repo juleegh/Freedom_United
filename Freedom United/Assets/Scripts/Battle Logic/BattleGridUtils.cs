@@ -6,11 +6,6 @@ public static class BattleGridUtils
 {
     public static float ShovingDamage { get { return 3.0f; } }
     public static float DefenseSplitFactor { get { return 0.5f; } }
-    public static float DeathWillPercentage { get { return -0.25f; } }
-    public static float FailureWillPercentage { get { return -0.05f; } }
-    public static float ReceivedCriticalWillPercentage { get { return -0.1f; } }
-    public static float CriticalWillPercentage { get { return 0.05f; } }
-    public static float DestroyingBodyPartWillPercentage { get { return 0.1f; } }
     public static float BossCriticalDamageMultiplier { get { return 1.25f; } }
     public static float CharacterCriticalDamageMultiplier { get { return 1.5f; } }
 
