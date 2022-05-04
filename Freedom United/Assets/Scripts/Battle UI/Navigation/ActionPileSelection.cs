@@ -45,17 +45,6 @@ public class ActionPileSelection : NavigationSelection
         PaintPreviewRange();
     }
 
-    public void SetAsSelected(CharacterID character)
-    {
-        currentIndex = 0;
-        topElement = 0;
-        BattleUIManager.Instance.ActionPileUI.RefreshView(topElement, currentIndex);
-        PaintPreviewRange();
-
-        while (ShowingAction.ActionOwner != character.ToString() && currentIndex + topElement < MaxElements - 1)
-            Next();
-    }
-
     private void PaintPreviewRange()
     {
         BattleActionType actionType = ShowingAction.actionType;
@@ -101,4 +90,6 @@ public class ActionPileSelection : NavigationSelection
     }
 
     private ScheduledAction ShowingAction { get { return BattleManager.Instance.ActionPile.ActionsForTurn[topElement + currentIndex]; } }
+    public long SelectedActionID { get { return BattleManager.Instance.ActionPile.ActionsForTurn[topElement + currentIndex].actionID; } }
+    public bool CurrentlyIsCharacter { get { return BattleGridUtils.IsACharacter(BattleManager.Instance.ActionPile.ActionsForTurn[topElement + currentIndex].ActionOwner); } }
 }

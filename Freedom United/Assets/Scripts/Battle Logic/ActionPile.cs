@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
 
 public class ActionPile : MonoBehaviour, NotificationsListener
 {
     private AllyAction currentAction { get { return BattleUINavigation.Instance.NavigationState.currentAction; } }
     private Dictionary<string, List<ScheduledAction>> actionsForTurn;
     [SerializeField] private int bossActionLimit;
+    [SerializeField] private int characterActionLimit;
 
     public void ConfigureComponent()
     {
@@ -17,6 +19,7 @@ public class ActionPile : MonoBehaviour, NotificationsListener
     public void AddActionToPile(ScheduledAction action)
     {
         action.confirmed = true;
+        action.actionID = new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds();
 
         if (!actionsForTurn.ContainsKey(action.ActionOwner))
             actionsForTurn.Add(action.ActionOwner, new List<ScheduledAction>());
@@ -25,16 +28,26 @@ public class ActionPile : MonoBehaviour, NotificationsListener
         BattleUIManager.Instance.ActionPileUI.RefreshView(0, 0);
     }
 
-    public void RemoveActionFromPile(CharacterID selectedCharacter)
+    public void RemoveActionFromPile(long actionID)
     {
-        actionsForTurn.Remove(selectedCharacter.ToString());
-        BattleUIManager.Instance.ActionPileUI.RefreshView(0, 0);
+        foreach (List<ScheduledAction> characterActions in actionsForTurn.Values)
+        {
+            foreach (ScheduledAction characterAction in characterActions)
+            {
+                if (characterAction.actionID == actionID)
+                {
+                    actionsForTurn[characterAction.ActionOwner].Remove(characterAction);
+                    BattleUIManager.Instance.ActionPileUI.RefreshView(0, 0);
+                    return;
+                }
+            }
+        }
     }
 
     public bool CharacterAvailable(CharacterID character)
     {
         string actionOwner = character.ToString();
-        return !actionsForTurn.ContainsKey(actionOwner);
+        return !actionsForTurn.ContainsKey(actionOwner) || actionsForTurn[actionOwner].Count < characterActionLimit;
     }
 
     public void ClearList()
@@ -54,7 +67,7 @@ public class ActionPile : MonoBehaviour, NotificationsListener
             foreach (List<ScheduledAction> characterActions in actionsForTurn.Values)
                 actionsToShow.AddRange(characterActions);
 
-            if (currentAction != null && !actionsForTurn.ContainsKey(currentAction.actionOwner.ToString()) && currentAction.speed > 0)
+            if (currentAction != null && !currentAction.confirmed && currentAction.speed > 0)
                 actionsToShow.Add(currentAction);
 
             actionsToShow = actionsToShow.OrderBy(o => (-o.speed)).ToList();

@@ -68,10 +68,11 @@ public class BattleGrid : MonoBehaviour, NotificationsListener
     public void CalculateRange(Vector2Int origin)
     {
         positionsInRange.Clear();
+        int distance = walkDistance > 0 ? walkDistance : 1;
 
-        for (int column = -walkDistance; column <= walkDistance; column++)
+        for (int column = -distance; column <= distance; column++)
         {
-            int diagonal = walkDistance - Mathf.Abs(column);
+            int diagonal = distance - Mathf.Abs(column);
             for (int row = -diagonal; row <= diagonal; row++)
             {
                 Vector2Int position = new Vector2Int(column, row) + origin;

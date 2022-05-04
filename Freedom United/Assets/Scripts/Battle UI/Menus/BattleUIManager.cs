@@ -13,11 +13,10 @@ public class BattleUIManager : MonoBehaviour, NotificationsListener
     [SerializeField] private ActionSelectionUI actionSelectionUI;
     public ActionSelectionUI ActionSelectionUI { get { return actionSelectionUI; } }
 
-    [SerializeField] private CancelUI cancelUI;
-    public CancelUI CancelUI { get { return cancelUI; } }
-
     [SerializeField] private ActionPileUI actionPileUI;
     public ActionPileUI ActionPileUI { get { return actionPileUI; } }
+
+    [SerializeField] private GameObject cancelPrompt;
 
     [SerializeField] private MagicSelectionUI magicSelectionUI;
     public MagicSelectionUI MagicSelectionUI { get { return magicSelectionUI; } }
@@ -28,5 +27,11 @@ public class BattleUIManager : MonoBehaviour, NotificationsListener
     public void ConfigureComponent()
     {
         instance = this;
+        ToggleCancelPrompt(false);
+    }
+
+    public void ToggleCancelPrompt(bool bVisible)
+    {
+        cancelPrompt.SetActive(bVisible);
     }
 }

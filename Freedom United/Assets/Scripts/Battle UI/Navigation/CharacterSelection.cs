@@ -43,11 +43,6 @@ public class CharacterSelection : NavigationSelection
 
     public void Refresh()
     {
-        currentIndex = 0;
-        topElement = 0;
-
-        while (currentIndex + topElement < MaxElements - 1 && !BattleManager.Instance.ActionPile.CharacterAvailable(CharacterID))
-            Next();
         BattleUIManager.Instance.CharacterSelectionUI.RefreshView(topElement, currentIndex);
     }
 

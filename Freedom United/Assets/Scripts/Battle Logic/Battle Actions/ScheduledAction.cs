@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ScheduledAction
 {
+    public long actionID;
     public BattleActionType actionType;
     public int speed;
     public bool confirmed;
