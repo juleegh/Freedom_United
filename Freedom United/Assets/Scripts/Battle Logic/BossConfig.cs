@@ -24,6 +24,12 @@ public class BossConfig : ScriptableObject
 
     [SerializeField] private BossParts bossParts;
     public BossParts PartsList { get { return bossParts; } }
+    /*
+        [SerializeField] private int amountOfSuicideCells;
+        public int AmountOfSuicideCells { get { return amountOfSuicideCells; } }
+        [SerializeField] private float suicideAttackDamage;
+        public float SuicideAttackDamage { get { return suicideAttackDamage; } }
+    */
 
     public float BaseHealth
     {

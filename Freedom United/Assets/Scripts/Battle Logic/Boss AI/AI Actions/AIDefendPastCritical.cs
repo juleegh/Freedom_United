@@ -16,7 +16,7 @@ public class AIDefendPastCritical : AITurnAction
 
         foreach (PostActionInfo actionInfo in TurnBlackBoard.Instance.LastTurnRegisters)
         {
-            if (BattleActionsUtils.GetTargetType(actionInfo.actionOwner) == TargetType.Character || BattleActionsUtils.GetTargetType(actionInfo.actionTarget) != TargetType.BossPart)
+            if (BattleActionsUtils.GetTargetType(actionInfo.actionOwner) != TargetType.Character || BattleActionsUtils.GetTargetType(actionInfo.actionTarget) != TargetType.BossPart)
                 continue;
 
             BossPartType partToDefend = BattleGridUtils.GetBossPart(actionInfo.actionTarget);

@@ -10,14 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 23beb14b6e99df348ab7faa18e64f5e5, type: 3}
-  m_Name: Turn If Can Rotate Randomly
+  m_Name: Turn If Can Rotate To Others
   m_EditorClassIdentifier: 
   conditions:
-  - {fileID: 11400000, guid: 9e9a00e1abdb7b24cbee4f295524e31e, type: 2}
+  - {fileID: 11400000, guid: d5be5d2277240bf4d98688645c20796c, type: 2}
   - {fileID: 11400000, guid: 1adfac669644a3b4fa914c8beeb79243, type: 2}
   attackActions:
   - {fileID: 11400000, guid: 411b22ae07181e94baf3b4e388155bff, type: 2}
+  - {fileID: 11400000, guid: 18b8db3278a78144c93994231afad162, type: 2}
+  - {fileID: 11400000, guid: 18b8db3278a78144c93994231afad162, type: 2}
   - {fileID: 11400000, guid: e7bc716012c8c324c9240a312cb337c1, type: 2}
-  - {fileID: 11400000, guid: e7bc716012c8c324c9240a312cb337c1, type: 2}
-  - {fileID: 11400000, guid: c77396b3d793cd24a9c367547741c49c, type: 2}
-  - {fileID: 11400000, guid: c77396b3d793cd24a9c367547741c49c, type: 2}
