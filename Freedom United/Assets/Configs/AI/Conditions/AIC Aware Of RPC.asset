@@ -9,8 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7973e7e5d57e05f42bd8c4c1054795e4, type: 3}
-  m_Name: AI Attack Lowest HP
+  m_Script: {fileID: 11500000, guid: ab87364cdcaed894391ceaf966bfe479, type: 3}
+  m_Name: AIC Aware Of RPC
   m_EditorClassIdentifier: 
-  condition: {fileID: 0}
-  attackActions: []

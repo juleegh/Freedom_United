@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23beb14b6e99df348ab7faa18e64f5e5, type: 3}
+  m_Name: Turn If HP Above 75
+  m_EditorClassIdentifier: 
+  conditions:
+  - {fileID: 11400000, guid: 7d7f40cc34ef93644be22809879556e7, type: 2}
+  attackActions:
+  - {fileID: 11400000, guid: 8401d702851cfbf4cb185609853536c2, type: 2}
+  - {fileID: 11400000, guid: 70e7d1eb2a3ebc84a9c3c3dfdb271958, type: 2}
+  - {fileID: 11400000, guid: 8f53cfd3e2147014f94803afb4656997, type: 2}
+  - {fileID: 11400000, guid: bb49ccf02a0d5cc439872050203e20fc, type: 2}
+  - {fileID: 11400000, guid: 34bf36fa38720ee4689166e8cf2266d8, type: 2}
+  - {fileID: 11400000, guid: 7060dce5aab3cfa4d8ff720d4fe4f861, type: 2}
+  - {fileID: 11400000, guid: 7ead6cfb49ad248428e0c256a13bf41b, type: 2}

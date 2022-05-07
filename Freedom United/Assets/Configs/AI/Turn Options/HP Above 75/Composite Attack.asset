@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7973e7e5d57e05f42bd8c4c1054795e4, type: 3}
-  m_Name: AI Attack Lowest HP
+  m_Script: {fileID: 11500000, guid: 23beb14b6e99df348ab7faa18e64f5e5, type: 3}
+  m_Name: Composite Attack
   m_EditorClassIdentifier: 
-  condition: {fileID: 0}
-  attackActions: []
+  conditions: []
+  attackActions:
+  - {fileID: 11400000, guid: dc7f55191359fe4449012c043b47a5fe, type: 2}
+  - {fileID: 11400000, guid: bc91d08090fe76a4e9e927f09bf9985d, type: 2}

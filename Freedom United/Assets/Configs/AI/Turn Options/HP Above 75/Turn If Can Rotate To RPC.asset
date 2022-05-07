@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23beb14b6e99df348ab7faa18e64f5e5, type: 3}
+  m_Name: Turn If Can Rotate To RPC
+  m_EditorClassIdentifier: 
+  conditions:
+  - {fileID: 11400000, guid: a8662fb3644b587489e2f89ff7decb59, type: 2}
+  - {fileID: 11400000, guid: 1adfac669644a3b4fa914c8beeb79243, type: 2}
+  attackActions:
+  - {fileID: 11400000, guid: 173ca686a49b9f34eba9f4592a211353, type: 2}
+  - {fileID: 11400000, guid: 18b8db3278a78144c93994231afad162, type: 2}
+  - {fileID: 11400000, guid: d117a599fb03ef84c8747cf328b18d91, type: 2}
+  - {fileID: 11400000, guid: 0b0317382a41cae4f8e20918708a5cef, type: 2}
+  - {fileID: 11400000, guid: d117a599fb03ef84c8747cf328b18d91, type: 2}
+  - {fileID: 11400000, guid: e0e461a6f329331428e364903453ddcd, type: 2}
+  - {fileID: 11400000, guid: 678f77773f4b2634b83ba31fdeb247c7, type: 2}
+  - {fileID: 11400000, guid: e0e461a6f329331428e364903453ddcd, type: 2}
+  - {fileID: 11400000, guid: 01248a5a479135d42bba6378d87b620d, type: 2}
+  - {fileID: 11400000, guid: 01248a5a479135d42bba6378d87b620d, type: 2}

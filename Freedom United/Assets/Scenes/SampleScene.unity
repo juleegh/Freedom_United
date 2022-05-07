@@ -35046,9 +35046,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnOptions:
-  - {fileID: 11400000, guid: c8c68cd5de200ea42831299b7a4b091d, type: 2}
   - {fileID: 11400000, guid: 2cbb4efd66044754c8746a28674b99f2, type: 2}
-  - {fileID: 11400000, guid: f55e76dd8fe6d0048bf98eef99116001, type: 2}
 --- !u!1001 &1346462155
 PrefabInstance:
   m_ObjectHideFlags: 0

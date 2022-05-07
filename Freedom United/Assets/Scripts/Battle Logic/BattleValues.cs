@@ -8,10 +8,12 @@ public class BattleValues : MonoBehaviour, NotificationsListener
     private Dictionary<CharacterID, float> partyHealthPoints;
     private Dictionary<CharacterID, float> partyWillPoints;
     private Dictionary<CharacterID, float> partyDefensePoints;
+    private float currentBossHealth;
     private float totalBossHealth;
     private BossParts PartsList { get { return BattleManager.Instance.CharacterManagement.BossConfig.PartsList; } }
 
-    public float BossHealth { get { return totalBossHealth; } }
+    public float BossHealth { get { return currentBossHealth; } }
+    public float BaseBossHealth { get { return totalBossHealth; } }
     public Dictionary<BossPartType, float> BossPartsHealth { get { return bossHealthPoints; } }
     public Dictionary<CharacterID, float> PartyHealth { get { return partyHealthPoints; } }
     public Dictionary<CharacterID, float> PartyWill { get { return partyWillPoints; } }
@@ -88,12 +90,12 @@ public class BattleValues : MonoBehaviour, NotificationsListener
 
         if (PartsList[partType].IsCore)
         {
-            totalBossHealth -= damageTaken;
+            currentBossHealth -= damageTaken;
         }
         else if (bossHealthPoints[partType] > 0)
         {
             float acceptedDamage = bossHealthPoints[partType] < damageTaken ? bossHealthPoints[partType] : damageTaken;
-            totalBossHealth -= acceptedDamage;
+            currentBossHealth -= acceptedDamage;
             bossHealthPoints[partType] -= acceptedDamage;
         }
 
@@ -107,12 +109,12 @@ public class BattleValues : MonoBehaviour, NotificationsListener
 
     public bool BossPartIsDestroyed(BossPartType partType)
     {
-        return (PartsList[partType].IsCore && totalBossHealth <= 0) || bossHealthPoints[partType] <= 0;
+        return (PartsList[partType].IsCore && currentBossHealth <= 0) || bossHealthPoints[partType] <= 0;
     }
 
     private void InitializeValues(GameNotificationData notificationData)
     {
-        totalBossHealth = 0;
+        currentBossHealth = 0;
 
         foreach (Character character in BattleManager.Instance.CharacterManagement.Characters.Values)
         {
@@ -127,6 +129,7 @@ public class BattleValues : MonoBehaviour, NotificationsListener
             bossHealthPoints.Add(bossPart.PartType, PartsList[bossPart.PartType].BaseDurability);
             totalBossHealth += PartsList[bossPart.PartType].BaseDurability;
         }
+        currentBossHealth = totalBossHealth;
     }
 
 

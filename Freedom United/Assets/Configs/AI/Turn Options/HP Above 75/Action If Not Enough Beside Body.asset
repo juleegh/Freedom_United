@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7973e7e5d57e05f42bd8c4c1054795e4, type: 3}
-  m_Name: AI Attack Lowest HP
+  m_Script: {fileID: 11500000, guid: 23beb14b6e99df348ab7faa18e64f5e5, type: 3}
+  m_Name: Action If Not Enough Beside Body
   m_EditorClassIdentifier: 
   condition: {fileID: 0}
-  attackActions: []
+  attackActions:
+  - {fileID: 11400000, guid: b9ea3066e3ab4d7499b3a7b9ff2e149f, type: 2}

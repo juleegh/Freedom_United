@@ -94,4 +94,33 @@ public static class BossUtils
         }
         return transformedPositions;
     }
+
+    public static bool CanBeDefended(BossPartType toDefend)
+    {
+        List<BossPartConfig> parts = new List<BossPartConfig>(BattleManager.Instance.CharacterManagement.BossConfig.PartsList.Values);
+
+        foreach (BossPartConfig part in parts)
+        {
+            if (part.DefendedParts.Contains(toDefend))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static SetOfPositions GetDefendArea(BossPartConfig defendingPart)
+    {
+        List<Vector2Int> positionsToDefend = new List<Vector2Int>();
+
+        foreach (BossPartType defendedPart in defendingPart.DefendedParts)
+        {
+            BossPartConfig partConfig = BattleManager.Instance.CharacterManagement.BossConfig.PartsList[defendedPart];
+            List<Vector2Int> partPositions = BossUtils.GetPositionsOccupiedByPart(partConfig.PartType);
+            positionsToDefend.AddRange(partPositions);
+        }
+
+        SetOfPositions areaOfDefense = new SetOfPositions(positionsToDefend);
+        return areaOfDefense;
+    }
 }

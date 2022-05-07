@@ -16,9 +16,9 @@ public class BossBehaviourTree : MonoBehaviour, NotificationsListener
     {
         foreach (AITurnOption turnOption in turnOptions)
         {
-            if (turnOption.CanExecute())
+            turnOption.Evaluate();
+            if (BattleManager.Instance.ActionPile.BossReachedLimit)
             {
-                turnOption.SelectActions();
                 return;
             }
         }

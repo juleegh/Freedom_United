@@ -6,30 +6,47 @@ using System;
 
 //[CreateAssetMenu(fileName = "AI Turn Option")]
 [Serializable]
-public class AITurnOption : ScriptableObject
+public class AITurnOption : AITurnAction
 {
-    [SerializeField] protected AICondition condition;
+    [SerializeField] protected List<AICondition> conditions;
     [SerializeField] protected List<AITurnAction> attackActions;
 
-    public bool CanExecute()
+    private bool CanExecute()
     {
-        if (condition == null)
+        if (conditions.Count == 0)
             return true;
 
-        return condition.MeetsRequirement();
+        Debug.LogWarning("-------- Evaluating: " + name + "--------");
+
+        foreach (AICondition condition in conditions)
+        {
+            Debug.LogWarning("-------- Condition met: " + condition.GetType() + "? : " + condition.MeetsRequirement());
+            if (!condition.MeetsRequirement())
+                return false;
+        }
+        return true;
     }
 
-    public void SelectActions()
+    public override void Evaluate()
     {
-        Debug.LogWarning("-------- Condition met: " + condition.GetType() + "--------");
-        foreach (AITurnAction attackAction in attackActions)
+        CheckAndAddToPile();
+    }
+
+    protected override bool CheckAndAddToPile()
+    {
+        if (CanExecute())
         {
-            attackAction.AddToPile();
-            if (BattleManager.Instance.ActionPile.BossReachedLimit)
+            foreach (AITurnAction attackAction in attackActions)
             {
-                return;
+                attackAction.Evaluate();
+                if (BattleManager.Instance.ActionPile.BossReachedLimit)
+                {
+                    return true;
+                }
             }
+            return true;
         }
+        return false;
     }
 }
 

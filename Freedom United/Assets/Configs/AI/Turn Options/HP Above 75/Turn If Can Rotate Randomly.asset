@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23beb14b6e99df348ab7faa18e64f5e5, type: 3}
+  m_Name: Turn If Can Rotate Randomly
+  m_EditorClassIdentifier: 
+  conditions:
+  - {fileID: 11400000, guid: 9e9a00e1abdb7b24cbee4f295524e31e, type: 2}
+  attackActions:
+  - {fileID: 11400000, guid: 411b22ae07181e94baf3b4e388155bff, type: 2}
+  - {fileID: 11400000, guid: e7bc716012c8c324c9240a312cb337c1, type: 2}
+  - {fileID: 11400000, guid: e7bc716012c8c324c9240a312cb337c1, type: 2}
+  - {fileID: 11400000, guid: c77396b3d793cd24a9c367547741c49c, type: 2}
+  - {fileID: 11400000, guid: c77396b3d793cd24a9c367547741c49c, type: 2}
