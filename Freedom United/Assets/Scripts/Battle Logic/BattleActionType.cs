@@ -10,6 +10,7 @@ public enum BattleActionType
     MoveFast,
     Magic,
     Rotate,
+    SuicideAttack,
 }
 
 public enum TargetType

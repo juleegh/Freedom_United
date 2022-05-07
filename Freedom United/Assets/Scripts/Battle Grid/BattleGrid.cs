@@ -12,6 +12,7 @@ public class BattleGrid : MonoBehaviour, NotificationsListener
     private Dictionary<BossPartType, PartObstacle> partObstacles;
     private Dictionary<Vector2Int, Obstacle> obstacles;
     private List<Vector2Int> gridPositions;
+    public List<Vector2Int> GridPositions { get { return gridPositions; } }
 
     private List<Vector2Int> positionsInRange;
     public List<Vector2Int> PositionsInRange { get { return positionsInRange; } }

@@ -18,3 +18,6 @@ MonoBehaviour:
   attackActions:
   - {fileID: 11400000, guid: 411b22ae07181e94baf3b4e388155bff, type: 2}
   - {fileID: 11400000, guid: e7bc716012c8c324c9240a312cb337c1, type: 2}
+  - {fileID: 11400000, guid: 5f7f6530ca31b2846b51a0030e1c0084, type: 2}
+  - {fileID: 11400000, guid: 5f7f6530ca31b2846b51a0030e1c0084, type: 2}
+  - {fileID: 11400000, guid: 5f7f6530ca31b2846b51a0030e1c0084, type: 2}
