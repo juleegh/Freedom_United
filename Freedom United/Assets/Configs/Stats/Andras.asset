@@ -16,12 +16,11 @@ MonoBehaviour:
   attackType: 0
   baseHealth: 85
   baseWillPower: 100
-  baseShieldDurability: 20
+  baseShieldDurability: 1300
   baseAttack: 80
   normalSuccessChance: 0.8
   criticalSuccessChance: 0.15
   criticalFailureChance: 0.05
-  baseDefense: 1300
   attackSpeed: 8
   defenseSpeed: 10
   recklessChangeSpeed: 15
