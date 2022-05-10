@@ -60,6 +60,12 @@ public class NavigationActionExecuter
             }
             else
             {
+                if (navigationState.ActionSelection.ActionSelected == BattleActionType.Defend)
+                {
+                    if (BattleManager.Instance.BattleValues.PartyDefense[navigationState.CharacterSelection.CharacterID] <= 0)
+                        return;
+                }
+
                 BattleManager.Instance.CalculateActionRange(navigationState.ActionSelection.ActionSelected, navigationState.CharacterSelection.CharacterID);
                 BattleGridUI.Instance.ToggleRange(BattleManager.Instance.BattleGrid.PositionsInRange, navigationState.ActionSelection.ActionSelected);
 

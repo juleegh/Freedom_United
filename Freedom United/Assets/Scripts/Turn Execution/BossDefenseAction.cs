@@ -29,7 +29,8 @@ public class BossDefenseAction : ExecutingAction
         {
             GameNotificationData defenseData = new GameNotificationData();
             defenseData.Data[NotificationDataIDs.CellPosition] = pos;
-            GameNotificationsManager.Instance.Notify(GameNotification.DefenseWasExecuted, defenseData);
+            defenseData.Data[NotificationDataIDs.ShieldState] = true;
+            GameNotificationsManager.Instance.Notify(GameNotification.DefenseWasUpdated, defenseData);
         }
     }
 

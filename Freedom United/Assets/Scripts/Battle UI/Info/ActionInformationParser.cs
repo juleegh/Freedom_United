@@ -95,9 +95,9 @@ public class ActionInformationParser
         string content = "";
         content += Speed + Jump;
         if (!SelectingCell || (TargetPosition != ActionCharacter.CurrentPosition))
-            content += "Base defense: " + BattleManager.Instance.PartyStats.Stats[ActionCharacterID].BaseDefense;
+            content += "Base defense: " + BattleManager.Instance.BattleValues.PartyDefense[ActionCharacterID];
         else
-            content += "Base defense (split): " + (BattleManager.Instance.PartyStats.Stats[ActionCharacterID].BaseDefense * BattleGridUtils.DefenseSplitFactor);
+            content += "Base defense (split): " + (BattleManager.Instance.BattleValues.PartyDefense[ActionCharacterID] * BattleGridUtils.DefenseSplitFactor);
 
         return content;
     }

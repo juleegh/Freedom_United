@@ -68,13 +68,23 @@ public class BossAttackAction : ExecutingAction
                     List<CharacterID> defendingCharacters = TurnExecutor.Instance.GetDefendingCharacters(attackedPosition);
 
                     GameNotificationData defenseData = new GameNotificationData();
-                    foreach (CharacterID character in defendingCharacters)
+                    foreach (CharacterID defender in defendingCharacters)
                     {
-                        BattleManager.Instance.BattleValues.CharacterModifyDefensePower(character, defenseInPosition);
-
-                        defenseData.Data[NotificationDataIDs.ActionOwner] = character;
-                        defenseData.Data[NotificationDataIDs.CellPosition] = BattleManager.Instance.CharacterManagement.Characters[character].CurrentOrientation;
+                        BattleManager.Instance.BattleValues.CharacterModifyDefensePower(defender, damageProvided);
+                        defenseData.Data[NotificationDataIDs.ActionOwner] = defender;
+                        defenseData.Data[NotificationDataIDs.CellPosition] = BattleManager.Instance.CharacterManagement.Characters[defender].CurrentPosition;
                         GameNotificationsManager.Instance.Notify(GameNotification.DefenseWasHit, defenseData);
+
+                        if (BattleManager.Instance.BattleValues.PartyDefense[defender] <= 0)
+                        {
+                            foreach (Vector2Int defenderPos in TurnExecutor.Instance.GetDefendedPositions(defender))
+                            {
+                                GameNotificationData defenseBrokenData = new GameNotificationData();
+                                defenseBrokenData.Data[NotificationDataIDs.CellPosition] = defenderPos;
+                                defenseBrokenData.Data[NotificationDataIDs.ShieldState] = false;
+                                GameNotificationsManager.Instance.Notify(GameNotification.DefenseWasUpdated, defenseBrokenData);
+                            }
+                        }
                     }
                 }
             }

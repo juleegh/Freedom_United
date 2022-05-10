@@ -25,7 +25,7 @@ public class BattleGridUI : MonoBehaviour, NotificationsListener
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.BossMoved, RefreshBoss);
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.RecentDeath, RefreshDeaths);
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.AttackWasExecuted, ShowAttackBattleAction);
-        GameNotificationsManager.Instance.AddActionToEvent(GameNotification.DefenseWasExecuted, ShowDefenseBattleAction);
+        GameNotificationsManager.Instance.AddActionToEvent(GameNotification.DefenseWasUpdated, ShowDefenseBattleAction);
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.TurnEndedExecution, ClearBoardEffects);
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.FieldOfViewChanged, UpdateBossFieldOfView);
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.ObstaclesStatsChanged, RefreshObstacles);
@@ -147,7 +147,8 @@ public class BattleGridUI : MonoBehaviour, NotificationsListener
         if (notificationData != null)
         {
             Vector2Int position = (Vector2Int)notificationData.Data[NotificationDataIDs.CellPosition];
-            grid[position].ShowShield(true);
+            bool shieldState = (bool)notificationData.Data[NotificationDataIDs.ShieldState];
+            grid[position].ShowShield(shieldState);
         }
     }
 

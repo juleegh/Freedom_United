@@ -96,7 +96,22 @@ public class CharacterAttackAction : ExecutingAction
                     List<CharacterID> defenders = TurnExecutor.Instance.GetDefendingCharacters(attackedPosition);
                     foreach (CharacterID defender in defenders)
                     {
-                        BattleManager.Instance.BattleValues.CharacterModifyDefensePower(defender, defenseInPosition);
+                        GameNotificationData defenseData = new GameNotificationData();
+                        BattleManager.Instance.BattleValues.CharacterModifyDefensePower(defender, damageProvided);
+                        defenseData.Data[NotificationDataIDs.ActionOwner] = defender;
+                        defenseData.Data[NotificationDataIDs.CellPosition] = BattleManager.Instance.CharacterManagement.Characters[defender].CurrentPosition;
+                        GameNotificationsManager.Instance.Notify(GameNotification.DefenseWasHit, defenseData);
+
+                        if (BattleManager.Instance.BattleValues.PartyDefense[defender] <= 0)
+                        {
+                            foreach (Vector2Int defenderPos in TurnExecutor.Instance.GetDefendedPositions(defender))
+                            {
+                                GameNotificationData defenseBrokenData = new GameNotificationData();
+                                defenseBrokenData.Data[NotificationDataIDs.CellPosition] = defenderPos;
+                                defenseBrokenData.Data[NotificationDataIDs.ShieldState] = false;
+                                GameNotificationsManager.Instance.Notify(GameNotification.DefenseWasUpdated, defenseBrokenData);
+                            }
+                        }
                     }
                 }
             }

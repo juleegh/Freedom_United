@@ -18,8 +18,6 @@ public class CharacterStats : ScriptableObject
     [SerializeField] private float criticalSuccessChance;
     [SerializeField] private float criticalFailureChance;
 
-    [SerializeField] private int baseDefense;
-
     [SerializeField] private int attackSpeed;
     [SerializeField] private int defenseSpeed;
     [SerializeField] private int recklessChangeSpeed;
@@ -42,7 +40,6 @@ public class CharacterStats : ScriptableObject
     public int BaseShieldDurability { get { return baseShieldDurability; } }
 
     public int BaseAttack { get { return baseAttack; } }
-    public int BaseDefense { get { return baseDefense; } }
 
     public float NormalSuccessChance { get { return normalSuccessChance; } }
     public float CriticalSuccessChance { get { return criticalFailureChance; } }
