@@ -45,7 +45,7 @@ public class CharacterStats : ScriptableObject
     public float CriticalSuccessChance { get { return criticalFailureChance; } }
     public float CriticalFailureChance { get { return criticalFailureChance; } }
 
-    public int SadWPDelta { get { return sadWPDelta; } }
-    public int DeathWPDelta { get { return deathWPDelta; } }
+    public int SadWPDelta { get { return -sadWPDelta; } }
+    public int DeathWPDelta { get { return -deathWPDelta; } }
     public int HappyWPDelta { get { return happyWPDelta; } }
 }
