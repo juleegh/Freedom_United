@@ -19,14 +19,17 @@ public class AIAttackRandomCharacterWithChances : AITurnAction
         return AttackRandomCharacter();
     }
 
-    private BossPartType GetWeightedRandom(float sum)
+    private BossPartType GetWeightedRandom(List<BossPartType> canAttack, float sum)
     {
         float randomValue = UnityEngine.Random.Range(0f, sum);
         float newSum = 0;
 
         foreach (KeyValuePair<BossPartType, float> part in probabilities)
         {
-            if (part.Value + newSum <= randomValue)
+            if (!canAttack.Contains(part.Key))
+                continue;
+
+            if (part.Value + newSum >= randomValue)
                 return part.Key;
 
             newSum += part.Value;
@@ -38,6 +41,8 @@ public class AIAttackRandomCharacterWithChances : AITurnAction
     private bool AttackRandomCharacter()
     {
         float chanceSum = 0;
+        List<BossPartType> canAttack = new List<BossPartType>();
+
         foreach (KeyValuePair<BossPartType, float> part in probabilities)
         {
             List<Character> characters = BattleManager.Instance.CharacterManagement.Characters.Values.ToList();
@@ -50,6 +55,7 @@ public class AIAttackRandomCharacterWithChances : AITurnAction
                 {
                     if (BossUtils.PartCanAttackPosition(part.Key, character.CurrentPosition))
                     {
+                        canAttack.Add(part.Key);
                         chanceSum += part.Value;
                         break;
                     }
@@ -57,7 +63,7 @@ public class AIAttackRandomCharacterWithChances : AITurnAction
             }
         }
 
-        BossPartType randomAttacker = GetWeightedRandom(chanceSum);
+        BossPartType randomAttacker = GetWeightedRandom(canAttack, chanceSum);
 
         List<Character> allCharacters = BattleManager.Instance.CharacterManagement.Characters.Values.ToList();
         while (allCharacters.Count > 0)
