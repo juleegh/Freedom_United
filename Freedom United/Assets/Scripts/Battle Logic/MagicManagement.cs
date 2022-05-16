@@ -7,7 +7,7 @@ public class MagicManagement : MonoBehaviour
     private List<MagicSpell> spells;
     public List<MagicSpell> Spells { get { return spells; } }
 
-    void Awake()
+    public void Initialize()
     {
         spells = new List<MagicSpell>();
         spells.Add(new MagicSpell("Fire"));

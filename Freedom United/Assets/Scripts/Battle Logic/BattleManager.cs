@@ -38,6 +38,7 @@ public class BattleManager : MonoBehaviour, NotificationsListener
         actionPile = GetComponent<ActionPile>();
         magicManagement = GetComponent<MagicManagement>();
         battleValues = GetComponent<BattleValues>();
+        magicManagement.Initialize();
         GameNotificationsManager.Instance.Notify(GameNotification.BattleLoaded);
     }
 
