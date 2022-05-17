@@ -21,8 +21,8 @@ MonoBehaviour:
   normalSuccessChance: 0.85
   criticalSuccessChance: 0.13
   criticalFailureChance: 0.02
-  attackSpeed: 17
-  defenseSpeed: 20
+  attackSpeed: 13
+  defenseSpeed: 15
   recklessChangeSpeed: 15
   safeChangeSpeed: 5
   sadWPDelta: 5

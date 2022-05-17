@@ -23,8 +23,8 @@ MonoBehaviour:
   criticalFailureChance: 0.01
   attackSpeed: 5
   defenseSpeed: 17
-  recklessChangeSpeed: 3
-  safeChangeSpeed: 5
+  recklessChangeSpeed: 18
+  safeChangeSpeed: 17
   sadWPDelta: 7
   deathWPDelta: 20
   happyWPDelta: 10
