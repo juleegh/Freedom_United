@@ -14,6 +14,7 @@ public class TurnExecutor : MonoBehaviour, NotificationsListener
 
     [SerializeField] private float timeBetweenActions;
     private float executionDelta;
+    private ActionPileSelection ActionPile { get { return BattleUINavigation.Instance.NavigationState.ActionPileSelection; } }
 
     public void ConfigureComponent()
     {
@@ -50,16 +51,13 @@ public class TurnExecutor : MonoBehaviour, NotificationsListener
                     return;
                 }
 
-                if (executionIndex > 0)
-                    BattleUIManager.Instance.ActionPileUI.UpdateStatus(executionIndex - 1, UIStatus.Overdue);
-
                 executionDelta = 0;
                 bool canPerform = actionsQueued[executionIndex].CanPerform();
                 if (canPerform)
                 {
                     actionsQueued[executionIndex].Execute();
                 }
-                BattleUIManager.Instance.ActionPileUI.UpdateStatus(executionIndex, canPerform ? UIStatus.Current : UIStatus.Invalid);
+                ActionPile.SetAsExecuting(executionIndex, canPerform ? UIStatus.Current : UIStatus.Invalid);
                 executionIndex++;
                 GameNotificationsManager.Instance.Notify(GameNotification.ActionEndedExecution);
             }

@@ -78,6 +78,26 @@ public class ActionPileSelection : NavigationSelection
         }
     }
 
+    public void SetAsExecuting(int selectedAction, UIStatus status)
+    {
+        if (selectedAction == 0)
+        {
+            currentIndex = 0;
+            topElement = 0;
+            BattleUIManager.Instance.ActionPileUI.RefreshView(topElement, currentIndex);
+            BattleUIManager.Instance.ActionPileUI.UpdateStatus(0, status);
+        }
+        else
+        {
+            topElement = selectedAction - 1;
+            currentIndex = 1;
+            BattleUIManager.Instance.ActionPileUI.RefreshView(topElement, currentIndex);
+            BattleUIManager.Instance.ActionPileUI.UpdateStatus(0, UIStatus.Overdue);
+            BattleUIManager.Instance.ActionPileUI.UpdateStatus(1, status);
+        }
+
+    }
+
     public void Refresh()
     {
         currentIndex = 0;

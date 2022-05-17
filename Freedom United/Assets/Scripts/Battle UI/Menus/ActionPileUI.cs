@@ -53,7 +53,7 @@ public class ActionPileUI : MonoBehaviour, NotificationsListener
 
         UpIndicator.SetActive(topAction > 0);
         DownIndicator.SetActive(topAction + actionsOnScreen <= scheduledActions.Count - 1);
-        RefreshSelectedPreview(topAction + selectedAction);
+        RefreshSelectedPreview(selectedAction);
     }
 
     public void CleanView()
@@ -83,4 +83,5 @@ public class ActionPileUI : MonoBehaviour, NotificationsListener
     {
         actionsPreviews[selectedAction].UpdateStatus(status);
     }
+
 }
