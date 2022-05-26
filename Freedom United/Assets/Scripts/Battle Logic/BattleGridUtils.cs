@@ -5,7 +5,6 @@ using System;
 public static class BattleGridUtils
 {
     public static float ShovingDamage { get { return 3.0f; } }
-    public static float DefenseSplitFactor { get { return 0.5f; } }
     public static float BossCriticalDamageMultiplier { get { return 1.25f; } }
     public static float CharacterCriticalDamageMultiplier { get { return 1.5f; } }
 

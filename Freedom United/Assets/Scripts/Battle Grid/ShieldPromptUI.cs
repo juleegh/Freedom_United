@@ -9,9 +9,9 @@ public class ShieldPromptUI : MonoBehaviour
     [SerializeField] private SpriteRenderer shieldIcon;
     [SerializeField] private float fadeIn;
     [SerializeField] private float fadeOut;
+    [SerializeField] private Color visible;
 
     private Color hidden = new Color(0, 0, 0, 0);
-    private Color visible;
 
     private bool isGuarding;
 
@@ -22,7 +22,6 @@ public class ShieldPromptUI : MonoBehaviour
 
     public void Clear()
     {
-        visible = shieldIcon.color;
         shieldIcon.color = hidden;
         isGuarding = false;
     }

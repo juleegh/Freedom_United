@@ -1069,6 +1069,7 @@ MonoBehaviour:
   shieldIcon: {fileID: 1034945421529725317}
   fadeIn: 0.5
   fadeOut: 0.3
+  visible: {r: 0, g: 0, b: 1, a: 1}
 --- !u!1 &6951660798703315925
 GameObject:
   m_ObjectHideFlags: 0

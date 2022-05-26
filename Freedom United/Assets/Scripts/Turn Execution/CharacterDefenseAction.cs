@@ -35,24 +35,16 @@ public class CharacterDefenseAction : ExecutingAction
             defenseData.Data[NotificationDataIDs.CellPosition] = CurrentCharacterPosition;
             GameNotificationsManager.Instance.Notify(GameNotification.DefenseWasUpdated, defenseData);
         }
-
     }
 
     public bool PositionIsDefended(Vector2Int position)
     {
-        if (BattleManager.Instance.BattleValues.PartyDefense[defendingCharacter] <= 0)
-            return false;
-
         return defendedPositions.Contains(position - CurrentCharacterPosition) && BattleManager.Instance.BattleValues.CanDefend(defendingCharacter);
     }
 
     private float GetCurrentDefense()
     {
         float defenseProvided = BattleManager.Instance.BattleValues.PartyDefense[defendingCharacter];
-
-        if (defenseDelta != Vector2Int.zero)
-            defenseProvided *= BattleGridUtils.DefenseSplitFactor;
-
         return defenseProvided;
     }
 }

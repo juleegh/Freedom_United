@@ -81,7 +81,7 @@ public class BattleValues : MonoBehaviour, NotificationsListener
 
     public bool CanDefend(CharacterID character)
     {
-        return partyDefensePoints[character] > 0;
+        return IsAlive(character) && partyDefensePoints[character] > 0;
     }
 
     public void BossTakeDamage(BossPartType partType, float damageTaken)
