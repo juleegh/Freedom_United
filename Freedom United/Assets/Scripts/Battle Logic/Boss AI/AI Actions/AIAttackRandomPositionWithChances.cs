@@ -28,6 +28,11 @@ public class AIAttackRandomPositionWithChances : AITurnAction
     {
         foreach (KeyValuePair<BossPartType, float> part in probabilities)
         {
+            if(BattleManager.Instance.BattleValues.BossPartIsDestroyed(part.Key))
+            {
+                continue;
+            }
+
             if (!PassCheck(part.Key))
             {
                 continue;

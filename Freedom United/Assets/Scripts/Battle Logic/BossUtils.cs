@@ -70,6 +70,12 @@ public static class BossUtils
     public static bool PartCanAttackPosition(BossPartType partType, Vector2Int position)
     {
         BossPart bossPart = BattleManager.Instance.CharacterManagement.Boss.Parts[partType];
+
+        if(BattleManager.Instance.BattleValues.BossPartIsDestroyed(partType))
+        {
+            return false;
+        }
+
         List<SetOfPositions> areasOfEffect = BattleManager.Instance.CharacterManagement.Boss.Parts[partType].AreasOfEffect;
 
         foreach (SetOfPositions areaOfEffect in areasOfEffect)
@@ -97,6 +103,11 @@ public static class BossUtils
 
     public static bool CanBeDefended(BossPartType toDefend)
     {
+        if(BattleManager.Instance.BattleValues.BossPartIsDestroyed(toDefend))
+        {
+            return false;
+        }
+
         List<BossPartConfig> parts = new List<BossPartConfig>(BattleManager.Instance.CharacterManagement.BossConfig.PartsList.Values);
 
         foreach (BossPartConfig part in parts)

@@ -19,6 +19,11 @@ public class AIAttackRPCWithSpecificParts : AITurnAction
 
         foreach (BossPartType partType in attackingParts)
         {
+            if(BattleManager.Instance.BattleValues.BossPartIsDestroyed(partType))
+            {
+                continue;
+            }
+            
             BossPart part = BattleManager.Instance.CharacterManagement.Boss.Parts[partType];
             List<SetOfPositions> areasOfEffect = part.AreasOfEffect;
 

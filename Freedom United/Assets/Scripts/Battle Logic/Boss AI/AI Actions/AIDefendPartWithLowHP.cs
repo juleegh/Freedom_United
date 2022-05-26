@@ -43,6 +43,11 @@ public class AIDefendPartWithLowHP : AITurnAction
         {
             foreach (BossPartConfig part in parts)
             {
+                if(BattleManager.Instance.BattleValues.BossPartIsDestroyed(part.PartType))
+                {
+                    continue;
+                }
+
                 if (part.DefendedParts.Contains(partToDefend))
                 {
                     SetOfPositions defenseArea = BossUtils.GetDefendArea(part);
