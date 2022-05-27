@@ -118,6 +118,25 @@ public class BattleGridUI : MonoBehaviour, NotificationsListener
         }
     }
 
+    public void ToggleHighlight(Vector2Int position, bool highlighted)
+    {
+        if (!grid.ContainsKey(position))
+            return;
+
+        grid[position].PaintAsHighlight(highlighted);
+    }
+
+    public void ToggleHighlight(List<Vector2Int> positions, bool highlighted)
+    {
+        foreach (Vector2Int position in positions)
+        {
+            if (!grid.ContainsKey(position))
+                continue;
+
+            grid[position].PaintAsHighlight(highlighted);
+        }
+    }
+
     private void ShowAttackBattleAction(GameNotificationData notificationData)
     {
         if (notificationData != null)

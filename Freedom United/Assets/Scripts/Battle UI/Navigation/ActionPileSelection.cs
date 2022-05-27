@@ -13,7 +13,8 @@ public class ActionPileSelection : NavigationSelection
     {
         if (currentIndex + topElement == MaxElements - 1)
             return;
-
+        
+        TogglePreviewOwner(false);
         if (currentIndex < ElementsOnScreen - 1 && currentIndex < MaxElements - 1)
         {
             currentIndex++;
@@ -25,6 +26,7 @@ public class ActionPileSelection : NavigationSelection
             BattleUIManager.Instance.ActionPileUI.RefreshView(topElement, currentIndex);
         }
         PaintPreviewRange();
+        TogglePreviewOwner(true);
     }
 
     public override void Previous()
@@ -32,6 +34,7 @@ public class ActionPileSelection : NavigationSelection
         if (currentIndex + topElement == 0)
             return;
 
+        TogglePreviewOwner(false);
         if (currentIndex > 0)
         {
             currentIndex--;
@@ -43,6 +46,7 @@ public class ActionPileSelection : NavigationSelection
             BattleUIManager.Instance.ActionPileUI.RefreshView(topElement, currentIndex);
         }
         PaintPreviewRange();
+        TogglePreviewOwner(true);
     }
 
     private void PaintPreviewRange()
@@ -78,6 +82,25 @@ public class ActionPileSelection : NavigationSelection
         }
     }
 
+    private void TogglePreviewOwner(bool visible)
+    {
+        BattleActionType actionType = ShowingAction.actionType;
+        if (ShowingAction as AllyAction != null)
+        {
+            AllyAction allyAction = ShowingAction as AllyAction;
+            CharacterID character = BattleGridUtils.GetCharacterID(ShowingAction.ActionOwner);
+            Vector2Int currentPosition = BattleManager.Instance.CharacterManagement.Characters[character].CurrentPosition;
+            BattleGridUI.Instance.ToggleHighlight(currentPosition, visible);
+        }
+        else if (ShowingAction as BossAction != null)
+        {
+            BossAction bossAction = ShowingAction as BossAction;
+            BossPart bossPart = BattleManager.Instance.CharacterManagement.Boss.Parts[bossAction.actionOwner];
+            List<Vector2Int> positions = bossPart.GetOccupiedPositions();
+            BattleGridUI.Instance.ToggleHighlight(positions, visible);
+        }
+    }
+
     public void SetAsExecuting(int selectedAction, UIStatus status)
     {
         if (selectedAction == 0)
@@ -104,9 +127,15 @@ public class ActionPileSelection : NavigationSelection
         topElement = 0;
         BattleUIManager.Instance.ActionPileUI.RefreshView(topElement, currentIndex);
         if (focus)
+        { 
+            TogglePreviewOwner(true);
             PaintPreviewRange();
+        }
         else
+        {
+            TogglePreviewOwner(false);
             BattleGridUI.Instance.ToggleRange();
+        }
     }
 
     private ScheduledAction ShowingAction { get { return BattleManager.Instance.ActionPile.ActionsForTurn[topElement + currentIndex]; } }

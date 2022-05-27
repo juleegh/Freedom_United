@@ -120,8 +120,8 @@ public class NavigationActionExecuter
         else if (navigationState.currentLevel == BattleSelectionLevel.Character)
         {
             navigationState.currentLevel = BattleSelectionLevel.ActionPile;
-            navigationState.ActionPileSelection.Refresh();
             navigationState.CharacterSelection.Refresh();
+            navigationState.ActionPileSelection.Refresh();
         }
         else if (navigationState.currentLevel == BattleSelectionLevel.Cancel)
         {

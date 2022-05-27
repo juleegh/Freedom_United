@@ -7,6 +7,7 @@ public class GridCellUI : MonoBehaviour
     [SerializeField] private Sprite obstacle;
     [SerializeField] private Sprite empty;
     [SerializeField] private SpriteRenderer highlight;
+    [SerializeField] private SpriteRenderer content;
     [SerializeField] private SpriteRenderer background;
     [SerializeField] private AttackInfoPrompt failPrompt;
     [SerializeField] private DamagePromptUI damagePrompt;
@@ -15,6 +16,7 @@ public class GridCellUI : MonoBehaviour
     [SerializeField] private FOVIndicator fovIndicator;
     [SerializeField] private CellDebugger debugger;
 
+    [SerializeField] private Color highlightColor;
     [SerializeField] private Color attackColor;
     [SerializeField] private Color defenseColor;
     [SerializeField] private Color moveColor;
@@ -27,7 +29,7 @@ public class GridCellUI : MonoBehaviour
     {
         cellType = cellTypeDefined;
         background.sprite = cellTypeDefined != CellType.Available ? obstacle : empty;
-        highlight.color = transparent;
+        content.color = transparent;
     }
 
     [ContextMenu("Set As Empty")]
@@ -51,9 +53,21 @@ public class GridCellUI : MonoBehaviour
 
     public void CleanRange()
     {
-        highlight.color = transparent;
+        content.color = transparent;
     }
 
+    public void PaintAsHighlight(bool highlighted)
+    {
+        if (highlighted)
+        {
+            highlight.color = highlightColor;
+        }
+        else
+        {
+            highlight.color = transparent;
+        }
+    }
+    
     public void PaintAsRange(BattleActionType rangeType)
     {
         Color color = attackColor;
@@ -71,7 +85,7 @@ public class GridCellUI : MonoBehaviour
                 color = moveColor;
                 break;
         }
-        highlight.color = color;
+        content.color = color;
     }
 
     public void PromptCritical()

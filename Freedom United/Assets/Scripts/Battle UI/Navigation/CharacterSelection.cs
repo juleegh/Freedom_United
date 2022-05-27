@@ -12,6 +12,12 @@ public class CharacterSelection : NavigationSelection
         if (currentIndex + topElement == MaxElements - 1)
             return;
 
+        if (!FinishTurnSelected)
+        {
+            Vector2Int currentPosition = BattleManager.Instance.CharacterManagement.Characters[CharacterID].CurrentPosition;
+            BattleGridUI.Instance.ToggleHighlight(currentPosition, false);
+        }
+
         if (currentIndex < ElementsOnScreen - 1 && currentIndex < MaxElements - 1)
         {
             currentIndex++;
@@ -22,12 +28,24 @@ public class CharacterSelection : NavigationSelection
             topElement++;
             BattleUIManager.Instance.CharacterSelectionUI.RefreshView(topElement, currentIndex);
         }
+
+        if (!FinishTurnSelected)
+        {
+            Vector2Int currentPosition = BattleManager.Instance.CharacterManagement.Characters[CharacterID].CurrentPosition;
+            BattleGridUI.Instance.ToggleHighlight(currentPosition, true);
+        }
     }
 
     public override void Previous()
     {
         if (currentIndex + topElement == 0)
             return;
+
+        if (!FinishTurnSelected)
+        {
+            Vector2Int currentPosition = BattleManager.Instance.CharacterManagement.Characters[CharacterID].CurrentPosition;
+            BattleGridUI.Instance.ToggleHighlight(currentPosition, false);
+        }
 
         if (currentIndex > 0)
         {
@@ -39,11 +57,23 @@ public class CharacterSelection : NavigationSelection
             topElement--;
             BattleUIManager.Instance.CharacterSelectionUI.RefreshView(topElement, currentIndex);
         }
+
+        if (!FinishTurnSelected)
+        {
+            Vector2Int currentPosition = BattleManager.Instance.CharacterManagement.Characters[CharacterID].CurrentPosition;
+            BattleGridUI.Instance.ToggleHighlight(currentPosition, true);
+        }
+
     }
 
     public void Refresh()
     {
         BattleUIManager.Instance.CharacterSelectionUI.RefreshView(topElement, currentIndex);
+        if (!FinishTurnSelected)
+        {
+            Vector2Int currentPosition = BattleManager.Instance.CharacterManagement.Characters[CharacterID].CurrentPosition;
+            BattleGridUI.Instance.ToggleHighlight(currentPosition, BattleUINavigation.Instance.CurrentLevel == BattleSelectionLevel.Character);
+        }
     }
 
     public bool FinishTurnSelected { get { return currentIndex + topElement == MaxElements - 1; } }
