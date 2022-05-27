@@ -14,7 +14,7 @@ public class BossPartVisuals : MonoBehaviour
         gameObject.name = part.PartType.ToString();
         partType = part.PartType;
         body.sprite = assets.Parts[part.PartType];
-        deathIcon.transform.localPosition = new Vector3(part.Dimensions.x / 2, part.Dimensions.y / 2, -0.05f);
+        deathIcon.transform.localPosition = new Vector3(-part.Dimensions.x / 2, -part.Dimensions.y / 2, -0.05f);
         deathIcon.Clear();
     }
 
