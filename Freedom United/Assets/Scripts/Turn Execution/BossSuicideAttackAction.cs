@@ -4,33 +4,52 @@ using System.Collections.Generic;
 
 public class BossSuicideAttackAction : ExecutingAction
 {
+    private List<Vector2Int> selectedCells;
+    private float damageTaken;
     public BossSuicideAttackAction(BossAction scheduledAction) : base(scheduledAction)
     {
-
+        selectedCells = scheduledAction.deltaOfAction.Positions;
+        damageTaken = BattleManager.Instance.CharacterManagement.BossConfig.SuicideAttackDamage;
     }
 
     public override void Execute()
     {
-        int amountOfCells = BattleManager.Instance.CharacterManagement.BossConfig.AmountOfSuicideCells;
-        float damageTaken = BattleManager.Instance.CharacterManagement.BossConfig.SuicideAttackDamage;
-
-        List<Vector2Int> selectedCells = new List<Vector2Int>();
-        List<Vector2Int> availableCells = new List<Vector2Int>();
-        availableCells.AddRange(BattleManager.Instance.BattleGrid.GridPositions);
-
-        while (availableCells.Count > 0 && selectedCells.Count < amountOfCells)
-        {
-            Vector2Int randomCell = availableCells[Random.Range(0, availableCells.Count)];
-            availableCells.Remove(randomCell);
-
-            if (BattleManager.Instance.CharacterManagement.GetBossPartInPosition(randomCell) != null)
-                continue;
-
-            selectedCells.Add(randomCell);
-        }
-
         foreach (Vector2Int attackedPosition in selectedCells)
         {
+            float damageProvided = damageTaken;
+
+            List<CharacterID> defendingCharacters = TurnExecutor.Instance.GetDefendingCharacters(attackedPosition);
+            GameNotificationData defenseData = new GameNotificationData();
+
+            foreach (CharacterID defender in defendingCharacters)
+            {
+                float damageForDefense = (float)damageProvided / (float)defendingCharacters.Count;
+                float defenseProvided = BattleManager.Instance.BattleValues.PartyDefense[defender];
+                if (defenseProvided < damageForDefense)
+                {
+                    damageForDefense = defenseProvided;
+                }
+                damageProvided -= damageForDefense;
+                if (damageProvided <= 0)
+                    damageProvided = 0;
+
+                BattleManager.Instance.BattleValues.CharacterModifyDefensePower(defender, damageForDefense);
+                defenseData.Data[NotificationDataIDs.ActionOwner] = defender;
+                defenseData.Data[NotificationDataIDs.CellPosition] = BattleManager.Instance.CharacterManagement.Characters[defender].CurrentPosition;
+                GameNotificationsManager.Instance.Notify(GameNotification.DefenseWasHit, defenseData);
+
+                if (BattleManager.Instance.BattleValues.PartyDefense[defender] <= 0)
+                {
+                    foreach (Vector2Int defenderPos in TurnExecutor.Instance.GetDefendedPositions(defender))
+                    {
+                        GameNotificationData defenseBrokenData = new GameNotificationData();
+                        defenseBrokenData.Data[NotificationDataIDs.CellPosition] = defenderPos;
+                        defenseBrokenData.Data[NotificationDataIDs.ShieldState] = TurnExecutor.Instance.DefenseValueInPosition(defenderPos) > 0;
+                        GameNotificationsManager.Instance.Notify(GameNotification.DefenseWasUpdated, defenseBrokenData);
+                    }
+                }
+            }
+
             GameNotificationData attackData = new GameNotificationData();
 
             attackData.Data[NotificationDataIDs.ActionOwner] = BattleManager.Instance.CharacterManagement.Boss.Core.ToString();
@@ -41,10 +60,6 @@ public class BossSuicideAttackAction : ExecutingAction
             attackData.Data[NotificationDataIDs.PreviousHP] = 0f;
             attackData.Data[NotificationDataIDs.CellPosition] = attackedPosition;
 
-            float defenseInPosition = TurnExecutor.Instance.DefenseValueInPosition(attackedPosition);
-            float damageProvided = damageTaken - defenseInPosition;
-            damageProvided = Mathf.Clamp(damageProvided, 0, damageProvided);
-
             if (BattleManager.Instance.CharacterManagement.GetCharacterInPosition(attackedPosition) != null)
             {
                 Character targetCharacter = BattleManager.Instance.CharacterManagement.GetCharacterInPosition(attackedPosition);
@@ -53,32 +68,6 @@ public class BossSuicideAttackAction : ExecutingAction
                 attackData.Data[NotificationDataIDs.PreviousHP] = BattleManager.Instance.BattleValues.PartyHealth[targetCharacter.CharacterID];
                 BattleManager.Instance.BattleValues.CharacterTakeDamage(targetCharacter.CharacterID, damageProvided);
                 attackData.Data[NotificationDataIDs.NewHP] = BattleManager.Instance.BattleValues.PartyHealth[targetCharacter.CharacterID];
-
-                if (defenseInPosition > 0)
-                {
-                    List<CharacterID> defendingCharacters = TurnExecutor.Instance.GetDefendingCharacters(attackedPosition);
-
-                    GameNotificationData defenseData = new GameNotificationData();
-                    foreach (CharacterID defender in defendingCharacters)
-                    {
-                        BattleManager.Instance.BattleValues.CharacterModifyDefensePower(defender, damageProvided);
-
-                        defenseData.Data[NotificationDataIDs.ActionOwner] = defender;
-                        defenseData.Data[NotificationDataIDs.CellPosition] = BattleManager.Instance.CharacterManagement.Characters[defender].CurrentPosition;
-                        GameNotificationsManager.Instance.Notify(GameNotification.DefenseWasHit, defenseData);
-
-                        if (BattleManager.Instance.BattleValues.PartyDefense[defender] <= 0)
-                        {
-                            foreach (Vector2Int defenderPos in TurnExecutor.Instance.GetDefendedPositions(defender))
-                            {
-                                GameNotificationData defenseBrokenData = new GameNotificationData();
-                                defenseBrokenData.Data[NotificationDataIDs.CellPosition] = defenderPos;
-                                defenseBrokenData.Data[NotificationDataIDs.ShieldState] = false;
-                                GameNotificationsManager.Instance.Notify(GameNotification.DefenseWasUpdated, defenseBrokenData);
-                            }
-                        }
-                    }
-                }
             }
             else if (BattleManager.Instance.BattleGrid.GetObstacleHP(attackedPosition) > 0)
             {
