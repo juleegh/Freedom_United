@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossName: Wrath Lord
   characterCounterPart: 9
-  fovDepth: 4
+  fovDepth: 9
   fovWidth: 1
   initialOrientation: {x: -1, y: 0}
   bossParts:
