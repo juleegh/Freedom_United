@@ -78,7 +78,7 @@ MonoBehaviour:
       criticalSuccessChance: 0.025
       criticalFailureChance: 0.175
     - partType: 4
-      baseDurability: 450
+      baseDurability: 750
       isCore: 0
       rotatesWithBody: 1
       dimensions: {x: 1, y: 3}
@@ -99,7 +99,7 @@ MonoBehaviour:
       criticalSuccessChance: 0.2
       criticalFailureChance: 0.1
     - partType: 5
-      baseDurability: 450
+      baseDurability: 750
       isCore: 0
       rotatesWithBody: 1
       dimensions: {x: 1, y: 3}
