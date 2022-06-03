@@ -16,10 +16,12 @@ public class BossBehaviourTree : MonoBehaviour, NotificationsListener
     {
         foreach (AITurnOption turnOption in turnOptions)
         {
-            turnOption.Evaluate();
-            if (BattleManager.Instance.ActionPile.BossReachedLimit)
+            if (turnOption.CanExecute())
             {
-                return;
+                while (!BattleManager.Instance.ActionPile.BossReachedLimit)
+                {
+                    turnOption.Evaluate();
+                }
             }
         }
     }

@@ -11,7 +11,7 @@ public class AITurnOption : AITurnAction
     [SerializeField] protected List<AICondition> conditions;
     [SerializeField] protected List<AITurnAction> attackActions;
 
-    private bool CanExecute()
+    public bool CanExecute()
     {
         if (conditions.Count == 0)
             return true;
