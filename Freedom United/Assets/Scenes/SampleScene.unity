@@ -4969,6 +4969,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 826080794700395172, guid: 8918a3c39354e0346984a7dddedf7211, type: 3}
+      propertyPath: bossActionLimit
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 826080794700395173, guid: 8918a3c39354e0346984a7dddedf7211, type: 3}
       propertyPath: m_RootOrder
       value: 2
