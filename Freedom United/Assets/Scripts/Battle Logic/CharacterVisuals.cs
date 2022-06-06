@@ -21,7 +21,7 @@ public class CharacterVisuals : MonoBehaviour
 
     public void Initialize()
     {
-        stats.Initialize(characterID);
+        stats.Initialize(characterID.ToString());
     }
 
     public void PaintDeath()

@@ -8,6 +8,7 @@ public class BossPartVisuals : MonoBehaviour
     [SerializeField] private SpriteRenderer body;
     [SerializeField] private BossesAssets assets;
     [SerializeField] private DeathIcon deathIcon;
+    [SerializeField] private StatsVisuals stats;
 
     public void Paint(BossPartConfig part)
     {
@@ -16,6 +17,9 @@ public class BossPartVisuals : MonoBehaviour
         body.sprite = assets.Parts[part.PartType];
         deathIcon.transform.localPosition = new Vector3(-part.Dimensions.x / 2, -part.Dimensions.y / 2, -0.05f);
         deathIcon.Clear();
+        stats.Initialize(partType.ToString());
+        stats.transform.localPosition = new Vector3(-part.Dimensions.x / 2, -part.Dimensions.y / 2, -0.05f);
+        stats.gameObject.SetActive(!part.IsCore);
     }
 
     public List<SetOfPositions> LoadAreasOfEffect()
@@ -47,6 +51,7 @@ public class BossPartVisuals : MonoBehaviour
         Vector2Int position = part.GetWorldPosition();
         transform.localPosition = new Vector3(position.x, 0, position.y);
         transform.localEulerAngles = Vector3.right * 90 + TransfromRotation(part.Orientation);
+        stats.transform.eulerAngles = Vector3.right * 90;
     }
 
     private Vector3 TransfromRotation(Vector2Int orientation)
