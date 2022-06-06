@@ -52,6 +52,15 @@ public class SetOfPositions
             Vector2Int affectedPosition = pivot + BossUtils.GetOrientedTransformation(orientation, pos.x, pos.y);
             transformed.Add(affectedPosition);
         }
-        return transformed;
+
+        List<Vector2Int> rearranged = new List<Vector2Int>();
+        while(transformed.Count > 0)
+        {
+            Vector2Int temp = transformed[UnityEngine.Random.Range(0, transformed.Count)];
+            transformed.Remove(temp);
+            rearranged.Add(temp);
+        }
+
+        return rearranged;
     }
 }
