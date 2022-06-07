@@ -82,21 +82,39 @@ public class TurnExecutor : MonoBehaviour, NotificationsListener
                     defense += defenseAction.DefenseProvided;
             }
         }
+
+        foreach (Vector2Int obstacle in BattleManager.Instance.BattleGrid.ObstaclePositions)
+        {
+            if (obstacle + BattleManager.Instance.CharacterManagement.Boss.Orientation == position)
+            {
+                defense += BattleManager.Instance.BattleGrid.GetObstacleHP(obstacle);
+            }
+        }
         return defense;
     }
 
-    public List<CharacterID> GetDefendingCharacters(Vector2Int position)
+    public List<Vector2Int> GetDefendingPositions(Vector2Int position)
     {
-        List<CharacterID> defenders = new List<CharacterID>();
+        List<Vector2Int> defenders = new List<Vector2Int>();
         foreach (ExecutingAction currentAction in actionsQueued)
         {
             if (currentAction as CharacterDefenseAction != null)
             {
                 CharacterDefenseAction defenseAction = currentAction as CharacterDefenseAction;
-                if (defenseAction.PositionIsDefended(position) && !defenders.Contains(defenseAction.DefendingCharacter))
-                    defenders.Add(defenseAction.DefendingCharacter);
+                Character character = BattleManager.Instance.CharacterManagement.Characters[defenseAction.DefendingCharacter];
+                if (defenseAction.PositionIsDefended(position) && !defenders.Contains(character.CurrentPosition))
+                    defenders.Add(character.CurrentPosition);
             }
         }
+
+        foreach (Vector2Int obstacle in BattleManager.Instance.BattleGrid.ObstaclePositions)
+        {
+            if (obstacle + BattleManager.Instance.CharacterManagement.Boss.Orientation == position)
+            {
+                defenders.Add(obstacle);
+            }
+        }
+
         return defenders;
     }
 
@@ -115,5 +133,18 @@ public class TurnExecutor : MonoBehaviour, NotificationsListener
             }
         }
         return defendedPositions;
+    }
+
+    public bool DefendedByObstacle(Vector2Int position)
+    {
+        foreach (Vector2Int obstacle in BattleManager.Instance.BattleGrid.ObstaclePositions)
+        {
+            if (obstacle + BattleManager.Instance.CharacterManagement.Boss.Orientation == position)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

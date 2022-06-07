@@ -26,6 +26,7 @@ public class BattleGridUI : MonoBehaviour, NotificationsListener
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.RecentDeath, RefreshDeaths);
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.AttackWasExecuted, ShowAttackBattleAction);
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.DefenseWasUpdated, ShowDefenseBattleAction);
+        GameNotificationsManager.Instance.AddActionToEvent(GameNotification.TurnStartedExecution, ClearHighlight);
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.TurnEndedExecution, ClearBoardEffects);
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.FieldOfViewChanged, UpdateBossFieldOfView);
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.ObstaclesStatsChanged, RefreshObstacles);
@@ -55,18 +56,19 @@ public class BattleGridUI : MonoBehaviour, NotificationsListener
 
         UpdateBossFieldOfView(null);
         RefreshBoss(null);
+        UpdateDefenseInBoard();
     }
 
     private void RefreshCharacters(GameNotificationData notificationData)
     {
-        CharacterVisuals characterVisuals = characters[(CharacterID)notificationData.Data[NotificationDataIDs.ActionOwner]];
+        CharacterVisuals characterVisuals = characters[(CharacterID) notificationData.Data[NotificationDataIDs.ActionOwner]];
         Vector3 currentPosition = characterVisuals.transform.position;
-        Vector2Int newPosition = (Vector2Int)notificationData.Data[NotificationDataIDs.CellPosition];
+        Vector2Int newPosition = (Vector2Int) notificationData.Data[NotificationDataIDs.CellPosition];
         Vector3 nextPosition = BattleGridUtils.TranslatedPosition(newPosition, charactersHeightOnBoard);
 
         grid[BattleGridUtils.GridPosition(currentPosition)].PromptMove();
         characterVisuals.transform.position = nextPosition;
-        if ((bool)notificationData.Data[NotificationDataIDs.WasPushed])
+        if ((bool) notificationData.Data[NotificationDataIDs.WasPushed])
         {
             grid[newPosition].PromptDamage(15);
         }
@@ -80,17 +82,19 @@ public class BattleGridUI : MonoBehaviour, NotificationsListener
 
     private void RefreshObstacles(GameNotificationData notificationData)
     {
-        Vector2Int position = (Vector2Int)notificationData.Data[NotificationDataIDs.CellPosition];
+        Vector2Int position = (Vector2Int) notificationData.Data[NotificationDataIDs.CellPosition];
         GridCellUI newGridCell = grid[position];
         newGridCell.Refresh(BattleManager.Instance.BattleGrid.GetInPosition(position.x, position.y));
         BossPart partInPosition = BattleManager.Instance.CharacterManagement.GetBossPartInPosition(position);
         if (partInPosition != null)
             bossVisuals.RemovePart(partInPosition.PartType);
+
+        UpdateDefenseInBoard();
     }
 
     private void RefreshDeaths(GameNotificationData notificationData)
     {
-        string dead = (string)notificationData.Data[NotificationDataIDs.Deceased];
+        string dead = (string) notificationData.Data[NotificationDataIDs.Deceased];
         if (BattleGridUtils.IsACharacter(dead))
         {
             CharacterID character = BattleGridUtils.GetCharacterID(dead);
@@ -141,12 +145,12 @@ public class BattleGridUI : MonoBehaviour, NotificationsListener
     {
         if (notificationData != null)
         {
-            Vector2Int position = (Vector2Int)notificationData.Data[NotificationDataIDs.CellPosition];
+            Vector2Int position = (Vector2Int) notificationData.Data[NotificationDataIDs.CellPosition];
             if (!grid.ContainsKey(position))
                 return;
-            bool failure = (bool)notificationData.Data[NotificationDataIDs.Failure];
-            bool critical = (bool)notificationData.Data[NotificationDataIDs.Critical];
-            float damage = (float)notificationData.Data[NotificationDataIDs.NewHP] - (float)notificationData.Data[NotificationDataIDs.PreviousHP];
+            bool failure = (bool) notificationData.Data[NotificationDataIDs.Failure];
+            bool critical = (bool) notificationData.Data[NotificationDataIDs.Critical];
+            float damage = (float) notificationData.Data[NotificationDataIDs.NewHP] - (float) notificationData.Data[NotificationDataIDs.PreviousHP];
             damage = Mathf.Abs(damage);
 
             if (failure)
@@ -165,9 +169,17 @@ public class BattleGridUI : MonoBehaviour, NotificationsListener
     {
         if (notificationData != null)
         {
-            Vector2Int position = (Vector2Int)notificationData.Data[NotificationDataIDs.CellPosition];
-            bool shieldState = (bool)notificationData.Data[NotificationDataIDs.ShieldState];
+            Vector2Int position = (Vector2Int) notificationData.Data[NotificationDataIDs.CellPosition];
+            bool shieldState = (bool) notificationData.Data[NotificationDataIDs.ShieldState];
             grid[position].ShowShield(shieldState);
+        }
+    }
+
+    private void ClearHighlight(GameNotificationData notificationData)
+    {
+        foreach (KeyValuePair<Vector2Int, GridCellUI> cell in grid)
+        {
+            cell.Value.PaintAsHighlight(false);
         }
     }
 
@@ -176,17 +188,17 @@ public class BattleGridUI : MonoBehaviour, NotificationsListener
         foreach (KeyValuePair<Vector2Int, GridCellUI> cell in grid)
         {
             bool positionGuarded = TurnExecutor.Instance.DefenseValueInPosition(cell.Key) > 0;
+            if (TurnExecutor.Instance.DefendedByObstacle(cell.Key) && 
+                (BattleManager.Instance.CharacterManagement.GetCharacterInPosition(cell.Key) == null ||
+                !BattleManager.Instance.CharacterManagement.Boss.GetFieldOfView().Contains(cell.Key)))
+                positionGuarded = false;
             grid[cell.Key].ShowShield(positionGuarded);
         }
     }
 
     private void ClearBoardEffects(GameNotificationData notificationData)
     {
-        foreach (KeyValuePair<Vector2Int, GridCellUI> cell in grid)
-        {
-            bool positionGuarded = TurnExecutor.Instance.DefenseValueInPosition(cell.Key) > 0;
-            grid[cell.Key].ShowShield(false);
-        }
+        UpdateDefenseInBoard();
     }
 
     private void UpdateBossFieldOfView(GameNotificationData notificationData)
