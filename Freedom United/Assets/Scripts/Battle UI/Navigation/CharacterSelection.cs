@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class CharacterSelection : NavigationSelection
 {
-    protected override int MaxElement { get { return BattleManager.Instance.CharacterManagement.Characters.Keys.Count + 1; } }
+    protected override int MaxElement { get { return BattleManager.Instance.CharacterManagement.Characters.Keys.Count; } }
     private int topElement;
     private int ElementsOnScreen { get { return BattleUIManager.Instance.CharacterSelectionUI.CharactersOnScreen; } }
 
     public override void Next()
     {
-        if (currentIndex + topElement == MaxElement - 1)
+        if (currentIndex + topElement == MaxElement)
             return;
 
         if (!FinishTurnSelected)
@@ -18,7 +18,7 @@ public class CharacterSelection : NavigationSelection
             BattleGridUI.Instance.ToggleHighlight(currentPosition, false);
         }
 
-        if (currentIndex < ElementsOnScreen - 1 && currentIndex < MaxElement - 1)
+        if (currentIndex < ElementsOnScreen - 1 && currentIndex < MaxElement)
         {
             currentIndex++;
             BattleUIManager.Instance.CharacterSelectionUI.RefreshView(topElement, currentIndex);
@@ -77,6 +77,6 @@ public class CharacterSelection : NavigationSelection
     }
 
     public Vector3 SelectedPosition {  get { return BattleUIManager.Instance.CharacterSelectionUI.GetPositionByIndex(currentIndex); } }
-    public bool FinishTurnSelected { get { return currentIndex + topElement == MaxElement - 1; } }
+    public bool FinishTurnSelected { get { return currentIndex + topElement == MaxElement; } }
     public CharacterID CharacterID { get { return BattleManager.Instance.CharacterManagement.Characters.Keys.ToList()[currentIndex + topElement]; } }
 }

@@ -3,14 +3,14 @@ using UnityEngine;
 public class CharacterMoveAction : ExecutingAction
 {
     private CharacterID movingCharacter;
-    private Vector2Int deltaPosition;
+    private Vector2Int finalPosition;
     private Vector2Int originPosition;
     private bool changeWithTeammate;
     private bool isSafe;
 
     public CharacterMoveAction(AllyAction scheduledAction, bool safe) : base(scheduledAction)
     {
-        deltaPosition = scheduledAction.position;
+        finalPosition = scheduledAction.position;
         movingCharacter = scheduledAction.actionOwner;
         isSafe = safe;
     }
@@ -19,7 +19,6 @@ public class CharacterMoveAction : ExecutingAction
     {
         GameNotificationData notificationData = new GameNotificationData();
         originPosition = BattleManager.Instance.CharacterManagement.Characters[movingCharacter].CurrentPosition;
-        Vector2Int finalPosition = deltaPosition + originPosition;
         changeWithTeammate = BattleManager.Instance.CharacterManagement.GetCharacterInPosition(finalPosition) != null;
 
         if (changeWithTeammate)

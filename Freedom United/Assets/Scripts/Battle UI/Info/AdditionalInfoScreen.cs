@@ -6,10 +6,8 @@ using TMPro;
 public class AdditionalInfoScreen : MonoBehaviour, NotificationsListener
 {
     [SerializeField] private GameObject actionInfoContainer;
-    [SerializeField] private GameObject actionTargetContainer;
     [SerializeField] private TextMeshProUGUI actionInfoTitle;
     [SerializeField] private TextMeshProUGUI actionInfoText;
-    [SerializeField] private TextMeshProUGUI actionTargetText;
 
     public void ConfigureComponent()
     {
@@ -20,7 +18,6 @@ public class AdditionalInfoScreen : MonoBehaviour, NotificationsListener
     private void Clear(GameNotificationData notificationData)
     {
         actionInfoContainer.SetActive(false);
-        actionTargetContainer.SetActive(false);
     }
 
     private void NavigationInfoUpdated(GameNotificationData notificationData)
@@ -29,20 +26,16 @@ public class AdditionalInfoScreen : MonoBehaviour, NotificationsListener
         {
             case BattleSelectionLevel.Action:
                 actionInfoContainer.SetActive(true);
-                actionTargetContainer.SetActive(false);
                 actionInfoTitle.text = AdditionalInfoController.Instance.ActionTitle;
                 actionInfoText.text = AdditionalInfoController.Instance.ActionDescription;
                 break;
             case BattleSelectionLevel.Cell:
                 actionInfoContainer.SetActive(BattleManager.Instance.BattleGrid.PositionsInRange.Contains(BattleUINavigation.Instance.NavigationState.currentAction.position));
-                actionTargetContainer.SetActive(true);
                 actionInfoTitle.text = AdditionalInfoController.Instance.ActionTitle;
                 actionInfoText.text = AdditionalInfoController.Instance.ActionDescription;
-                actionTargetText.text = AdditionalInfoController.Instance.ActionTarget;
                 break;
             default:
                 actionInfoContainer.SetActive(false);
-                actionTargetContainer.SetActive(false);
                 break;
         }
     }
