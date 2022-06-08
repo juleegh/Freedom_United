@@ -13,7 +13,6 @@ public class CharacterSelectionUI : MonoBehaviour, NotificationsListener
     private CharacterSelectionOption[] characterPreviews;
     public int CharactersOnScreen { get { return charactersOnScreen; } }
     private bool focus { get { return BattleUINavigation.Instance.CurrentLevel == BattleSelectionLevel.Character; } }
-
     public void ConfigureComponent()
     {
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.BattleUILoaded, LoadUI);
@@ -69,5 +68,15 @@ public class CharacterSelectionUI : MonoBehaviour, NotificationsListener
         {
             characterPreviews[i].ToggleSelected(i == selectedCharacter && focus);
         }
+    }
+
+    public Vector3 GetPositionByIndex(int selectedCharacter)
+    {
+        if (selectedCharacter >= 0 && selectedCharacter < characterPreviews.Length)
+        {
+            return characterPreviews[selectedCharacter].transform.position;
+        }
+
+        return Vector3.zero;
     }
 }

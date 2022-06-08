@@ -1,23 +1,35 @@
+using UnityEngine;
+
 public class ActionSelection : NavigationSelection
 {
-    protected override int MaxElements { get { return BattleActionsUtils.GetActionsList().Count; } }
+    protected override int MaxElement { get { return BattleActionsUtils.GetActionsList().Count - 1; } }
 
     public override void Next()
     {
-        if (currentIndex == MaxElements - 1)
-            return;
+        if (currentIndex == MaxElement)
+        {
+            currentIndex = 0;
+        }
+        else
+        {
+            currentIndex++;
+        }
 
-        currentIndex++;
-        BattleUIManager.Instance.ActionSelectionUI.RefreshSelectedAction(currentIndex);
+        BattleUIManager.Instance.ActionSelectionUI.RefreshSelectedAction(PreviousAction, ActionSelected, NextAction);
     }
 
     public override void Previous()
     {
         if (currentIndex == 0)
-            return;
+        {
+            currentIndex = MaxElement;
+        }
+        else
+        {
+            currentIndex--;
+        }
 
-        currentIndex--;
-        BattleUIManager.Instance.ActionSelectionUI.RefreshSelectedAction(currentIndex);
+        BattleUIManager.Instance.ActionSelectionUI.RefreshSelectedAction(PreviousAction, ActionSelected, NextAction);
     }
 
     public void Toggle(bool visible)
@@ -26,9 +38,13 @@ public class ActionSelection : NavigationSelection
         if (visible)
         {
             currentIndex = 0;
-            BattleUIManager.Instance.ActionSelectionUI.RefreshSelectedAction(currentIndex);
+            Vector3 position = BattleUINavigation.Instance.NavigationState.CharacterSelection.SelectedPosition;
+            BattleUIManager.Instance.ActionSelectionUI.SetHorizontalPosition(position);
+            BattleUIManager.Instance.ActionSelectionUI.RefreshSelectedAction(PreviousAction, ActionSelected, NextAction);
         }
     }
 
+    public BattleActionType PreviousAction { get { return currentIndex > 0 ? BattleActionsUtils.GetByIndex(currentIndex - 1) : BattleActionsUtils.GetByIndex(MaxElement); } }
+    public BattleActionType NextAction { get { return currentIndex < MaxElement ? BattleActionsUtils.GetByIndex(currentIndex + 1) : BattleActionsUtils.GetByIndex(0); } }
     public BattleActionType ActionSelected { get { return BattleActionsUtils.GetByIndex(currentIndex); } }
 }

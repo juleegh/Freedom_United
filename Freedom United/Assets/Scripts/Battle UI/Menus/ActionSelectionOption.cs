@@ -6,24 +6,10 @@ using TMPro;
 
 public class ActionSelectionOption : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI actionID;
-    [SerializeField] private Image background;
+    [SerializeField] private Image icon;
 
-    [SerializeField] private Color regularColor;
-    [SerializeField] private Color selectedColor;
-
-    void Awake()
+    public void Config(Sprite sprite)
     {
-        ToggleSelected(false);
-    }
-
-    public void Config(BattleActionType actionType)
-    {
-        actionID.text = actionType.ToString();
-    }
-
-    public void ToggleSelected(bool selected)
-    {
-        background.color = selected ? selectedColor : regularColor;
+        icon.sprite = sprite;
     }
 }

@@ -4,23 +4,23 @@ using UnityEngine;
 
 public class ActionPileSelection : NavigationSelection
 {
-    protected override int MaxElements { get { return BattleManager.Instance.ActionPile.ActionsForTurn.Count; } }
+    protected override int MaxElement { get { return BattleManager.Instance.ActionPile.ActionsForTurn.Count; } }
     private int topElement;
     private int ElementsOnScreen { get { return BattleUIManager.Instance.ActionPileUI.ActionsOnScreen; } }
     private bool focus { get { return BattleUINavigation.Instance.CurrentLevel == BattleSelectionLevel.ActionPile; } }
 
     public override void Next()
     {
-        if (currentIndex + topElement == MaxElements - 1)
+        if (currentIndex + topElement == MaxElement - 1)
             return;
         
         TogglePreviewOwner(false);
-        if (currentIndex < ElementsOnScreen - 1 && currentIndex < MaxElements - 1)
+        if (currentIndex < ElementsOnScreen - 1 && currentIndex < MaxElement - 1)
         {
             currentIndex++;
             BattleUIManager.Instance.ActionPileUI.RefreshView(topElement, currentIndex);
         }
-        else if (topElement + ElementsOnScreen + 1 <= MaxElements)
+        else if (topElement + ElementsOnScreen + 1 <= MaxElement)
         {
             topElement++;
             BattleUIManager.Instance.ActionPileUI.RefreshView(topElement, currentIndex);

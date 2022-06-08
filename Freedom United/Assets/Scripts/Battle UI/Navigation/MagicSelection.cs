@@ -1,17 +1,17 @@
 public class MagicSelection : NavigationSelection
 {
-    protected override int MaxElements { get { return BattleManager.Instance.MagicManagement.Spells.Count; } }
+    protected override int MaxElement { get { return BattleManager.Instance.MagicManagement.Spells.Count; } }
     private int topElement;
     private int ElementsOnScreen { get { return BattleUIManager.Instance.MagicSelectionUI.SpellsOnScreen; } }
 
     public override void Next()
     {
-        if (currentIndex < ElementsOnScreen - 1 && currentIndex < MaxElements - 1)
+        if (currentIndex < ElementsOnScreen - 1 && currentIndex < MaxElement - 1)
         {
             currentIndex++;
             BattleUIManager.Instance.MagicSelectionUI.RefreshView(topElement, currentIndex);
         }
-        else if (topElement + ElementsOnScreen + 1 <= MaxElements)
+        else if (topElement + ElementsOnScreen + 1 <= MaxElement)
         {
             topElement++;
             BattleUIManager.Instance.MagicSelectionUI.RefreshView(topElement, currentIndex);
