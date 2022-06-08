@@ -18,6 +18,8 @@ public class BattleGrid : MonoBehaviour, NotificationsListener
     public List<Vector2Int> PositionsInRange { get { return positionsInRange; } }
     private List<Vector2Int> hidingPositions;
     public List<Vector2Int> HidingPositions { get { return hidingPositions; } }
+    private Vector2Int furthestPosition;
+    public Vector2Int FurthestPosition { get { return furthestPosition; } }
 
     public void ConfigureComponent()
     {
@@ -38,6 +40,9 @@ public class BattleGrid : MonoBehaviour, NotificationsListener
             Vector3Int roundedPos = Vector3Int.RoundToInt(cell.transform.position);
             Vector2Int position = new Vector2Int(roundedPos.x, roundedPos.z);
             gridPositions.Add(position);
+
+            if (position.x >= furthestPosition.x && position.y >= furthestPosition.y)
+                furthestPosition = position;
 
             if (cell.IsObstacle)
             {
