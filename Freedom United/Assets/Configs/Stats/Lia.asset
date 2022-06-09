@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f5003ac207c6c94b999c120ca9cabd2, type: 3}
   m_Name: Lia
   m_EditorClassIdentifier: 
-  attackRange: 2
+  attackRange: 0
   attackType: 2
   baseHealth: 90
   baseWillPower: 100
