@@ -28,10 +28,10 @@ public class ActionPileUI : MonoBehaviour, NotificationsListener
             actionsPreviews[i].transform.SetParent(spellsContainer);
             actionsPreviews[i].gameObject.SetActive(false);
         }
-        RefreshView(0, 0);
+        RefreshView();
     }
 
-    public void RefreshView(int topAction, int selectedAction)
+    public void RefreshView(int topAction = 0, int selectedAction = 0)
     {
         int previewIndex = 0;
 

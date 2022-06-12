@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Linq;
 
 public class CharacterSelectionUI : MonoBehaviour, NotificationsListener
@@ -10,9 +11,14 @@ public class CharacterSelectionUI : MonoBehaviour, NotificationsListener
     [SerializeField] private GameObject characterPreviewPrefab;
     [SerializeField] private GameObject previousIndicator;
     [SerializeField] private GameObject nextIndicator;
+    [SerializeField] private Transform selectedContainer;
+    [SerializeField] private Transform regularContainer;
+    [SerializeField] private LayoutGroup layoutGroup;
+
     private CharacterSelectionOption[] characterPreviews;
     public int CharactersOnScreen { get { return charactersOnScreen; } }
     private bool focus { get { return BattleUINavigation.Instance.CurrentLevel == BattleSelectionLevel.Character; } }
+
     public void ConfigureComponent()
     {
         GameNotificationsManager.Instance.AddActionToEvent(GameNotification.BattleUILoaded, LoadUI);
@@ -29,6 +35,14 @@ public class CharacterSelectionUI : MonoBehaviour, NotificationsListener
             characterPreviews[i].transform.SetParent(charactersContainer);
             characterPreviews[i].gameObject.SetActive(i < characters.Count + 1);
         }
+
+        StartCoroutine(FinishConfig());
+    }
+
+    private IEnumerator FinishConfig()
+    {
+        yield return new WaitForEndOfFrame();
+        layoutGroup.enabled = false;
         RefreshView(0, 0);
     }
 
@@ -62,11 +76,18 @@ public class CharacterSelectionUI : MonoBehaviour, NotificationsListener
         RefreshSelectedCharacter(selectedCharacter);
     }
 
-    public void RefreshSelectedCharacter(int selectedCharacter)
+    private void RefreshSelectedCharacter(int selectedCharacter)
     {
         for (int i = 0; i < charactersOnScreen; i++)
         {
-            characterPreviews[i].ToggleSelected(i == selectedCharacter && focus);
+            bool selected = i == selectedCharacter && focus;
+            
+            Vector3 pos = characterPreviews[i].transform.position;
+            pos.z = selected ? 1f : 0;
+            characterPreviews[i].transform.position = pos;
+            
+            characterPreviews[i].ToggleSelected(selected);
+            characterPreviews[i].transform.SetParent(selected ? selectedContainer : regularContainer, true);
         }
     }
 

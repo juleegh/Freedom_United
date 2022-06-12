@@ -6,57 +6,30 @@ using TMPro;
 
 public class CharacterSelectionOption : MonoBehaviour
 {
-    [SerializeField] private Image characterPreview;
-    [SerializeField] private Image background;
-    [SerializeField] private CharacterAssets assets;
-    [SerializeField] private GameObject blocked;
-    [SerializeField] private TextMeshProUGUI characterName;
-    [SerializeField] private TextMeshProUGUI characterHealth;
-    [SerializeField] private TextMeshProUGUI characterWill;
-    [SerializeField] private TextMeshProUGUI characterShield;
-    [SerializeField] private GameObject characterContent;
-    [SerializeField] private GameObject otherContent;
-
-    [SerializeField] private Color regularColor;
-    [SerializeField] private Color selectedColor;
-
-    CharacterID currentCharacter;
+    [SerializeField] private CharacterSelectionInfo selectedOption;
+    [SerializeField] private CharacterSelectionInfo regularOption;
 
     public void Config(CharacterID character)
     {
-        currentCharacter = character;
-        characterPreview.sprite = assets.Bodies[character];
-        UpdateInfo();
-        blocked.SetActive(false);
-        ToggleCharacterView(true);
+        selectedOption.Config(character);
+        regularOption.Config(character);
     }
 
     public void AvailableForAction(bool available)
     {
-        blocked.SetActive(!available);
-    }
-
-    private void UpdateInfo()
-    {
-        characterName.text = currentCharacter.ToString();
-        characterHealth.text = "HP: " + BattleManager.Instance.BattleValues.PartyHealth[currentCharacter] + " / " + BattleManager.Instance.PartyStats.Stats[currentCharacter].BaseHealth;
-        characterWill.text = "WP: " + BattleManager.Instance.BattleValues.PartyWill[currentCharacter] + " / " + BattleManager.Instance.PartyStats.Stats[currentCharacter].BaseWillPower;
-        characterShield.text = "SP: " + BattleManager.Instance.BattleValues.PartyDefense[currentCharacter] + " / " + BattleManager.Instance.PartyStats.Stats[currentCharacter].BaseShieldDurability;
-    }
-
-    public void OnSelectionTriggered()
-    {
-
+        selectedOption.AvailableForAction(available);
+        regularOption.AvailableForAction(available);
     }
 
     public void ToggleSelected(bool selected)
     {
-        background.color = selected ? selectedColor : regularColor;
+        selectedOption.gameObject.SetActive(selected);
+        regularOption.gameObject.SetActive(!selected);
     }
 
     public void ToggleCharacterView(bool visible)
     {
-        characterContent.SetActive(visible);
-        otherContent.SetActive(!visible);
+        selectedOption.ToggleCharacterView(visible);
+        regularOption.ToggleCharacterView(visible);
     }
 }

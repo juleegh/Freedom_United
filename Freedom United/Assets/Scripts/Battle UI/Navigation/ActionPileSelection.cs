@@ -118,7 +118,25 @@ public class ActionPileSelection : NavigationSelection
             BattleUIManager.Instance.ActionPileUI.UpdateStatus(0, UIStatus.Overdue);
             BattleUIManager.Instance.ActionPileUI.UpdateStatus(1, status);
         }
+    }
 
+    public void JumpToPreview()
+    {
+        int previewIndex = BattleManager.Instance.ActionPile.CurrentPreviewIndex;
+        if (previewIndex == -1)
+            return;
+
+        if (previewIndex == 0)
+        {
+            currentIndex = 0;
+            topElement = 0;
+        }
+        else
+        {
+            topElement = previewIndex - 1;
+            currentIndex = 1;
+        }
+        BattleUIManager.Instance.ActionPileUI.RefreshView(topElement, currentIndex);
     }
 
     public void Refresh()

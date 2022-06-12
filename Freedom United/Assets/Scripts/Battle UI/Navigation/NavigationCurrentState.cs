@@ -23,13 +23,18 @@ public class NavigationCurrentState
         CellSelection = new CellSelection();
     }
 
-    public void ResetActionSelection()
+    public void ClearActionSelection()
     {
         currentAction = new AllyAction();
         currentLevel = BattleSelectionLevel.Character;
         CellSelection.Toggle(false);
         ActionSelection.Toggle(false);
         MagicSelection.Toggle(false);
+    }
+    
+    public void ResetActionSelection()
+    {
+        ClearActionSelection();
         CharacterSelection.Refresh();
     }
 }

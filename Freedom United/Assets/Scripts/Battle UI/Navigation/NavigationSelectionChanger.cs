@@ -39,7 +39,7 @@ public class NavigationSelectionChanger
             navigationState.ActionSelection.Previous();
             navigationState.currentAction.actionType = navigationState.ActionSelection.ActionSelected;
             navigationState.currentAction.speed = BattleActionsUtils.GetActionSpeed();
-            BattleUIManager.Instance.ActionPileUI.RefreshView(0, 0);
+            navigationState.ActionPileSelection.JumpToPreview();
         }
         else if (navigationState.currentLevel == BattleSelectionLevel.Cell)
             navigationState.CellSelection.Left();
@@ -56,7 +56,7 @@ public class NavigationSelectionChanger
             navigationState.ActionSelection.Next();
             navigationState.currentAction.actionType = navigationState.ActionSelection.ActionSelected;
             navigationState.currentAction.speed = BattleActionsUtils.GetActionSpeed();
-            BattleUIManager.Instance.ActionPileUI.RefreshView(0, 0);
+            navigationState.ActionPileSelection.JumpToPreview();
         }
         else if (navigationState.currentLevel == BattleSelectionLevel.Cell)
             navigationState.CellSelection.Right();

@@ -37,7 +37,7 @@ public class NavigationActionExecuter
             navigationState.ActionSelection.Toggle(true);
             navigationState.currentAction.actionType = navigationState.ActionSelection.ActionSelected;
             navigationState.currentAction.speed = BattleActionsUtils.GetActionSpeed();
-            navigationState.ActionPileSelection.Refresh();
+            navigationState.ActionPileSelection.JumpToPreview();
         }
         else if (navigationState.currentLevel == BattleSelectionLevel.Cancel)
         {
@@ -133,14 +133,14 @@ public class NavigationActionExecuter
         {
             navigationState.currentLevel = BattleSelectionLevel.Character;
             navigationState.currentAction.speed = BattleActionsUtils.GetActionSpeed();
-            BattleUIManager.Instance.ActionPileUI.RefreshView(0, 0);
+            navigationState.ActionPileSelection.Refresh();
             navigationState.ActionSelection.Toggle(false);
         }
         else if (navigationState.currentLevel == BattleSelectionLevel.Magic)
         {
             navigationState.currentLevel = BattleSelectionLevel.Action;
             navigationState.currentAction.speed = BattleActionsUtils.GetActionSpeed();
-            BattleUIManager.Instance.ActionPileUI.RefreshView(0, 0);
+            navigationState.ActionPileSelection.Refresh();
             navigationState.MagicSelection.Toggle(false);
         }
         else if (navigationState.currentLevel == BattleSelectionLevel.Cell)
@@ -148,7 +148,7 @@ public class NavigationActionExecuter
             BattleGridUI.Instance.ToggleRange();
             navigationState.currentLevel = BattleSelectionLevel.Action;
             navigationState.currentAction.speed = BattleActionsUtils.GetActionSpeed();
-            BattleUIManager.Instance.ActionPileUI.RefreshView(0, 0);
+            navigationState.ActionPileSelection.Refresh();
             navigationState.MagicSelection.Toggle(false);
             navigationState.CellSelection.Toggle(false);
         }

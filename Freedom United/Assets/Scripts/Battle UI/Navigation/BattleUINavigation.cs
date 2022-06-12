@@ -29,7 +29,7 @@ public class BattleUINavigation : MonoBehaviour, NotificationsListener
         selectionChanger = new NavigationSelectionChanger();
         GameNotificationsManager.Instance.Notify(GameNotification.BattleUILoaded);
         GameNotificationsManager.Instance.Notify(GameNotification.TurnStarted);
-        navigationState.ResetActionSelection();
+        navigationState.ClearActionSelection();
     }
 
     private void ResetActionSelection(GameNotificationData notificationData)

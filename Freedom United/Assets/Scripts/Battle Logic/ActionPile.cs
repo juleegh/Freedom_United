@@ -25,7 +25,7 @@ public class ActionPile : MonoBehaviour, NotificationsListener
             actionsForTurn.Add(action.ActionOwner, new List<ScheduledAction>());
 
         actionsForTurn[action.ActionOwner].Add(action);
-        BattleUIManager.Instance.ActionPileUI.RefreshView(0, 0);
+        BattleUIManager.Instance.ActionPileUI.RefreshView();
     }
 
     public void RemoveActionFromPile(long actionID)
@@ -37,7 +37,7 @@ public class ActionPile : MonoBehaviour, NotificationsListener
                 if (characterAction.actionID == actionID)
                 {
                     actionsForTurn[characterAction.ActionOwner].Remove(characterAction);
-                    BattleUIManager.Instance.ActionPileUI.RefreshView(0, 0);
+                    BattleUIManager.Instance.ActionPileUI.RefreshView();
                     return;
                 }
             }
@@ -54,7 +54,7 @@ public class ActionPile : MonoBehaviour, NotificationsListener
     {
         actionsForTurn.Clear();
 
-        BattleUIManager.Instance.ActionPileUI.RefreshView(0, 0);
+        BattleUIManager.Instance.ActionPileUI.RefreshView();
         BattleUIManager.Instance.CharacterSelectionUI.RefreshView(0, 0);
     }
 
@@ -74,6 +74,8 @@ public class ActionPile : MonoBehaviour, NotificationsListener
             return actionsToShow;
         }
     }
+
+    public int CurrentPreviewIndex { get { return ActionsForTurn.IndexOf(currentAction); } }
 
     public bool BossReachedLimit
     {
