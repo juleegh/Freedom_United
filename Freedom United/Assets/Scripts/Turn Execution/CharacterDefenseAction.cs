@@ -22,7 +22,9 @@ public class CharacterDefenseAction : ExecutingAction
 
     public override void Execute()
     {
+        List<Vector2Int> targetDefense = new List<Vector2Int>();
         defendedPositions.Add(defenseDelta);
+        targetDefense.Add(defenseDelta + CurrentCharacterPosition);
 
         GameNotificationData defenseData = new GameNotificationData();
         defenseData.Data[NotificationDataIDs.CellPosition] = CurrentCharacterPosition + defenseDelta;
@@ -33,8 +35,10 @@ public class CharacterDefenseAction : ExecutingAction
         {
             defendedPositions.Add(Vector2Int.zero);
             defenseData.Data[NotificationDataIDs.CellPosition] = CurrentCharacterPosition;
+            targetDefense.Add(CurrentCharacterPosition);
             GameNotificationsManager.Instance.Notify(GameNotification.DefenseWasUpdated, defenseData);
         }
+        CameraFocus.Instance.FocusForDefense(targetDefense);
     }
 
     public bool PositionIsDefended(Vector2Int position)

@@ -67,7 +67,7 @@ public class BattleGridUI : MonoBehaviour, NotificationsListener
         Vector3 nextPosition = BattleGridUtils.TranslatedPosition(newPosition, charactersHeightOnBoard);
 
         grid[BattleGridUtils.GridPosition(currentPosition)].PromptMove();
-        characterVisuals.transform.position = nextPosition;
+        characterVisuals.Move(nextPosition);
         if ((bool) notificationData.Data[NotificationDataIDs.WasPushed])
         {
             grid[newPosition].PromptDamage(15);

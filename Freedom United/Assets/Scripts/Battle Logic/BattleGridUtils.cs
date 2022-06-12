@@ -110,4 +110,15 @@ public static class BattleGridUtils
         }
         return adjacent;
     }
+
+
+    public static List<Vector2Int> GetTranslatedPositions(Vector2Int center, List<Vector2Int> originals)
+    {
+        List<Vector2Int> translated = new List<Vector2Int>();
+        foreach (Vector2Int pos in originals)
+        {
+            translated.Add(pos + center);
+        }
+        return translated;
+    }
 }

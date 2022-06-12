@@ -27,9 +27,11 @@ public class BossAttackAction : ExecutingAction
         Vector2Int currentPartOrientation = BattleManager.Instance.CharacterManagement.Boss.Parts[attackingPart].Orientation;
         List<Vector2Int> attackedPositions = attackShape.GetRotatedDeltasWithPivot(pivot, currentPartOrientation);
 
-        foreach (Vector2Int attackPosition in attackedPositions)
+        List<Vector2Int> targetPositions = BattleGridUtils.GetTranslatedPositions(currentPartPosition, attackedPositions);
+        CameraFocus.Instance.FocusForAttack(targetPositions, critical : PassedCritical(), failed : FailedSuccess());
+
+        foreach (Vector2Int attackedPosition in targetPositions)
         {
-            Vector2Int attackedPosition = attackPosition + currentPartPosition;
             float damageProvided = damageTaken;
             if (FailedSuccess())
                 damageProvided = 0;
@@ -83,7 +85,6 @@ public class BossAttackAction : ExecutingAction
                 else
                 {
                     BattleManager.Instance.BattleGrid.HitObstacle(defender, damageForDefense);
-                    /* If we ever show a shield when an obstacle is defending
                     if (BattleManager.Instance.BattleGrid.GetObstacleHP(defender) <= 0)
                     {
                         GameNotificationData defenseBrokenData = new GameNotificationData();
@@ -91,7 +92,6 @@ public class BossAttackAction : ExecutingAction
                         defenseBrokenData.Data[NotificationDataIDs.ShieldState] = TurnExecutor.Instance.DefenseValueInPosition(attackedPosition) > 0;
                         GameNotificationsManager.Instance.Notify(GameNotification.DefenseWasUpdated, defenseBrokenData);
                     }
-                    */
                 }
             }
 
@@ -142,5 +142,4 @@ public class BossAttackAction : ExecutingAction
         float success = BattleManager.Instance.CharacterManagement.BossConfig.PartsList[attackingPart].NormalSuccessChance;
         return chanceResult >= failure + success;
     }
-
 }

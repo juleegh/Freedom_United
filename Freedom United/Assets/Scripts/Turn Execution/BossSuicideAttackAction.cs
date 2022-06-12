@@ -14,6 +14,7 @@ public class BossSuicideAttackAction : ExecutingAction
 
     public override void Execute()
     {
+        CameraFocus.Instance.FocusForAttack(selectedCells, critical: true, failed: false);
         foreach (Vector2Int attackedPosition in selectedCells)
         {
             float damageProvided = damageTaken;
@@ -65,7 +66,7 @@ public class BossSuicideAttackAction : ExecutingAction
                 else
                 {
                     BattleManager.Instance.BattleGrid.HitObstacle(defender, damageForDefense);
-                    /* If we ever show a shield when an obstacle is defending
+                    
                     if (BattleManager.Instance.BattleGrid.GetObstacleHP(defender) <= 0)
                     {
                         GameNotificationData defenseBrokenData = new GameNotificationData();
@@ -73,7 +74,7 @@ public class BossSuicideAttackAction : ExecutingAction
                         defenseBrokenData.Data[NotificationDataIDs.ShieldState] = TurnExecutor.Instance.DefenseValueInPosition(attackedPosition) > 0;
                         GameNotificationsManager.Instance.Notify(GameNotification.DefenseWasUpdated, defenseBrokenData);
                     }
-                    */
+                    
                 }
             }
 

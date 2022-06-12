@@ -25,6 +25,7 @@ public class BossDefenseAction : ExecutingAction
     {
         defendedPositions = areaOfEffect;
 
+        CameraFocus.Instance.FocusForDefense(defendedPositions);
         foreach (Vector2Int pos in defendedPositions)
         {
             GameNotificationData defenseData = new GameNotificationData();

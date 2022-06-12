@@ -12,7 +12,6 @@ public class TurnExecutor : MonoBehaviour, NotificationsListener
     private bool executing;
     public bool Executing { get { return executing; } }
 
-    [SerializeField] private float timeBetweenActions;
     private float executionDelta;
     private ActionPileSelection ActionPile { get { return BattleUINavigation.Instance.NavigationState.ActionPileSelection; } }
 
@@ -40,12 +39,13 @@ public class TurnExecutor : MonoBehaviour, NotificationsListener
         if (executing)
         {
             executionDelta += Time.deltaTime;
-            if (executionDelta >= timeBetweenActions)
+            if (executionDelta >= ExecutionValues.Primitives.ActionDuration)
             {
                 if (executionIndex >= actionsQueued.Count)
                 {
                     executing = false;
                     BattleManager.Instance.ActionPile.ClearList();
+                    CameraFocus.Instance.ClearFocus();
                     GameNotificationsManager.Instance.Notify(GameNotification.TurnEndedExecution);
                     GameNotificationsManager.Instance.Notify(GameNotification.TurnStarted);
                     return;

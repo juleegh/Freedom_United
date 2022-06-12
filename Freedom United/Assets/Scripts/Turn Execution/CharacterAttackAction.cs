@@ -35,10 +35,10 @@ public class CharacterAttackAction : ExecutingAction
 
     public override void Execute()
     {
-        foreach (Vector2Int position in attackedPositions)
+        List<Vector2Int> targetPositions = BattleGridUtils.GetTranslatedPositions(BattleManager.Instance.CharacterManagement.Characters[attackingCharacter].CurrentPosition, attackedPositions);
+        CameraFocus.Instance.FocusForAttack(targetPositions, critical: PassedCritical(), failed: FailedSuccess());
+        foreach (Vector2Int attackedPosition in targetPositions)
         {
-            Vector2Int attackedPosition = position + BattleManager.Instance.CharacterManagement.Characters[attackingCharacter].CurrentPosition;
-
             GameNotificationData attackData = new GameNotificationData();
             attackData.Data[NotificationDataIDs.ActionOwner] = attackingCharacter.ToString();
             attackData.Data[NotificationDataIDs.Failure] = FailedSuccess();

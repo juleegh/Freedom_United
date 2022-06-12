@@ -588,7 +588,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -673,9 +673,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageTaken: {fileID: 6400767419425121349}
   damageIcon: {fileID: 1327513463412285685}
-  fadeIn: 0.15
-  fadeOut: 0.6
-  delay: 0.4
 --- !u!1 &2271058672081373981
 GameObject:
   m_ObjectHideFlags: 0
@@ -807,7 +804,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
