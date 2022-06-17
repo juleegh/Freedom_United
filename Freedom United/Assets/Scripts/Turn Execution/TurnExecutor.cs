@@ -58,6 +58,7 @@ public class TurnExecutor : MonoBehaviour, NotificationsListener
                     actionsQueued[executionIndex].Execute();
                 }
                 ActionPile.SetAsExecuting(executionIndex, canPerform ? UIStatus.Current : UIStatus.Invalid);
+                GameAudio.Instance.AudioToEvent(AudioEvent.ActionProgressedInPile);
                 executionIndex++;
                 GameNotificationsManager.Instance.Notify(GameNotification.ActionEndedExecution);
             }

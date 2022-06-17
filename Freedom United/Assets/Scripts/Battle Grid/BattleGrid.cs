@@ -179,7 +179,10 @@ public class BattleGrid : MonoBehaviour, NotificationsListener
                 notificationData.Data[NotificationDataIDs.CellPosition] = position;
                 GameNotificationsManager.Instance.Notify(GameNotification.ObstaclesStatsChanged, notificationData);
                 GameNotificationsManager.Instance.Notify(GameNotification.FieldOfViewChanged);
+                GameAudio.Instance.AudioToEvent(AudioEvent.ObstacleDestroyed);
             }
+            else
+                GameAudio.Instance.AudioToEvent(AudioEvent.ObstacleHit);
         }
         else
         {
@@ -196,7 +199,10 @@ public class BattleGrid : MonoBehaviour, NotificationsListener
                         notificationData.Data[NotificationDataIDs.CellPosition] = position;
                         GameNotificationsManager.Instance.Notify(GameNotification.ObstaclesStatsChanged, notificationData);
                         GameNotificationsManager.Instance.Notify(GameNotification.FieldOfViewChanged);
+                        GameAudio.Instance.AudioToEvent(AudioEvent.ObstacleDestroyed);
                     }
+                    else
+                        GameAudio.Instance.AudioToEvent(AudioEvent.ObstacleHit);
                     break;
                 }
             }

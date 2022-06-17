@@ -39,6 +39,7 @@ public class CharacterDefenseAction : ExecutingAction
             GameNotificationsManager.Instance.Notify(GameNotification.DefenseWasUpdated, defenseData);
         }
         CameraFocus.Instance.FocusForDefense(targetDefense);
+        GameAudio.Instance.AudioToEvent(AudioEvent.DefenseRaised);
     }
 
     public bool PositionIsDefended(Vector2Int position)

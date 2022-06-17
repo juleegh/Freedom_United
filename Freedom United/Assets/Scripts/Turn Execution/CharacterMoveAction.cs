@@ -45,5 +45,14 @@ public class CharacterMoveAction : ExecutingAction
         notificationData.Data[NotificationDataIDs.WasReckless] = !isSafe;
         notificationData.Data[NotificationDataIDs.WasPushed] = false;
         GameNotificationsManager.Instance.Notify(GameNotification.CharacterMoved, notificationData);
+        PlayMoveSound();
+    }
+
+    private void PlayMoveSound()
+    {
+        if (isSafe)
+            GameAudio.Instance.AudioToEvent(AudioEvent.MovedCarefully);
+        else
+            GameAudio.Instance.AudioToEvent(AudioEvent.MovedFast);
     }
 }

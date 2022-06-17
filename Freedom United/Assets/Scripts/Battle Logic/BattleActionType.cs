@@ -8,7 +8,6 @@ public enum BattleActionType
     Defend,
     MoveSafely,
     MoveFast,
-    Magic,
     Rotate,
     SuicideAttack,
 }
@@ -34,8 +33,6 @@ public static class BattleActionsUtils
                 return BattleActionType.MoveSafely;
             case 3:
                 return BattleActionType.MoveFast;
-            case 4:
-                return BattleActionType.Magic;
         }
 
         return BattleActionType.Attack;
@@ -48,7 +45,6 @@ public static class BattleActionsUtils
         actionsAvailable.Add(BattleActionType.Defend);
         actionsAvailable.Add(BattleActionType.MoveSafely);
         actionsAvailable.Add(BattleActionType.MoveFast);
-        actionsAvailable.Add(BattleActionType.Magic);
         return actionsAvailable;
     }
 

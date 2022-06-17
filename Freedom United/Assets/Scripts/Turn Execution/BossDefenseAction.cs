@@ -33,6 +33,7 @@ public class BossDefenseAction : ExecutingAction
             defenseData.Data[NotificationDataIDs.ShieldState] = true;
             GameNotificationsManager.Instance.Notify(GameNotification.DefenseWasUpdated, defenseData);
         }
+        GameAudio.Instance.AudioToEvent(AudioEvent.DefenseRaised);
     }
 
     public bool PositionIsDefended(Vector2Int position)

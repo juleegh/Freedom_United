@@ -4,6 +4,5 @@ public enum BattleSelectionLevel
     Action,
     ActionPile,
     Cell,
-    Magic,
     Cancel
 }

@@ -101,7 +101,6 @@ public class CharacterAttackAction : ExecutingAction
                 else
                 {
                     BattleManager.Instance.BattleGrid.HitObstacle(defender, damageForDefense);
-                    /* If we ever show a shield when an obstacle is defending
                     if (BattleManager.Instance.BattleGrid.GetObstacleHP(defender) <= 0)
                     {
                         GameNotificationData defenseBrokenData = new GameNotificationData();
@@ -109,7 +108,6 @@ public class CharacterAttackAction : ExecutingAction
                         defenseBrokenData.Data[NotificationDataIDs.ShieldState] = TurnExecutor.Instance.DefenseValueInPosition(attackedPosition) > 0;
                         GameNotificationsManager.Instance.Notify(GameNotification.DefenseWasUpdated, defenseBrokenData);
                     }
-                    */
                 }
             }
 
@@ -169,6 +167,8 @@ public class CharacterAttackAction : ExecutingAction
             int wpWin = BattleManager.Instance.PartyStats.Stats[attackingCharacter].HappyWPDelta;
             BattleManager.Instance.BattleValues.CharacterModifyWillPower(attackingCharacter, wpWin);
         }
+
+        PlayAttackSound();
     }
 
     private bool FailedSuccess()
@@ -181,5 +181,17 @@ public class CharacterAttackAction : ExecutingAction
         float failure = BattleManager.Instance.PartyStats.Stats[attackingCharacter].CriticalFailureChance;
         float success = BattleManager.Instance.PartyStats.Stats[attackingCharacter].NormalSuccessChance;
         return chanceResult >= failure + success;
+    }
+
+    private void PlayAttackSound()
+    {
+        AudioEvent attackEvent = AudioEvent.CharacterNormalAttack;
+
+        if (FailedSuccess())
+            attackEvent = AudioEvent.AttackFailed;
+        else if (PassedCritical())
+            attackEvent = AudioEvent.CriticalAttack;
+
+        GameAudio.Instance.AudioToEvent(attackEvent);
     }
 }

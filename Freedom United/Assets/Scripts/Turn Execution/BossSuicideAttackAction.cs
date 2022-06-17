@@ -106,5 +106,6 @@ public class BossSuicideAttackAction : ExecutingAction
             }
             GameNotificationsManager.Instance.Notify(GameNotification.AttackWasExecuted, attackData);
         }
+        GameAudio.Instance.AudioToEvent(AudioEvent.BossSuicideAttack);
     }
 }

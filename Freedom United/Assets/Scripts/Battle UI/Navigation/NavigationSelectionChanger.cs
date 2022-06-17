@@ -10,11 +10,12 @@ public class NavigationSelectionChanger
     {
         if (navigationState.currentLevel == BattleSelectionLevel.ActionPile)
             navigationState.ActionPileSelection.Next();
-        if (navigationState.currentLevel == BattleSelectionLevel.Magic)
-            navigationState.MagicSelection.Next();
-        if (navigationState.currentLevel == BattleSelectionLevel.Cell)
+        else if (navigationState.currentLevel == BattleSelectionLevel.Cell)
             navigationState.CellSelection.Down();
+        else
+            return;
 
+        GameAudio.Instance.AudioToEvent(AudioEvent.NavigationSide);
         GameNotificationsManager.Instance.Notify(GameNotification.NavigationStateUpdated);
     }
 
@@ -22,11 +23,12 @@ public class NavigationSelectionChanger
     {
         if (navigationState.currentLevel == BattleSelectionLevel.ActionPile)
             navigationState.ActionPileSelection.Previous();
-        if (navigationState.currentLevel == BattleSelectionLevel.Magic)
-            navigationState.MagicSelection.Previous();
-        if (navigationState.currentLevel == BattleSelectionLevel.Cell)
+        else if (navigationState.currentLevel == BattleSelectionLevel.Cell)
             navigationState.CellSelection.Up();
+        else
+            return;
 
+        GameAudio.Instance.AudioToEvent(AudioEvent.NavigationSide);
         GameNotificationsManager.Instance.Notify(GameNotification.NavigationStateUpdated);
     }
 
@@ -43,7 +45,10 @@ public class NavigationSelectionChanger
         }
         else if (navigationState.currentLevel == BattleSelectionLevel.Cell)
             navigationState.CellSelection.Left();
+        else
+            return;
 
+        GameAudio.Instance.AudioToEvent(AudioEvent.NavigationSide);
         GameNotificationsManager.Instance.Notify(GameNotification.NavigationStateUpdated);
     }
 
@@ -60,7 +65,10 @@ public class NavigationSelectionChanger
         }
         else if (navigationState.currentLevel == BattleSelectionLevel.Cell)
             navigationState.CellSelection.Right();
+        else
+            return;
 
+        GameAudio.Instance.AudioToEvent(AudioEvent.NavigationSide);
         GameNotificationsManager.Instance.Notify(GameNotification.NavigationStateUpdated);
     }
 }

@@ -16,7 +16,6 @@ public class NavigationActionExecuter
 
             navigationState.currentLevel = BattleSelectionLevel.Cancel;
             BattleUIManager.Instance.ToggleCancelPrompt(true);
-            return;
         }
         else if (navigationState.currentLevel == BattleSelectionLevel.Character)
         {
@@ -50,41 +49,32 @@ public class NavigationActionExecuter
             navigationState.ActionPileSelection.Refresh();
             navigationState.CharacterSelection.Refresh();
             BattleUIManager.Instance.ToggleCancelPrompt(false);
+            GameAudio.Instance.AudioToEvent(AudioEvent.RemoveAction);
+            GameNotificationsManager.Instance.Notify(GameNotification.NavigationStateUpdated);
+            return;
         }
         else if (navigationState.currentLevel == BattleSelectionLevel.Action)
         {
-            if (navigationState.ActionSelection.ActionSelected == BattleActionType.Magic)
+            if (navigationState.ActionSelection.ActionSelected == BattleActionType.Defend)
             {
-                navigationState.currentLevel = BattleSelectionLevel.Magic;
-                navigationState.MagicSelection.Toggle(true);
+                if (BattleManager.Instance.BattleValues.PartyDefense[navigationState.CharacterSelection.CharacterID] <= 0)
+                    return;
             }
-            else
+
+            BattleManager.Instance.CalculateActionRange(navigationState.ActionSelection.ActionSelected, navigationState.CharacterSelection.CharacterID);
+            BattleGridUI.Instance.ToggleRange(BattleManager.Instance.BattleGrid.PositionsInRange, navigationState.ActionSelection.ActionSelected);
+
+            navigationState.currentLevel = BattleSelectionLevel.Cell;
+            Vector2Int position = BattleManager.Instance.BattleGrid.PositionsInRange[0];
+            if (navigationState.ActionSelection.ActionSelected == BattleActionType.MoveSafely || navigationState.ActionSelection.ActionSelected == BattleActionType.MoveFast)
             {
-                if (navigationState.ActionSelection.ActionSelected == BattleActionType.Defend)
-                {
-                    if (BattleManager.Instance.BattleValues.PartyDefense[navigationState.CharacterSelection.CharacterID] <= 0)
-                        return;
-                }
 
-                BattleManager.Instance.CalculateActionRange(navigationState.ActionSelection.ActionSelected, navigationState.CharacterSelection.CharacterID);
-                BattleGridUI.Instance.ToggleRange(BattleManager.Instance.BattleGrid.PositionsInRange, navigationState.ActionSelection.ActionSelected);
-
-                navigationState.currentLevel = BattleSelectionLevel.Cell;
-                Vector2Int position = BattleManager.Instance.BattleGrid.PositionsInRange[0];
-                if (navigationState.ActionSelection.ActionSelected == BattleActionType.MoveSafely || navigationState.ActionSelection.ActionSelected == BattleActionType.MoveFast)
-                {
-
-                    position = BattleManager.Instance.CharacterManagement.Characters[navigationState.CharacterSelection.CharacterID].CurrentPosition;
-                }
-                navigationState.currentAction.position = position;
-                navigationState.CellSelection.Toggle(true);
-                navigationState.CellSelection.Initialize(position);
+                position = BattleManager.Instance.CharacterManagement.Characters[navigationState.CharacterSelection.CharacterID].CurrentPosition;
             }
-        }
-        else if (navigationState.currentLevel == BattleSelectionLevel.Magic)
-        {
-            //navigationState.currentLevel = BattleSelectionLevel.Cell;
-            //navigationState.CellSelection.Toggle(true);
+            navigationState.currentAction.position = position;
+            navigationState.CellSelection.Toggle(true);
+            navigationState.CellSelection.Initialize(position);
+            GameAudio.Instance.AudioToEvent(AudioEvent.NavigationConfirm);
         }
         else if (navigationState.currentLevel == BattleSelectionLevel.Cell)
         {
@@ -100,6 +90,7 @@ public class NavigationActionExecuter
             navigationState.ResetActionSelection();
         }
 
+        GameAudio.Instance.AudioToEvent(AudioEvent.NavigationConfirm);
         GameNotificationsManager.Instance.Notify(GameNotification.NavigationStateUpdated);
     }
 
@@ -136,13 +127,6 @@ public class NavigationActionExecuter
             navigationState.ActionPileSelection.Refresh();
             navigationState.ActionSelection.Toggle(false);
         }
-        else if (navigationState.currentLevel == BattleSelectionLevel.Magic)
-        {
-            navigationState.currentLevel = BattleSelectionLevel.Action;
-            navigationState.currentAction.speed = BattleActionsUtils.GetActionSpeed();
-            navigationState.ActionPileSelection.Refresh();
-            navigationState.MagicSelection.Toggle(false);
-        }
         else if (navigationState.currentLevel == BattleSelectionLevel.Cell)
         {
             BattleGridUI.Instance.ToggleRange();
@@ -153,6 +137,7 @@ public class NavigationActionExecuter
             navigationState.CellSelection.Toggle(false);
         }
         navigationState.currentAction.speed = BattleActionsUtils.GetActionSpeed();
+        GameAudio.Instance.AudioToEvent(AudioEvent.NavigationBack);
         GameNotificationsManager.Instance.Notify(GameNotification.NavigationStateUpdated);
     }
 

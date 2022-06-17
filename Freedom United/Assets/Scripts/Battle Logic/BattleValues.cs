@@ -44,10 +44,15 @@ public class BattleValues : MonoBehaviour, NotificationsListener
         bool alive = IsAlive(character);
 
         partyWillPoints[character] += delta;
-        if (partyWillPoints[character] <= 0)
+        if (delta < 0)
         {
-            partyWillPoints[character] = 0;
-            partyHealthPoints[character] = 0;
+            if (partyWillPoints[character] <= 0)
+            {
+                partyWillPoints[character] = 0;
+                GameAudio.Instance.AudioToEvent(AudioEvent.WillpowerHitZero);
+            }
+            else
+                GameAudio.Instance.AudioToEvent(AudioEvent.WillPowerLost);
         }
         else if (partyWillPoints[character] > BattleManager.Instance.PartyStats.Stats[character].BaseWillPower)
         {
@@ -101,6 +106,11 @@ public class BattleValues : MonoBehaviour, NotificationsListener
 
         if (isDestroyed != BossPartIsDestroyed(partType))
         {
+            if (PartsList[partType].IsCore)
+                GameAudio.Instance.AudioToEvent(AudioEvent.BodyDestroyed);
+            else
+                GameAudio.Instance.AudioToEvent(AudioEvent.BodyPartDestroyed);
+
             GameNotificationData notificationData = new GameNotificationData();
             notificationData.Data[NotificationDataIDs.Deceased] = partType.ToString();
             GameNotificationsManager.Instance.Notify(GameNotification.RecentDeath, notificationData);

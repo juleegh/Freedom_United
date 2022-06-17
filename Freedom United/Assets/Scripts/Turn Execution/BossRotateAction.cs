@@ -19,5 +19,6 @@ public class BossRotateAction : ExecutingAction
     {
         BattleManager.Instance.CharacterManagement.Boss.Rotate(bossPart, rotation);
         GameNotificationsManager.Instance.Notify(GameNotification.BossMoved);
+        GameAudio.Instance.AudioToEvent(AudioEvent.BossMove);
     }
 }

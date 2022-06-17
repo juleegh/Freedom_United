@@ -128,7 +128,7 @@ public class BossAttackAction : ExecutingAction
             }
             GameNotificationsManager.Instance.Notify(GameNotification.AttackWasExecuted, attackData);
         }
-
+        PlayAttackSound();
     }
 
     private bool FailedSuccess()
@@ -141,5 +141,19 @@ public class BossAttackAction : ExecutingAction
         float failure = BattleManager.Instance.CharacterManagement.BossConfig.PartsList[attackingPart].CriticalFailureChance;
         float success = BattleManager.Instance.CharacterManagement.BossConfig.PartsList[attackingPart].NormalSuccessChance;
         return chanceResult >= failure + success;
+    }
+
+    private void PlayAttackSound()
+    {
+        AudioEvent attackEvent = AudioEvent.BossRegularAttack;
+
+        if (BattleManager.Instance.CharacterManagement.BossConfig.PartsList[attackingPart].IsCore)
+            attackEvent = AudioEvent.MainBodyAttack;
+        else if (FailedSuccess())
+            attackEvent = AudioEvent.AttackFailed;
+        else if(PassedCritical())
+            attackEvent = AudioEvent.CriticalAttack;
+
+        GameAudio.Instance.AudioToEvent(attackEvent);
     }
 }
