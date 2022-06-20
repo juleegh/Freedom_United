@@ -64,6 +64,12 @@ public class NavigationActionExecuter
             BattleManager.Instance.CalculateActionRange(navigationState.ActionSelection.ActionSelected, navigationState.CharacterSelection.CharacterID);
             BattleGridUI.Instance.ToggleRange(BattleManager.Instance.BattleGrid.PositionsInRange, navigationState.ActionSelection.ActionSelected);
 
+            if (navigationState.ActionSelection.ActionSelected == BattleActionType.Defend || navigationState.ActionSelection.ActionSelected == BattleActionType.Attack)
+            {
+                Vector2Int center = BattleManager.Instance.CharacterManagement.Characters[navigationState.CharacterSelection.CharacterID].CurrentPosition;
+                BattleGridUI.Instance.ToggleDirections(center);
+            }
+
             navigationState.currentLevel = BattleSelectionLevel.Cell;
             Vector2Int position = BattleManager.Instance.BattleGrid.PositionsInRange[0];
             if (navigationState.ActionSelection.ActionSelected == BattleActionType.MoveSafely || navigationState.ActionSelection.ActionSelected == BattleActionType.MoveFast)

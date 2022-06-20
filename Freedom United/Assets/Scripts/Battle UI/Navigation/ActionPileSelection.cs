@@ -20,7 +20,7 @@ public class ActionPileSelection : NavigationSelection
             currentIndex++;
             BattleUIManager.Instance.ActionPileUI.RefreshView(topElement, currentIndex);
         }
-        else if (topElement + ElementsOnScreen + 1 <= MaxElement)
+        else if (topElement + ElementsOnScreen <= MaxElement)
         {
             topElement++;
             BattleUIManager.Instance.ActionPileUI.RefreshView(topElement, currentIndex);
@@ -69,8 +69,12 @@ public class ActionPileSelection : NavigationSelection
             }
             else
             {
-                BattleManager.Instance.CalculateActionRange(actionType, character);
-                positions = BattleManager.Instance.BattleGrid.PositionsInRange;
+                CharacterAttackAction attackAction = new CharacterAttackAction(allyAction);
+                Vector2Int characterPos = BattleManager.Instance.CharacterManagement.Characters[character].CurrentPosition;
+                foreach (Vector2Int pos in attackAction.GetAttackPositions())
+                { 
+                    positions.Add(characterPos + pos);
+                }
             }
             BattleGridUI.Instance.ToggleRange(positions, actionType);
         }

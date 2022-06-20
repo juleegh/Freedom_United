@@ -23,14 +23,19 @@ public class CharacterAttackAction : ExecutingAction
         attackDirection.x = attackDirection.x == 0 ? 0 : attackDirection.x / Mathf.Abs(attackDirection.x);
         attackDirection.y = attackDirection.y == 0 ? 0 : attackDirection.y / Mathf.Abs(attackDirection.y);
 
-        attackedPositions = new List<Vector2Int>();
+        attackedPositions = GetAttackPositions();
+        damageTaken = BattleManager.Instance.PartyStats.Stats[scheduledAction.actionOwner].BaseAttack;
+        chanceResult = Random.Range(0f, 1f);
+    }
+
+    public List<Vector2Int> GetAttackPositions()
+    {
+        List<Vector2Int> attackedPositions = new List<Vector2Int>();
         for (int i = 1; i <= attackDelta; i++)
         {
             attackedPositions.Add(attackDirection * i);
         }
-
-        damageTaken = BattleManager.Instance.PartyStats.Stats[scheduledAction.actionOwner].BaseAttack;
-        chanceResult = Random.Range(0f, 1f);
+        return attackedPositions;
     }
 
     public override void Execute()

@@ -13,6 +13,7 @@ public class GridCellUI : MonoBehaviour
     [SerializeField] private DamagePromptUI damagePrompt;
     [SerializeField] private RunPromptUI runPrompt;
     [SerializeField] private ShieldPromptUI shieldPrompt;
+    [SerializeField] private DirectionPromptUI directionPrompt;
     [SerializeField] private FOVIndicator fovIndicator;
     [SerializeField] private CellDebugger debugger;
 
@@ -54,6 +55,7 @@ public class GridCellUI : MonoBehaviour
     public void CleanRange()
     {
         content.color = transparent;
+        directionPrompt.ClearPrompt();
     }
 
     public void PaintAsHighlight(bool highlighted)
@@ -126,5 +128,10 @@ public class GridCellUI : MonoBehaviour
     public void ToggleDebug(bool visible)
     {
         debugger.Toggle(visible);
+    }
+
+    public void ToggleDirection(Vector2Int direction)
+    {
+        directionPrompt.SetupPrompt(direction);
     }
 }

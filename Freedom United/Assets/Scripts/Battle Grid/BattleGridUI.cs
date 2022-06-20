@@ -122,6 +122,26 @@ public class BattleGridUI : MonoBehaviour, NotificationsListener
         }
     }
 
+    public void ToggleDirections(Vector2Int center)
+    {
+        if (grid.ContainsKey(center + Vector2Int.up))
+        {
+            grid[center + Vector2Int.up].ToggleDirection(Vector2Int.up);
+        }
+        if (grid.ContainsKey(center + Vector2Int.down))
+        {
+            grid[center + Vector2Int.down].ToggleDirection(Vector2Int.down);
+        }
+        if (grid.ContainsKey(center + Vector2Int.left))
+        {
+            grid[center + Vector2Int.left].ToggleDirection(Vector2Int.left);
+        }
+        if (grid.ContainsKey(center + Vector2Int.right))
+        {
+            grid[center + Vector2Int.right].ToggleDirection(Vector2Int.right);
+        }
+    }
+
     public void ToggleHighlight(Vector2Int position, bool highlighted)
     {
         if (!grid.ContainsKey(position))
