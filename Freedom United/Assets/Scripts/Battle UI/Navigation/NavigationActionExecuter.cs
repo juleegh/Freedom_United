@@ -64,12 +64,6 @@ public class NavigationActionExecuter
             BattleManager.Instance.CalculateActionRange(navigationState.ActionSelection.ActionSelected, navigationState.CharacterSelection.CharacterID);
             BattleGridUI.Instance.ToggleRange(BattleManager.Instance.BattleGrid.PositionsInRange, navigationState.ActionSelection.ActionSelected);
 
-            if (navigationState.ActionSelection.ActionSelected == BattleActionType.Defend || navigationState.ActionSelection.ActionSelected == BattleActionType.Attack)
-            {
-                Vector2Int center = BattleManager.Instance.CharacterManagement.Characters[navigationState.CharacterSelection.CharacterID].CurrentPosition;
-                BattleGridUI.Instance.ToggleDirections(center);
-            }
-
             navigationState.currentLevel = BattleSelectionLevel.Cell;
             Vector2Int position = BattleManager.Instance.ActionPile.GetTentativePosition(navigationState.CharacterSelection.CharacterID);
             navigationState.currentAction.position = position;
@@ -83,7 +77,7 @@ public class NavigationActionExecuter
                 return;
 
             if (navigationState.ActionSelection.ActionSelected == BattleActionType.Attack || navigationState.ActionSelection.ActionSelected == BattleActionType.Defend)
-                navigationState.currentAction.position = navigationState.CellSelection.SelectedPosition - BattleManager.Instance.CharacterManagement.Characters[navigationState.CharacterSelection.CharacterID].CurrentPosition;
+                navigationState.currentAction.position = navigationState.CellSelection.SelectedPosition - BattleManager.Instance.ActionPile.GetTentativePosition(navigationState.CharacterSelection.CharacterID);
             else
                 navigationState.currentAction.position = navigationState.CellSelection.SelectedPosition;
 
