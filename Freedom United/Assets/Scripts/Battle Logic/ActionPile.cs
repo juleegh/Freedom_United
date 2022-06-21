@@ -26,6 +26,7 @@ public class ActionPile : MonoBehaviour, NotificationsListener
 
         actionsForTurn[action.ActionOwner].Add(action);
         BattleUIManager.Instance.ActionPileUI.RefreshView();
+        GameNotificationsManager.Instance.Notify(GameNotification.ActionPileModified);
     }
 
     public void RemoveActionFromPile(long actionID)
@@ -38,10 +39,65 @@ public class ActionPile : MonoBehaviour, NotificationsListener
                 {
                     actionsForTurn[characterAction.ActionOwner].Remove(characterAction);
                     BattleUIManager.Instance.ActionPileUI.RefreshView();
+                    GameNotificationsManager.Instance.Notify(GameNotification.ActionPileModified);
                     return;
                 }
             }
         }
+    }
+
+    public Vector2Int GetPositionByActionIndex(CharacterID character, int index)
+    {
+        Vector2Int currentPosition = BattleManager.Instance.CharacterManagement.Characters[character].CurrentPosition;
+        List<ScheduledAction> actionList = ActionsForTurn;
+        for (int i = 0; i <= index && index < actionList.Count; i++)
+        {
+            ScheduledAction scheduledAction = actionList[i];
+            if (BattleGridUtils.IsACharacter(scheduledAction.ActionOwner))
+            {
+                AllyAction allyAction = scheduledAction as AllyAction;
+                if (allyAction.actionOwner != character)
+                    continue;
+
+                switch (allyAction.actionType)
+                {
+                    case BattleActionType.MoveSafely:
+                    case BattleActionType.MoveFast:
+                        currentPosition = allyAction.position;
+                        break;
+                }
+            }
+        }
+        return currentPosition;
+    }
+
+    public Vector2Int GetTentativePosition(CharacterID character)
+    {
+        Vector2Int currentPosition = BattleManager.Instance.CharacterManagement.Characters[character].CurrentPosition;
+        List<ScheduledAction> actionList = ActionsForTurn;
+        for (int i = 0; i < actionList.Count; i++)
+        {
+            ScheduledAction scheduledAction = actionList[i];
+            if (scheduledAction == currentAction)
+                break;
+
+            if (BattleGridUtils.IsACharacter(scheduledAction.ActionOwner))
+            {
+                AllyAction allyAction = scheduledAction as AllyAction;
+                if (allyAction.actionOwner != character)
+                    continue;
+
+                switch (allyAction.actionType)
+                {
+                    case BattleActionType.MoveSafely:
+                    case BattleActionType.MoveFast:
+                        currentPosition = allyAction.position;
+                        break;
+                }
+            }
+
+        }
+        return currentPosition;
     }
 
     public bool CharacterAvailable(CharacterID character)

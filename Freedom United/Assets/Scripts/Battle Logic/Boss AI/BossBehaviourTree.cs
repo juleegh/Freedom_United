@@ -24,5 +24,6 @@ public class BossBehaviourTree : MonoBehaviour, NotificationsListener
                 }
             }
         }
+        GameNotificationsManager.Instance.Notify(GameNotification.ActionPileModified);
     }
 }

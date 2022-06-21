@@ -132,6 +132,6 @@ public class GridCellUI : MonoBehaviour
 
     public void ToggleDirection(Vector2Int direction)
     {
-        directionPrompt.SetupPrompt(direction);
+        //directionPrompt.SetupPrompt(direction);
     }
 }

@@ -57,6 +57,7 @@ public class BattleGridUI : MonoBehaviour, NotificationsListener
         UpdateBossFieldOfView(null);
         RefreshBoss(null);
         UpdateDefenseInBoard();
+        GameNotificationsManager.Instance.Notify(GameNotification.BattleGridLoaded);
     }
 
     private void RefreshCharacters(GameNotificationData notificationData)

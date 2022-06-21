@@ -21,13 +21,19 @@ public class BossAttackAction : ExecutingAction
         chanceResult = Random.Range(0f, 1f);
     }
 
-    public override void Execute()
+    public List<Vector2Int> GetTargetPositions()
     {
         Vector2Int currentPartPosition = BattleManager.Instance.CharacterManagement.Boss.Parts[attackingPart].Position;
         Vector2Int currentPartOrientation = BattleManager.Instance.CharacterManagement.Boss.Parts[attackingPart].Orientation;
         List<Vector2Int> attackedPositions = attackShape.GetRotatedDeltasWithPivot(pivot, currentPartOrientation);
 
         List<Vector2Int> targetPositions = BattleGridUtils.GetTranslatedPositions(currentPartPosition, attackedPositions);
+        return targetPositions;
+    }
+
+    public override void Execute()
+    {
+        List<Vector2Int> targetPositions = GetTargetPositions();
         CameraFocus.Instance.FocusForAttack(targetPositions, critical : PassedCritical(), failed : FailedSuccess());
 
         foreach (Vector2Int attackedPosition in targetPositions)

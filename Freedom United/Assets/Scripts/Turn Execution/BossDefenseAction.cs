@@ -10,6 +10,7 @@ public class BossDefenseAction : ExecutingAction
 
     private float defenseProvided;
     public float DefenseProvided { get { return defenseProvided; } }
+    public List<Vector2Int> PotentialDefense { get { return areaOfEffect; } }
 
     public BossDefenseAction(BossAction scheduledAction) : base(scheduledAction)
     {

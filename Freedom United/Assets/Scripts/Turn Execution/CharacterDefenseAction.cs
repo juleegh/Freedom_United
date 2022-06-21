@@ -42,6 +42,18 @@ public class CharacterDefenseAction : ExecutingAction
         GameAudio.Instance.AudioToEvent(AudioEvent.DefenseRaised);
     }
 
+    public List<Vector2Int> PotentiallyDefendedPositions(Vector2Int tentativePosition)
+    {
+        List<Vector2Int> targetDefense = new List<Vector2Int>();
+        targetDefense.Add(defenseDelta + tentativePosition);
+
+        if (defenseDelta != Vector2Int.zero)
+        {
+            targetDefense.Add(tentativePosition);
+        }
+        return targetDefense;
+    }
+
     public bool PositionIsDefended(Vector2Int position)
     {
         return defendedPositions.Contains(position - CurrentCharacterPosition) && BattleManager.Instance.BattleValues.CanDefend(defendingCharacter);

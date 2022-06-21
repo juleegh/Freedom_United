@@ -2,6 +2,7 @@ public enum GameNotification
 {
     DependenciesLoaded,
     BattleLoaded,
+    BattleGridLoaded,
     BattleUILoaded,
     BossStatsModified,
     CharacterMoved,
@@ -19,4 +20,5 @@ public enum GameNotification
     CharacterStatsChanged,
     ObstaclesStatsChanged,
     FieldOfViewChanged,
+    ActionPileModified,
 }

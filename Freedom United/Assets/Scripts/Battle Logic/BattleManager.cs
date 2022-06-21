@@ -61,19 +61,19 @@ public class BattleManager : MonoBehaviour, NotificationsListener
 
     private void CalculateAttackRange(CharacterID characterID)
     {
-        Character character = characterManagement.Characters[characterID];
-        battleGrid.CalculateRange(partyStats.Stats[characterID].AttackRange, character.CurrentPosition, false);
+        Vector2Int currentPosition = BattleManager.Instance.ActionPile.GetTentativePosition(characterID);
+        battleGrid.CalculateRange(partyStats.Stats[characterID].AttackRange, currentPosition, false);
     }
 
     private void CalculateDefenseRange(CharacterID characterID)
     {
-        Character character = characterManagement.Characters[characterID];
-        battleGrid.CalculateRange(AttackRange.Short, character.CurrentPosition, true);
+        Vector2Int currentPosition = BattleManager.Instance.ActionPile.GetTentativePosition(characterID);
+        battleGrid.CalculateRange(AttackRange.Short, currentPosition, true);
     }
 
     private void CalculateMoveRange(CharacterID characterID)
     {
-        Character character = characterManagement.Characters[characterID];
-        battleGrid.CalculateRange(character.CurrentPosition);
+        Vector2Int currentPosition = BattleManager.Instance.ActionPile.GetTentativePosition(characterID);
+        battleGrid.CalculateRange(currentPosition);
     }
 }

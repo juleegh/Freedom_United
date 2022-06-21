@@ -1046,6 +1046,7 @@ GameObject:
   - component: {fileID: 826080794700395167}
   - component: {fileID: 826080794700395164}
   - component: {fileID: 2569940105443800687}
+  - component: {fileID: 6287314572743683869}
   m_Layer: 0
   m_Name: Battle Management
   m_TagString: Untagged
@@ -1206,6 +1207,19 @@ MonoBehaviour:
   focusZoomDistance: 7
   normalAttackShake: 0.3
   criticalAttackShake: 0.6
+--- !u!114 &6287314572743683869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 826080794700395174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac73db225f5cf86438f2ad6c6f6085fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cellsContainer: {fileID: 826080795725582761}
 --- !u!1 &826080794765816277
 GameObject:
   m_ObjectHideFlags: 0
