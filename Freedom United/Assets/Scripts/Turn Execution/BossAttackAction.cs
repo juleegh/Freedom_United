@@ -155,7 +155,8 @@ public class BossAttackAction : ExecutingAction
 
         if (BattleManager.Instance.CharacterManagement.BossConfig.PartsList[attackingPart].IsCore)
             attackEvent = AudioEvent.MainBodyAttack;
-        else if (FailedSuccess())
+        
+        if (FailedSuccess())
             attackEvent = AudioEvent.AttackFailed;
         else if(PassedCritical())
             attackEvent = AudioEvent.CriticalAttack;
