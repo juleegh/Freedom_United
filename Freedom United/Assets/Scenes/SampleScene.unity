@@ -207,7 +207,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 33.8
+  m_fontSize: 19.75
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -407,7 +407,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 29.6
+  m_fontSize: 18
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -776,7 +776,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 44.15
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2912,7 +2912,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 28.4
+  m_fontSize: 18
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3268,7 +3268,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40.6
+  m_fontSize: 23.7
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3402,7 +3402,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 19.3
+  m_fontSize: 18
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4130,7 +4130,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 56.85
+  m_fontSize: 33.2
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4264,7 +4264,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 38.2
+  m_fontSize: 18
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4660,7 +4660,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 21.1
+  m_fontSize: 18
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4976,6 +4976,46 @@ PrefabInstance:
       propertyPath: m_Name
       value: Battle Management
       objectReference: {fileID: 0}
+    - target: {fileID: 3084569684467645026, guid: 8918a3c39354e0346984a7dddedf7211, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1722031503900633361, guid: e5e9378c8a1f2f744b795ab937834dfe, type: 3}
+    - target: {fileID: 3084569684562552083, guid: 8918a3c39354e0346984a7dddedf7211, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -3717569496831636912, guid: c14b56ae6f5a8644fa0f9522e8b26cd5, type: 3}
+    - target: {fileID: 3084569685532219430, guid: 8918a3c39354e0346984a7dddedf7211, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 8452526076522146119, guid: f2c5f182a95db8b4f988688849963c38, type: 3}
+    - target: {fileID: 3084569685605997740, guid: 8918a3c39354e0346984a7dddedf7211, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -2772309655190495382, guid: 7baba1e6a40c04346be1582774e8d593, type: 3}
+    - target: {fileID: 3084569685636556082, guid: 8918a3c39354e0346984a7dddedf7211, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -4262555699043892984, guid: f9c6ad39b0097b04688f5fd812220c79, type: 3}
+    - target: {fileID: 3084569685716767778, guid: 8918a3c39354e0346984a7dddedf7211, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -4527435147372233032, guid: c6a81d72c2274bd4ba0e0278eed093a2, type: 3}
+    - target: {fileID: 3084569685856697284, guid: 8918a3c39354e0346984a7dddedf7211, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -6144807715673957774, guid: 653f4a7a3575d524fbf89ba435864405, type: 3}
+    - target: {fileID: 3084569686136074002, guid: 8918a3c39354e0346984a7dddedf7211, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -5930352186829907669, guid: 1b560feda050c7d41b31b3373a6e2302, type: 3}
+    - target: {fileID: 3084569686410117916, guid: 8918a3c39354e0346984a7dddedf7211, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -6739495891648297394, guid: feedfdf4a6f21e846a041c4c87eb72c8, type: 3}
+    - target: {fileID: 3084569686411408642, guid: 8918a3c39354e0346984a7dddedf7211, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -3839238410232187632, guid: c30d195683ac182409bfaf7f8ce4c93e, type: 3}
     - target: {fileID: 6094522895557145743, guid: 8918a3c39354e0346984a7dddedf7211, type: 3}
       propertyPath: m_LocalPosition.z
       value: 2.97
